@@ -234,6 +234,7 @@ export interface SinovateScreenshot {
   subtitle: string;
   category: string;
   iconName: string;
+  imagePath?: string;
   highlights: string[];
   mockData: {
     header: string;
@@ -355,6 +356,34 @@ export interface SomunDetails {
   }[];
 }
 
+export interface TedxScreenshot {
+  id: string;
+  title: string;
+  category: string;
+  imagePath: string;
+  description: string;
+  highlights?: string[];
+}
+
+export interface TedxDetails {
+  githubRepoCheckin: string;
+  githubRepoMain: string;
+  backendTech: string;
+  tagline: string;
+  overview: string;
+  features: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+  screenshots: TedxScreenshot[];
+  architecture: {
+    component: string;
+    description: string;
+    tech: string;
+  }[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -373,6 +402,7 @@ export interface Project {
   sinovateDetails?: SinovateDetails;
   diseaseTrackerDetails?: DiseaseTrackerDetails;
   somunDetails?: SomunDetails;
+  tedxDetails?: TedxDetails;
 }
 
 export interface Certificate {

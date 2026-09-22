@@ -11,6 +11,7 @@ import SinovateInteractivePage from './project-details/SinovateInteractivePage';
 import DiseaseTrackerInteractivePage from './project-details/DiseaseTrackerInteractivePage';
 import SomunInteractivePage from './project-details/SomunInteractivePage';
 import TeachersDayInteractivePage from './project-details/TeachersDayInteractivePage';
+import TedxInteractivePage from './project-details/TedxInteractivePage';
 import GenericProjectInteractivePage from './project-details/GenericProjectInteractivePage';
 import ProjectPreviewModal from './ProjectPreviewModal';
 
@@ -34,6 +35,11 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
     }
   }, [initialProjectId]);
 
+  // Scroll to top whenever an exhibit page is opened or closed
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [activeProjectPage]);
+
   const handleCardClick = (project: Project) => {
     setPreviewProject(project);
   };
@@ -41,13 +47,13 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
   const handleOpenFullExhibit = (project: Project) => {
     setPreviewProject(null);
     setActiveProjectPage(project);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
   const handleBackToProjects = () => {
     setActiveProjectPage(null);
     onClearProjectId?.();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
   // If a dedicated project page is active, render its full-screen interactive exhibit!
@@ -69,6 +75,9 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
     }
     if (activeProjectPage.diseaseTrackerDetails || activeProjectPage.id === 'global-disease-tracker-pro') {
       return <DiseaseTrackerInteractivePage onBack={handleBackToProjects} />;
+    }
+    if (activeProjectPage.tedxDetails || activeProjectPage.id === 'tedx-checkin-system') {
+      return <TedxInteractivePage onBack={handleBackToProjects} />;
     }
     if (activeProjectPage.id === 'teachers-day-class-act') {
       return <TeachersDayInteractivePage onBack={handleBackToProjects} />;

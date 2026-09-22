@@ -1,4 +1,4 @@
-import { Project, ResumeItem, Recommendation, SkillCategory, ResearchPaperData, Seq2SeqTranslationDetails, CharLevelBigramDetails, SinovateDetails, DiseaseTrackerDetails, SomunDetails, Certificate } from './types';
+import { Project, ResumeItem, Recommendation, SkillCategory, ResearchPaperData, Seq2SeqTranslationDetails, CharLevelBigramDetails, SinovateDetails, DiseaseTrackerDetails, SomunDetails, TedxDetails, Certificate } from './types';
 
 export const HERO_BIO = {
   name: "Om Suraj Kashikar",
@@ -580,6 +580,7 @@ export const SINOVATE_DATA: SinovateDetails = {
       subtitle: "Personalized Daily Command Center",
       category: "Mobile UI",
       iconName: "Home",
+      imagePath: "/sinovate/sinovate-shot-1.jpg",
       highlights: ["Personalized greeting & quick AI chat launcher", "Upcoming test alerts (10-day lookahead)", "Daily login streak gamification", "Recent conversation history drawer"],
       mockData: {
         header: "Good evening, Om Suraj",
@@ -598,6 +599,7 @@ export const SINOVATE_DATA: SinovateDetails = {
       subtitle: "Context-Grounded Subject Q&A",
       category: "AI Engine",
       iconName: "MessageSquare",
+      imagePath: "/sinovate/sinovate-shot-2.jpg",
       highlights: ["Hybridization & resonance explanations", "FAISS retrieval grounding for curriculum accuracy", "Image snapshot question input support", "Clean typography with LaTeX & markdown rendering"],
       mockData: {
         header: "AI Tutor: Haloalkanes vs Haloarenes",
@@ -616,6 +618,7 @@ export const SINOVATE_DATA: SinovateDetails = {
       subtitle: "Custom AI Practice Generator",
       category: "AI Generation",
       iconName: "FileText",
+      imagePath: "/sinovate/sinovate-shot-4.jpg",
       highlights: ["Subject selector (Physics / Chemistry / Math)", "Question count & difficulty tier slider", "Multi-select question types: MCQs, PYQs, Short Answer, 3/4/5 Marks", "Instant AI draft generation & save sheet"],
       mockData: {
         header: "Worksheet Studio",
@@ -634,6 +637,7 @@ export const SINOVATE_DATA: SinovateDetails = {
       subtitle: "Structured Knowledge Vault",
       category: "Persistence",
       iconName: "BookOpen",
+      imagePath: "/sinovate/sinovate-shot-3.jpg",
       highlights: ["Card-based note navigation with quick-pinning", "Structured tags (# 📚 Overview)", "Offline-first markdown reader & editor", "Quick-add floating action button"],
       mockData: {
         header: "My Notes",
@@ -651,6 +655,7 @@ export const SINOVATE_DATA: SinovateDetails = {
       subtitle: "Unified Schedule & Tasks",
       category: "Planner",
       iconName: "Calendar",
+      imagePath: "/sinovate/sinovate-shot-5.jpg",
       highlights: ["Unified view of tests, homework, and tasks", "Month-grid navigation with active day highlighting", "Daily agenda list with status badges", "Fast one-tap entry creation"],
       mockData: {
         header: "Calendar: September 2026",
@@ -669,6 +674,7 @@ export const SINOVATE_DATA: SinovateDetails = {
       subtitle: "Performance Analytics & Countdown",
       category: "Analytics",
       iconName: "Trophy",
+      imagePath: "/sinovate/sinovate-shot-6.jpg",
       highlights: ["Performance metrics: Total tests, Scored tests, Avg score, Next date", "Tests vs Countdown toggle tabs", "Add test form with subject selection", "Subject leaderboard sync via Google Apps Script"],
       mockData: {
         header: "Exams Hub — Test Performance",
@@ -1125,6 +1131,125 @@ export const SOMUN_DATA: SomunDetails = {
   ]
 };
 
+export const TEDX_DATA: TedxDetails = {
+  githubRepoCheckin: "https://github.com/25sh0363-code/tedx-checkin",
+  githubRepoMain: "https://github.com/25sh0363-code/tedx",
+  backendTech: "Google Sheets & Google Apps Script",
+  tagline: "Custom-built, serverless digital portal and real-time QR check-in ecosystem powered by Google Sheets & Apps Script for TEDxSilverOaks.",
+  overview: "For TEDxSilverOaks, rather than relying on expensive third-party ticketing platforms, we engineered a completely custom, lightweight, serverless ticketing and guest onboarding system from the ground up. This system comprises two key components: the main promotional/registration web portal and a specialized high-speed check-in mobile web app. Leveraging Google Sheets as a real-time relational database and Google Apps Script as the serverless micro-backend, we implemented instant QR-code generation, automatic transactional confirmation emails, and zero-latency check-in verification with QR scanning. The entire project was delivered under severe budget constraints, demonstrating high reliability and serving over 200+ attendees during the live event.",
+  features: [
+    {
+      title: "Serverless Apps Script API",
+      description: "Deployed custom Google Apps Script web app endpoints acting as REST APIs to process registrations, query seat availability, and validate check-ins directly within Google Sheets.",
+      icon: "Cpu"
+    },
+    {
+      title: "Real-time Google Sheets DB",
+      description: "Utilized Google Sheets with complex query formulas, validation rules, and automated relational linking to act as a structured, low-latency, real-time database.",
+      icon: "Database"
+    },
+    {
+      title: "Transactional Email Engine",
+      description: "Automated trigger system using Apps Script MailApp to compile customized HTML confirmation passes complete with embedded, dynamically-generated QR codes upon successful payment.",
+      icon: "Mail"
+    },
+    {
+      title: "High-Speed QR Scanner Web App",
+      description: "Designed a dedicated, responsive mobile web check-in client with HTML5 camera scanning that authenticates passes in sub-300ms, preventing long entry queues.",
+      icon: "QrCode"
+    },
+    {
+      title: "Speaker Lineup & Agenda",
+      description: "Implemented a fully responsive main portal with interactive sections showcasing TEDx speaker profiles, custom theme presentation timelines, and event guidelines.",
+      icon: "Layers"
+    }
+  ],
+  screenshots: [
+    {
+      id: "tedx-shot-1",
+      title: "Unveiling Maya — Hero Landing Section",
+      category: "Visitor Portal",
+      imagePath: "tedx/Screenshot 2026-09-23 at 1.44.10 AM.png",
+      description: "The public landing page for TEDx Silver Oaks (Bowrampet/Bachupally Campus), highlighting the theme 'Unveiling Maya: The Illusions of Reality' on 20th Dec 2025. It details a modern layout over a monochrome sketched eyes portrait and active red call-to-action buttons.",
+      highlights: [
+        "Top navigation bar (HOME, ABOUT, SPEAKERS, SCHEDULE, TEAM, FAQ) with red 'REGISTER' pill button",
+        "Date and location badge: '20TH DEC 2025 • HYDERABAD' with calendar icon",
+        "Two prominent rounded action buttons: 'JOIN THE EXPERIENCE →' and 'MEET OUR SPEAKERS'"
+      ]
+    },
+    {
+      id: "tedx-shot-2",
+      title: "About the Theme — Exploring Maya",
+      category: "Visitor Portal",
+      imagePath: "tedx/Screenshot 2026-09-23 at 1.44.19 AM.png",
+      description: "The conceptual section explaining 'Maya' as subtle yet powerful illusions shaping how we see the world. It maps out three distinct thematic pillars on the left alongside a gorgeous circular optical wave theme poster on the right.",
+      highlights: [
+        "Pillar I: 'Identity & Self' mapping fixed or shaped self-expectations",
+        "Pillar II: 'Time & Efficiency' addressing time pressure in an efficient age",
+        "Pillar III: 'Connection & Distance' exploring connection masking real distance"
+      ]
+    },
+    {
+      id: "tedx-shot-3",
+      title: "About TED — Technology, Entertainment, Design",
+      category: "Visitor Portal",
+      imagePath: "tedx/Screenshot 2026-09-23 at 1.44.41 AM.png",
+      description: "An educational section detailing TED's nonprofit mission to spread ideas and foster curiosity. Layout includes a stage photograph showing a previous speaker in action with a 'TEDx Silver Oaks Intl School Bachupally' stage sign.",
+      highlights: [
+        "Informational three-paragraph context detailing the nonprofit's history and values",
+        "Left-aligned stage photograph showcasing previous event speaker on stage",
+        "Small red-tinted 'TED' pill badge preceding the bold main heading"
+      ]
+    },
+    {
+      id: "tedx-shot-4",
+      title: "Team Directory — Tech Head Spotlight",
+      category: "Visitor Portal",
+      imagePath: "tedx/Screenshot 2026-09-23 at 1.45.01 AM.png",
+      description: "The official team profiles directory focusing on Tech Head Om Suraj Kashikar. Displays a portrait photo of Om alongside a detailed biography outlining his skills, technical management, and hobbies.",
+      highlights: [
+        "Profile card with a neon red border glow effect on a dark grid canvas",
+        "Bio highlights: coding, AI, ML, hardware debugging, and active team leadership",
+        "Department tag: 'TECH' in red, white bold header, and red underline accents"
+      ]
+    },
+    {
+      id: "tedx-shot-5",
+      title: "Staff Gate Check-In & Scanner Portal",
+      category: "Staff Operations",
+      imagePath: "tedx/Screenshot 2026-09-23 at 1.46.43 AM.png",
+      description: "The mobile-friendly live Staff Check-in Portal for the 'Maya: Illusions in Daily Life' event. Shows real-time check-in counts (111 Checked In, 117 Registered, 6 Pending) over a camera viewfinder scanning frame for immediate pass validation.",
+      highlights: [
+        "Real-time attendee stats tracker (111 checked in, 117 registered, 6 pending)",
+        "Sleek square camera viewfinder scanner with red border outline and corner marks",
+        "Wide red 'SCAN NEXT' sync button facilitating sequential scanning workflows"
+      ]
+    }
+  ],
+  architecture: [
+    {
+      component: "Frontend Clients",
+      description: "Two distinct single-page apps: the main visitor/booking landing page and the staff mobile-first QR scanner console.",
+      tech: "HTML5, Tailwind CSS, Javascript, html5-qrcode"
+    },
+    {
+      component: "Serverless Micro-API",
+      description: "Google Apps Script deployed as a Web App (executing as user) exposing HTTP POST and GET routes to bridge frontend client actions with the database.",
+      tech: "Google Apps Script (GAS)"
+    },
+    {
+      component: "Relational Database",
+      description: "A secure, structured Google Sheet containing separate sheets for delegate registration records, check-in log history, and payment configuration keys.",
+      tech: "Google Sheets Engine"
+    },
+    {
+      component: "Pass Delivery & Automation",
+      description: "An Apps Script trigger that compiles custom attendee passes from a template, embeds a unique SHA-256 encoded check-in QR code, and sends a PDF attachment via Gmail/MailApp API.",
+      tech: "Google AppScript & Gmail API"
+    }
+  ]
+};
+
 export const PROJECTS: Project[] = [
   {
     id: "native-cpp-transformer",
@@ -1146,6 +1271,47 @@ export const PROJECTS: Project[] = [
     image: "images/transformer_cpp_paper_1790071663605.jpg",
     isResearchPaper: true,
     paperData: RESEARCH_PAPER_DATA
+  },
+  {
+    id: "somun-2026",
+    title: "SOMUN '26 — Official Web Engine (somunhyd.in)",
+    description: "Official web portal and platform architecture for SOMUN '26 (somunhyd.in) managing 12 committee chambers, 5-step registration stepper, financial verification ledger, and live QR check-in scanner.",
+    longDescription: "Architected and built the official web application for SOMUN '26 (somunhyd.in) as Lead Tech Head. Designed a complete multi-page architecture spanning the Home Page (hero, countdown, 'Words, not war' motto), About Us (Secretariat welcome & vision), Committees (12 chambers including DISEC, UNHRC, ECOSOC with agendas and background guides), Itinerary (3-day schedule), Resources (Rules of Procedure & Delegate Handbook), a 5-step Delegate Registration Stepper, and a restricted Staff Console equipped with a live financial verification ledger (tracking 528+ registrations and ₹14.78L+ invoices) and a camera-based QR pass check-in scanner.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "HTML5 Canvas QR Engine", "somunhyd.in"],
+    category: "Full-Stack",
+    githubLink: "https://github.com/25sh0363-code/SOMUN-26",
+    liveLink: "https://somunhyd.in",
+    features: [
+      "Live Production Domain: Deployed and accessible at somunhyd.in",
+      "5-Step Registration Stepper: Manages personal information, tiering, committee choices, code of conduct, and payment reference",
+      "Secretariat Financial Ledger: Real-time verification panel tracking 528+ registrations, 471 fee-verified payments, and email queues",
+      "Staff Gate Scanner: Camera-based QR pass scanner for 1-scan-per-day check-in validation across the 3-day conference",
+      "12 Committee Chambers: Full dossiers, agendas, matrix allocations, and downloadable background guides",
+      "Interactive Resources: Rules of Procedure (ROP), Position Paper writing guidelines, and Delegate Handbooks"
+    ],
+    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1200&auto=format&fit=crop",
+    somunDetails: SOMUN_DATA
+  },
+  {
+    id: "sinovate-school-assistant",
+    title: "SINOVATE — School Assistant (Flutter & FastAPI)",
+    description: "An all-in-one AI study companion and academic planner featuring RAG syllabus tutoring, automated worksheet generation, and offline-first persistence.",
+    longDescription: "SINOVATE is a cross-platform mobile application built with Flutter and a FastAPI backend designed to remove friction from high school and university studying. It combines context-grounded AI tutoring via FAISS vector store retrieval, an automated Worksheet Studio capable of drafting subject-specific question sets across varied marks and difficulty tiers, offline Markdown note generation with local SharedPreferences caching, landscape Mind Map Studio, exam performance tracking, unified academic calendar, and a subject-wise competitive leaderboard with Google Apps Script cloud sync.",
+    techStack: ["Flutter (Dart)", "FastAPI (Python)", "LangChain", "OpenAI GPT-4o", "FAISS Vector Store", "SharedPreferences", "Google Apps Script"],
+    category: "Systems & Mobile",
+    githubLink: "https://github.com/25sh0363-code/CHATBOT_SCHOOL_ASSISTANT_flutter_version",
+    liveLink: "https://youtu.be/9Ao7hLEgDD8",
+    features: [
+      "AI Tutor with FAISS Vector Store RAG for accurate CBSE/Senior Secondary syllabus grounding",
+      "Worksheet Studio generating custom practice sheets with customizable mark distributions (MCQs, PYQs, 3/4/5 marks)",
+      "Smart Markdown note creator with local-first SharedPreferences persistence and topic tagging",
+      "Interactive Mind Map Studio with zoom, pan, and hierarchical branching",
+      "Exams Hub with test score analytics, running averages, and countdown planners",
+      "Results Leaderboard with subject rankings (Physics, Chemistry, Math) and cloud sync",
+      "YouTube video demo and 6 interactive mobile screen walkthroughs"
+    ],
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+    sinovateDetails: SINOVATE_DATA
   },
   {
     id: "seq2seq-translation-transformer",
@@ -1188,45 +1354,24 @@ export const PROJECTS: Project[] = [
     charBigramDetails: CHAR_BIGRAM_DATA
   },
   {
-    id: "somun-2026",
-    title: "SOMUN '26 — Official Web Engine (somunhyd.in)",
-    description: "Official web portal and platform architecture for SOMUN '26 (somunhyd.in) managing 12 committee chambers, 5-step registration stepper, financial verification ledger, and live QR check-in scanner.",
-    longDescription: "Architected and built the official web application for SOMUN '26 (somunhyd.in) as Lead Tech Head. Designed a complete multi-page architecture spanning the Home Page (hero, countdown, 'Words, not war' motto), About Us (Secretariat welcome & vision), Committees (12 chambers including DISEC, UNHRC, ECOSOC with agendas and background guides), Itinerary (3-day schedule), Resources (Rules of Procedure & Delegate Handbook), a 5-step Delegate Registration Stepper, and a restricted Staff Console equipped with a live financial verification ledger (tracking 528+ registrations and ₹14.78L+ invoices) and a camera-based QR pass check-in scanner.",
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "HTML5 Canvas QR Engine", "somunhyd.in"],
+    id: "tedx-checkin-system",
+    title: "TEDxSilverOaks Onboarding & Live Check-In Ecosystem",
+    description: "Serverless web ticketing and high-speed mobile check-in engine using Google Sheets as a database and Google Apps Script as a back-end, serving 200+ delegates.",
+    longDescription: "A lightweight, custom-engineered serverless ticketing and guest check-in ecosystem developed for TEDxSilverOaks to bypass expensive third-party ticketing tools. Features a highly-responsive user ticketing portal mapping inputs directly to Google Sheets via serverless Apps Script REST endpoints, automatic HTML confirmation email compilation with dynamic high-resolution scannable QR passes, and a dedicated, responsive Mobile Web Check-In console for staff utilizing the device camera to authenticate tickets in sub-300ms.",
+    techStack: ["Google Apps Script", "Google Sheets API", "HTML5", "CSS3 / Tailwind", "Javascript (ES6)", "html5-qrcode", "REST API"],
     category: "Full-Stack",
-    githubLink: "https://github.com/25sh0363-code/SOMUN-26",
-    liveLink: "https://somunhyd.in",
+    githubLink: "https://github.com/25sh0363-code/tedx-checkin",
+    liveLink: "https://github.com/25sh0363-code/tedx",
     features: [
-      "Live Production Domain: Deployed and accessible at somunhyd.in",
-      "5-Step Registration Stepper: Manages personal information, tiering, committee choices, code of conduct, and payment reference",
-      "Secretariat Financial Ledger: Real-time verification panel tracking 528+ registrations, 471 fee-verified payments, and email queues",
-      "Staff Gate Scanner: Camera-based QR pass scanner for 1-scan-per-day check-in validation across the 3-day conference",
-      "12 Committee Chambers: Full dossiers, agendas, matrix allocations, and downloadable background guides",
-      "Interactive Resources: Rules of Procedure (ROP), Position Paper writing guidelines, and Delegate Handbooks"
+      "Dual Repository Architecture: Separated visitor portal and staff check-in scanning console",
+      "Google Sheets Relational Database: Structured storage managing registration info, checkout statuses, and attendee limits",
+      "Apps Script Serverless backend API exposing REST doGet/doPost webhook endpoints",
+      "On-the-fly QR Code compilation containing individual SHA-256 validation digests",
+      "Dedicated mobile-first gate control app scanning and verifying tickets in less than 300ms",
+      "Automatic HTML confirmation pass sender executing via transactional Gmail API triggers"
     ],
-    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1200&auto=format&fit=crop",
-    somunDetails: SOMUN_DATA
-  },
-  {
-    id: "sinovate-school-assistant",
-    title: "SINOVATE — School Assistant (Flutter & FastAPI)",
-    description: "An all-in-one AI study companion and academic planner featuring RAG syllabus tutoring, automated worksheet generation, and offline-first persistence.",
-    longDescription: "SINOVATE is a cross-platform mobile application built with Flutter and a FastAPI backend designed to remove friction from high school and university studying. It combines context-grounded AI tutoring via FAISS vector store retrieval, an automated Worksheet Studio capable of drafting subject-specific question sets across varied marks and difficulty tiers, offline Markdown note generation with local SharedPreferences caching, landscape Mind Map Studio, exam performance tracking, unified academic calendar, and a subject-wise competitive leaderboard with Google Apps Script cloud sync.",
-    techStack: ["Flutter (Dart)", "FastAPI (Python)", "LangChain", "OpenAI GPT-4o", "FAISS Vector Store", "SharedPreferences", "Google Apps Script"],
-    category: "Systems & Mobile",
-    githubLink: "https://github.com/25sh0363-code/CHATBOT_SCHOOL_ASSISTANT_flutter_version",
-    liveLink: "https://youtu.be/9Ao7hLEgDD8",
-    features: [
-      "AI Tutor with FAISS Vector Store RAG for accurate CBSE/Senior Secondary syllabus grounding",
-      "Worksheet Studio generating custom practice sheets with customizable mark distributions (MCQs, PYQs, 3/4/5 marks)",
-      "Smart Markdown note creator with local-first SharedPreferences persistence and topic tagging",
-      "Interactive Mind Map Studio with zoom, pan, and hierarchical branching",
-      "Exams Hub with test score analytics, running averages, and countdown planners",
-      "Results Leaderboard with subject rankings (Physics, Chemistry, Math) and cloud sync",
-      "YouTube video demo and 6 interactive mobile screen walkthroughs"
-    ],
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
-    sinovateDetails: SINOVATE_DATA
+    image: "tedx/Screenshot 2026-09-23 at 1.44.10 AM.png",
+    tedxDetails: TEDX_DATA
   },
   {
     id: "global-disease-tracker-pro",
@@ -1430,6 +1575,43 @@ export const RESUME: ResumeItem[] = [
     period: "Jun 29, 2025",
     highlights: [
       "Chapter level round participant in parliamentary debate, democratic dialogue, and civic policy sessions"
+    ],
+    category: "extracurricular"
+  },
+  {
+    id: "ext-oaksfest-25",
+    role: "Organiser & Skit Performer (Nukad Natak)",
+    organization: "OAKSFEST '25 Cultural Festival (Silver Oaks)",
+    location: "Hyderabad, India",
+    period: "2025",
+    highlights: [
+      "Organised the festival's Character Parade, managing coordination, sequences, and stage queues for student participants",
+      "Participated as a key performer in the street play (Nukad Natak), a traditional Indian format used to showcase moral narratives and positive social values",
+      "Directed stage positioning, crowd logistics, and peer-to-peer engagement during major open-air theater sessions"
+    ],
+    category: "extracurricular"
+  },
+  {
+    id: "ext-uni-fairs",
+    role: "Co-Organiser — International University Fairs",
+    organization: "Silver Oaks Career Counseling Cell",
+    location: "Hyderabad, India",
+    period: "Grade 11 (2024 - 2025)",
+    highlights: [
+      "Co-organised two extensive international university fairs hosted on-campus, serving as a liaison between visiting global delegates and student cohorts",
+      "Coordinated stall setups, digital infrastructure mapping, guide orientations, and welcome protocols for over 30 international higher education institutions"
+    ],
+    category: "extracurricular"
+  },
+  {
+    id: "ext-boards-beyond",
+    role: "Student Lead & Speaker (Boards & Beyond)",
+    organization: "Silver Oaks Academic Initiative",
+    location: "Hyderabad, India",
+    period: "August 2025 & August 2026",
+    highlights: [
+      "Conducted 'Boards & Beyond' orientation sessions targeting parents, illustrating the key educational value and career options of Informatics Practices (IP) in Class 11 & 12",
+      "Led a dedicated team of 2 students for technical slide development, presentation scheduling, and curriculum highlighting, serving as team lead for consecutive seasons (August 2025 & August 2026)"
     ],
     category: "extracurricular"
   }

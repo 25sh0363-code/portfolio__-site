@@ -5,10 +5,11 @@ import {
   Calendar, Trophy, FileText, Smartphone, Server, Cpu, Database, 
   CheckCircle2, Layers, Terminal, ChevronRight, Share2, Star, Clock,
   Flame, HelpCircle, FileCheck, Network, Pin, Search, Plus, Filter, Send,
-  Maximize2, Eye, Info
+  Maximize2, Eye, Info, X, Image as ImageIcon
 } from 'lucide-react';
 import { SINOVATE_DATA } from '../../data';
 import { SinovateScreenshot } from '../../types';
+import { fixAssetUrl } from '../../utils/assets';
 
 interface SinovateInteractivePageProps {
   onBack: () => void;
@@ -17,6 +18,7 @@ interface SinovateInteractivePageProps {
 export default function SinovateInteractivePage({ onBack }: SinovateInteractivePageProps) {
   const [activeTab, setActiveTab] = useState<'screenshots' | 'video' | 'rag' | 'reproduction'>('screenshots');
   const [selectedScreenId, setSelectedScreenId] = useState<string>('home-screen');
+  const [zoomedImage, setZoomedImage] = useState<{ src: string; title: string } | null>(null);
 
   const selectedScreen = SINOVATE_DATA.screenshots.find(s => s.id === selectedScreenId) || SINOVATE_DATA.screenshots[0];
 
@@ -144,517 +146,47 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
           {/* Interactive Screen Display Stage */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Phone Mockup Frame (5 Cols) Rendering Authentic UI from Screenshots */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-[360px] bg-[#0c1017] border-4 border-zinc-800 rounded-[40px] p-3.5 shadow-2xl relative overflow-hidden ring-1 ring-zinc-700/60">
+            {/* Phone Mockup Frame (5 Cols) Rendering Authentic App Screenshots */}
+            <div className="lg:col-span-5 flex flex-col items-center">
+              <div className="w-full max-w-[340px] bg-[#0c1017] border-4 border-zinc-800 rounded-[44px] p-2.5 shadow-2xl relative overflow-hidden ring-1 ring-zinc-700/60 group">
                 
-                {/* Top Status Bar (17:32 / 17:33, 5G, Battery) */}
-                <div className="flex justify-between items-center px-4 py-1.5 text-[11px] text-zinc-300 font-sans border-b border-zinc-900/80 pb-2 mb-2">
-                  <span className="font-semibold">{selectedScreen.id === 'calendar-view' || selectedScreen.id === 'exams-hub' ? '17:33' : '17:32'}</span>
-                  <div className="w-20 h-3.5 bg-zinc-900 rounded-full mx-auto" />
-                  <span className="text-[10px] tracking-tight text-zinc-400">5G 📶 100%</span>
+                {/* Top Notch Bar */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-4 bg-zinc-900 rounded-b-xl z-20 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-1 bg-zinc-800 rounded-full" />
                 </div>
 
-                {/* Mobile Viewport Body */}
-                <div className="bg-[#0f141f] min-h-[580px] max-h-[640px] overflow-y-auto rounded-[28px] p-4 text-zinc-100 flex flex-col justify-between border border-zinc-800/80 relative font-sans shadow-inner">
+                {/* Real App Screenshot Image */}
+                <div 
+                  className="relative rounded-[32px] overflow-hidden bg-zinc-950 border border-zinc-800/80 cursor-pointer"
+                  onClick={() => setZoomedImage({ 
+                    src: fixAssetUrl(selectedScreen.imagePath), 
+                    title: `${selectedScreen.title} — ${selectedScreen.subtitle}` 
+                  })}
+                >
+                  <img
+                    src={fixAssetUrl(selectedScreen.imagePath)}
+                    alt={selectedScreen.title}
+                    className="w-full h-auto object-cover rounded-[32px] transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
                   
-                  {/* SCREEN 1: HOME SCREEN (WhatsApp Image 2026-09-22 at 17.33.44.jpeg) */}
-                  {selectedScreen.id === 'home-screen' && (
-                    <div className="space-y-4 text-left">
-                      {/* Top App Bar */}
-                      <div className="flex justify-between items-center text-zinc-300 text-xs">
-                        <div className="flex items-center gap-3">
-                          <button className="p-1 text-zinc-300"><div className="w-4 h-0.5 bg-zinc-300 mb-1" /><div className="w-4 h-0.5 bg-zinc-300 mb-1" /><div className="w-4 h-0.5 bg-zinc-300" /></button>
-                          <span className="flex items-center gap-1.5 text-[11px] text-blue-400 font-medium">
-                            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" /> Online
-                          </span>
-                        </div>
-                        <div className="w-7 h-7 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs font-bold text-zinc-300">
-                          O
-                        </div>
-                      </div>
-
-                      {/* Header Greeting */}
-                      <div className="space-y-1">
-                        <span className="text-xs text-zinc-400 font-normal">Good evening, Om Suraj</span>
-                        <h3 className="text-2xl font-bold text-white tracking-tight leading-tight">
-                          How can I help you today?
-                        </h3>
-                      </div>
-
-                      {/* Primary Action Cards Grid */}
-                      <div className="grid grid-cols-2 gap-2.5">
-                        <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl flex flex-col justify-between h-28 relative">
-                          <div className="flex justify-between items-start">
-                            <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-blue-400">
-                              <Sparkles className="w-3.5 h-3.5" />
-                            </div>
-                            <span className="text-zinc-400 text-xs">↗</span>
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-white leading-tight">Chat with SINOVATE</div>
-                            <div className="text-[10px] text-zinc-400 mt-0.5">Your AI study assistant</div>
-                          </div>
-                        </div>
-
-                        <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl flex flex-col justify-between h-28 relative">
-                          <div className="flex justify-between items-start">
-                            <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
-                              <Calendar className="w-3.5 h-3.5" />
-                            </div>
-                            <span className="text-zinc-400 text-xs">↗</span>
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-white leading-tight">Upcoming Tests (10d)</div>
-                            <div className="text-[10px] text-zinc-400 mt-0.5">No tests in next 10 days</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Login Streak Card */}
-                      <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
-                          <Flame className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold text-white">Login Streak</div>
-                          <div className="text-[10px] text-zinc-400">Start your streak today</div>
-                        </div>
-                      </div>
-
-                      {/* History Section */}
-                      <div className="space-y-2 pt-1">
-                        <div className="flex justify-between items-center text-xs">
-                          <span className="font-bold text-zinc-200 text-sm">History</span>
-                          <span className="text-[11px] text-zinc-400 cursor-pointer hover:text-white">See all</span>
-                        </div>
-
-                        <div className="space-y-2">
-                          <div className="p-3 bg-[#171d2b] border border-zinc-850 rounded-2xl flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-400">
-                                <FileText className="w-4 h-4" />
-                              </div>
-                              <div className="text-left">
-                                <div className="text-xs font-semibold text-white">New Chat</div>
-                                <div className="text-[10px] text-zinc-400">No messages yet • 0 messages</div>
-                              </div>
-                            </div>
-                            <div className="text-right flex flex-col items-end">
-                              <span className="text-[10px] text-zinc-500">8:19 PM</span>
-                              <span className="text-zinc-500 text-xs mt-0.5">❯</span>
-                            </div>
-                          </div>
-
-                          <div className="p-3 bg-[#171d2b] border border-zinc-850 rounded-2xl flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-400">
-                                <FileText className="w-4 h-4" />
-                              </div>
-                              <div className="text-left">
-                                <div className="text-xs font-semibold text-white">explain me 2nd chapt...</div>
-                                <div className="text-[10px] text-zinc-400">Certainly! The 2nd chapter of Class 1...</div>
-                              </div>
-                            </div>
-                            <div className="text-right flex flex-col items-end">
-                              <span className="text-[10px] text-zinc-500">7:13 PM</span>
-                              <span className="text-zinc-500 text-xs mt-0.5">❯</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* SCREEN 2: AI TUTOR CHAT (WhatsApp Image 2026-09-22 at 17.33.45.jpeg) */}
-                  {selectedScreen.id === 'ai-tutor-chat' && (
-                    <div className="space-y-3 text-left flex flex-col h-full justify-between">
-                      <div className="space-y-3">
-                        {/* Top Bar */}
-                        <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-xl bg-blue-600 flex items-center justify-center text-white">
-                              <Bot className="w-4 h-4" />
-                            </div>
-                            <span className="text-xs font-bold text-white">hey hi</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <button className="text-[10px] text-zinc-400 hover:text-white flex items-center gap-1">
-                              ≡ Clear chat
-                            </button>
-                            <div className="w-4 h-0.5 bg-zinc-400" />
-                          </div>
-                        </div>
-
-                        {/* Chat Response Bubble matching screenshot text */}
-                        <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-2.5 text-[11px] text-zinc-300 leading-relaxed">
-                          <p className="text-zinc-300">
-                            ...character, further strengthening it.
-                          </p>
-                          <p className="text-zinc-300">
-                            • In <strong>haloalkanes</strong>, the sp3 carbon does not allow such resonance, so the C–X bond remains a simple single bond, easier to break.
-                          </p>
-                          <div className="pt-1">
-                            <strong className="text-white block mb-1">Why this is important:</strong>
-                            <p className="text-zinc-300">
-                              Understanding the role of hybridization helps explain why <strong>haloarenes</strong> resist nucleophilic substitution reactions, as the stronger, resonance-stabilized C–X bond requires more energy to break compared to the weaker C–X bond in haloalkanes. This concept is fundamental in organic reaction mechanisms and predicting reactivity trends.
-                            </p>
-                          </div>
-                          <div className="flex justify-between items-center text-[10px] text-zinc-500 pt-1 border-t border-zinc-800/80">
-                            <span>11:48 AM</span>
-                            <span className="cursor-pointer hover:text-zinc-300">❐</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Bottom Input Field */}
-                      <div className="pt-2 flex items-center gap-2 bg-[#171d2b] border border-zinc-800 rounded-2xl px-3.5 py-2.5">
-                        <span className="text-zinc-400 text-sm cursor-pointer">📎</span>
-                        <input 
-                          type="text" 
-                          placeholder="Ask anything..." 
-                          className="bg-transparent text-xs text-white focus:outline-none w-full placeholder:text-zinc-500"
-                          readOnly
-                        />
-                        <button className="w-7 h-7 rounded-xl bg-blue-500 text-white flex items-center justify-center shrink-0">
-                          ▶
-                        </button>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* SCREEN 3: WORKSHEET STUDIO (WhatsApp Image 2026-09-22 at 17.33.45 (2).jpeg) */}
-                  {selectedScreen.id === 'worksheet-studio' && (
-                    <div className="space-y-3 text-left">
-                      {/* Top Bar */}
-                      <div className="flex items-center gap-2 pb-1 text-zinc-300 text-xs font-bold">
-                        <span>←</span>
-                        <span>New Worksheet</span>
-                      </div>
-
-                      {/* Header Card */}
-                      <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-1">
-                        <h4 className="text-sm font-bold text-white">Worksheet Studio</h4>
-                        <p className="text-[10px] text-zinc-400">
-                          Draft, customize, and save practice sheets in minutes.
-                        </p>
-                      </div>
-
-                      {/* Create Worksheet Section */}
-                      <div className="space-y-2 text-xs">
-                        <span className="text-xs font-semibold text-zinc-200 block">Create Worksheet</span>
-                        
-                        {/* Title input */}
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-xl text-zinc-400 text-[11px]">
-                          Worksheet title
-                        </div>
-
-                        {/* Subject */}
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-xl space-y-0.5">
-                          <span className="text-[9px] text-zinc-500 block">Subject</span>
-                          <span className="text-xs font-medium text-white">Physics</span>
-                        </div>
-
-                        {/* Topic */}
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-xl text-zinc-400 text-[11px]">
-                          Topic
-                        </div>
-
-                        {/* Question Count */}
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-xl space-y-0.5">
-                          <span className="text-[9px] text-zinc-500 block">Question count for AI draft</span>
-                          <span className="text-xs font-medium text-white">5</span>
-                        </div>
-
-                        {/* Difficulty */}
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-xl flex justify-between items-center">
-                          <div>
-                            <span className="text-[9px] text-zinc-500 block">Difficulty</span>
-                            <span className="text-xs font-medium text-white">Medium</span>
-                          </div>
-                          <span className="text-zinc-400 text-xs">▼</span>
-                        </div>
-
-                        {/* Question Types */}
-                        <div className="space-y-1.5 pt-1">
-                          <span className="text-[10px] text-zinc-400 block">Question types (choose multiple)</span>
-                          <div className="flex flex-wrap gap-1.5">
-                            <span className="px-2.5 py-1 bg-[#1e2738] text-white border border-blue-500/40 rounded-full text-[10px] font-medium">✓ MCQs</span>
-                            <span className="px-2.5 py-1 bg-[#171d2b] text-zinc-300 border border-zinc-800 rounded-full text-[10px]">PYQs</span>
-                            <span className="px-2.5 py-1 bg-[#171d2b] text-zinc-300 border border-zinc-800 rounded-full text-[10px]">Short Answer</span>
-                          </div>
-                          <div className="flex flex-wrap gap-1.5">
-                            <span className="px-2.5 py-1 bg-[#171d2b] text-zinc-300 border border-zinc-800 rounded-full text-[10px]">3 Marks</span>
-                            <span className="px-2.5 py-1 bg-[#171d2b] text-zinc-300 border border-zinc-800 rounded-full text-[10px]">4 Marks</span>
-                            <span className="px-2.5 py-1 bg-[#171d2b] text-zinc-300 border border-zinc-800 rounded-full text-[10px]">5 Marks</span>
-                          </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="grid grid-cols-2 gap-2 pt-2">
-                          <button className="py-2.5 bg-[#171d2b] border border-zinc-700 text-zinc-200 rounded-xl text-xs font-medium">
-                            Generate Draft
-                          </button>
-                          <button className="py-2.5 bg-blue-500 text-white rounded-xl text-xs font-medium">
-                            Save Worksheet
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* SCREEN 4: MY NOTES (WhatsApp Image 2026-09-22 at 17.33.45 (1).jpeg) */}
-                  {selectedScreen.id === 'notes-screen' && (
-                    <div className="space-y-4 text-left flex flex-col h-full justify-between">
-                      <div className="space-y-4">
-                        {/* Top Bar */}
-                        <div className="flex items-center gap-3 pb-1 text-zinc-200 text-sm font-bold">
-                          <span>←</span>
-                          <span>My Notes</span>
-                        </div>
-
-                        {/* Banner Card */}
-                        <div className="p-4 bg-[#171d2b] border border-zinc-800 rounded-2xl flex items-center gap-3.5">
-                          <div className="w-9 h-9 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center">
-                            <FileText className="w-5 h-5" />
-                          </div>
-                          <div>
-                            <h4 className="text-sm font-bold text-white">My Notes</h4>
-                            <p className="text-[10px] text-zinc-400">
-                              Tap a card to read and edit your saved notes.
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* 2-Column Note Cards */}
-                        <div className="grid grid-cols-2 gap-2.5">
-                          <div className="p-3 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-1.5 flex flex-col justify-between h-36">
-                            <div>
-                              <div className="flex justify-between items-center text-zinc-400 text-xs mb-1">
-                                <div className="w-5 h-5 rounded bg-blue-600/20 text-blue-400 flex items-center justify-center text-[10px]">📄</div>
-                                <div className="flex items-center gap-1">
-                                  <span>📌</span>
-                                  <span>❯</span>
-                                </div>
-                              </div>
-                              <h5 className="text-xs font-bold text-white leading-tight">
-                                Electrostatic Potential and Ca...
-                              </h5>
-                              <div className="text-[10px] text-zinc-400 mt-1"># 📚 Overview</div>
-                            </div>
-                            <p className="text-[10px] text-zinc-500 line-clamp-2">
-                              Electrostatics is a fun...
-                            </p>
-                          </div>
-
-                          <div className="p-3 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-1.5 flex flex-col justify-between h-36">
-                            <div>
-                              <div className="flex justify-between items-center text-zinc-400 text-xs mb-1">
-                                <div className="w-5 h-5 rounded bg-blue-600/20 text-blue-400 flex items-center justify-center text-[10px]">📄</div>
-                                <div className="flex items-center gap-1">
-                                  <span>📌</span>
-                                  <span>❯</span>
-                                </div>
-                              </div>
-                              <h5 className="text-xs font-bold text-white leading-tight">
-                                Amines
-                              </h5>
-                              <div className="text-[10px] text-zinc-400 mt-1"># 📚 Overview</div>
-                            </div>
-                            <p className="text-[10px] text-zinc-500 line-clamp-2">
-                              Amines are a fundame...
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Floating Action Button */}
-                      <div className="flex justify-end pt-4">
-                        <div className="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg text-lg cursor-pointer">
-                          +
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* SCREEN 5: CALENDAR (WhatsApp Image 2026-09-22 at 17.33.45 (3).jpeg) */}
-                  {selectedScreen.id === 'calendar-view' && (
-                    <div className="space-y-3.5 text-left">
-                      {/* Top Bar */}
-                      <div className="flex items-center gap-3 pb-1 text-zinc-200 text-sm font-bold">
-                        <span>←</span>
-                        <span>Calendar</span>
-                      </div>
-
-                      {/* Header Banner */}
-                      <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center">
-                            <Calendar className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <h4 className="text-xs font-bold text-white">Calendar</h4>
-                            <p className="text-[10px] text-zinc-400">Track tests, homework, and tasks in one place.</p>
-                          </div>
-                        </div>
-                        <span className="w-6 h-6 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs text-zinc-300">⊕</span>
-                      </div>
-
-                      {/* 3 Metric Pills */}
-                      <div className="grid grid-cols-3 gap-2">
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-0.5">
-                          <div className="w-5 h-5 rounded bg-zinc-800 flex items-center justify-center text-[10px] text-zinc-400">❓</div>
-                          <div className="text-sm font-bold text-white">0</div>
-                          <div className="text-[10px] text-zinc-400">Tests</div>
-                        </div>
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-0.5">
-                          <div className="w-5 h-5 rounded bg-zinc-800 flex items-center justify-center text-[10px] text-zinc-400">📑</div>
-                          <div className="text-sm font-bold text-white">0</div>
-                          <div className="text-[10px] text-zinc-400">Homework</div>
-                        </div>
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-0.5">
-                          <div className="w-5 h-5 rounded bg-zinc-800 flex items-center justify-center text-[10px] text-zinc-400">✓</div>
-                          <div className="text-sm font-bold text-white">0</div>
-                          <div className="text-[10px] text-zinc-400">Tasks</div>
-                        </div>
-                      </div>
-
-                      {/* September 2026 Calendar Grid */}
-                      <div className="p-3 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-2">
-                        <div className="flex justify-between items-center px-2">
-                          <span className="text-xs text-zinc-400">‹</span>
-                          <span className="text-xs font-semibold text-white">September 2026</span>
-                          <span className="text-xs text-zinc-400">›</span>
-                        </div>
-                        <div className="grid grid-cols-7 gap-1 text-[10px] text-center text-zinc-400">
-                          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d, i) => (
-                            <span key={i} className="text-zinc-500 font-medium py-0.5">{d}</span>
-                          ))}
-                          <span className="text-zinc-600">30</span>
-                          <span className="text-zinc-600">31</span>
-                          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                          <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
-                          <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
-                          <span>20</span><span>21</span>
-                          <span className="w-6 h-6 mx-auto rounded-full bg-blue-500 text-white font-bold flex items-center justify-center shadow-lg shadow-blue-500/30">22</span>
-                          <span>23</span><span>24</span><span>25</span><span>26</span>
-                          <span>27</span><span>28</span><span>29</span><span>30</span>
-                          <span className="text-zinc-600">1</span>
-                          <span className="text-zinc-600">2</span>
-                          <span className="text-zinc-600">3</span>
-                        </div>
-                      </div>
-
-                      {/* Tests List Section */}
-                      <div className="p-3 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-1">
-                        <div className="flex items-center gap-1.5 text-xs font-semibold text-zinc-300">
-                          <span className="text-[10px]">❓</span>
-                          <span>Tests</span>
-                        </div>
-                        <p className="text-[10px] text-zinc-400">No Tests for the selected day.</p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* SCREEN 6: EXAMS HUB (WhatsApp Image 2026-09-22 at 17.33.46.jpeg) */}
-                  {selectedScreen.id === 'exams-hub' && (
-                    <div className="space-y-3.5 text-left">
-                      {/* Top Bar */}
-                      <div className="flex items-center gap-3 pb-1 text-zinc-200 text-sm font-bold">
-                        <span>←</span>
-                        <span>Exams Hub</span>
-                      </div>
-
-                      {/* Header Banner */}
-                      <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-1">
-                        <h4 className="text-xs font-bold text-white">Exams Hub</h4>
-                        <p className="text-[10px] text-zinc-400">
-                          Tests, scores, and countdown planning in one place.
-                        </p>
-                      </div>
-
-                      {/* Pill Tabs */}
-                      <div className="flex bg-[#171d2b] border border-zinc-800 rounded-xl p-1 gap-1">
-                        <button className="flex-1 py-1.5 bg-[#252f44] text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1">
-                          ✓ Tests
-                        </button>
-                        <button className="flex-1 py-1.5 text-zinc-400 rounded-lg text-xs font-medium flex items-center justify-center gap-1">
-                          ⏱ Countdown
-                        </button>
-                      </div>
-
-                      {/* Test Performance Card */}
-                      <div className="p-3.5 bg-[#171d2b] border border-zinc-800 rounded-2xl space-y-2.5">
-                        <div>
-                          <h5 className="text-xs font-bold text-white">Test Performance</h5>
-                          <p className="text-[10px] text-zinc-400">
-                            Track tests, record scores, and visualize progress in one place.
-                          </p>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2 pt-1 font-sans">
-                          <div className="p-2.5 bg-[#0f141f] border border-zinc-800/80 rounded-xl space-y-0.5">
-                            <span className="text-[10px]">📑</span>
-                            <div className="text-sm font-bold text-white">0</div>
-                            <div className="text-[9px] text-zinc-400">Total tests</div>
-                          </div>
-                          <div className="p-2.5 bg-[#0f141f] border border-zinc-800/80 rounded-xl space-y-0.5">
-                            <span className="text-[10px]">📈</span>
-                            <div className="text-sm font-bold text-white">0</div>
-                            <div className="text-[9px] text-zinc-400">Scored tests</div>
-                          </div>
-                          <div className="p-2.5 bg-[#0f141f] border border-zinc-800/80 rounded-xl space-y-0.5">
-                            <span className="text-[10px]">✨</span>
-                            <div className="text-sm font-bold text-white">-</div>
-                            <div className="text-[9px] text-zinc-400">Avg score</div>
-                          </div>
-                          <div className="p-2.5 bg-[#0f141f] border border-zinc-800/80 rounded-xl space-y-0.5">
-                            <span className="text-[10px]">📅</span>
-                            <div className="text-sm font-bold text-white">-</div>
-                            <div className="text-[9px] text-zinc-400">Next date</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Add Test Section */}
-                      <div className="space-y-1.5 text-xs">
-                        <span className="text-xs font-semibold text-zinc-200 block">Add Test</span>
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-xl text-zinc-400 text-[11px]">
-                          Test title
-                        </div>
-                        <div className="p-2.5 bg-[#171d2b] border border-zinc-800 rounded-xl flex justify-between items-center text-xs">
-                          <div>
-                            <span className="text-[9px] text-zinc-500 block">Subject</span>
-                            <span className="text-white font-medium">Physics</span>
-                          </div>
-                          <span className="text-zinc-400 text-xs">▼</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Universal Bottom Navigation Bar (Home, SINOVATE, Leaderboard, Settings) */}
-                  <div className="flex justify-around items-center pt-2.5 border-t border-zinc-900/80 text-[10px] text-zinc-400">
-                    <div className={`flex flex-col items-center gap-0.5 ${selectedScreen.id === 'home-screen' ? 'text-blue-400 font-bold' : ''}`}>
-                      <span>🏠</span>
-                      <span>Home</span>
-                    </div>
-                    <div className={`flex flex-col items-center gap-0.5 ${selectedScreen.id === 'ai-tutor-chat' ? 'text-blue-400 font-bold' : ''}`}>
-                      <span>💬</span>
-                      <span>SINOVATE</span>
-                    </div>
-                    <div className="flex flex-col items-center gap-0.5">
-                      <span>📊</span>
-                      <span>Leaderboard</span>
-                    </div>
-                    <div className="flex flex-col items-center gap-0.5">
-                      <span>⚙️</span>
-                      <span>Settings</span>
-                    </div>
+                  {/* Click to Zoom Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1.5 text-white font-mono text-xs font-bold uppercase tracking-wider backdrop-blur-[2px]">
+                    <Maximize2 className="w-5 h-5 text-cyan-400" />
+                    <span>Click to Zoom</span>
                   </div>
-
                 </div>
               </div>
+
+              <button
+                onClick={() => setZoomedImage({ 
+                  src: fixAssetUrl(selectedScreen.imagePath), 
+                  title: `${selectedScreen.title} — ${selectedScreen.subtitle}` 
+                })}
+                className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 uppercase font-semibold cursor-pointer"
+              >
+                <Maximize2 className="w-3.5 h-3.5" />
+                Open Fullscreen Screenshot
+              </button>
             </div>
 
             {/* Screen Highlights & Architectural Insights (7 Cols) */}
@@ -723,6 +255,56 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
             </div>
 
           </div>
+
+          {/* All 6 App Screenshots Gallery Grid */}
+          <div className="pt-6 border-t border-zinc-850 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold block">
+                  Complete Visual Gallery
+                </span>
+                <h3 className="text-lg font-black text-white uppercase font-display">
+                  SINOVATE App UI Screenshots (6 Views)
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-zinc-400">
+                Click any screenshot to zoom full screen
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {SINOVATE_DATA.screenshots.map((screen) => (
+                <div
+                  key={screen.id}
+                  onClick={() => setZoomedImage({
+                    src: fixAssetUrl(screen.imagePath),
+                    title: `${screen.title} — ${screen.subtitle}`
+                  })}
+                  className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden p-2 group cursor-pointer hover:border-cyan-500/80 transition-all flex flex-col justify-between"
+                >
+                  <div className="relative rounded-xl overflow-hidden bg-black mb-2">
+                    <img
+                      src={fixAssetUrl(screen.imagePath)}
+                      alt={screen.title}
+                      className="w-full h-auto object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <Maximize2 className="w-4 h-4 text-cyan-400" />
+                    </div>
+                  </div>
+                  <div className="text-left px-1">
+                    <span className="text-[9px] font-mono uppercase text-cyan-400 block font-bold">
+                      {screen.category}
+                    </span>
+                    <span className="text-[11px] font-bold text-zinc-200 line-clamp-1 block">
+                      {screen.title}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       )}
 
@@ -911,6 +493,36 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
           </div>
         </div>
       )}
+
+      {/* Fullscreen Zoom Modal */}
+      <AnimatePresence>
+        {zoomedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setZoomedImage(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+          >
+            <div className="relative max-w-4xl max-h-[90vh] flex flex-col items-center">
+              <button
+                onClick={() => setZoomedImage(null)}
+                className="absolute -top-10 right-0 text-white/70 hover:text-white flex items-center gap-1 font-mono text-xs uppercase cursor-pointer"
+              >
+                <X className="w-5 h-5" /> Close
+              </button>
+              <img
+                src={zoomedImage.src}
+                alt={zoomedImage.title}
+                className="max-w-full max-h-[82vh] object-contain rounded-lg border border-zinc-700 shadow-2xl"
+              />
+              <span className="mt-3 text-sm text-zinc-300 font-mono font-medium text-center">
+                {zoomedImage.title}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

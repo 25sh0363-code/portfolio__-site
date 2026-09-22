@@ -123,7 +123,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
               <span>A Class Act — Teachers’ Day</span>
             </h1>
             <p className="text-zinc-400 text-xs mt-2 max-w-3xl leading-relaxed font-sans font-light">
-              An interactive, handcrafted digital classroom experience built for XII-Innovators — featuring interactive chalkboards, periodic element cards, digital register sign-ins, and handwritten gratitude notes.
+              An interactive, handcrafted digital classroom experience built for XII-Innovators — featuring interactive chalkboards, subject faculty profiles, digital register sign-ins, and handwritten gratitude notes.
             </p>
           </div>
 

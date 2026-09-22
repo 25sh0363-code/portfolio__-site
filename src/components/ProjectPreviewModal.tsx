@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   X, ExternalLink, Github, ArrowRight, Sparkles, BookOpen, Activity, 
-  Cpu, Layers, CheckCircle2, Terminal, Play, HardDrive, Zap, Smartphone
+  Cpu, Layers, CheckCircle2, Terminal, Play, HardDrive, Zap, Smartphone, QrCode
 } from 'lucide-react';
 import { Project } from '../types';
 
@@ -60,6 +60,11 @@ export default function ProjectPreviewModal({
               {project.sinovateDetails && (
                 <span className="px-2 py-0.5 bg-blue-500/20 text-blue-300 border border-blue-500/40 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1">
                   <Smartphone className="w-3 h-3" /> Flutter App
+                </span>
+              )}
+              {project.tedxDetails && (
+                <span className="px-2 py-0.5 bg-red-500/20 text-red-300 border border-red-500/40 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1">
+                  <QrCode className="w-3 h-3" /> AppScript Web App
                 </span>
               )}
             </div>

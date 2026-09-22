@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Code2, GraduationCap, BookmarkCheck, MessageSquare, User, Menu, X, Landmark } from 'lucide-react';
 
@@ -18,6 +18,11 @@ export default function App() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSecretModalOpen, setIsSecretModalOpen] = useState(false);
+
+  // Always scroll to top when changing navigation tabs or selecting a project
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [activeTab, selectedProjectId]);
 
   const handleOpenProject = (projectId: string) => {
     setSelectedProjectId(projectId);
