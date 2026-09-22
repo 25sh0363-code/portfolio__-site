@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Syne:wght@700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Syne", "Inter", sans-serif;
+}
+
+/* Custom Web Scrollbar Layout matching Zinc Theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b; /* zinc-950 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a; /* zinc-800 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46; /* zinc-700 */
+}
+
+/* Print Utilities for Academic references */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  header,
+  footer,
+  button,
+  .no-print,
+  #btn-print,
+  #btn-clear-inbox,
+  #contact-memo-form,
+  #lor-selector-rec1,
+  #lor-selector-rec2,
+  #lor-selector-rec3,
+  .absolute,
+  .fixed,
+  .bg-zinc-950/85 {
+    display: none !important;
+  }
+
+  .grid-cols-12, .grid {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  #lor-document-panel, 
+  .bg-zinc-900, 
+  .bg-zinc-950 {
+    background: white !important;
+    border: 1px solid #e4e4e7 !important;
+    color: #18181b !important;
+    box-shadow: none !important;
+  }
+
+  h1, h2, h3, h4, span, p, li {
+    color: black !important;
+  }
+
+  .lg:col-span-8, .lg:col-span-7 {
+    width: 100% !important;
+  }
+}
+

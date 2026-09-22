@@ -1,0 +1,6178 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 4050
+>>
+stream
+0.200025 w
+0 G
+0.08 G
+3. w
+54. 771.8899999999999864 m
+541.2799999999999727 771.8899999999999864 l
+S
+BT
+/F10 18 Tf
+20.6999999999999993 TL
+0.078 g
+190.7199999999999989 736.8899999999999864 Td
+(From Python to Native C++) Tj
+ET
+BT
+/F9 11 Tf
+12.6499999999999986 TL
+0.078 g
+114.4349999999999739 719.8899999999999864 Td
+(A Performance Study of Decoder-Only Transformers Using PyTorch and LibTorch) Tj
+ET
+0.78 G
+0.5 w
+54. 699.8899999999999864 m
+541.2799999999999727 699.8899999999999864 l
+S
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+251.0550000000000068 666.8899999999999864 Td
+(Om Suraj Kashikar) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+279.2400000000000091 651.8899999999999864 Td
+(Grade 12) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+247.4899999999999807 636.8899999999999864 Td
+(Silver Oaks International) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+277.2899999999999636 581.8899999999999864 Td
+(Abstract) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+2.0745454545454591 Tw
+74. 561.8899999999999864 Td
+(This study compares Python/PyTorch and C++/LibTorch implementations of a small decoder-only Transformer) Tj
+1.4776923076923016 Tw
+0. -10.9249999999999989 Td
+(trained on TinyStories V2 GPT-4. Both implementations use the same GPT-2-tokenized training data, 256-token) Tj
+0.4492857142857239 Tw
+0. -10.9249999999999989 Td
+(context length, and core Transformer architecture, allowing their training and inference performance to be evaluated) Tj
+2.7021428571428601 Tw
+0. -10.9249999999999989 Td
+(on the same NVIDIA RTX 4090. The C++ implementation achieved higher observed training and inference) Tj
+3.563928571428566 Tw
+0. -10.9249999999999989 Td
+(throughput than Python, while also using less recorded memory in the benchmark. These results indicate) Tj
+0.437083333333329 Tw
+0. -10.9249999999999989 Td
+(performance and resource-efficiency benefits for the tested C++/LibTorch configuration, although the comparison is) Tj
+0.9766666666666651 Tw
+0. -10.9249999999999989 Td
+(influenced by the different precision modes used: Python trained with mixed precision and gradient scaling, while) Tj
+0 Tw
+0. -10.9249999999999989 Td
+(C++ trained in FP32.) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 451.8899999999999864 Td
+(1   Introduction) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.8342857142857107 Tw
+54. 429.8899999999999864 Td
+(Decoder-only Transformers are a widely used architecture for autoregressive language modeling. They predict the next) Tj
+0.4621052631578933 Tw
+0. -11.5 Td
+(token in a sequence while using causal self-attention to ensure that each token can attend only to earlier tokens. Modern) Tj
+0.2128571428571563 Tw
+0. -11.5 Td
+(language-model development is often performed through high-level Python frameworks such as PyTorch, while C++ can) Tj
+0 Tw
+0. -11.5 Td
+(provide a lower-level interface through LibTorch, PyTorch’s C++ API.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.0676923076923161 Tw
+54. 366.8899999999999864 Td
+(This project implements the same small GPT-style decoder-only Transformer in Python/PyTorch and C++/LibTorch. The) Tj
+0.363529411764713 Tw
+0. -11.5 Td
+(objective is not to claim that one programming language is universally faster. Instead, the project evaluates two concrete) Tj
+0 Tw
+0. -11.5 Td
+(implementations under a controlled model and data setup.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+54. 316.8899999999999864 Td
+(The central research question is:) Tj
+ET
+0.16 G
+0.8 w
+69. 301.8899999999999864 457.2799999999999727 -52. re
+S
+BT
+/F11 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+79. 283.8899999999999864 Td
+(How do Python/PyTorch and C++/LibTorch implementations of the same small decoder-only Transformer) Tj
+T* (compare in training throughput, autoregressive inference throughput, and recorded memory use on an NVIDIA) Tj
+T* (RTX 4090?) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.0057142857142886 Tw
+54. 226.8899999999999864 Td
+(The work uses the TinyStories V2 GPT-4 corpus, a GPT-2-compatible vocabulary, identical pre-tokenized binary training) Tj
+0 Tw
+0. -11.5 Td
+(data, and matching core model hyperparameters.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 5643
+>>
+stream
+0.8 w
+0.16 G
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 771.8899999999999864 Td
+(1.1   Workflow) Tj
+ET
+1. g
+0.16 G
+0.8 w
+194. 746.8899999999999864 200. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+252.1525000000000034 731.8899999999999864 Td
+(TinyStories Raw Text) Tj
+ET
+0.16 G
+0.8 w
+294. 722.8899999999999864 m
+294. 706.8899999999999864 l
+S
+291. 710.8899999999999864 m
+294. 706.8899999999999864 l
+S
+297. 710.8899999999999864 m
+294. 706.8899999999999864 l
+S
+1. g
+0.16 G
+0.8 w
+164. 706.8899999999999864 260. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+220.4225000000000136 691.8899999999999864 Td
+(Python Tiktoken GPT-2 Preprocessing) Tj
+ET
+0.16 G
+0.8 w
+294. 682.8899999999999864 m
+294. 666.8899999999999864 l
+S
+291. 670.8899999999999864 m
+294. 666.8899999999999864 l
+S
+297. 670.8899999999999864 m
+294. 666.8899999999999864 l
+S
+1. g
+0.16 G
+0.8 w
+194. 666.8899999999999864 200. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+261.2724999999999795 651.8899999999999864 Td
+(train.bin / val.bin) Tj
+ET
+0.16 G
+0.8 w
+244. 642.8899999999999864 m
+184. 621.8899999999999864 l
+S
+181. 625.8899999999999864 m
+184. 621.8899999999999864 l
+S
+187. 625.8899999999999864 m
+184. 621.8899999999999864 l
+S
+0.16 G
+0.8 w
+344. 642.8899999999999864 m
+404. 621.8899999999999864 l
+S
+401. 625.8899999999999864 m
+404. 621.8899999999999864 l
+S
+407. 625.8899999999999864 m
+404. 621.8899999999999864 l
+S
+1. g
+0.16 G
+0.8 w
+104. 621.8899999999999864 160. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+135.4550000000000125 606.8899999999999864 Td
+(Python / PyTorch Trainer) Tj
+ET
+1. g
+0.16 G
+0.8 w
+324. 621.8899999999999864 160. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+358.8274999999999864 606.8899999999999864 Td
+(C++ / LibTorch Trainer) Tj
+ET
+0.16 G
+0.8 w
+184. 597.8899999999999864 m
+184. 576.8899999999999864 l
+S
+181. 580.8899999999999864 m
+184. 576.8899999999999864 l
+S
+187. 580.8899999999999864 m
+184. 576.8899999999999864 l
+S
+0.16 G
+0.8 w
+404. 597.8899999999999864 m
+404. 576.8899999999999864 l
+S
+401. 580.8899999999999864 m
+404. 576.8899999999999864 l
+S
+407. 580.8899999999999864 m
+404. 576.8899999999999864 l
+S
+1. g
+0.16 G
+0.8 w
+104. 576.8899999999999864 160. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+147.5199999999999818 561.8899999999999864 Td
+(Python Checkpoint) Tj
+ET
+1. g
+0.16 G
+0.8 w
+324. 576.8899999999999864 160. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+372.5074999999999932 561.8899999999999864 Td
+(C++ Checkpoint) Tj
+ET
+0.16 G
+0.8 w
+184. 552.8899999999999864 m
+184. 531.8899999999999864 l
+S
+181. 535.8899999999999864 m
+184. 531.8899999999999864 l
+S
+187. 535.8899999999999864 m
+184. 531.8899999999999864 l
+S
+0.16 G
+0.8 w
+404. 552.8899999999999864 m
+404. 531.8899999999999864 l
+S
+401. 535.8899999999999864 m
+404. 531.8899999999999864 l
+S
+407. 535.8899999999999864 m
+404. 531.8899999999999864 l
+S
+1. g
+0.16 G
+0.8 w
+104. 531.8899999999999864 160. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+151.5575000000000045 516.8899999999999864 Td
+(Python Inference) Tj
+ET
+1. g
+0.16 G
+0.8 w
+324. 531.8899999999999864 160. -24. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+376.5450000000000159 516.8899999999999864 Td
+(C++ Inference) Tj
+ET
+0.16 G
+0.8 w
+184. 507.8899999999999864 m
+254. 486.8899999999999864 l
+S
+251. 490.8899999999999864 m
+254. 486.8899999999999864 l
+S
+257. 490.8899999999999864 m
+254. 486.8899999999999864 l
+S
+0.16 G
+0.8 w
+404. 507.8899999999999864 m
+334. 486.8899999999999864 l
+S
+331. 490.8899999999999864 m
+334. 486.8899999999999864 l
+S
+337. 490.8899999999999864 m
+334. 486.8899999999999864 l
+S
+1. g
+0.16 G
+0.8 w
+164. 486.8899999999999864 260. -26. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+220.5649999999999977 470.8899999999999864 Td
+(Benchmark Comparison on RTX 4090) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 421.8899999999999864 Td
+(2   Background) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 399.8899999999999864 Td
+(2.1   Transformer language model) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.5778947368421062 Tw
+54. 381.8899999999999864 Td
+(A Transformer language model predicts the next token in a sequence by using the preceding tokens as context. A token) Tj
+0.0147368421052677 Tw
+0. -11.5 Td
+(may represent a complete word, part of a word, punctuation, or another text fragment. During training a sequence of input) Tj
+0 Tw
+0. -11.5 Td
+(is shifted by one position to create prediction targets. For example) Tj
+ET
+0.24 0.24 0.25 rg
+84. 321.8899999999999864 427.2799999999999727 -18. re
+f
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.941 g
+94. 309.8899999999999864 Td
+(input sequence) Tj
+ET
+1. 0.92 0.94 rg
+0.78 G
+84. 303.8899999999999864 427.2799999999999727 -26. re
+B
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.118 g
+94. 287.8899999999999864 Td
+(The dog found a ball) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.118 g
+94. 261.8899999999999864 Td
+(To predict) Tj
+ET
+0.24 0.24 0.25 rg
+84. 251.8899999999999864 427.2799999999999727 -18. re
+f
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.941 g
+94. 239.8899999999999864 Td
+(predicted token) Tj
+ET
+1. 1. 0.86 rg
+84. 233.8899999999999864 427.2799999999999727 -26. re
+B
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.118 g
+94. 217.8899999999999864 Td
+(dog found a ball <next token>) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.118 g
+24.6199999999999868 Tw
+54. 181.8899999999999864 Td
+(The model is trained using cross-entropy loss over the vocabulary.) Tj
+0.4877777777777699 Tw
+0. -11.5 Td
+(A decoder-only Transformer is well suited to this task because it processes a sequence while applying a causal attention) Tj
+0 Tw
+0. -11.5 Td
+(mask. The mask ensures that a token cannot access future tokens during training or) Tj
+ET
+endstream
+endobj
+7 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 4336
+>>
+stream
+0.8 w
+0.78 G
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+54. 771.8899999999999864 Td
+(generation.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 746.8899999999999864 Td
+(2.2   Self-Attention) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+1.5105882352941213 Tw
+54. 726.8899999999999864 Td
+(Self attention allows each token representation to look at previous tokens for information. For each head, the model) Tj
+0.2766666666666613 Tw
+0. -11.5 Td
+(produces queries, keys, and values. Attention scores are calculated by comparing queries with keys, scaled by the root of) Tj
+0 Tw
+0. -11.5 Td
+(the head dimension, and normalized using softmax.) Tj
+ET
+BT
+/F11 12 Tf
+13.7999999999999989 TL
+0.078 g
+166.7199999999999704 666.8899999999999864 Td
+(Attention\(Q, K, V\) = softmax\( \( Q K^T \) / sqrt\(d_k\) \) V) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+2.2635294117647038 Tw
+54. 636.8899999999999864 Td
+(The causal mask is applied on future positions before softmax. Multiple heads allow the model to learn different) Tj
+0.3612499999999947 Tw
+0. -11.5 Td
+(relationships between tokens. The outputs of each head are then concatenated and converted into the original embedding) Tj
+0 Tw
+0. -11.5 Td
+(dimension.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 581.8899999999999864 Td
+(2.3   Decoder-only transformer blocks) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.5271428571428649 Tw
+54. 561.8899999999999864 Td
+(The model in this project uses pre-LayerNorm Transformer blocks. Each block contains causal multi-head self-attention) Tj
+0 Tw
+0. -11.5 Td
+(and a feed-forward network, with residual connections around both components:) Tj
+ET
+0.16 G
+1.2 w
+224. 531.8899999999999864 140. -190. re
+S
+1. g
+0.16 G
+0.8 w
+244. 516.8899999999999864 100. -22. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+268.6825000000000045 502.8899999999999864 Td
+(Add & Norm) Tj
+ET
+0.91 0.96 0.97 rg
+0.16 G
+0.8 w
+244. 486.8899999999999864 100. -30. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+267.6374999999999886 468.8899999999999864 Td
+(Feed Forward) Tj
+ET
+1. g
+0.16 G
+0.8 w
+244. 426.8899999999999864 100. -22. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+268.6825000000000045 412.8899999999999864 Td
+(Add & Norm) Tj
+ET
+0.99 0.97 0.91 rg
+0.16 G
+0.8 w
+244. 396.8899999999999864 100. -34. re
+B
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+252.7224999999999966 376.8899999999999864 Td
+(Multi-Head Attention) Tj
+ET
+0.16 G
+0.8 w
+294. 341.8899999999999864 m
+294. 361.8899999999999864 l
+S
+291. 365.8899999999999864 m
+294. 361.8899999999999864 l
+S
+297. 365.8899999999999864 m
+294. 361.8899999999999864 l
+S
+0.16 G
+0.8 w
+294. 396.8899999999999864 m
+294. 404.8899999999999864 l
+S
+291. 408.8899999999999864 m
+294. 404.8899999999999864 l
+S
+297. 408.8899999999999864 m
+294. 404.8899999999999864 l
+S
+0.16 G
+0.8 w
+294. 426.8899999999999864 m
+294. 456.8899999999999864 l
+S
+291. 460.8899999999999864 m
+294. 456.8899999999999864 l
+S
+297. 460.8899999999999864 m
+294. 456.8899999999999864 l
+S
+0.16 G
+0.8 w
+294. 486.8899999999999864 m
+294. 494.8899999999999864 l
+S
+291. 498.8899999999999864 m
+294. 494.8899999999999864 l
+S
+297. 498.8899999999999864 m
+294. 494.8899999999999864 l
+S
+0.16 G
+0.8 w
+294. 516.8899999999999864 m
+294. 536.8899999999999864 l
+S
+291. 540.8899999999999864 m
+294. 536.8899999999999864 l
+S
+297. 540.8899999999999864 m
+294. 536.8899999999999864 l
+S
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+1.0929411764705839 Tw
+54. 316.8899999999999864 Td
+(The feed-forward network uses a GELU activation and expands the hidden dimension before projecting it back to the) Tj
+0 Tw
+0. -11.5 Td
+(embedding width.) Tj
+ET
+BT
+/F11 12 Tf
+13.7999999999999989 TL
+0.078 g
+249.339999999999975 281.8899999999999864 Td
+(GELU\(x\) = x Phi\(x\)) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+54. 256.8899999999999864 Td
+(where Phi\(x\) is the standard normal cumulative distribution function.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 221.8899999999999864 Td
+(2.4   Python and C++ deep-learning APIs) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.5653333333333346 Tw
+54. 201.8899999999999864 Td
+(Python is widely used for machine-learning research because it provides concise syntax and mature libraries. PyTorch’s) Tj
+0.2816666666666663 Tw
+0. -11.5 Td
+(Python API provides automatic differentiation, CUDA execution, mixed precision, optimizers, checkpointing, and tensor) Tj
+0 Tw
+0. -11.5 Td
+(operations.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 10 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 4582
+>>
+stream
+0.8 w
+0.16 G
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+-0.0299999999999971 Tw
+54. 771.8899999999999864 Td
+(LibTorch is PyTorch’s C++ API. It provides similar tensor, autograd, CUDA, neural-network, and optimizer functionality) Tj
+0.2628571428571514 Tw
+0. -11.5 Td
+(through C++. Therefore, this project compares Python/PyTorch with C++/LibTorch rather than comparing Python with a) Tj
+0 Tw
+0. -11.5 Td
+(completely framework-free implementation.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+1.8320000000000012 Tw
+54. 721.8899999999999864 Td
+(The C++ implementation is useful for studying the practical trade-offs of a compiled interface, including execution) Tj
+0 Tw
+0. -11.5 Td
+(speed, memory behavior, project structure, and deployment requirements.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 676.8899999999999864 Td
+(2.5   Mixed precision) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.0816666666666634 Tw
+54. 656.8899999999999864 Td
+(Mixed-precision training uses lower-precision numerical formats for selected operations while retaining enough precision) Tj
+0.5362499999999955 Tw
+0. -11.5 Td
+(for stable optimization. It can improve speed and reduce memory use on compatible GPUs. The Python implementation) Tj
+0.9737499999999955 Tw
+0. -11.5 Td
+(in this project uses CUDA automatic mixed precision and gradient scaling. The completed C++ benchmark uses FP32) Tj
+0 Tw
+0. -11.5 Td
+(because an equivalent AMP-plus-gradient-scaling path is not implemented as it is out of the scope for this paper.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.412857142857149 Tw
+54. 596.8899999999999864 Td
+(This precision difference is important when interpreting the benchmark. The results represent the tested Python/PyTorch) Tj
+0 Tw
+0. -11.5 Td
+(and C++/LibTorch configurations, including their numerical precision choices.) Tj
+ET
+0.08 0.09 0.11 rg
+74. 561.8899999999999864 447.2799999999999727 -65. re
+f
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.902 g
+89. 545.8899999999999864 Td
+(170    betas=betas,) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.902 g
+89. 533.8899999999999864 Td
+(171  \)) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.902 g
+89. 519.8899999999999864 Td
+(173  scaler = torch.amp.GradScaler\('cuda', enabled=device.type == 'cuda'\)) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.902 g
+89. 505.8899999999999864 Td
+(175  train_data = Bindataset\(train_bin, GPTConfig.block_size\)) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 466.8899999999999864 Td
+(3   Dataset and tokenization) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 443.8899999999999864 Td
+(3.1   TinyStories V2 GPT-4) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+1.2544444444444467 Tw
+54. 423.8899999999999864 Td
+(The model was trained on TinyStories V2 GPT-4, a dataset of short English stories generated by GPT-4. The simple) Tj
+0 Tw
+0. -11.5 Td
+(vocabulary and story structure make it suitable for training and evaluating a small language model on limited hardware.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.8433333333333306 Tw
+54. 376.8899999999999864 Td
+(The dataset was divided into training and validation text files. The training data was used to update model parameters,) Tj
+0 Tw
+0. -11.5 Td
+(while the validation data was used to monitor generalization during training.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 331.8899999999999864 Td
+(3.2   Shared tokenization pipeline) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+54. 311.8899999999999864 Td
+(The common .bin files were generated using GPT-2 tokenizer in the tiktoken library.) Tj
+ET
+0.08 0.09 0.11 rg
+74. 296.8899999999999864 447.2799999999999727 -52. re
+f
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.902 g
+89. 281.8899999999999864 Td
+(7    valid_file = "TinyStoriesV2-GPT4-valid.txt") Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.902 g
+89. 267.8899999999999864 Td
+(9    enc = tiktoken.get_encoding\("gpt2"\)) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.902 g
+89. 253.8899999999999864 Td
+(11   def pretokenize_to_bin\(filename, output_filename, chunk_size=10_000_000\):) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+54. 226.8899999999999864 Td
+(The token IDs were stored in two binary files:) Tj
+ET
+0.98 1. 0.96 rg
+0.71 0.78 0.71 RG
+104. 211.8899999999999864 387.2799999999999727 -36. re
+B
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+134. 196.8899999999999864 Td
+(-train.bin) Tj
+T* (-val.bin) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.0884210526315823 Tw
+54. 156.8899999999999864 Td
+(Each token ID is stored as a uint16 value. Both the Python/PyTorch trainer and the C++/LibTorch trainer read these same) Tj
+0 Tw
+0. -11.5 Td
+(files. The C++ training implementation did not tokenize the raw text independently.) Tj
+ET
+endstream
+endobj
+11 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 12 0 R
+>>
+endobj
+12 0 obj
+<<
+/Length 7928
+>>
+stream
+0.8 w
+0.71 0.78 0.71 RG
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 771.8899999999999864 Td
+(3.3   Token data properties) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+217.7924999999999898 746.8899999999999864 Td
+(Table 1: Tokenizer and Dataset Properties) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 736.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 724.8899999999999864 Td
+(Property) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 724.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 702.8899999999999864 m
+541.2799999999999727 702.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 707.8899999999999864 Td
+(Vocabulary) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 707.8899999999999864 Td
+(GPT-2) Tj
+ET
+0.99 0.99 0.99 rg
+54. 702.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 686.8899999999999864 m
+541.2799999999999727 686.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 691.8899999999999864 Td
+(Vocabulary size) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 691.8899999999999864 Td
+(50,257) Tj
+ET
+0.82 G
+54. 670.8899999999999864 m
+541.2799999999999727 670.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 675.8899999999999864 Td
+(Storage type) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 675.8899999999999864 Td
+(uint16) Tj
+ET
+0.99 0.99 0.99 rg
+54. 670.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 654.8899999999999864 m
+541.2799999999999727 654.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 659.8899999999999864 Td
+(Training file) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 659.8899999999999864 Td
+(train.bin) Tj
+ET
+0.82 G
+54. 638.8899999999999864 m
+541.2799999999999727 638.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 643.8899999999999864 Td
+(Validation file) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 643.8899999999999864 Td
+(val.bin) Tj
+ET
+0.99 0.99 0.99 rg
+54. 638.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 622.8899999999999864 m
+541.2799999999999727 622.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 627.8899999999999864 Td
+(End-of-text token) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 627.8899999999999864 Td
+(ID 50,256) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.157 g
+54. 596.8899999999999864 Td
+(4   Model architecture) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 573.8899999999999864 Td
+(Both implementations use the same model architecture) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 556.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 544.8899999999999864 Td
+(Hyperparameter) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 544.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 522.8899999999999864 m
+541.2799999999999727 522.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 527.8899999999999864 Td
+(model type) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 527.8899999999999864 Td
+(decoder-only) Tj
+ET
+0.99 0.99 0.99 rg
+54. 522.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 506.8899999999999864 m
+541.2799999999999727 506.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 511.8899999999999864 Td
+(Vocabulary size) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 511.8899999999999864 Td
+(50,257) Tj
+ET
+0.82 G
+54. 490.8899999999999864 m
+541.2799999999999727 490.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 495.8899999999999864 Td
+(context length) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 495.8899999999999864 Td
+(256) Tj
+ET
+0.99 0.99 0.99 rg
+54. 490.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 474.8899999999999864 m
+541.2799999999999727 474.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 479.8899999999999864 Td
+(transformer blocks) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 479.8899999999999864 Td
+(8) Tj
+ET
+0.82 G
+54. 458.8899999999999864 m
+541.2799999999999727 458.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 463.8899999999999864 Td
+(attention heads) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 463.8899999999999864 Td
+(8) Tj
+ET
+0.99 0.99 0.99 rg
+54. 458.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 442.8899999999999864 m
+541.2799999999999727 442.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 447.8899999999999864 Td
+(embedding dimension) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 447.8899999999999864 Td
+(384) Tj
+ET
+0.82 G
+54. 426.8899999999999864 m
+541.2799999999999727 426.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 431.8899999999999864 Td
+(attention head dimension) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 431.8899999999999864 Td
+(48) Tj
+ET
+0.99 0.99 0.99 rg
+54. 426.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 410.8899999999999864 m
+541.2799999999999727 410.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 415.8899999999999864 Td
+(MLP hidden width) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 415.8899999999999864 Td
+(1536) Tj
+ET
+0.82 G
+54. 394.8899999999999864 m
+541.2799999999999727 394.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 399.8899999999999864 Td
+(positional embeddings) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 399.8899999999999864 Td
+(learned) Tj
+ET
+0.99 0.99 0.99 rg
+54. 394.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 378.8899999999999864 m
+541.2799999999999727 378.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 383.8899999999999864 Td
+(Activation) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 383.8899999999999864 Td
+(GELU) Tj
+ET
+0.82 G
+54. 362.8899999999999864 m
+541.2799999999999727 362.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 367.8899999999999864 Td
+(normalization) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 367.8899999999999864 Td
+(Pre-LayerNorm) Tj
+ET
+0.99 0.99 0.99 rg
+54. 362.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 346.8899999999999864 m
+541.2799999999999727 346.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 351.8899999999999864 Td
+(dropout) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 351.8899999999999864 Td
+(0.1) Tj
+ET
+0.82 G
+54. 330.8899999999999864 m
+541.2799999999999727 330.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 335.8899999999999864 Td
+(output weights) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 335.8899999999999864 Td
+(tied to token embeddings) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 296.8899999999999864 Td
+(4.1   Input representation) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+1.6305263157894687 Tw
+54. 276.8899999999999864 Td
+(For an input tensor of token IDs with shape [B, T], the model obtains token embeddings and adds learned position) Tj
+0 Tw
+0. -11.5 Td
+(embeddings. Here, B is the batch size and T is the sequence length, with) Tj
+ET
+BT
+/F11 11 Tf
+12.6499999999999986 TL
+0.157 g
+276.2450000000000045 231.8899999999999864 Td
+(T <= 256) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 201.8899999999999864 Td
+(4.2   Causal Self-Attention) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0 Tw
+54. 181.8899999999999864 Td
+(The attention module projects the input into queries, keys, and values. The attention score matrix is calculated as:) Tj
+ET
+BT
+/F11 11 Tf
+12.6499999999999986 TL
+0.157 g
+202.4350000000000023 146.8899999999999864 Td
+(Attention = softmax\( \( Q K^T \) / sqrt\(d_k\) \)) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0.029999999999994 Tw
+54. 116.8899999999999864 Td
+(Future positions are masked before softmax. The resulting attention weights are multiplied by the value representations to) Tj
+0 Tw
+0. -11.5 Td
+(produce the attention output.) Tj
+ET
+endstream
+endobj
+13 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 14 0 R
+>>
+endobj
+14 0 obj
+<<
+/Length 4032
+>>
+stream
+0.5 w
+0.82 G
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 771.8899999999999864 Td
+(4.3   Feed-Forward Network) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 751.8899999999999864 Td
+(Each Transformer block contains a two-layer feed-forward network:) Tj
+ET
+BT
+/F11 10.5 Tf
+12.0749999999999993 TL
+0.157 g
+253.9599999999999795 723.8899999999999864 Td
+(Linear\(384 -> 1536\)) Tj
+ET
+BT
+/F11 10.5 Tf
+12.0749999999999993 TL
+0.157 g
+283.9900000000000091 707.8899999999999864 Td
+(GELU) Tj
+ET
+BT
+/F11 10.5 Tf
+12.0749999999999993 TL
+0.157 g
+253.9599999999999795 691.8899999999999864 Td
+(Linear\(1536 -> 384\)) Tj
+ET
+BT
+/F11 10.5 Tf
+12.0749999999999993 TL
+0.157 g
+279.8424999999999727 675.8899999999999864 Td
+(Dropout) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 641.8899999999999864 Td
+(4.4   Output projection and weight tying) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0.7053333333333285 Tw
+54. 621.8899999999999864 Td
+(The final hidden representation is normalized and projected to the 50,257-token vocabulary. The output projection uses) Tj
+0.917500000000004 Tw
+0. -11.5 Td
+(the same weight matrix as the token embedding layer. This reduces duplicated parameters and follows the architecture) Tj
+0 Tw
+0. -11.5 Td
+(used in the Python implementation.) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.157 g
+54. 561.8899999999999864 Td
+(5   Implementation details) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 536.8899999999999864 Td
+(5.1   Python implementation) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+2.2676923076923092 Tw
+54. 516.8899999999999864 Td
+(The Python implementation uses PyTorch modules for embeddings, linear layers, LayerNorm, dropout, and causal) Tj
+0.5628571428571425 Tw
+0. -11.5 Td
+(attention, and the Transformer blocks. The training script uses AdamW, gradient clipping, learning-rate warmup, cosine) Tj
+0 Tw
+0. -11.5 Td
+(decay, validation, and checkpoint saving.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0 Tw
+54. 466.8899999999999864 Td
+(During CUDA training, the Python implementation uses automatic mixed precision and GradScaler.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 431.8899999999999864 Td
+(5.2   C++/LibTorch Implementation) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+2.1628571428571326 Tw
+54. 411.8899999999999864 Td
+(To validate portability and enable deployment outside the Python ecosystem, we implement an equivalent training) Tj
+1.0612500000000118 Tw
+0. -11.5 Td
+(pipeline in C++ using LibTorch, the official C++ API for PyTorch. This implementation mirrors the Python reference) Tj
+0.3279999999999973 Tw
+0. -11.5 Td
+(architecture component-for-component, including the GPT configuration, causal self-attention, transformer blocks, token) Tj
+1.1254545454545346 Tw
+0. -11.5 Td
+(and position embeddings, layer normalization, GELU-activated MLP layers, cross-entropy loss, AdamW optimization,) Tj
+0 Tw
+0. -11.5 Td
+(binary token-data loading, autoregressive generation, and checkpoint saving and loading.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0.5925000000000011 Tw
+54. 326.8899999999999864 Td
+(Critically, the C++ trainer consumes the same train.bin and val.bin binary shards produced by the Python preprocessing) Tj
+0.9853333333333315 Tw
+0. -11.5 Td
+(pipeline, ensuring both implementations train on identical tokenized data. No separate tokenizer is implemented in the) Tj
+0 Tw
+0. -11.5 Td
+(C++ path; tokenization remains the responsibility of the upstream Python data-preparation stage.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 261.8899999999999864 Td
+(5.3   Weight tying) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+1.1985714285714184 Tw
+54. 241.8899999999999864 Td
+(The Python model ties the language-model output weights to the token-embedding weights. The C++ implementation) Tj
+0.1237500000000011 Tw
+0. -11.5 Td
+(achieves the same behavior by directly using the token-embedding matrix for the output projection rather than registering) Tj
+0 Tw
+0. -11.5 Td
+(an independent output parameter.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 191.8899999999999864 Td
+(5.4   Precision) Tj
+ET
+endstream
+endobj
+15 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 16 0 R
+>>
+endobj
+16 0 obj
+<<
+/Length 8897
+>>
+stream
+0.5 w
+0.82 G
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+234.5600000000000023 771.8899999999999864 Td
+(Table 2: Precisions configuration) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 761.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 749.8899999999999864 Td
+(Implementation) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 749.8899999999999864 Td
+(Record training Precision) Tj
+ET
+0.82 G
+54. 727.8899999999999864 m
+541.2799999999999727 727.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 732.8899999999999864 Td
+(Python/PyTorch) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 732.8899999999999864 Td
+(AMP/autocast with gradient scaling) Tj
+ET
+0.99 0.99 0.99 rg
+54. 727.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 711.8899999999999864 m
+541.2799999999999727 711.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 716.8899999999999864 Td
+(C++/LibTorch) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 716.8899999999999864 Td
+(FP32) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.157 g
+54. 691.8899999999999864 Td
+(6   Experimental setup) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 666.8899999999999864 Td
+(6.1   Hardware) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 646.8899999999999864 Td
+(Both experiments were conducted on an NVIDIA RTX 4090.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+252.277499999999975 621.8899999999999864 Td
+(Table 3: Hardware used) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 611.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 599.8899999999999864 Td
+(Hardware) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 599.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 577.8899999999999864 m
+541.2799999999999727 577.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 582.8899999999999864 Td
+(GPU) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 582.8899999999999864 Td
+(NVIDIA RTX 4090) Tj
+ET
+0.99 0.99 0.99 rg
+54. 577.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 561.8899999999999864 m
+541.2799999999999727 561.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 566.8899999999999864 Td
+(CUDA version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 566.8899999999999864 Td
+(13.4.0) Tj
+ET
+0.82 G
+54. 545.8899999999999864 m
+541.2799999999999727 545.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 550.8899999999999864 Td
+(Python version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 550.8899999999999864 Td
+(3.14) Tj
+ET
+0.99 0.99 0.99 rg
+54. 545.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 529.8899999999999864 m
+541.2799999999999727 529.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 534.8899999999999864 Td
+(GPU driver) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 534.8899999999999864 Td
+(595.99.02) Tj
+ET
+0.82 G
+54. 513.8899999999999864 m
+541.2799999999999727 513.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 518.8899999999999864 Td
+(LibTorch version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 518.8899999999999864 Td
+(2.5.0) Tj
+ET
+0.99 0.99 0.99 rg
+54. 513.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 497.8899999999999864 m
+541.2799999999999727 497.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 502.8899999999999864 Td
+(Cloud environment) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 502.8899999999999864 Td
+(Jupyter notebook) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 466.8899999999999864 Td
+(6.2   Training configuration) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+219.7874999999999943 446.8899999999999864 Td
+(Table 4: Experimental setup for Training) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 436.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 424.8899999999999864 Td
+(Setting) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 424.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 402.8899999999999864 m
+541.2799999999999727 402.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 407.8899999999999864 Td
+(Batch size) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 407.8899999999999864 Td
+(32) Tj
+ET
+0.99 0.99 0.99 rg
+54. 402.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 386.8899999999999864 m
+541.2799999999999727 386.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 391.8899999999999864 Td
+(context length) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 391.8899999999999864 Td
+(256) Tj
+ET
+0.82 G
+54. 370.8899999999999864 m
+541.2799999999999727 370.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 375.8899999999999864 Td
+(Tokens per step) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 375.8899999999999864 Td
+(8192) Tj
+ET
+0.99 0.99 0.99 rg
+54. 370.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 354.8899999999999864 m
+541.2799999999999727 354.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 359.8899999999999864 Td
+(training steps) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 359.8899999999999864 Td
+(100,000) Tj
+ET
+0.82 G
+54. 338.8899999999999864 m
+541.2799999999999727 338.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 343.8899999999999864 Td
+(Nominal training tokens) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 343.8899999999999864 Td
+(819.2 million) Tj
+ET
+0.99 0.99 0.99 rg
+54. 338.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 322.8899999999999864 m
+541.2799999999999727 322.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 327.8899999999999864 Td
+(Optimizer) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 327.8899999999999864 Td
+(AdamW) Tj
+ET
+0.82 G
+54. 306.8899999999999864 m
+541.2799999999999727 306.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 311.8899999999999864 Td
+(Learning rate) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 311.8899999999999864 Td
+(3e-4) Tj
+ET
+0.99 0.99 0.99 rg
+54. 306.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 290.8899999999999864 m
+541.2799999999999727 290.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 295.8899999999999864 Td
+(Adam betas) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 295.8899999999999864 Td
+(\(0.9, 0.95\)) Tj
+ET
+0.82 G
+54. 274.8899999999999864 m
+541.2799999999999727 274.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 279.8899999999999864 Td
+(Weight decay) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 279.8899999999999864 Td
+(0.1) Tj
+ET
+0.99 0.99 0.99 rg
+54. 274.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 258.8899999999999864 m
+541.2799999999999727 258.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 263.8899999999999864 Td
+(Bias/norm weight decay) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 263.8899999999999864 Td
+(0.0) Tj
+ET
+0.82 G
+54. 242.8899999999999864 m
+541.2799999999999727 242.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 247.8899999999999864 Td
+(Gradient clipping) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 247.8899999999999864 Td
+(1.0) Tj
+ET
+0.99 0.99 0.99 rg
+54. 242.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 226.8899999999999864 m
+541.2799999999999727 226.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 231.8899999999999864 Td
+(Warmup steps) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 231.8899999999999864 Td
+(500) Tj
+ET
+0.82 G
+54. 210.8899999999999864 m
+541.2799999999999727 210.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 215.8899999999999864 Td
+(Learning rate schedule) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 215.8899999999999864 Td
+(cosine decay after warmup) Tj
+ET
+0.99 0.99 0.99 rg
+54. 210.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 194.8899999999999864 m
+541.2799999999999727 194.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 199.8899999999999864 Td
+(Validation Interval) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 199.8899999999999864 Td
+(1000) Tj
+ET
+0.82 G
+54. 178.8899999999999864 m
+541.2799999999999727 178.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 183.8899999999999864 Td
+(Validation iterations) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 183.8899999999999864 Td
+(200) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 151.8899999999999864 Td
+(The tokens processed per step are:) Tj
+ET
+BT
+/F11 11 Tf
+12.6499999999999986 TL
+0.157 g
+259.5799999999999841 126.8899999999999864 Td
+(32 * 256 = 8,192) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 101.8899999999999864 Td
+(The nominal total number of training tokens is:) Tj
+ET
+endstream
+endobj
+17 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 18 0 R
+>>
+endobj
+18 0 obj
+<<
+/Length 6201
+>>
+stream
+0.5 w
+0.82 G
+BT
+/F11 11 Tf
+12.6499999999999986 TL
+0.157 g
+229.3299999999999841 771.8899999999999864 Td
+(100,000 * 8192 = 819,200,000) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 741.8899999999999864 Td
+(6.3   Inference configuration) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+207.8174999999999955 721.8899999999999864 Td
+(Table 5: Experimental setup for text generation) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 711.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 699.8899999999999864 Td
+(Setting) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+220. 699.8899999999999864 Td
+(Python) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+383. 699.8899999999999864 Td
+(C++) Tj
+ET
+0.82 G
+54. 677.8899999999999864 m
+541.2799999999999727 677.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 682.8899999999999864 Td
+(Prompt) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 682.8899999999999864 Td
+(Same) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 682.8899999999999864 Td
+(Same) Tj
+ET
+0.99 0.99 0.99 rg
+54. 677.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 661.8899999999999864 m
+541.2799999999999727 661.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 666.8899999999999864 Td
+(Context length) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 666.8899999999999864 Td
+(256) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 666.8899999999999864 Td
+(256) Tj
+ET
+0.82 G
+54. 645.8899999999999864 m
+541.2799999999999727 645.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 650.8899999999999864 Td
+(Maximum new tokens) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 650.8899999999999864 Td
+(256) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 650.8899999999999864 Td
+(256) Tj
+ET
+0.99 0.99 0.99 rg
+54. 645.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 629.8899999999999864 m
+541.2799999999999727 629.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 634.8899999999999864 Td
+(Temperature) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 634.8899999999999864 Td
+(0.4) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 634.8899999999999864 Td
+(0.4) Tj
+ET
+0.82 G
+54. 613.8899999999999864 m
+541.2799999999999727 613.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 618.8899999999999864 Td
+(Top-k) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 618.8899999999999864 Td
+(50) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 618.8899999999999864 Td
+(50) Tj
+ET
+0.99 0.99 0.99 rg
+54. 613.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 597.8899999999999864 m
+541.2799999999999727 597.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 602.8899999999999864 Td
+(Token selection) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 602.8899999999999864 Td
+(Argmax) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 602.8899999999999864 Td
+(Argmax) Tj
+ET
+0.82 G
+54. 581.8899999999999864 m
+541.2799999999999727 581.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 586.8899999999999864 Td
+(EOT stopping) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 586.8899999999999864 Td
+(Enabled) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 586.8899999999999864 Td
+(Enabled) Tj
+ET
+0.99 0.99 0.99 rg
+54. 581.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 565.8899999999999864 m
+541.2799999999999727 565.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 570.8899999999999864 Td
+(GPU) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+220. 570.8899999999999864 Td
+(RTX 4090) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+383. 570.8899999999999864 Td
+(RTX 4090) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 531.8899999999999864 Td
+(The benchmark prompt was:) Tj
+ET
+1. 1. 0.92 rg
+0.78 0.78 0.71 RG
+74. 516.8899999999999864 447.2799999999999727 -28. re
+B
+BT
+/F11 10.5 Tf
+12.0749999999999993 TL
+0.157 g
+89. 499.8899999999999864 Td
+(A small dog found a shiny ball) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+1.2635294117647002 Tw
+54. 466.8899999999999864 Td
+(Because the models were trained independently, they can emit the EOT token at different points. Thus, actual output) Tj
+0 Tw
+0. -11.5 Td
+(length may differ even though both systems use the same maximum generation cap.) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.157 g
+54. 411.8899999999999864 Td
+(7   Results) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 386.8899999999999864 Td
+(7.1   Training throughput) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+231.5199999999999818 366.8899999999999864 Td
+(Table 6: Learning throughput rates) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 356.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 344.8899999999999864 Td
+(Implementation) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 344.8899999999999864 Td
+(Observed sustained throughput) Tj
+ET
+0.82 G
+54. 322.8899999999999864 m
+541.2799999999999727 322.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 327.8899999999999864 Td
+(Python/PyTorch) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 327.8899999999999864 Td
+(~59,000-62,000 toks/s) Tj
+ET
+0.99 0.99 0.99 rg
+54. 322.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 306.8899999999999864 m
+541.2799999999999727 306.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 311.8899999999999864 Td
+(C++/LibTorch) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 311.8899999999999864 Td
+(~95,000-100,000 toks/s) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 281.8899999999999864 Td
+(Using representative midpoint values:) Tj
+ET
+BT
+/F11 11 Tf
+12.6499999999999986 TL
+0.157 g
+244.289999999999992 256.8899999999999864 Td
+(97,500 / 60,000 = 1.625) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0.5984615384615364 Tw
+54. 226.8899999999999864 Td
+(The C++ implementation achieved approximately 1.63x the Python training throughput, or approximately 62.5% higher) Tj
+0 Tw
+0. -11.5 Td
+(throughput. Using the range boundaries, the observed relative advantage is approximately 1.56x to 1.69x.) Tj
+ET
+endstream
+endobj
+19 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 20 0 R
+>>
+endobj
+20 0 obj
+<<
+/Length 6622
+>>
+stream
+0.5 w
+0.82 G
+0.16 G
+0.8 w
+94. 761.8899999999999864 427.2799999999999727 -150. re
+S
+BT
+/F1 11 Tf
+12.6499999999999986 TL
+0.157 g
+219.5299999999999727 769.8899999999999864 Td
+(Training Throughput: C++ vs Python) Tj
+ET
+0.9 G
+94. 731.8899999999999864 m
+521.2799999999999727 731.8899999999999864 l
+S
+94. 701.8899999999999864 m
+521.2799999999999727 701.8899999999999864 l
+S
+94. 671.8899999999999864 m
+521.2799999999999727 671.8899999999999864 l
+S
+94. 641.8899999999999864 m
+521.2799999999999727 641.8899999999999864 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+62. 755.8899999999999864 Td
+(100000) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+66. 727.8899999999999864 Td
+(80000) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+66. 697.8899999999999864 Td
+(60000) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+66. 667.8899999999999864 Td
+(40000) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+66. 637.8899999999999864 Td
+(20000) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+82. 609.8899999999999864 Td
+(0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+94. 597.8899999999999864 Td
+(0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+173.4560000000000173 597.8899999999999864 Td
+(20k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+258.9120000000000346 597.8899999999999864 Td
+(40k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+344.367999999999995 597.8899999999999864 Td
+(60k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+429.8240000000000123 597.8899999999999864 Td
+(80k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+511.2799999999999727 597.8899999999999864 Td
+(100k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+284.0399999999999636 585.8899999999999864 Td
+(Training Step) Tj
+ET
+0.12 0.43 0.78 RG
+1.8 w
+99. 621.8899999999999864 m
+109. 749.8899999999999864 l
+S
+109. 749.8899999999999864 m
+521.2799999999999727 749.8899999999999864 l
+S
+0.82 0.2 0.2 RG
+1.8 w
+99. 619.8899999999999864 m
+109. 700.3899999999999864 l
+S
+109. 700.3899999999999864 m
+521.2799999999999727 700.3899999999999864 l
+S
+1. g
+411.2799999999999727 746.8899999999999864 100. -36. re
+B
+0.12 0.43 0.78 RG
+419.2799999999999727 735.8899999999999864 m
+436.2799999999999727 735.8899999999999864 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+441.2799999999999727 733.8899999999999864 Td
+(C++ \(LibTorch\)) Tj
+ET
+0.82 0.2 0.2 RG
+419.2799999999999727 719.8899999999999864 m
+436.2799999999999727 719.8899999999999864 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+441.2799999999999727 717.8899999999999864 Td
+(Python \(PyTorch\)) Tj
+ET
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.078 g
+74. 561.8899999999999864 Td
+(Figure 1: Training throughput \(tokens/sec\) over training steps for the C++/LibTorch and Python/PyTorch implementations.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 521.8899999999999864 Td
+(7.2   Python validation results) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+54. 501.8899999999999864 Td
+(The completed Python training run recorded the following validation losses \(Table 7\):) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+147.6824999999999477 476.8899999999999864 Td
+(Table 7: Python \(PyTorch\) model validation loss at every 10,000 training steps) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 466.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 454.8899999999999864 Td
+(Step) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 454.8899999999999864 Td
+(Validation Loss) Tj
+ET
+0.82 G
+54. 432.8899999999999864 m
+541.2799999999999727 432.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 437.8899999999999864 Td
+(10,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 437.8899999999999864 Td
+(2.0457) Tj
+ET
+0.99 0.99 0.99 rg
+54. 432.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 416.8899999999999864 m
+541.2799999999999727 416.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 421.8899999999999864 Td
+(20,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 421.8899999999999864 Td
+(1.7720) Tj
+ET
+0.82 G
+54. 400.8899999999999864 m
+541.2799999999999727 400.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 405.8899999999999864 Td
+(30,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 405.8899999999999864 Td
+(1.6515) Tj
+ET
+0.99 0.99 0.99 rg
+54. 400.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 384.8899999999999864 m
+541.2799999999999727 384.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 389.8899999999999864 Td
+(40,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 389.8899999999999864 Td
+(1.5872) Tj
+ET
+0.82 G
+54. 368.8899999999999864 m
+541.2799999999999727 368.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 373.8899999999999864 Td
+(50,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 373.8899999999999864 Td
+(1.5276) Tj
+ET
+0.99 0.99 0.99 rg
+54. 368.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 352.8899999999999864 m
+541.2799999999999727 352.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 357.8899999999999864 Td
+(60,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 357.8899999999999864 Td
+(1.4947) Tj
+ET
+0.82 G
+54. 336.8899999999999864 m
+541.2799999999999727 336.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 341.8899999999999864 Td
+(70,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 341.8899999999999864 Td
+(1.4601) Tj
+ET
+0.99 0.99 0.99 rg
+54. 336.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 320.8899999999999864 m
+541.2799999999999727 320.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 325.8899999999999864 Td
+(80,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 325.8899999999999864 Td
+(1.4378) Tj
+ET
+0.82 G
+54. 304.8899999999999864 m
+541.2799999999999727 304.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 309.8899999999999864 Td
+(90,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 309.8899999999999864 Td
+(1.4194) Tj
+ET
+0.99 0.99 0.99 rg
+54. 304.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 288.8899999999999864 m
+541.2799999999999727 288.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 293.8899999999999864 Td
+(99,000 \(final\)) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 293.8899999999999864 Td
+(1.4196) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0.8515789473684124 Tw
+54. 261.8899999999999864 Td
+(The best logged validation loss was 1.4088 at step 94,000. The final logged validation loss was 1.4196 at step 99,000.) Tj
+0 Tw
+0. -11.5 Td
+(The full trajectory is shown in Figure 2.) Tj
+ET
+endstream
+endobj
+21 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 22 0 R
+>>
+endobj
+22 0 obj
+<<
+/Length 7524
+>>
+stream
+0.5 w
+0.82 G
+0.16 G
+0.8 w
+94. 761.8899999999999864 427.2799999999999727 -150. re
+S
+BT
+/F1 11 Tf
+12.6499999999999986 TL
+0.157 g
+192.5249999999999488 769.8899999999999864 Td
+(Python \(PyTorch\) Model: Validation Loss Curve) Tj
+ET
+0.9 G
+94. 740.4614285714285415 m
+521.2799999999999727 740.4614285714285415 l
+S
+94. 719.0328571428570967 m
+521.2799999999999727 719.0328571428570967 l
+S
+94. 697.6042857142856519 m
+521.2799999999999727 697.6042857142856519 l
+S
+94. 676.1757142857143208 m
+521.2799999999999727 676.1757142857143208 l
+S
+94. 654.747142857142876 m
+521.2799999999999727 654.747142857142876 l
+S
+94. 633.3185714285714312 m
+521.2799999999999727 633.3185714285714312 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 755.8899999999999864 Td
+(4.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 732.3899999999999864 Td
+(4.0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 708.3899999999999864 Td
+(3.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 682.8899999999999864 Td
+(3.0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 657.3899999999999864 Td
+(2.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 633.3899999999999864 Td
+(2.0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 609.8899999999999864 Td
+(1.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+94. 597.8899999999999864 Td
+(0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+130.7280000000000086 597.8899999999999864 Td
+(10k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+173.4560000000000173 597.8899999999999864 Td
+(20k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+216.1839999999999975 597.8899999999999864 Td
+(30k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+258.9120000000000346 597.8899999999999864 Td
+(40k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+301.6399999999999864 597.8899999999999864 Td
+(50k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+344.367999999999995 597.8899999999999864 Td
+(60k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+387.0959999999999468 597.8899999999999864 Td
+(70k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+429.8240000000000123 597.8899999999999864 Td
+(80k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+472.5519999999999641 597.8899999999999864 Td
+(90k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+511.2799999999999727 597.8899999999999864 Td
+(100k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+284.0399999999999636 585.8899999999999864 Td
+(Training Step) Tj
+ET
+0.82 0.2 0.2 RG
+1.6000000000000001 w
+94. 756.8899999999999864 m
+115.3640000000000043 671.8899999999999864 l
+S
+115.3640000000000043 671.8899999999999864 m
+136.7280000000000086 639.3899999999999864 l
+S
+136.7280000000000086 639.3899999999999864 m
+179.4560000000000173 625.3899999999999864 l
+S
+179.4560000000000173 625.3899999999999864 m
+222.1839999999999975 619.3899999999999864 l
+S
+222.1839999999999975 619.3899999999999864 m
+264.9120000000000346 615.8899999999999864 l
+S
+264.9120000000000346 615.8899999999999864 m
+307.6399999999999864 613.3899999999999864 l
+S
+307.6399999999999864 613.3899999999999864 m
+350.367999999999995 611.3899999999999864 l
+S
+350.367999999999995 611.3899999999999864 m
+393.0959999999999468 609.8899999999999864 l
+S
+393.0959999999999468 609.8899999999999864 m
+435.8240000000000123 608.3899999999999864 l
+S
+435.8240000000000123 608.3899999999999864 m
+478.5519999999999641 607.8899999999999864 l
+S
+478.5519999999999641 607.8899999999999864 m
+521.2799999999999727 607.3899999999999864 l
+S
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.078 g
+94. 561.8899999999999864 Td
+(Figure 2: Validation loss over training steps for the Python \(PyTorch\) model.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 521.8899999999999864 Td
+(7.3   C++ Validation Results) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+54. 501.8899999999999864 Td
+(The completed C++ training run recorded the following validation losses \(Table 8\):) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+151.05499999999995 476.8899999999999864 Td
+(Table 8: C++ \(LibTorch\) model validation loss at every 10,000 training steps) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 466.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 454.8899999999999864 Td
+(Step) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 454.8899999999999864 Td
+(Validation Loss) Tj
+ET
+0.82 G
+54. 432.8899999999999864 m
+541.2799999999999727 432.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 437.8899999999999864 Td
+(10,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 437.8899999999999864 Td
+(2.0499) Tj
+ET
+0.99 0.99 0.99 rg
+54. 432.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 416.8899999999999864 m
+541.2799999999999727 416.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 421.8899999999999864 Td
+(20,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 421.8899999999999864 Td
+(1.7788) Tj
+ET
+0.82 G
+54. 400.8899999999999864 m
+541.2799999999999727 400.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 405.8899999999999864 Td
+(30,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 405.8899999999999864 Td
+(1.6533) Tj
+ET
+0.99 0.99 0.99 rg
+54. 400.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 384.8899999999999864 m
+541.2799999999999727 384.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 389.8899999999999864 Td
+(40,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 389.8899999999999864 Td
+(1.5860) Tj
+ET
+0.82 G
+54. 368.8899999999999864 m
+541.2799999999999727 368.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 373.8899999999999864 Td
+(50,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 373.8899999999999864 Td
+(1.5335) Tj
+ET
+0.99 0.99 0.99 rg
+54. 368.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 352.8899999999999864 m
+541.2799999999999727 352.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 357.8899999999999864 Td
+(60,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 357.8899999999999864 Td
+(1.4971) Tj
+ET
+0.82 G
+54. 336.8899999999999864 m
+541.2799999999999727 336.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 341.8899999999999864 Td
+(70,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 341.8899999999999864 Td
+(1.4673) Tj
+ET
+0.99 0.99 0.99 rg
+54. 336.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 320.8899999999999864 m
+541.2799999999999727 320.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 325.8899999999999864 Td
+(80,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 325.8899999999999864 Td
+(1.4374) Tj
+ET
+0.82 G
+54. 304.8899999999999864 m
+541.2799999999999727 304.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 309.8899999999999864 Td
+(90,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 309.8899999999999864 Td
+(1.4202) Tj
+ET
+0.99 0.99 0.99 rg
+54. 304.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 288.8899999999999864 m
+541.2799999999999727 288.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 293.8899999999999864 Td
+(99,000 \(final\)) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 293.8899999999999864 Td
+(1.4136) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+0.9377777777777681 Tw
+54. 261.8899999999999864 Td
+(The best logged validation loss was 1.4136, achieved at both step 95,000 and step 99,000. The final logged validation) Tj
+0 Tw
+0. -11.5 Td
+(loss was 1.4136 at step 99,000. The full trajectory is shown in Figure 3.) Tj
+ET
+endstream
+endobj
+23 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 24 0 R
+>>
+endobj
+24 0 obj
+<<
+/Length 7956
+>>
+stream
+0.5 w
+0.82 G
+0.16 G
+0.8 w
+94. 761.8899999999999864 427.2799999999999727 -150. re
+S
+BT
+/F1 11 Tf
+12.6499999999999986 TL
+0.157 g
+198.2999999999999261 769.8899999999999864 Td
+(C++ \(LibTorch\) Model: Validation Loss Curve) Tj
+ET
+0.9 G
+94. 740.4614285714285415 m
+521.2799999999999727 740.4614285714285415 l
+S
+94. 719.0328571428570967 m
+521.2799999999999727 719.0328571428570967 l
+S
+94. 697.6042857142856519 m
+521.2799999999999727 697.6042857142856519 l
+S
+94. 676.1757142857143208 m
+521.2799999999999727 676.1757142857143208 l
+S
+94. 654.747142857142876 m
+521.2799999999999727 654.747142857142876 l
+S
+94. 633.3185714285714312 m
+521.2799999999999727 633.3185714285714312 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 755.8899999999999864 Td
+(4.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 732.3899999999999864 Td
+(4.0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 708.3899999999999864 Td
+(3.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 682.8899999999999864 Td
+(3.0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 657.3899999999999864 Td
+(2.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 633.3899999999999864 Td
+(2.0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+76. 609.8899999999999864 Td
+(1.5) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+94. 597.8899999999999864 Td
+(0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+130.7280000000000086 597.8899999999999864 Td
+(10k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+173.4560000000000173 597.8899999999999864 Td
+(20k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+216.1839999999999975 597.8899999999999864 Td
+(30k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+258.9120000000000346 597.8899999999999864 Td
+(40k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+301.6399999999999864 597.8899999999999864 Td
+(50k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+344.367999999999995 597.8899999999999864 Td
+(60k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+387.0959999999999468 597.8899999999999864 Td
+(70k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+429.8240000000000123 597.8899999999999864 Td
+(80k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+472.5519999999999641 597.8899999999999864 Td
+(90k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+511.2799999999999727 597.8899999999999864 Td
+(100k) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+284.0399999999999636 585.8899999999999864 Td
+(Training Step) Tj
+ET
+0.12 0.43 0.78 RG
+1.6000000000000001 w
+94. 756.8899999999999864 m
+115.3640000000000043 671.8899999999999864 l
+S
+115.3640000000000043 671.8899999999999864 m
+136.7280000000000086 639.3899999999999864 l
+S
+136.7280000000000086 639.3899999999999864 m
+179.4560000000000173 625.3899999999999864 l
+S
+179.4560000000000173 625.3899999999999864 m
+222.1839999999999975 619.3899999999999864 l
+S
+222.1839999999999975 619.3899999999999864 m
+264.9120000000000346 615.8899999999999864 l
+S
+264.9120000000000346 615.8899999999999864 m
+307.6399999999999864 613.3899999999999864 l
+S
+307.6399999999999864 613.3899999999999864 m
+350.367999999999995 611.3899999999999864 l
+S
+350.367999999999995 611.3899999999999864 m
+393.0959999999999468 609.8899999999999864 l
+S
+393.0959999999999468 609.8899999999999864 m
+435.8240000000000123 608.3899999999999864 l
+S
+435.8240000000000123 608.3899999999999864 m
+478.5519999999999641 607.8899999999999864 l
+S
+478.5519999999999641 607.8899999999999864 m
+521.2799999999999727 607.3899999999999864 l
+S
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.078 g
+94. 561.8899999999999864 Td
+(Figure 3: Validation loss over training steps for the C++ \(LibTorch\) model.) Tj
+ET
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.078 g
+54. 521.8899999999999864 Td
+(7.4   Inference throughput) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+54. 501.8899999999999864 Td
+(Three inference runs were recorded for each implementation.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+174.1874999999999432 476.8899999999999864 Td
+(Table 9: Inference throughput and total time across multiple runs) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 466.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 454.8899999999999864 Td
+(Metric) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+140. 454.8899999999999864 Td
+(C++ Run 1) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+208. 454.8899999999999864 Td
+(C++ Run 2) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+276. 454.8899999999999864 Td
+(C++ Run 3) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+344. 454.8899999999999864 Td
+(Python Run 1) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+412. 454.8899999999999864 Td
+(Python Run 2) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+480. 454.8899999999999864 Td
+(Python Run 3) Tj
+ET
+0.82 G
+54. 432.8899999999999864 m
+541.2799999999999727 432.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 437.8899999999999864 Td
+(Throughput) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+140. 437.8899999999999864 Td
+(190.6 tok/s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+208. 437.8899999999999864 Td
+(190.6 tok/s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+276. 437.8899999999999864 Td
+(192.254 tok/s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+344. 437.8899999999999864 Td
+(129 tok/s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+412. 437.8899999999999864 Td
+(123 tok/s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+480. 437.8899999999999864 Td
+(130 tok/s) Tj
+ET
+0.99 0.99 0.99 rg
+54. 432.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 416.8899999999999864 m
+541.2799999999999727 416.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 421.8899999999999864 Td
+(Total time) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+140. 421.8899999999999864 Td
+(0.666 s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+208. 421.8899999999999864 Td
+(0.666 s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+276. 421.8899999999999864 Td
+(0.659 s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+344. 421.8899999999999864 Td
+(0.61 s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+412. 421.8899999999999864 Td
+(0.62 s) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+480. 421.8899999999999864 Td
+(0.61 s) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+1.9320000000000013 Tw
+54. 396.8899999999999864 Td
+(Three inference runs were recorded for each implementation; the displayed throughput values are the raw recorded) Tj
+29.4422222222222061 Tw
+0. -11.5 Td
+(values, and the median is used as the summary statistic.) Tj
+0 Tw
+0. -11.5 Td
+(The median throughput values are:) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+227.4825000000000159 346.8899999999999864 Td
+(Table 10: Inference run median tok/s) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 336.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 324.8899999999999864 Td
+(Implementation) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 324.8899999999999864 Td
+(Median Inference throughput) Tj
+ET
+0.82 G
+54. 302.8899999999999864 m
+541.2799999999999727 302.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 307.8899999999999864 Td
+(Python/PyTorch) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 307.8899999999999864 Td
+(129.0 tok/s) Tj
+ET
+0.99 0.99 0.99 rg
+54. 302.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 286.8899999999999864 m
+541.2799999999999727 286.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 291.8899999999999864 Td
+(C++/LibTorch) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 291.8899999999999864 Td
+(190.6 tok/s) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 271.8899999999999864 Td
+(The ratio is:) Tj
+ET
+BT
+/F11 11 Tf
+12.6499999999999986 TL
+0.157 g
+251.164999999999992 246.8899999999999864 Td
+(190.6 / 129 = 1.4775) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 216.8899999999999864 Td
+(Therefore, C++ achieved approximately 1.48x, or 47.8%, higher recorded inference throughput.) Tj
+ET
+endstream
+endobj
+25 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 26 0 R
+>>
+endobj
+26 0 obj
+<<
+/Length 7244
+>>
+stream
+0.5 w
+0.82 G
+BT
+/F10 11 Tf
+12.6499999999999986 TL
+0.157 g
+54. 771.8899999999999864 Td
+(7.5   Memory results) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+158.3699999999999477 746.8899999999999864 Td
+(Table 11: Inference GPU memory and System RAM across multiple runs) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 736.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 724.8899999999999864 Td
+(Metric) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+140. 724.8899999999999864 Td
+(C++ Run 1) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+208. 724.8899999999999864 Td
+(C++ Run 2) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+276. 724.8899999999999864 Td
+(C++ Run 3) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+344. 724.8899999999999864 Td
+(Python Run 1) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+412. 724.8899999999999864 Td
+(Python Run 2) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+480. 724.8899999999999864 Td
+(Python Run 3) Tj
+ET
+0.82 G
+54. 702.8899999999999864 m
+541.2799999999999727 702.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 707.8899999999999864 Td
+(System RAM) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+140. 707.8899999999999864 Td
+(866.098 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+208. 707.8899999999999864 Td
+(864.7 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+276. 707.8899999999999864 Td
+(864.844 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+344. 707.8899999999999864 Td
+(1055 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+412. 707.8899999999999864 Td
+(1055 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+480. 707.8899999999999864 Td
+(1055 MB) Tj
+ET
+0.99 0.99 0.99 rg
+54. 702.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 686.8899999999999864 m
+541.2799999999999727 686.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 691.8899999999999864 Td
+(GPU memory) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+140. 691.8899999999999864 Td
+(164.78 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+208. 691.8899999999999864 Td
+(164.78 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+276. 691.8899999999999864 Td
+(164.79 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+344. 691.8899999999999864 Td
+(545 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+412. 691.8899999999999864 Td
+(545 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+480. 691.8899999999999864 Td
+(545 MB) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+54. 666.8899999999999864 Td
+(Median values:) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+158.3699999999999477 646.8899999999999864 Td
+(Table 12: Inference GPU memory and System RAM across multiple runs) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 636.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 624.8899999999999864 Td
+(Metric) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+180. 624.8899999999999864 Td
+(C++) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 624.8899999999999864 Td
+(Python) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+420. 624.8899999999999864 Td
+(difference) Tj
+ET
+0.82 G
+54. 602.8899999999999864 m
+541.2799999999999727 602.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 607.8899999999999864 Td
+(System RAM) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+180. 607.8899999999999864 Td
+(864.7 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 607.8899999999999864 Td
+(1055 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+420. 607.8899999999999864 Td
+(C++ approx 18% lower) Tj
+ET
+0.99 0.99 0.99 rg
+54. 602.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 586.8899999999999864 m
+541.2799999999999727 586.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 591.8899999999999864 Td
+(GPU memory) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+180. 591.8899999999999864 Td
+(164.78 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 591.8899999999999864 Td
+(545 MB) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+420. 591.8899999999999864 Td
+(C++ approx 69.8% lower) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+84. 566.8899999999999864 Td
+(System-RAM reduction:) Tj
+ET
+BT
+/F11 10 Tf
+11.5 TL
+0.157 g
+224. 566.8899999999999864 Td
+(\(1055 - 864.7\) / 1055 * 100 ~ 18.0%) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.157 g
+84. 536.8899999999999864 Td
+(GPU memory reduction:) Tj
+ET
+BT
+/F11 10 Tf
+11.5 TL
+0.157 g
+224. 536.8899999999999864 Td
+(\(545 - 164.78\) / 545 * 100 ~ 69.8%) Tj
+ET
+0.16 G
+0.8 w
+94. 481.8899999999999864 427.2799999999999727 -150. re
+S
+BT
+/F1 11 Tf
+12.6499999999999986 TL
+0.157 g
+212.1599999999999682 489.8899999999999864 Td
+(Median Memory Usage: C++ vs Python) Tj
+ET
+0.9 G
+94. 456.8899999999999864 m
+521.2799999999999727 456.8899999999999864 l
+S
+94. 431.8899999999999864 m
+521.2799999999999727 431.8899999999999864 l
+S
+94. 406.8899999999999864 m
+521.2799999999999727 406.8899999999999864 l
+S
+94. 381.8899999999999864 m
+521.2799999999999727 381.8899999999999864 l
+S
+94. 356.8899999999999864 m
+521.2799999999999727 356.8899999999999864 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+70. 475.8899999999999864 Td
+(1200) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+70. 452.3899999999999864 Td
+(1000) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+74. 428.3899999999999864 Td
+(800) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+74. 402.8899999999999864 Td
+(600) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+74. 377.3899999999999864 Td
+(400) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+74. 353.3899999999999864 Td
+(200) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+82. 329.8899999999999864 Td
+(0) Tj
+ET
+0.12 0.43 0.78 rg
+165.8199999999999932 439.9774999999999636 30. -108.0875000000000057 re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+170.8199999999999932 443.9774999999999636 Td
+(864.7) Tj
+ET
+0.82 0.2 0.2 rg
+205.8199999999999932 463.7649999999999864 30. -131.875 re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+210.8199999999999932 467.7649999999999864 Td
+(1,055) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.157 g
+190.8199999999999932 317.8899999999999864 Td
+(System RAM) Tj
+ET
+0.12 0.43 0.78 rg
+379.4599999999999795 352.4875000000000114 30. -20.5975000000000001 re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+384.4599999999999795 356.4875000000000114 Td
+(164.8) Tj
+ET
+0.82 0.2 0.2 rg
+419.4599999999999795 400.0149999999999864 30. -68.125 re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.314 g
+424.4599999999999795 404.0149999999999864 Td
+(545.0) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.157 g
+404.4599999999999795 317.8899999999999864 Td
+(GPU Memory) Tj
+ET
+1. g
+411.2799999999999727 466.8899999999999864 100. -36. re
+B
+0.12 0.43 0.78 rg
+421.2799999999999727 459.8899999999999864 10. -8. re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.157 g
+436.2799999999999727 452.8899999999999864 Td
+(C++ \(LibTorch\)) Tj
+ET
+0.82 0.2 0.2 rg
+421.2799999999999727 445.8899999999999864 10. -8. re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.157 g
+436.2799999999999727 438.8899999999999864 Td
+(Python \(PyTorch\)) Tj
+ET
+BT
+/F9 9 Tf
+10.3499999999999996 TL
+0.078 g
+79. 296.8899999999999864 Td
+(Figure 4: Median system RAM and GPU memory usage for the C++ and Python implementations.) Tj
+ET
+endstream
+endobj
+27 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 28 0 R
+>>
+endobj
+28 0 obj
+<<
+/Length 4474
+>>
+stream
+0.8 w
+0.9 G
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 771.8899999999999864 Td
+(8   Discussion) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.8830769230769113 Tw
+54. 749.8899999999999864 Td
+(The measurements show that the C++/LibTorch implementation achieved higher observed training throughput than the) Tj
+-0.0220000000000084 Tw
+0. -11.5 Td
+(Python/PyTorch implementation. C++ sustained approximately 95,000–100,000 training tokens/s, while Python sustained) Tj
+0.3890909090909221 Tw
+0. -11.5 Td
+(approximately 59,000–62,000 tokens/s. The C++ implementation also achieved higher recorded autoregressive inference) Tj
+0 Tw
+0. -11.5 Td
+(throughput, with a median of 190.6 tok/s compared with 129 tok/s for Python.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+1.5549999999999997 Tw
+54. 686.8899999999999864 Td
+(The memory measurements also favored C++ in the recorded inference tests. C++ used approximately 864.7 MB of) Tj
+0.1621052631578909 Tw
+0. -11.5 Td
+(system RAM and 164.78 MB of GPU memory, compared with approximately 1,055 MB of system RAM and 545 MB of) Tj
+0.9800000000000111 Tw
+0. -11.5 Td
+(GPU memory for Python. These results should be interpreted carefully. The training data and model architecture were) Tj
+2.2753846153846187 Tw
+0. -11.5 Td
+(controlled well: both implementations used the same Python-generated token binaries, the same 256-token context) Tj
+1.9699999999999867 Tw
+0. -11.5 Td
+(length, the same 256-token maximum generation cap, and the same nominal architecture and optimization settings.) Tj
+0.9811764705882356 Tw
+0. -11.5 Td
+(However, the Python run used mixed precision and gradient scaling, whereas the C++ run used FP32. The benchmark) Tj
+0 Tw
+0. -11.5 Td
+(therefore reflects the complete tested configurations rather than programming-language overhead alone.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+0.2282352941176468 Tw
+54. 596.8899999999999864 Td
+(The independently trained models can also emit EOT at different positions. This explains why their actual output lengths) Tj
+2.3223529411764683 Tw
+0. -11.5 Td
+(and total generation times can differ even when both are configured with the same context length and maximum) Tj
+0 Tw
+0. -11.5 Td
+(generation cap. Tokens/sec is therefore the most useful primary inference metric for the current results.) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 531.8899999999999864 Td
+(9   Limitations) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 511.8899999999999864 Td
+(• This is a Python/PyTorch versus C++/LibTorch comparison, not a framework-free C++ CUDA comparison.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 494.8899999999999864 Td
+(• Python training used AMP/autocast and GradScaler; C++ training used FP32.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 477.8899999999999864 Td
+(• The models were trained independently, so their weights and outputs are not identical.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 460.8899999999999864 Td
+(• Both systems use a 256-token context and a 256-token maximum generation cap, but EOT stopping can produce different) Tj
+T* (actual output lengths.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 430.8899999999999864 Td
+(• The inference benchmark contains three runs per implementation.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 413.8899999999999864 Td
+(• Raw total inference time is not a strict equal-work latency measure when output lengths differ.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 396.8899999999999864 Td
+(• The memory-measurement method and exact measurement point should be documented in the final paper.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 379.8899999999999864 Td
+(• Python and C++ checkpoints use implementation-specific formats.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+59. 362.8899999999999864 Td
+(• Training-phase memory and inference-phase memory must be reported separately.) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 330.8899999999999864 Td
+(10   Conclusion) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+4.4233333333333276 Tw
+54. 310.8899999999999864 Td
+(This study implemented and benchmarked the same small decoder-only Transformer in Python/PyTorch and) Tj
+0.3985714285714315 Tw
+0. -11.5 Td
+(C++/LibTorch. Both systems used the same Python-generated GPT-2 token binaries, the same 256-token context length,) Tj
+0 Tw
+0. -11.5 Td
+(the same 256-token maximum generation cap, and the same core Transformer architecture.) Tj
+ET
+endstream
+endobj
+29 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 30 0 R
+>>
+endobj
+30 0 obj
+<<
+/Length 3961
+>>
+stream
+0.8 w
+0.9 G
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+4.9316666666666622 Tw
+54. 771.8899999999999864 Td
+(On an NVIDIA RTX 4090, C++ sustained approximately 95,000–100,000 training tokens/s compared with) Tj
+1.3628571428571459 Tw
+0. -11.5 Td
+(approximately 59,000–62,000 tokens/s for Python. C++ also achieved a higher median inference throughput of 190.6) Tj
+0.3694117647058841 Tw
+0. -11.5 Td
+(tok/s compared with 129 tok/s for Python. The C++ implementation recorded lower system RAM and GPU memory use) Tj
+0 Tw
+0. -11.5 Td
+(in the inference measurements.) Tj
+ET
+BT
+/F9 10 Tf
+11.5 TL
+0.078 g
+1.5753846153846167 Tw
+54. 721.8899999999999864 Td
+(The results indicate that the tested C++/LibTorch implementation was more throughput-efficient under the measured) Tj
+1.4612499999999891 Tw
+0. -11.5 Td
+(conditions. However, the results are specific to the tested code and precision configurations. Python used AMP with) Tj
+0.6621052631578939 Tw
+0. -11.5 Td
+(gradient scaling, while C++ used FP32, so the findings should not be interpreted as proof that C++ is universally faster) Tj
+0 Tw
+0. -11.5 Td
+(than Python.) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 656.8899999999999864 Td
+(References) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+54. 636.8899999999999864 Td
+([1] E. Eldan and Y. Li. TinyStories: How Small Can Language Models Be and Still Speak Coherent English? 2023.) Tj
+T* (https://arxiv.org/pdf/2305.07759) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+54. 610.8899999999999864 Td
+([2] A. Vaswani et al. Attention Is All You Need. 2017.) Tj
+T* (https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+54. 584.8899999999999864 Td
+([3] A. Karpathy. Let us build GPT: from scratch, in code, spelled out. https://youtu.be/kCc8FmEb1nY?si=5y37KxxpiBomNoQR) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+54. 569.8899999999999864 Td
+([4] A. Karpathy. Lecture on decoder-only transformers. https://youtu.be/l8pRSuU81PU?si=2i59BjPM8fJaJtGE) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+54. 554.8899999999999864 Td
+([5] J. Starmer. StatQuest with Josh Starmer: Neural Networks and Transformers. https://www.youtube.com/@statquest) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+54. 539.8899999999999864 Td
+([6] Race Engineering. Cloud GPU services. https://raceengineering.ai) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+54. 524.8899999999999864 Td
+([7] Kashikar, Om Suraj Native C++ vs Python Decoder-Only Transformer. GitHub repository, 2026.) Tj
+T* (https://github.com/25sh0363-code/Native_C-_vs_Python_decoder_only_model) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 488.8899999999999864 Td
+(Acknowledgments) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+2.0442857142857229 Tw
+54. 470.8899999999999864 Td
+(This work draws on foundational material and educational resources, including the original Transformer architecture [2],) Tj
+1.9900000000000051 Tw
+0. -10.9249999999999989 Td
+(Andrej Karpathy’s lectures on GPT-2 recreation and decoder-only transformers [3, 4], StatQuest’s explanations of neural) Tj
+0.9390000000000062 Tw
+0. -10.9249999999999989 Td
+(network fundamentals [5], and cloud GPU infrastructure provided by Race Engineering [6]. The complete implementation is) Tj
+0 Tw
+0. -10.9249999999999989 Td
+(available at our GitHub repository [7].) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 413.8899999999999864 Td
+(Appendix A: Generated text samples) Tj
+ET
+BT
+/F10 10.5 Tf
+12.0749999999999993 TL
+0.078 g
+54. 393.8899999999999864 Td
+(Python output) Tj
+ET
+BT
+/F9 10.5 Tf
+12.0749999999999993 TL
+0.078 g
+54. 378.8899999999999864 Td
+(Prompt: A small dog found a shiny ball) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+69. 360.8899999999999864 Td
+(Output:) Tj
+T* (A small dog found a shiny ball. The dog wanted the ball. The dog) Tj
+T* (tried to get the ball, but it was too high. The dog was sad.) Tj
+ET
+endstream
+endobj
+31 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 32 0 R
+>>
+endobj
+32 0 obj
+<<
+/Length 4603
+>>
+stream
+0.8 w
+0.9 G
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+69. 766.8899999999999864 Td
+(Then, a big bird came. The bird saw the dog and the shiny ball.) Tj
+T* (The bird wanted to help. The bird flew up and got the ball for the) Tj
+T* (dog. The dog was happy. The dog and the bird played with the shiny) Tj
+T* (ball all day.) Tj
+T* () Tj
+T* (Tokens generated: 80) Tj
+T* (Time taken: 0.62 sec) Tj
+T* (Tokens/sec: 129.08) Tj
+T* (Peak RAM usage: 1055.78 MB) Tj
+T* (Peak GPU memory usage: 545.68 MB) Tj
+ET
+BT
+/F10 10.5 Tf
+12.0749999999999993 TL
+0.078 g
+54. 666.8899999999999864 Td
+(C++ output) Tj
+ET
+BT
+/F9 10.5 Tf
+12.0749999999999993 TL
+0.078 g
+54. 649.8899999999999864 Td
+(Prompt: A small dog found a shiny ball) Tj
+ET
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.078 g
+69. 631.8899999999999864 Td
+(A small dog found a shiny ball. The dog wanted to play with the ball.) Tj
+T* (The dog ran to the ball and gave it a big push. The ball rolled and) Tj
+T* (rolled. The dog was happy. The dog saw a big tree. The dog wanted to) Tj
+T* (play with the ball. The dog pushed the ball with his nose. The ball) Tj
+T* (rolled and rolled. The dog chased the ball. The dog was very happy.) Tj
+T* (But then, the ball rolled into a hole. The dog tried to get the ball) Tj
+T* (out, but it was too deep. The dog could not get the ball out. The dog) Tj
+T* (was sad too. The end.) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.078 g
+0 Tw
+54. 531.8899999999999864 Td
+(The samples are qualitative examples. Exact text matching is not expected because the models were trained independently.) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.078 g
+54. 496.8899999999999864 Td
+(Appendix B: Environment details) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 476.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 464.8899999999999864 Td
+(Item) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 464.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 442.8899999999999864 m
+541.2799999999999727 442.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 447.8899999999999864 Td
+(GPU) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 447.8899999999999864 Td
+(NVIDIA RTX 4090) Tj
+ET
+0.99 0.99 0.99 rg
+54. 442.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 426.8899999999999864 m
+541.2799999999999727 426.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 431.8899999999999864 Td
+(CUDA version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 431.8899999999999864 Td
+(13.4.0) Tj
+ET
+0.82 G
+54. 410.8899999999999864 m
+541.2799999999999727 410.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 415.8899999999999864 Td
+(NVIDIA driver) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 415.8899999999999864 Td
+(595.99.02) Tj
+ET
+0.99 0.99 0.99 rg
+54. 410.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 394.8899999999999864 m
+541.2799999999999727 394.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 399.8899999999999864 Td
+(Python version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 399.8899999999999864 Td
+(3.14) Tj
+ET
+0.82 G
+54. 378.8899999999999864 m
+541.2799999999999727 378.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 383.8899999999999864 Td
+(PyTorch version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 383.8899999999999864 Td
+(2.14) Tj
+ET
+0.99 0.99 0.99 rg
+54. 378.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 362.8899999999999864 m
+541.2799999999999727 362.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 367.8899999999999864 Td
+(LibTorch version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 367.8899999999999864 Td
+(2.5.0) Tj
+ET
+0.82 G
+54. 346.8899999999999864 m
+541.2799999999999727 346.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 351.8899999999999864 Td
+(C++ compiler) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 351.8899999999999864 Td
+(GCC 11.4.0) Tj
+ET
+0.99 0.99 0.99 rg
+54. 346.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 330.8899999999999864 m
+541.2799999999999727 330.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 335.8899999999999864 Td
+(CMake version) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 335.8899999999999864 Td
+(3.18) Tj
+ET
+0.82 G
+54. 314.8899999999999864 m
+541.2799999999999727 314.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 319.8899999999999864 Td
+(Cloud provider) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 319.8899999999999864 Td
+(Race Engineering [6]) Tj
+ET
+endstream
+endobj
+33 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 34 0 R
+>>
+endobj
+34 0 obj
+<<
+/Length 6806
+>>
+stream
+0.5 w
+0.82 G
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.157 g
+54. 771.8899999999999864 Td
+(Appendix C: Reproduction commands) Tj
+ET
+BT
+/F10 10.5 Tf
+12.0749999999999993 TL
+0.157 g
+54. 746.8899999999999864 Td
+(Python) Tj
+ET
+0.97 0.97 0.98 rg
+0.78 G
+54. 736.8899999999999864 487.2799999999999727 -68. re
+B
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+66. 719.8899999999999864 Td
+(pip install -r requirements.txt) Tj
+T* (python3 tokenizer.py) Tj
+T* (python3 model.py) Tj
+T* (python3 test.py) Tj
+ET
+BT
+/F10 10.5 Tf
+12.0749999999999993 TL
+0.157 g
+54. 646.8899999999999864 Td
+(C++) Tj
+ET
+0.97 0.97 0.98 rg
+54. 636.8899999999999864 487.2799999999999727 -68. re
+B
+BT
+/F5 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+66. 619.8899999999999864 Td
+(cmake -S . -B build -DCMAKE_PREFIX_PATH=/path/to/libtorch) Tj
+T* (cmake --build build --config Release -j2) Tj
+T* (./build/train) Tj
+T* (./build/generate) Tj
+ET
+BT
+/F10 13 Tf
+14.9499999999999993 TL
+0.157 g
+54. 546.8899999999999864 Td
+(Appendix D: Final data summary) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+242.4925000000000068 523.8899999999999864 Td
+(Table 13: Model architecture) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 513.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 501.8899999999999864 Td
+(Parameter) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 501.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 479.8899999999999864 m
+541.2799999999999727 479.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 484.8899999999999864 Td
+(Vocabulary) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 484.8899999999999864 Td
+(50,257) Tj
+ET
+0.99 0.99 0.99 rg
+54. 479.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 463.8899999999999864 m
+541.2799999999999727 463.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 468.8899999999999864 Td
+(Context length) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 468.8899999999999864 Td
+(256) Tj
+ET
+0.82 G
+54. 447.8899999999999864 m
+541.2799999999999727 447.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 452.8899999999999864 Td
+(Maximum new tokens) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 452.8899999999999864 Td
+(256) Tj
+ET
+0.99 0.99 0.99 rg
+54. 447.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 431.8899999999999864 m
+541.2799999999999727 431.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 436.8899999999999864 Td
+(Transformer blocks) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 436.8899999999999864 Td
+(8) Tj
+ET
+0.82 G
+54. 415.8899999999999864 m
+541.2799999999999727 415.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 420.8899999999999864 Td
+(Attention heads) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 420.8899999999999864 Td
+(8) Tj
+ET
+0.99 0.99 0.99 rg
+54. 415.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 399.8899999999999864 m
+541.2799999999999727 399.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 404.8899999999999864 Td
+(Embedding width) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 404.8899999999999864 Td
+(384) Tj
+ET
+0.82 G
+54. 383.8899999999999864 m
+541.2799999999999727 383.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 388.8899999999999864 Td
+(MLP width) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 388.8899999999999864 Td
+(1,536) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+235.3199999999999932 356.8899999999999864 Td
+(Table 14: Training configuration) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 346.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 334.8899999999999864 Td
+(Parameter) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 334.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 312.8899999999999864 m
+541.2799999999999727 312.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 317.8899999999999864 Td
+(Batch size) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 317.8899999999999864 Td
+(32) Tj
+ET
+0.99 0.99 0.99 rg
+54. 312.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 296.8899999999999864 m
+541.2799999999999727 296.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 301.8899999999999864 Td
+(Tokens per step) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 301.8899999999999864 Td
+(8,192) Tj
+ET
+0.82 G
+54. 280.8899999999999864 m
+541.2799999999999727 280.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 285.8899999999999864 Td
+(Training steps) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 285.8899999999999864 Td
+(100,000) Tj
+ET
+0.99 0.99 0.99 rg
+54. 280.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 264.8899999999999864 m
+541.2799999999999727 264.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 269.8899999999999864 Td
+(Nominal training tokens) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 269.8899999999999864 Td
+(819.2M) Tj
+ET
+0.82 G
+54. 248.8899999999999864 m
+541.2799999999999727 248.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 253.8899999999999864 Td
+(Optimizer) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 253.8899999999999864 Td
+(AdamW) Tj
+ET
+0.99 0.99 0.99 rg
+54. 248.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 232.8899999999999864 m
+541.2799999999999727 232.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 237.8899999999999864 Td
+(Learning rate) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 237.8899999999999864 Td
+(3e-4) Tj
+ET
+0.82 G
+54. 216.8899999999999864 m
+541.2799999999999727 216.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 221.8899999999999864 Td
+(Betas) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 221.8899999999999864 Td
+(\(0.9, 0.95\)) Tj
+ET
+0.99 0.99 0.99 rg
+54. 216.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 200.8899999999999864 m
+541.2799999999999727 200.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 205.8899999999999864 Td
+(Weight decay) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 205.8899999999999864 Td
+(0.1) Tj
+ET
+0.82 G
+54. 184.8899999999999864 m
+541.2799999999999727 184.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 189.8899999999999864 Td
+(Warmup) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 189.8899999999999864 Td
+(500 steps) Tj
+ET
+0.99 0.99 0.99 rg
+54. 184.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 168.8899999999999864 m
+541.2799999999999727 168.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 173.8899999999999864 Td
+(Gradient clipping) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 173.8899999999999864 Td
+(1.0) Tj
+ET
+endstream
+endobj
+35 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 36 0 R
+>>
+endobj
+36 0 obj
+<<
+/Length 4648
+>>
+stream
+0.5 w
+0.82 G
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+223.5400000000000205 771.8899999999999864 Td
+(Table 15: Shared data and tokenization) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 761.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 749.8899999999999864 Td
+(Item) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+300. 749.8899999999999864 Td
+(Value) Tj
+ET
+0.82 G
+54. 727.8899999999999864 m
+541.2799999999999727 727.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 732.8899999999999864 Td
+(Tokenizer used to create binaries) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 732.8899999999999864 Td
+(Python tiktoken GPT-2) Tj
+ET
+0.99 0.99 0.99 rg
+54. 727.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 711.8899999999999864 m
+541.2799999999999727 711.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 716.8899999999999864 Td
+(C++ training input) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+300. 716.8899999999999864 Td
+(Same Python-generated train.bin and val.bin) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+213.2324999999999875 666.8899999999999864 Td
+(Table 16: Training and inference throughput) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 656.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 644.8899999999999864 Td
+(Metric) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+260. 644.8899999999999864 Td
+(C++) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+403. 644.8899999999999864 Td
+(Python) Tj
+ET
+0.82 G
+54. 622.8899999999999864 m
+541.2799999999999727 622.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 627.8899999999999864 Td
+(Training throughput \(tok/s\)) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+260. 627.8899999999999864 Td
+(95,000–100,000) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+403. 627.8899999999999864 Td
+(59,000–62,000) Tj
+ET
+0.99 0.99 0.99 rg
+54. 622.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 606.8899999999999864 m
+541.2799999999999727 606.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 611.8899999999999864 Td
+(Inference throughput median \(tok/s\)) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+260. 611.8899999999999864 Td
+(190.6) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+403. 611.8899999999999864 Td
+(129) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+206.25 561.8899999999999864 Td
+(Table 17: Recorded inference memory \(median\)) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 551.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 539.8899999999999864 Td
+(Metric) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+260. 539.8899999999999864 Td
+(C++) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+403. 539.8899999999999864 Td
+(Python) Tj
+ET
+0.82 G
+54. 517.8899999999999864 m
+541.2799999999999727 517.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 522.8899999999999864 Td
+(RAM \(MB\)) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+260. 522.8899999999999864 Td
+(864.7) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+403. 522.8899999999999864 Td
+(1,055) Tj
+ET
+0.99 0.99 0.99 rg
+54. 517.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 501.8899999999999864 m
+541.2799999999999727 501.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 506.8899999999999864 Td
+(GPU memory \(MB\)) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+260. 506.8899999999999864 Td
+(164.78) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+403. 506.8899999999999864 Td
+(545) Tj
+ET
+BT
+/F9 9.5 Tf
+10.9249999999999989 TL
+0.157 g
+234.0374999999999943 456.8899999999999864 Td
+(Table 18: Precision configuration) Tj
+ET
+0.96 0.96 0.97 rg
+0.71 G
+0.5 w
+54. 446.8899999999999864 487.2799999999999727 -18. re
+B
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+60. 434.8899999999999864 Td
+(Implementation) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 g
+260. 434.8899999999999864 Td
+(Precision) Tj
+ET
+0.82 G
+54. 412.8899999999999864 m
+541.2799999999999727 412.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 417.8899999999999864 Td
+(Python) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+260. 417.8899999999999864 Td
+(AMP/autocast + GradScaler) Tj
+ET
+0.99 0.99 0.99 rg
+54. 412.8899999999999864 487.2799999999999727 -16. re
+f
+0.82 G
+54. 396.8899999999999864 m
+541.2799999999999727 396.8899999999999864 l
+S
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+60. 401.8899999999999864 Td
+(C++) Tj
+ET
+BT
+/F9 8.5 Tf
+9.7749999999999986 TL
+0.157 g
+260. 401.8899999999999864 Td
+(FP32) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R ]
+/Count 17
+>>
+endobj
+37 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+38 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+39 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+40 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+41 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+42 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+43 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+44 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+45 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+46 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+47 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+48 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+49 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+50 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 37 0 R
+/F2 38 0 R
+/F3 39 0 R
+/F4 40 0 R
+/F5 41 0 R
+/F6 42 0 R
+/F7 43 0 R
+/F8 44 0 R
+/F9 45 0 R
+/F10 46 0 R
+/F11 47 0 R
+/F12 48 0 R
+/F13 49 0 R
+/F14 50 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+51 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20260922104326-00'00')
+>>
+endobj
+52 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 53
+0000000000 65535 f 
+0000102776 00000 n 
+0000104708 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000004254 00000 n 
+0000004391 00000 n 
+0000010086 00000 n 
+0000010223 00000 n 
+0000014611 00000 n 
+0000014749 00000 n 
+0000019384 00000 n 
+0000019523 00000 n 
+0000027504 00000 n 
+0000027643 00000 n 
+0000031728 00000 n 
+0000031867 00000 n 
+0000040817 00000 n 
+0000040956 00000 n 
+0000047210 00000 n 
+0000047349 00000 n 
+0000054024 00000 n 
+0000054163 00000 n 
+0000061740 00000 n 
+0000061879 00000 n 
+0000069888 00000 n 
+0000070027 00000 n 
+0000077324 00000 n 
+0000077463 00000 n 
+0000081990 00000 n 
+0000082129 00000 n 
+0000086143 00000 n 
+0000086282 00000 n 
+0000090938 00000 n 
+0000091077 00000 n 
+0000097936 00000 n 
+0000098075 00000 n 
+0000102943 00000 n 
+0000103069 00000 n 
+0000103200 00000 n 
+0000103334 00000 n 
+0000103472 00000 n 
+0000103596 00000 n 
+0000103725 00000 n 
+0000103857 00000 n 
+0000103993 00000 n 
+0000104121 00000 n 
+0000104248 00000 n 
+0000104377 00000 n 
+0000104510 00000 n 
+0000104612 00000 n 
+0000104961 00000 n 
+0000105047 00000 n 
+trailer
+<<
+/Size 53
+/Root 52 0 R
+/Info 51 0 R
+/ID [ <966D1DBB63A2DA6782C1D6319BFBF75E> <966D1DBB63A2DA6782C1D6319BFBF75E> ]
+>>
+startxref
+105151
+%%EOF

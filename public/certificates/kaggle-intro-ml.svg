@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;family=Caveat:wght@700&amp;display=swap');
+      .font-sans { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+      .font-sig { font-family: 'Caveat', cursive; }
+    </style>
+    <clipPath id="frameClip">
+      <rect x="80" y="80" width="1440" height="840" rx="16" ry="16" />
+    </clipPath>
+  </defs>
+
+  <!-- Clean Canvas Background -->
+  <rect width="1600" height="1000" fill="#ffffff" />
+
+  <!-- Outer Frame -->
+  <rect x="80" y="80" width="1440" height="840" rx="16" ry="16" fill="#ffffff" stroke="#111827" stroke-width="10" />
+
+  <!-- Abstract Kaggle Graphic Elements (Clipped inside frame) -->
+  <g clip-path="url(#frameClip)">
+    <!-- Yellow shape -->
+    <path d="M 1250, -50 L 1550, -50 C 1600, 100 1550, 300 1450, 380 C 1350, 420 1150, 430 1100, 350 C 1050, 270 1080, 150 1180, 50 Z" fill="#FFD700" />
+    
+    <!-- Green organic blob -->
+    <path d="M 1320, 200 C 1450, 200 1550, 280 1520, 420 C 1490, 560 1350, 520 1300, 450 C 1250, 380 1280, 200 1320, 200 Z" fill="#00C853" />
+    
+    <!-- Blue organic blob -->
+    <path d="M 1480, 180 C 1620, 220 1620, 480 1500, 560 C 1380, 640 1320, 480 1380, 350 C 1420, 260 1420, 160 1480, 180 Z" fill="#29B6F6" opacity="0.95" />
+  </g>
+
+  <!-- Content Block -->
+  <g class="font-sans" transform="translate(190, 190)">
+    
+    <!-- Kaggle Logo & Header -->
+    <text x="0" y="40" fill="#20BEFF" font-size="38" font-weight="900" letter-spacing="-1">kaggle</text>
+    <text x="0" y="70" fill="#6B7280" font-size="13" font-weight="700" letter-spacing="1.5">CERTIFICATE OF COMPLETION</text>
+
+    <!-- Recipient Name -->
+    <text x="0" y="210" fill="#111827" font-size="68" font-weight="900" letter-spacing="-1.5">om suraj</text>
+    <text x="0" y="260" fill="#6B7280" font-size="14" font-weight="600" letter-spacing="1">HAS SUCCESSFULLY COMPLETED THE COURSE</text>
+
+    <!-- Course Title & Divider -->
+    <text x="0" y="390" fill="#111827" font-size="38" font-weight="800" letter-spacing="-0.5">Intro to Machine Learning</text>
+    <line x1="0" y1="425" x2="880" y2="425" stroke="#D1D5DB" stroke-width="2" />
+
+    <!-- Date Completed -->
+    <text x="0" y="460" fill="#4B5563" font-size="13" font-weight="700" letter-spacing="1">ON FEBRUARY 1, 2026</text>
+
+    <!-- Signatures -->
+    <g transform="translate(0, 560)">
+      <!-- Dan Becker Signature -->
+      <path d="M 10,25 C 20,5 30,-50 35,-30 C 40,-10 30,30 20,40 C 45,20 80,0 100,-15 C 120,-30 130,-5 125,20 C 140,0 160,10 175,25" fill="none" stroke="#1F2937" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="0" y1="45" x2="350" y2="45" stroke="#9CA3AF" stroke-width="1.5" />
+      <text x="0" y="75" fill="#4B5563" font-size="13" font-weight="700" letter-spacing="1">DAN BECKER, KAGGLE INSTRUCTOR</text>
+
+      <!-- Alexis Cook Signature -->
+      <g transform="translate(500, 0)">
+        <path d="M 10,20 C 30,-20 50,-45 60,-35 C 70,-25 60,30 50,35 C 70,10 100,-10 120,-20 C 140,-30 150,0 160,20 C 180,-10 200,-5 220,20" fill="none" stroke="#1F2937" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="0" y1="45" x2="350" y2="45" stroke="#9CA3AF" stroke-width="1.5" />
+        <text x="0" y="75" fill="#4B5563" font-size="13" font-weight="700" letter-spacing="1">ALEXIS COOK, HEAD OF KAGGLE LEARN</text>
+      </g>
+    </g>
+
+  </g>
+</svg>

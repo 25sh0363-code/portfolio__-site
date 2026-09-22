@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1131" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,700;1,400&amp;family=Caveat:wght@700&amp;display=swap');
+      .font-sans { font-family: 'Open Sans', system-ui, -apple-system, sans-serif; }
+      .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+      .font-sig { font-family: 'Caveat', cursive; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="1131" fill="#FAFAFA" />
+
+  <!-- Double Outer Borders -->
+  <rect x="50" y="50" width="1500" height="1031" fill="#ffffff" stroke="#D1D5DB" stroke-width="2" />
+  <rect x="65" y="65" width="1470" height="1001" fill="none" stroke="#E5E7EB" stroke-width="1.5" />
+
+  <!-- Vertical Divider on Right -->
+  <line x1="1100" y1="65" x2="1100" y2="920" stroke="#F3F4F6" stroke-width="2" />
+
+  <!-- Top Left: IBM Logo (8-Bar look) -->
+  <g transform="translate(160, 150)">
+    <!-- IBM 8-bar block representation in #054ADA -->
+    <path d="M0,0 L24,0 L24,6 L0,6 Z M0,8 L24,8 L24,14 L0,14 Z M0,16 L24,16 L24,22 L0,22 Z M0,24 L24,24 L24,30 L0,30 Z M0,32 L24,32 L24,38 L0,38 Z M0,40 L24,40 L24,46 L0,46 Z M0,48 L24,48 L24,54 L0,54 Z M0,56 L24,56 L24,62 L0,62 Z" fill="#054ADA" />
+    <path d="M36,0 L90,0 L90,6 L36,6 Z M36,8 L90,8 L90,14 L36,14 Z M36,16 L90,16 L90,22 L36,22 Z M36,24 L75,24 L75,30 L36,30 Z M36,32 L75,32 L75,38 L36,38 Z M36,40 L90,40 L90,46 L36,46 Z M36,48 L90,48 L90,54 L36,54 Z M36,56 L90,56 L90,62 L36,62 Z" fill="#054ADA" />
+    <path d="M102,0 L160,0 L160,6 L102,6 Z M102,8 L160,8 L160,14 L102,14 Z M102,16 L160,16 L160,22 L102,22 Z M102,24 L160,24 L160,30 L102,30 Z M102,32 L160,32 L160,38 L102,38 Z M102,40 L160,40 L160,46 L102,46 Z M102,48 L160,48 L160,54 L102,54 Z M102,56 L160,56 L160,62 L102,62 Z" fill="#054ADA" />
+    <text x="0" y="55" font-family="'Inter', sans-serif" font-weight="900" font-size="64" letter-spacing="8" fill="#054ADA">IBM</text>
+  </g>
+
+  <!-- Date -->
+  <text x="160" y="320" class="font-sans" fill="#4B5563" font-size="16" font-weight="400">Aug 16, 2026</text>
+
+  <!-- Recipient Name -->
+  <text x="160" y="390" class="font-serif" fill="#111827" font-size="44" font-weight="500" letter-spacing="0.5">om suraj kashikar</text>
+  <text x="160" y="440" class="font-sans" fill="#4B5563" font-size="15" font-weight="400">has successfully completed</text>
+
+  <!-- Course Title -->
+  <text x="160" y="500" class="font-serif" fill="#111827" font-size="28" font-weight="700">Generative AI Language Modeling with</text>
+  <text x="160" y="535" class="font-serif" fill="#111827" font-size="28" font-weight="700">Transformers</text>
+  <text x="160" y="575" class="font-sans" fill="#4B5563" font-size="15" font-weight="400">an online course authorized by IBM and offered through Coursera</text>
+
+  <!-- Signatures Block -->
+  <g transform="translate(160, 720)">
+    <!-- Signature 1: Fateme Akbari -->
+    <path d="M 0,20 C 15,5 30,-30 40,-10 C 50,10 40,30 30,35 C 50,15 80,-5 100,20" fill="none" stroke="#1F2937" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Signature 2: Joseph Santarcangelo -->
+    <path d="M 120,25 C 130,-5 140,-25 150,-15 C 160,5 150,25 140,30 C 160,10 180,-10 200,25" fill="none" stroke="#1F2937" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Signature 3: Adrian Wang -->
+    <path d="M 230,15 C 250,-10 270,-25 280,0 C 290,25 270,30 290,15 C 310,0 330,10 340,30" fill="none" stroke="#1F2937" stroke-width="2.5" stroke-linecap="round" />
+    
+    <g transform="translate(0, 50)" class="font-sans" fill="#6B7280" font-size="12">
+      <text x="0" y="0">Fateme Akbari</text>
+      <text x="0" y="16">Joseph Santarcangelo</text>
+      <text x="0" y="32">Adrian Wang</text>
+    </g>
+  </g>
+
+  <!-- Top Right Header: COURSE CERTIFICATE -->
+  <g class="font-sans" transform="translate(1180, 160)">
+    <text x="150" y="0" text-anchor="middle" fill="#374151" font-size="20" font-weight="600" letter-spacing="2">COURSE</text>
+    <text x="150" y="26" text-anchor="middle" fill="#374151" font-size="20" font-weight="600" letter-spacing="2">CERTIFICATE</text>
+  </g>
+
+  <!-- Coursera Official Stamp Seal -->
+  <g transform="translate(1330, 520)">
+    <!-- Outer dashed circle -->
+    <circle cx="0" cy="0" r="105" fill="none" stroke="#0056D2" stroke-width="2.5" stroke-dasharray="5,5" />
+    <circle cx="0" cy="0" r="95" fill="none" stroke="#0056D2" stroke-width="1" />
+    <path id="curveTopIBM" d="M -80,0 A 80,80 0 0,1 80,0" fill="none" />
+    <path id="curveBottomIBM" d="M -80,0 A 80,80 0 0,0 80,0" fill="none" />
+    <text fill="#0056D2" font-size="11" font-weight="700" letter-spacing="2" font-family="'Open Sans', sans-serif">
+      <textPath href="#curveTopIBM" startOffset="50%" text-anchor="middle">EDUCATION FOR EVERYONE</textPath>
+    </text>
+    <text fill="#0056D2" font-size="11" font-weight="700" letter-spacing="2" font-family="'Open Sans', sans-serif">
+      <textPath href="#curveBottomIBM" startOffset="50%" text-anchor="middle">COURSE CERTIFICATE</textPath>
+    </text>
+    <text x="0" y="8" text-anchor="middle" fill="#0056D2" font-size="26" font-weight="800" font-family="'Open Sans', sans-serif">coursera</text>
+  </g>
+
+  <!-- Verification URL Block -->
+  <g class="font-sans" transform="translate(1000, 890)">
+    <text x="440" y="0" text-anchor="end" fill="#4B5563" font-size="13" font-weight="400">Verify at:</text>
+    <text x="440" y="20" text-anchor="end" fill="#0056D2" font-size="13" font-weight="600">https://coursera.org/verify/IGQAUMCQIEX9</text>
+    <text x="440" y="45" text-anchor="end" fill="#6B7280" font-size="11" font-weight="400">Coursera has confirmed the identity of this individual and their</text>
+    <text x="440" y="60" text-anchor="end" fill="#6B7280" font-size="11" font-weight="400">participation in the course.</text>
+  </g>
+
+  <!-- Bottom Disclaimers -->
+  <text x="800" y="1025" text-anchor="middle" class="font-sans" fill="#9CA3AF" font-size="10">
+    This certificate attests to the learner's completion of an online course / project delivered via Coursera. It does not constitute formal enrollment at any university or entity and does not itself grant academic credit, grades, or a degree.
+  </text>
+</svg>
