@@ -1169,7 +1169,7 @@ export const TEDX_DATA: TedxDetails = {
       id: "tedx-shot-1",
       title: "Unveiling Maya — Hero Landing Section",
       category: "Visitor Portal",
-      imagePath: "tedx/Screenshot 2026-09-23 at 1.44.10 AM.png",
+      imagePath: "tedx/tedx-shot-1.png",
       description: "The public landing page for TEDx Silver Oaks (Bowrampet/Bachupally Campus), highlighting the theme 'Unveiling Maya: The Illusions of Reality' on 20th Dec 2025. It details a modern layout over a monochrome sketched eyes portrait and active red call-to-action buttons.",
       highlights: [
         "Top navigation bar (HOME, ABOUT, SPEAKERS, SCHEDULE, TEAM, FAQ) with red 'REGISTER' pill button",
@@ -1181,7 +1181,7 @@ export const TEDX_DATA: TedxDetails = {
       id: "tedx-shot-2",
       title: "About the Theme — Exploring Maya",
       category: "Visitor Portal",
-      imagePath: "tedx/Screenshot 2026-09-23 at 1.44.19 AM.png",
+      imagePath: "tedx/tedx-shot-2.png",
       description: "The conceptual section explaining 'Maya' as subtle yet powerful illusions shaping how we see the world. It maps out three distinct thematic pillars on the left alongside a gorgeous circular optical wave theme poster on the right.",
       highlights: [
         "Pillar I: 'Identity & Self' mapping fixed or shaped self-expectations",
@@ -1193,7 +1193,7 @@ export const TEDX_DATA: TedxDetails = {
       id: "tedx-shot-3",
       title: "About TED — Technology, Entertainment, Design",
       category: "Visitor Portal",
-      imagePath: "tedx/Screenshot 2026-09-23 at 1.44.41 AM.png",
+      imagePath: "tedx/tedx-shot-3.png",
       description: "An educational section detailing TED's nonprofit mission to spread ideas and foster curiosity. Layout includes a stage photograph showing a previous speaker in action with a 'TEDx Silver Oaks Intl School Bachupally' stage sign.",
       highlights: [
         "Informational three-paragraph context detailing the nonprofit's history and values",
@@ -1205,7 +1205,7 @@ export const TEDX_DATA: TedxDetails = {
       id: "tedx-shot-4",
       title: "Team Directory — Tech Head Spotlight",
       category: "Visitor Portal",
-      imagePath: "tedx/Screenshot 2026-09-23 at 1.45.01 AM.png",
+      imagePath: "tedx/tedx-shot-4.png",
       description: "The official team profiles directory focusing on Tech Head Om Suraj Kashikar. Displays a portrait photo of Om alongside a detailed biography outlining his skills, technical management, and hobbies.",
       highlights: [
         "Profile card with a neon red border glow effect on a dark grid canvas",
@@ -1217,7 +1217,7 @@ export const TEDX_DATA: TedxDetails = {
       id: "tedx-shot-5",
       title: "Staff Gate Check-In & Scanner Portal",
       category: "Staff Operations",
-      imagePath: "tedx/Screenshot 2026-09-23 at 1.46.43 AM.png",
+      imagePath: "tedx/tedx-shot-5.png",
       description: "The mobile-friendly live Staff Check-in Portal for the 'Maya: Illusions in Daily Life' event. Shows real-time check-in counts (111 Checked In, 117 Registered, 6 Pending) over a camera viewfinder scanning frame for immediate pass validation.",
       highlights: [
         "Real-time attendee stats tracker (111 checked in, 117 registered, 6 pending)",

@@ -181,21 +181,11 @@ export default function App() {
       </main>
 
       {/* Footer Branding line (Safe-space index 30) */}
-      <footer className="border-t border-zinc-900 bg-zinc-950 py-10 mt-16 relative z-10 no-print">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-          
-          <div className="flex items-center gap-4">
-            <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-mono font-semibold">
-              Available for Internship 2026
-            </span>
+      <footer className="border-t border-zinc-900 bg-zinc-950 py-8 mt-16 relative z-10 no-print">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-center">
+          <div className="text-center font-mono text-xs text-zinc-500 tracking-wider">
+            © Om suraj kashikar
           </div>
-
-          <div className="text-center sm:text-right font-mono text-[9px] text-zinc-600 uppercase tracking-[0.2em] space-y-1">
-            <div>© {new Date().getFullYear()} Om Suraj Kashikar. Designed for Impact.</div>
-            <div className="text-zinc-700">Physics & Creative Technology Joint Exhibits</div>
-          </div>
-
         </div>
       </footer>
 
