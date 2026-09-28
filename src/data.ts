@@ -1509,6 +1509,45 @@ export const PROJECTS: Project[] = [
     ],
     image: "tedx/Screenshot 2026-09-23 at 1.44.10 AM.png",
     tedxDetails: TEDX_DATA
+  },
+  {
+    id: "global-disease-tracker-pro",
+    title: "Global Disease Tracker Pro (Streamlit & ML)",
+    description: "Comprehensive epidemiological tracking and analytical web app for 6 major diseases across 10 countries (2000–2025) with ML polynomial forecasting and Gemini AI.",
+    longDescription: "Global Disease Tracker Pro is an interactive healthcare analytics platform and epidemiological monitoring suite built with Streamlit, Plotly, Pandas, and scikit-learn. Tracking 25 years of global health trends (2000–2025 across 60 curated country-disease CSV datasets and 156,000+ data points), it features real-time case tracking, dual-country comparative trend analysis, ML-powered Polynomial Regression disease forecasting (30–180 days out with R² accuracy metrics), a context-aware AI Health Assistant powered by Google Gemini 2.0 and NLP pattern matching, a 5-factor clinical risk calculator, live Google News RSS feeds, voice queries, and Text-to-Speech (gTTS) audio narration.",
+    techStack: ["Streamlit", "Plotly", "Python (Pandas/NumPy)", "scikit-learn (Polynomial Regression)", "Google Gemini 2.0", "gTTS", "SpeechRecognition", "Feedparser"],
+    category: "AI & Data Science",
+    githubLink: "https://github.com/25sh0363-code/project-board",
+    liveLink: "https://github.com/25sh0363-code/project-board",
+    features: [
+      "25-Year Historical Analytics (2000–2025) across 10 countries and 6 major diseases (156k+ data points)",
+      "ML Forecasting Engine: Polynomial Regression models projecting 30–180 day future case trajectories with R² accuracy score",
+      "Context-Aware AI Health Assistant powered by Google Gemini 2.0 and 9-category NLP pattern matching",
+      "Interactive Plotly visualizer with country-to-country comparative overlays and 7-day rolling averages",
+      "Multi-factor Disease Risk Calculator analyzing age, geography, symptoms, and vaccination status",
+      "Live Medical News Aggregator via feedparser Google News RSS and gTTS audio narration"
+    ],
+    image: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?q=80&w=1200&auto=format&fit=crop",
+    diseaseTrackerDetails: GLOBAL_DISEASE_TRACKER_DATA
+  },
+  {
+    id: "teachers-day-class-act",
+    title: "A Class Act — Teachers’ Day Tribute Web App",
+    description: "A handcrafted interactive digital classroom experience built for XII-Innovators — featuring interactive chalkboards, digital register sign-ins, subject faculty profiles, and handwritten gratitude notes.",
+    longDescription: "A Class Act transforms the memories, personalities, and gratitude of XII-Innovators into an interactive web experience inspired by chalkboards, notebooks, and school registers. Built with zero frameworks or build systems—pure HTML5, CSS3, Vanilla JS, Canvas API, and SVG.",
+    techStack: ["Vanilla JS", "HTML5 Canvas API", "CSS3", "SVG", "Intersection Observer API", "Lucide Icons"],
+    category: "Web App",
+    githubLink: "https://github.com/25sh0363-code/teachersday",
+    liveLink: "https://github.com/25sh0363-code/teachersday",
+    features: [
+      "Interactive Chalkboard Hero: Selectable chalk colors, erasing, and canvas drawing",
+      "Subject Faculty Showcase: Dedicated profile cards for 13 teachers across 10 subjects",
+      "Interactive School Register: Mark teachers present and watch the class fill up",
+      "Digital Thank-You Card: Sign and seal personal appreciation messages",
+      "Chalk-Drawn SVG Animations: Scroll-triggered illustrations and storytelling",
+      "Pure Web Platform: Zero-framework architecture using HTML5, CSS3, Vanilla JS, Canvas API, and SVG"
+    ],
+    image: "teachers/teacher-shot-1.png"
   }
 ];
 

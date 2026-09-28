@@ -8,7 +8,9 @@ import ResearchPaperViewer from './ResearchPaperViewer';
 import Seq2SeqInteractivePage from './project-details/Seq2SeqInteractivePage';
 import CharBigramInteractivePage from './project-details/CharBigramInteractivePage';
 import SinovateInteractivePage from './project-details/SinovateInteractivePage';
+import DiseaseTrackerInteractivePage from './project-details/DiseaseTrackerInteractivePage';
 import SomunInteractivePage from './project-details/SomunInteractivePage';
+import TeachersDayInteractivePage from './project-details/TeachersDayInteractivePage';
 import TedxInteractivePage from './project-details/TedxInteractivePage';
 import JevSnakeInteractivePage from './project-details/JevSnakeInteractivePage';
 import GenericProjectInteractivePage from './project-details/GenericProjectInteractivePage';
@@ -72,16 +74,22 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
     if (activeProjectPage.sinovateDetails || activeProjectPage.id === 'sinovate-school-assistant') {
       return <SinovateInteractivePage onBack={handleBackToProjects} />;
     }
+    if (activeProjectPage.diseaseTrackerDetails || activeProjectPage.id === 'global-disease-tracker-pro') {
+      return <DiseaseTrackerInteractivePage onBack={handleBackToProjects} />;
+    }
     if (activeProjectPage.tedxDetails || activeProjectPage.id === 'tedx-checkin-system') {
       return <TedxInteractivePage onBack={handleBackToProjects} />;
     }
     if (activeProjectPage.jevSnakeDetails || activeProjectPage.id === 'jev-plays-snake') {
       return <JevSnakeInteractivePage onBack={handleBackToProjects} />;
     }
+    if (activeProjectPage.id === 'teachers-day-class-act') {
+      return <TeachersDayInteractivePage onBack={handleBackToProjects} />;
+    }
     return <GenericProjectInteractivePage project={activeProjectPage} onBack={handleBackToProjects} />;
   }
 
-  const categories = ['All', 'AI & Data Science', 'Systems & Mobile', 'Full-Stack'];
+  const categories = ['All', 'Full-Stack', 'AI & Data Science', 'Systems & Mobile', 'Web App'];
 
   const filteredProjects = activeFilter === 'All'
     ? PROJECTS
@@ -234,6 +242,17 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                         </span>
                         <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
                           Worksheet Studio
+                        </span>
+                      </div>
+                    )}
+
+                    {project.diseaseTrackerDetails && (
+                      <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-rose-400 border border-rose-900/60 text-[9px] font-mono font-bold">
+                          10 Countries (25 Yrs)
+                        </span>
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-[9px] font-mono font-bold">
+                          Polynomial ML
                         </span>
                       </div>
                     )}

@@ -248,6 +248,31 @@ export default function ProjectPreviewModal({
                 </>
               )}
 
+              {project.diseaseTrackerDetails && (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">Data Coverage</span>
+                    <span className="text-lg font-black text-rose-400">25 Years</span>
+                    <span className="text-[9px] text-zinc-400 block">2000 – 2025</span>
+                  </div>
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">Scope</span>
+                    <span className="text-lg font-black text-cyan-400">10 × 6</span>
+                    <span className="text-[9px] text-zinc-400 block">Countries × Diseases</span>
+                  </div>
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">ML Accuracy</span>
+                    <span className="text-lg font-black text-emerald-400">R² ≥ 0.70+</span>
+                    <span className="text-[9px] text-zinc-400 block">Polynomial Reg</span>
+                  </div>
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">Total Dataset</span>
+                    <span className="text-lg font-black text-purple-400">156k+</span>
+                    <span className="text-[9px] text-zinc-400 block">60 CSV Files</span>
+                  </div>
+                </div>
+              )}
+
               {project.somunDetails && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
