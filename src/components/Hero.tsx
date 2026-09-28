@@ -59,11 +59,15 @@ export default function Hero({ setActiveTab, onOpenProject, onSecretEntrance }: 
             Om Suraj<br />Kashikar
           </motion.h1>
           
-          {/* Human subtitle strip */}
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-zinc-400 font-mono">
-            <span className="text-zinc-300 font-medium">Grade 12 (PCM-CS)</span>
-            <span className="text-zinc-600">·</span>
-            <span>Silver Oaks International School, Hyderabad</span>
+          {/* Tagline status strip */}
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.25em] text-zinc-400 font-mono font-bold">
+            <span className="text-zinc-200">{HERO_BIO.grade}</span>
+            <span className="text-zinc-700">//</span>
+            <span>Silver Oaks (Mighty Oaks Campus), Hyderabad</span>
+            <span className="text-zinc-700">//</span>
+            <span className="text-blue-400">FC Barcelona Supporter 🔵🔴</span>
+            <span className="text-zinc-700">//</span>
+            <span className="text-emerald-400">AI Explorer</span>
           </div>
         </div>
 
@@ -74,26 +78,26 @@ export default function Hero({ setActiveTab, onOpenProject, onSecretEntrance }: 
           <div className="lg:col-span-8 space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <h3 className="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-mono font-bold">
-                  About
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <h3 className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-mono font-bold">
+                  About Me
                 </h3>
               </div>
               
-              <div className="space-y-4 text-zinc-300 font-sans text-base leading-relaxed font-light select-text max-w-2xl">
+              <div className="space-y-4 text-zinc-300 font-sans text-base sm:text-lg leading-relaxed font-light select-text max-w-2xl">
                 <p>
-                  Hey, I'm <strong className="text-white font-medium">Om Suraj Kashikar</strong>. I'm a Grade 12 student at Silver Oaks in Hyderabad with a strong interest in artificial intelligence, neural network architectures, and low-level systems.
+                  Hey! I'm <strong className="text-white font-medium">Om Suraj Kashikar</strong>, a Grade 12 student at Silver Oaks (Mighty Oaks Campus) in Hyderabad with a deep fascination for artificial intelligence and where it's heading.
                 </p>
                 <p>
-                  I enjoy learning by building from first principles—whether that means implementing models from scratch to see how the mathematics translate to code, or benchmarking performance differences between Python and C++ on GPUs.
+                  Outside of academics, you'll find me either playing or watching <strong className="text-white font-medium">football</strong> (huge <span className="text-rose-400 font-medium">FC Barcelona</span> fan 🔵🔴), or tuning into <strong className="text-white font-medium">Andrej Karpathy's</strong> lectures and interviews. I love building neural networks from first principles to truly understand what's happening underneath the hood.
                 </p>
                 <p>
-                  Outside of programming and school, I play and watch football (supporter of FC Barcelona) and follow work from researchers like Andrej Karpathy. Most of my projects focus on practical, low-latency applications: embedded hardware, autonomous agents, and real-time tools.
+                  I'm constantly messing around with different models, benchmarking their performance under my own tests, collecting datasets, and finding patterns with algorithms. I'm especially excited about <strong className="text-white font-medium">embedded AI</strong>—optimizing models to run efficiently on small hardware for compact commercial use. Every project brings me one step closer to building my own <strong className="text-emerald-400 font-medium">AI companion</strong> and contributing toward better architectures on the road to AGI.
                 </p>
               </div>
             </div>
 
-            {/* Research Paper Callout */}
+            {/* Casual Milestone mention (not dominating the page) */}
             <div 
               onClick={() => {
                 if (onOpenProject) {
@@ -111,16 +115,32 @@ export default function Hero({ setActiveTab, onOpenProject, onSecretEntrance }: 
                 </div>
                 <div>
                   <span className="text-[10px] font-mono uppercase text-zinc-500 font-bold block">
-                    Research Study
+                    Recent Research Study
                   </span>
-                  <p className="text-xs text-zinc-200 font-medium mt-0.5">
-                    From Python to Native C++: Performance Study of Decoder-Only Transformers (RTX 4090)
+                  <p className="text-xs text-zinc-300 font-medium mt-0.5">
+                    Benchmarked Python vs. Native C++ Transformers on an RTX 4090
                   </p>
                 </div>
               </div>
               <span className="text-[10px] font-mono text-zinc-400 group-hover:text-white flex items-center gap-1 shrink-0 font-bold uppercase">
-                Read Study <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                Explore Study <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </span>
+            </div>
+
+            {/* Quick Personal Attributes */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 border-t border-zinc-900 pt-6 text-left">
+              <div className="space-y-1">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono font-bold block">Location</span>
+                <p className="text-sm font-medium text-zinc-300">Hyderabad, India</p>
+              </div>
+              <div className="space-y-1">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono font-bold block">Favorite Club</span>
+                <p className="text-sm font-medium text-zinc-300">FC Barcelona 🔵🔴</p>
+              </div>
+              <div className="space-y-1">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono font-bold block">Primary Ethos</span>
+                <p className="text-sm font-medium text-zinc-300">First-Principles AI</p>
+              </div>
             </div>
 
             {/* Button Controls */}
@@ -204,50 +224,67 @@ export default function Hero({ setActiveTab, onOpenProject, onSecretEntrance }: 
                 <img 
                   src={fixAssetUrl(HERO_BIO.avatarPath)} 
                   alt={HERO_BIO.name}
-                  className="w-full h-full object-cover select-none"
+                  className="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 select-none"
                   referrerPolicy="no-referrer"
                 />
+                
+                <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-zinc-700" />
+                <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-zinc-700" />
+              </div>
+
+              <div className="absolute -bottom-4 right-4 bg-zinc-900 border border-zinc-800 text-[9px] font-mono uppercase tracking-widest px-2 py-1 text-zinc-400">
+                Om_Suraj_Kashikar.png
               </div>
             </motion.div>
           </div>
 
         </div>
 
-        {/* Technical Interests & Focus */}
+        {/* Interests, Passions & What Drives Me Bento Grid */}
         <div className="border-t border-zinc-900 pt-12 space-y-6">
-          <div>
-            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500 font-bold block">
-              Interests & Focus
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 font-display uppercase tracking-tight mt-1">
-              What I Work On & Care About
-            </h3>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-zinc-500 font-bold block">
+                What Drives Me
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 font-display uppercase tracking-tight mt-1">
+                Passions, Inspirations & The Road to AGI
+              </h3>
+            </div>
+            <p className="text-xs font-mono text-zinc-500">
+              Personal interests, daily curiosities & long-term goals
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {PERSONAL_INTERESTS_AND_VISION.map((item) => (
               <div
                 key={item.id}
-                className="p-5 bg-zinc-950/80 border border-zinc-900 hover:border-zinc-800 transition-all flex flex-col justify-between space-y-4"
+                className="p-5 bg-zinc-950/80 border border-zinc-900 hover:border-zinc-750 transition-all flex flex-col justify-between space-y-4 group"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <div className="p-2 bg-zinc-900 border border-zinc-800 text-zinc-300">
+                    <div className="p-2 bg-zinc-900 border border-zinc-800 text-zinc-300 group-hover:border-zinc-600 transition-colors">
                       {getIcon(item.icon)}
                     </div>
-                    <span className="text-[10px] font-mono text-zinc-400">
+                    <span className="text-[9px] font-mono uppercase font-bold tracking-widest px-2 py-0.5 bg-zinc-900 border border-zinc-800 text-zinc-400">
                       {item.badge}
                     </span>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-semibold text-zinc-200 font-sans tracking-tight">
+                    <h4 className="text-sm font-bold text-zinc-200 font-sans tracking-tight group-hover:text-white transition-colors">
                       {item.title}
                     </h4>
                     <p className="text-xs text-zinc-400 font-light mt-2 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
+                </div>
+
+                <div className="pt-2 border-t border-zinc-900 flex items-center gap-1.5 text-[10px] font-mono text-zinc-500">
+                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-700 group-hover:bg-emerald-400 transition-colors" />
+                  <span>Personal Focus</span>
                 </div>
               </div>
             ))}
