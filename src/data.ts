@@ -1,4 +1,4 @@
-import { Project, ResumeItem, Recommendation, SkillCategory, ResearchPaperData, Seq2SeqTranslationDetails, CharLevelBigramDetails, SinovateDetails, DiseaseTrackerDetails, SomunDetails, TedxDetails, Certificate } from './types';
+import { Project, ResumeItem, Recommendation, SkillCategory, ResearchPaperData, Seq2SeqTranslationDetails, CharLevelBigramDetails, SinovateDetails, DiseaseTrackerDetails, SomunDetails, TedxDetails, JevSnakeDetails, Certificate } from './types';
 
 export const HERO_BIO = {
   name: "Om Suraj Kashikar",
@@ -1250,6 +1250,123 @@ export const TEDX_DATA: TedxDetails = {
   ]
 };
 
+export const JEV_SNAKE_DATA: JevSnakeDetails = {
+  youtubeVideoId: "YNtjOycLxgU",
+  youtubeUrl: "https://youtu.be/YNtjOycLxgU",
+  tagline: "A single-page Snake experiment in which JEV selects the next relative turn while the game keeps moving.",
+  overview: "A single-page Snake experiment in which JEV selects the next relative turn while the game keeps moving. The page makes the decision loop observable: it shows the model's choice, probabilities, confidence, request latency, pilot recommendation, score, deaths, and safety-net interventions. The project has no build system, package manager, or runtime dependency; everything is intentionally contained in arcade.html.",
+  quickStart: {
+    command: "python3 -m http.server 8000",
+    url: "http://localhost:8000/arcade.html",
+    description: "Open http://localhost:8000/arcade.html, select a brain, and press START ARCADE. The local autopilot needs no API key. Stop the server with Ctrl-C."
+  },
+  techStackDetailed: [
+    {
+      technology: "HTML5",
+      role: "Page structure, controls, modal configuration, and statistics panel."
+    },
+    {
+      technology: "CSS3",
+      role: "The dark terminal-style interface, layout, status colors, and probability bars."
+    },
+    {
+      technology: "Vanilla JavaScript",
+      role: "Game state, decision orchestration, API requests, normalization, and safety checks. There are no frontend frameworks or third-party JavaScript packages."
+    },
+    {
+      technology: "HTML Canvas 2D",
+      role: "Renders the 25 x 25 Snake board, grid, food, body, and interpolation between ticks."
+    },
+    {
+      technology: "Browser Fetch API",
+      role: "Sends decision requests directly from the browser to OpenRouter."
+    },
+    {
+      technology: "requestAnimationFrame and timers",
+      role: "Animation rendering runs separately from the fixed Snake tick clock, while asynchronous brain requests refill the decision queue."
+    }
+  ],
+  architectureFlow: [
+    {
+      step: "1. Browser UI & Decision Dispatch",
+      description: "Dispatches brainAsk() to the selected brain: local autopilot snakePilot(), JEV via OpenRouter System One (jev-latest), or chat mode."
+    },
+    {
+      step: "2. Normalized Relative Turn",
+      description: "Translates brain output into relative directions: 'straight', 'left', 'right', 'uturn_left', 'uturn_right'."
+    },
+    {
+      step: "3. Queued Decision Buffer",
+      description: "snakePrimeQueue() and snakeDecide() maintain QUEUE_TARGET buffered decisions so the game does not freeze during remote API requests."
+    },
+    {
+      step: "4. Safety-Net Validation",
+      description: "Immediately before a queued move is applied, snakePilot() verifies it. A fatal remote answer can be replaced by the pilot's safest available move."
+    },
+    {
+      step: "5. Snake Clock Tick & Canvas Render",
+      description: "snakeClock() executes one relative turn per sTick (160ms default) while sRenderLoop() uses Canvas 2D and requestAnimationFrame to interpolate smoothly."
+    }
+  ],
+  brains: [
+    {
+      name: "JEV Mode (Default)",
+      endpoint: "https://openrouter.ai/api/v1/systemone",
+      modeType: "OpenRouter System One",
+      description: "The default JEV mode calls OpenRouter's System One endpoint using model 'jev-latest'. It sends structured game state (grid size, head & food coordinates, body length, heading, food distance, safe and unsafe turns, projected cells, recent turns, and deterministic pilot recommendation). Returns choice, probabilities, and confidence."
+    },
+    {
+      name: "OpenRouter Chat Mode",
+      endpoint: "https://openrouter.ai/api/v1/chat/completions",
+      modeType: "OpenRouter Chat Completions",
+      description: "Calls OpenRouter chat completions with user-selected model identifier. Prompts model to finish with a compact JSON object containing choice and confidence, which is extracted and normalized into the queue."
+    },
+    {
+      name: "Local Autopilot Mode",
+      endpoint: "In-Browser (No Network Service)",
+      modeType: "Deterministic Local",
+      description: "Uses snakePilot() directly without API keys or network latency. Evaluates candidate moves using simStep(), BFS paths to food and tail, flood-fill area estimates, and tail-shadow strategies."
+    }
+  ],
+  gameLayer: {
+    gridDimensions: "25 x 25 Grid (GRID = 25, CELL dimensions)",
+    tickInterval: "sTick = 160 ms (adjustable via runtime UI slider)",
+    relativeVocabulary: ["straight", "left", "right", "uturn_left", "uturn_right"],
+    description: "The head moves continuously in its current heading. A decision changes that heading once, then the snake continues forward. Reversals (uturn) are fatal because the neck occupies the destination cell. Hitting a wall or the body resets the run and increments deaths."
+  },
+  deterministicPilot: {
+    functionName: "snakePilot()",
+    features: [
+      "Collision simulation with simStep()",
+      "Breadth-first search (BFS) for paths to food and the tail",
+      "Flood-fill area estimates to avoid small traps",
+      "Tail-reachability checks after eating",
+      "Tail-shadow strategy when a direct food path would close the snake into itself"
+    ],
+    safetyNet: "When the safety net is enabled, a queued move is checked again immediately before it is applied. A fatal answer can be replaced by the pilot's safest available move."
+  },
+  decisionQueue: {
+    targetBuffer: "QUEUE_TARGET decisions buffered",
+    mechanism: "snakePrimeQueue() fills initial queue before start; snakeDecide() refills buffer asynchronously while simulation continues.",
+    tickClock: "snakeClock() removes one relative turn per tick, validates against live board, applies it, updates statistics, and schedules the next tick."
+  },
+  latencyAnalysis: {
+    observedRoundTrip: "~400 ms empirical round-trip",
+    measurementMethod: "Measured in brainAsk() with performance.now() across browser overhead, network time, OpenRouter routing, model execution, and response parsing.",
+    queueStrategy: "Because the decision queue buffers future actions ahead of live state, the snake ticks smoothly at 160ms without freezing or stuttering during 400ms remote inferences."
+  },
+  files: [
+    {
+      name: "arcade.html",
+      description: "Complete Snake game, UI, JEV client, deterministic pilot, and Canvas renderer in a single zero-dependency file."
+    },
+    {
+      name: "README.md",
+      description: "Project architecture, configuration, quick start, and usage documentation."
+    }
+  ]
+};
+
 export const PROJECTS: Project[] = [
   {
     id: "native-cpp-transformer",
@@ -1354,6 +1471,26 @@ export const PROJECTS: Project[] = [
     charBigramDetails: CHAR_BIGRAM_DATA
   },
   {
+    id: "jev-plays-snake",
+    title: "JEV Plays Snake! — Observable AI Decision Loop",
+    description: "A single-page Snake experiment in arcade.html where JEV selects relative turns while an asynchronous decision queue keeps the 25x25 game ticking.",
+    longDescription: "A single-page Snake experiment in which JEV selects the next relative turn while the game keeps moving. Contained in a single arcade.html file with zero build tools or dependencies, the page makes the decision loop observable: displaying the model's choice, probabilities, confidence, request latency (~400ms round-trip), pilot recommendation, score, deaths, and safety-net interventions. It features three brains (JEV via OpenRouter System One, OpenRouter chat completions, and local deterministic snakePilot with BFS and flood fill), buffered by an asynchronous decision queue so 160ms game ticks never freeze.",
+    techStack: ["Vanilla JavaScript", "HTML Canvas 2D", "OpenRouter System One (jev-latest)", "Browser Fetch API", "CSS3 Terminal UI", "requestAnimationFrame"],
+    category: "AI & Data Science",
+    githubLink: "https://github.com/25sh0363-code",
+    liveLink: "https://youtu.be/YNtjOycLxgU",
+    features: [
+      "Single-File Architecture: Complete game, JEV client, pilot, and renderer contained in arcade.html with zero npm packages",
+      "Asynchronous Decision Queue: Buffers future decisions ahead of time so the snake ticks smoothly at 160ms despite ~400ms API latency",
+      "3 Brain Modes: JEV System One (jev-latest), OpenRouter Chat Completions, and offline local deterministic autopilot",
+      "Deterministic Safety Net: snakePilot() uses BFS and flood-fill area estimates to override fatal remote answers in real time",
+      "Relative Turn Vocabulary: Head moves continuously; decisions apply relative turns ('straight', 'left', 'right', 'uturn')",
+      "Observable Telemetry: Displays live model choice, probability distributions, confidence score, deaths, and latency"
+    ],
+    image: "images/jev_plays_snake.jpg",
+    jevSnakeDetails: JEV_SNAKE_DATA
+  },
+  {
     id: "tedx-checkin-system",
     title: "TEDxSilverOaks Onboarding & Live Check-In Ecosystem",
     description: "Serverless web ticketing and high-speed mobile check-in engine using Google Sheets as a database and Google Apps Script as a back-end, serving 200+ delegates.",
@@ -1372,45 +1509,6 @@ export const PROJECTS: Project[] = [
     ],
     image: "tedx/Screenshot 2026-09-23 at 1.44.10 AM.png",
     tedxDetails: TEDX_DATA
-  },
-  {
-    id: "global-disease-tracker-pro",
-    title: "Global Disease Tracker Pro (Streamlit & ML)",
-    description: "Comprehensive epidemiological tracking and analytical web app for 6 major diseases across 10 countries (2000–2025) with ML polynomial forecasting and Gemini AI.",
-    longDescription: "Global Disease Tracker Pro is an interactive healthcare analytics platform and epidemiological monitoring suite built with Streamlit, Plotly, Pandas, and scikit-learn. Tracking 25 years of global health trends (2000–2025 across 60 curated country-disease CSV datasets and 156,000+ data points), it features real-time case tracking, dual-country comparative trend analysis, ML-powered Polynomial Regression disease forecasting (30–180 days out with R² accuracy metrics), a context-aware AI Health Assistant powered by Google Gemini 2.0 and NLP pattern matching, a 5-factor clinical risk calculator, live Google News RSS feeds, voice queries, and Text-to-Speech (gTTS) audio narration.",
-    techStack: ["Streamlit", "Plotly", "Python (Pandas/NumPy)", "scikit-learn (Polynomial Regression)", "Google Gemini 2.0", "gTTS", "SpeechRecognition", "Feedparser"],
-    category: "AI & Data Science",
-    githubLink: "https://github.com/25sh0363-code/project-board",
-    liveLink: "https://github.com/25sh0363-code/project-board",
-    features: [
-      "25-Year Historical Analytics (2000–2025) across 10 countries and 6 major diseases (156k+ data points)",
-      "ML Forecasting Engine: Polynomial Regression models projecting 30–180 day future case trajectories with R² accuracy score",
-      "Context-Aware AI Health Assistant powered by Google Gemini 2.0 and 9-category NLP pattern matching",
-      "Interactive Plotly visualizer with country-to-country comparative overlays and 7-day rolling averages",
-      "Multi-factor Disease Risk Calculator analyzing age, geography, symptoms, and vaccination status",
-      "Live Medical News Aggregator via feedparser Google News RSS and gTTS audio narration"
-    ],
-    image: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?q=80&w=1200&auto=format&fit=crop",
-    diseaseTrackerDetails: GLOBAL_DISEASE_TRACKER_DATA
-  },
-  {
-    id: "teachers-day-class-act",
-    title: "A Class Act — Teachers’ Day Tribute Web App",
-    description: "A handcrafted interactive digital classroom experience built for XII-Innovators — featuring interactive chalkboards, digital register sign-ins, subject faculty profiles, and handwritten gratitude notes.",
-    longDescription: "A Class Act transforms the memories, personalities, and gratitude of XII-Innovators into an interactive web experience inspired by chalkboards, notebooks, and school registers. Built with zero frameworks or build systems—pure HTML5, CSS3, Vanilla JS, Canvas API, and SVG.",
-    techStack: ["Vanilla JS", "HTML5 Canvas API", "CSS3", "SVG", "Intersection Observer API", "Lucide Icons"],
-    category: "Web App",
-    githubLink: "https://github.com/25sh0363-code/teachersday",
-    liveLink: "https://github.com/25sh0363-code/teachersday",
-    features: [
-      "Interactive Chalkboard Hero: Selectable chalk colors, erasing, and canvas drawing",
-      "Subject Faculty Showcase: Dedicated profile cards for 13 teachers across 10 subjects",
-      "Interactive School Register: Mark teachers present and watch the class fill up",
-      "Digital Thank-You Card: Sign and seal personal appreciation messages",
-      "Chalk-Drawn SVG Animations: Scroll-triggered illustrations and storytelling",
-      "Pure Web Platform: Zero-framework architecture using HTML5, CSS3, Vanilla JS, Canvas API, and SVG"
-    ],
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop"
   }
 ];
 

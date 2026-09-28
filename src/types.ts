@@ -384,6 +384,57 @@ export interface TedxDetails {
   }[];
 }
 
+export interface JevSnakeDetails {
+  youtubeVideoId: string;
+  youtubeUrl: string;
+  tagline: string;
+  overview: string;
+  quickStart: {
+    command: string;
+    url: string;
+    description: string;
+  };
+  techStackDetailed: {
+    technology: string;
+    role: string;
+  }[];
+  architectureFlow: {
+    step: string;
+    description: string;
+  }[];
+  brains: {
+    name: string;
+    endpoint: string;
+    description: string;
+    modeType: string;
+  }[];
+  gameLayer: {
+    gridDimensions: string;
+    tickInterval: string;
+    relativeVocabulary: string[];
+    description: string;
+  };
+  deterministicPilot: {
+    functionName: string;
+    features: string[];
+    safetyNet: string;
+  };
+  decisionQueue: {
+    targetBuffer: string;
+    mechanism: string;
+    tickClock: string;
+  };
+  latencyAnalysis: {
+    observedRoundTrip: string;
+    measurementMethod: string;
+    queueStrategy: string;
+  };
+  files: {
+    name: string;
+    description: string;
+  }[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -403,6 +454,7 @@ export interface Project {
   diseaseTrackerDetails?: DiseaseTrackerDetails;
   somunDetails?: SomunDetails;
   tedxDetails?: TedxDetails;
+  jevSnakeDetails?: JevSnakeDetails;
 }
 
 export interface Certificate {

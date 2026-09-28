@@ -8,10 +8,9 @@ import ResearchPaperViewer from './ResearchPaperViewer';
 import Seq2SeqInteractivePage from './project-details/Seq2SeqInteractivePage';
 import CharBigramInteractivePage from './project-details/CharBigramInteractivePage';
 import SinovateInteractivePage from './project-details/SinovateInteractivePage';
-import DiseaseTrackerInteractivePage from './project-details/DiseaseTrackerInteractivePage';
 import SomunInteractivePage from './project-details/SomunInteractivePage';
-import TeachersDayInteractivePage from './project-details/TeachersDayInteractivePage';
 import TedxInteractivePage from './project-details/TedxInteractivePage';
+import JevSnakeInteractivePage from './project-details/JevSnakeInteractivePage';
 import GenericProjectInteractivePage from './project-details/GenericProjectInteractivePage';
 import ProjectPreviewModal from './ProjectPreviewModal';
 
@@ -73,19 +72,16 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
     if (activeProjectPage.sinovateDetails || activeProjectPage.id === 'sinovate-school-assistant') {
       return <SinovateInteractivePage onBack={handleBackToProjects} />;
     }
-    if (activeProjectPage.diseaseTrackerDetails || activeProjectPage.id === 'global-disease-tracker-pro') {
-      return <DiseaseTrackerInteractivePage onBack={handleBackToProjects} />;
-    }
     if (activeProjectPage.tedxDetails || activeProjectPage.id === 'tedx-checkin-system') {
       return <TedxInteractivePage onBack={handleBackToProjects} />;
     }
-    if (activeProjectPage.id === 'teachers-day-class-act') {
-      return <TeachersDayInteractivePage onBack={handleBackToProjects} />;
+    if (activeProjectPage.jevSnakeDetails || activeProjectPage.id === 'jev-plays-snake') {
+      return <JevSnakeInteractivePage onBack={handleBackToProjects} />;
     }
     return <GenericProjectInteractivePage project={activeProjectPage} onBack={handleBackToProjects} />;
   }
 
-  const categories = ['All', 'Full-Stack', 'AI & Data Science', 'Systems & Mobile', 'Web App'];
+  const categories = ['All', 'AI & Data Science', 'Systems & Mobile', 'Full-Stack'];
 
   const filteredProjects = activeFilter === 'All'
     ? PROJECTS
@@ -180,6 +176,11 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                           <Smartphone className="w-3 h-3" />
                           Flutter + FastAPI App
                         </div>
+                      ) : project.jevSnakeDetails ? (
+                        <div className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                          <Cpu className="w-3 h-3" />
+                          OpenRouter System One
+                        </div>
                       ) : (
                         <div className="bg-zinc-900/80 text-zinc-300 px-2.5 py-1 text-[9px] font-mono uppercase tracking-wider flex items-center gap-1.5 border border-zinc-800">
                           <Sparkles className="w-3 h-3 text-cyan-400" />
@@ -237,17 +238,6 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                       </div>
                     )}
 
-                    {project.diseaseTrackerDetails && (
-                      <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-rose-400 border border-rose-900/60 text-[9px] font-mono font-bold">
-                          10 Countries (25 Yrs)
-                        </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-[9px] font-mono font-bold">
-                          Polynomial ML
-                        </span>
-                      </div>
-                    )}
-
                     {project.somunDetails && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
                         <span className="px-2 py-0.5 bg-zinc-950/90 text-amber-400 border border-amber-900/60 text-[9px] font-mono font-bold">
@@ -255,6 +245,17 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                         </span>
                         <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
                           Tech Head
+                        </span>
+                      </div>
+                    )}
+
+                    {project.jevSnakeDetails && (
+                      <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
+                          25×25 Grid (160ms)
+                        </span>
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-red-400 border border-red-900/60 text-[9px] font-mono font-bold">
+                          YouTube Video
                         </span>
                       </div>
                     )}

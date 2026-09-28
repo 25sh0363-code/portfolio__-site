@@ -67,6 +67,11 @@ export default function ProjectPreviewModal({
                   <QrCode className="w-3 h-3" /> AppScript Web App
                 </span>
               )}
+              {project.jevSnakeDetails && (
+                <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1">
+                  <Cpu className="w-3 h-3" /> TypeSafe JEV Agent
+                </span>
+              )}
             </div>
 
             <h3 className="text-xl sm:text-2xl font-black text-white uppercase font-display tracking-tight leading-tight">
@@ -243,31 +248,6 @@ export default function ProjectPreviewModal({
                 </>
               )}
 
-              {project.diseaseTrackerDetails && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
-                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Data Coverage</span>
-                    <span className="text-lg font-black text-rose-400">25 Years</span>
-                    <span className="text-[9px] text-zinc-400 block">2000 – 2025</span>
-                  </div>
-                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Scope</span>
-                    <span className="text-lg font-black text-cyan-400">10 × 6</span>
-                    <span className="text-[9px] text-zinc-400 block">Countries × Diseases</span>
-                  </div>
-                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">ML Accuracy</span>
-                    <span className="text-lg font-black text-emerald-400">R² ≥ 0.70+</span>
-                    <span className="text-[9px] text-zinc-400 block">Polynomial Reg</span>
-                  </div>
-                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Total Dataset</span>
-                    <span className="text-lg font-black text-purple-400">156k+</span>
-                    <span className="text-[9px] text-zinc-400 block">60 CSV Files</span>
-                  </div>
-                </div>
-              )}
-
               {project.somunDetails && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
@@ -289,6 +269,31 @@ export default function ProjectPreviewModal({
                     <span className="text-[9px] text-zinc-500 uppercase block">Leadership</span>
                     <span className="text-lg font-black text-purple-400">Tech Head</span>
                     <span className="text-[9px] text-zinc-400 block">Official Portal</span>
+                  </div>
+                </div>
+              )}
+
+              {project.jevSnakeDetails && (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">Model Brain</span>
+                    <span className="text-lg font-black text-emerald-400">jev-latest</span>
+                    <span className="text-[9px] text-zinc-400 block">OpenRouter System One</span>
+                  </div>
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">Decision Queue</span>
+                    <span className="text-lg font-black text-cyan-400">Async Buffer</span>
+                    <span className="text-[9px] text-zinc-400 block">Zero-Freeze Clock</span>
+                  </div>
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">Game Physics</span>
+                    <span className="text-lg font-black text-white">25×25 (160ms)</span>
+                    <span className="text-[9px] text-zinc-400 block">Relative Vocabulary</span>
+                  </div>
+                  <div className="p-3 bg-zinc-900/80 border border-zinc-800">
+                    <span className="text-[9px] text-zinc-500 uppercase block">Observable Demo</span>
+                    <span className="text-lg font-black text-red-400">YouTube</span>
+                    <span className="text-[9px] text-zinc-400 block">YNtjOycLxgU</span>
                   </div>
                 </div>
               )}
