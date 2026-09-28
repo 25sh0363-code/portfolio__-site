@@ -67,33 +67,33 @@ export default function CertificateCard({ cert }: CertificateCardProps) {
             }`}>
               {cert.issuerOrg}
             </span>
-            <span className="text-[10px] font-mono text-zinc-500">{cert.date}</span>
+            <span className="text-xs font-mono text-zinc-300">{cert.date}</span>
           </div>
 
           <div>
             <h4 className="text-base font-bold text-zinc-100 group-hover:text-white transition-colors font-display">
               {cert.title}
             </h4>
-            <p className="text-xs text-zinc-400 font-sans mt-1 line-clamp-2 leading-relaxed">
+            <p className="text-sm text-zinc-300 font-sans mt-1 line-clamp-2 leading-relaxed">
               {cert.description}
             </p>
           </div>
 
           <div className="flex flex-wrap gap-1.5 pt-1">
             {cert.skills.slice(0, 3).map((skill, i) => (
-              <span key={i} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 text-[9px] font-mono text-zinc-400">
+              <span key={i} className="px-2.5 py-0.5 bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-300">
                 {skill}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="pt-3 border-t border-zinc-850 flex items-center justify-between text-xs font-mono text-zinc-400">
-          <span className="flex items-center gap-1.5 text-zinc-300 text-[11px]">
+        <div className="pt-3 border-t border-zinc-850 flex items-center justify-between text-xs font-mono text-zinc-300">
+          <span className="flex items-center gap-1.5 text-zinc-200 text-xs">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
             Verified Credential
           </span>
-          <span className="flex items-center gap-1 text-zinc-400 group-hover:text-zinc-100 transition-colors text-[11px]">
+          <span className="flex items-center gap-1 text-zinc-300 group-hover:text-zinc-100 transition-colors text-xs">
             <Eye className="w-3.5 h-3.5" />
             Inspect
           </span>
@@ -184,10 +184,10 @@ export default function CertificateCard({ cert }: CertificateCardProps) {
               </div>
 
               {/* Modal Footer info */}
-              <div className="p-4 bg-zinc-900 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-400">
+              <div className="p-4 bg-zinc-900 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-mono text-zinc-300">
                 <span>Recipient: <strong className="text-white font-sans">{cert.recipient}</strong></span>
                 {cert.verificationUrl && (
-                  <span className="text-zinc-500 text-[11px] truncate max-w-md">
+                  <span className="text-zinc-300 text-xs truncate max-w-md">
                     Credential Verification: <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">{cert.verificationUrl}</a>
                   </span>
                 )}

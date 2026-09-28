@@ -72,11 +72,11 @@ export default function Resume() {
         {/* Section Heading */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6 border-b border-zinc-900 pb-10">
           <div className="space-y-3">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-mono font-bold block">Academic & Development</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-zinc-300 font-mono font-bold block">Academic & Development</span>
             <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tighter uppercase font-display select-none">
               Curriculum Vitae
             </h2>
-            <p className="text-zinc-400 max-w-xl text-sm leading-relaxed font-light">
+            <p className="text-zinc-300 max-w-xl text-base leading-relaxed font-light">
               Official academic records, certified machine learning coursework, verified credentials, and high school extracurricular initiatives.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function Resume() {
             <button
               onClick={handlePrint}
               id="btn-print"
-              className="px-5 py-3.5 bg-zinc-50 hover:bg-zinc-200 text-zinc-950 font-black text-[10px] uppercase tracking-[0.2em] transition-colors rounded-none flex items-center gap-2 cursor-pointer border border-zinc-50"
+              className="px-5 py-3.5 bg-zinc-50 hover:bg-zinc-200 text-zinc-950 font-black text-xs uppercase tracking-[0.2em] transition-colors rounded-none flex items-center gap-2 cursor-pointer border border-zinc-50"
             >
               <Printer className="w-3.5 h-3.5" />
               Obtain PDF Transcript
@@ -103,7 +103,7 @@ export default function Resume() {
                   <h3 className="text-sm font-mono uppercase tracking-widest text-zinc-200 font-bold">
                     Verified Credentials & Certificates
                   </h3>
-                  <p className="text-[11px] text-zinc-500 font-mono">
+                  <p className="text-sm text-zinc-300 font-mono">
                     {CERTIFICATES.length} credentials across Machine Learning, Neural Networks & Leadership
                   </p>
                 </div>
@@ -111,11 +111,11 @@ export default function Resume() {
 
               <div className="flex items-center gap-2">
                 {/* View switcher */}
-                <div className="flex items-center bg-zinc-900 border border-zinc-800 p-0.5 text-[10px] font-mono">
+                <div className="flex items-center bg-zinc-900 border border-zinc-800 p-0.5 text-xs font-mono">
                   <button
                     onClick={() => setCertLayout('horizontal')}
                     className={`px-2.5 py-1 flex items-center gap-1.5 transition-colors cursor-pointer ${
-                      certLayout === 'horizontal' ? 'bg-zinc-800 text-white font-bold' : 'text-zinc-400 hover:text-zinc-200'
+                      certLayout === 'horizontal' ? 'bg-zinc-800 text-white font-bold' : 'text-zinc-300 hover:text-white'
                     }`}
                     title="Horizontal Scroll View"
                   >
@@ -125,7 +125,7 @@ export default function Resume() {
                   <button
                     onClick={() => setCertLayout('grid')}
                     className={`px-2.5 py-1 flex items-center gap-1.5 transition-colors cursor-pointer ${
-                      certLayout === 'grid' ? 'bg-zinc-800 text-white font-bold' : 'text-zinc-400 hover:text-zinc-200'
+                      certLayout === 'grid' ? 'bg-zinc-800 text-white font-bold' : 'text-zinc-300 hover:text-white'
                     }`}
                     title="Grid View"
                   >
@@ -200,17 +200,17 @@ export default function Resume() {
           <div className="lg:col-span-7 space-y-8">
             
             {/* Horizontal timeline category tabs */}
-            <div className="flex flex-wrap gap-1 border border-zinc-800 bg-zinc-950 p-1 rounded-none w-fit">
+            <div className="flex flex-wrap items-center gap-1 border border-zinc-800 bg-zinc-950 p-1 rounded-none w-fit shrink-0 max-w-full">
               {categories.map((cat) => {
                 return (
                   <button
                     key={cat.id}
                     id={`resume-tab-${cat.id}`}
                     onClick={() => setActiveTab(cat.id)}
-                    className={`px-3 py-2 text-[10px] uppercase tracking-wider font-bold transition-all cursor-pointer rounded-none font-mono ${
+                    className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs uppercase tracking-wider font-bold transition-all cursor-pointer rounded-none font-mono whitespace-nowrap ${
                       activeTab === cat.id
                         ? 'bg-zinc-100 text-zinc-950 font-black'
-                        : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
+                        : 'text-zinc-300 hover:text-white hover:bg-zinc-900'
                     }`}
                   >
                     {cat.label}
@@ -220,7 +220,7 @@ export default function Resume() {
             </div>
 
             {/* Timeline Tree */}
-            <div className="relative pl-6 border-l border-zinc-904 space-y-8">
+            <div className="relative pl-6 border-l border-zinc-900 space-y-8">
               <AnimatePresence mode="popLayout">
                 {filteredResume.map((item, index) => {
                   return (
@@ -244,16 +244,16 @@ export default function Resume() {
                           <span className="text-zinc-950 font-black bg-zinc-100 px-2 py-0.5 uppercase tracking-wider">
                             {item.period}
                           </span>
-                          <span className="text-zinc-650 font-bold">//</span>
-                          <span className="text-zinc-400 uppercase tracking-widest text-[10px]">{item.location}</span>
+                          <span className="text-zinc-300 font-bold">//</span>
+                          <span className="text-zinc-300 uppercase tracking-widest text-xs">{item.location}</span>
                         </div>
 
                         {/* Title and Org headings */}
                         <div>
-                          <h3 className="text-lg font-black text-zinc-100 leading-tight uppercase font-display">
+                          <h3 className="text-xl font-black text-zinc-100 leading-tight uppercase font-display">
                             {item.role}
                           </h3>
-                          <p className="text-zinc-400 font-serif italic text-sm mt-0.5">
+                          <p className="text-zinc-300 font-serif italic text-base mt-0.5">
                             {item.organization}
                           </p>
                         </div>
@@ -261,8 +261,8 @@ export default function Resume() {
                         {/* Bullets highlighting accomplishments */}
                         <ul className="space-y-2.5 pt-2 pl-4 border-l border-zinc-900">
                           {item.highlights.map((bullet, idx) => (
-                            <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                              <span className="text-zinc-600 mt-1.5 min-w-[6px]">▪</span>
+                            <li key={idx} className="flex gap-2.5 items-start text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
+                              <span className="text-zinc-300 mt-1.5 min-w-[6px]">▪</span>
                               <span>{bullet}</span>
                             </li>
                           ))}
@@ -282,11 +282,11 @@ export default function Resume() {
             {/* Interactive skills panel */}
             <div className="bg-zinc-950 border border-zinc-850 p-6 space-y-6 rounded-none">
               <div className="space-y-1">
-                <h3 className="text-sm font-mono text-zinc-400 uppercase tracking-widest font-black flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-zinc-500" />
+                <h3 className="text-base font-mono text-zinc-200 uppercase tracking-widest font-black flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-zinc-300" />
                   Skill Proficiency Matrix
                 </h3>
-                <p className="text-xs text-zinc-500">
+                <p className="text-sm text-zinc-300">
                   Grounded self-assessment reflecting real project experience and learning progress.
                 </p>
               </div>
@@ -294,7 +294,7 @@ export default function Resume() {
               <div className="space-y-6">
                 {SKILL_CATEGORIES.map((cat, catIdx) => (
                   <div key={catIdx} className="space-y-3.5">
-                    <h4 className="text-[10px] font-mono text-zinc-400 tracking-[0.25em] uppercase font-black">
+                    <h4 className="text-xs font-mono text-zinc-300 tracking-[0.25em] uppercase font-black">
                       {cat.category}
                     </h4>
 
@@ -302,20 +302,20 @@ export default function Resume() {
                       {cat.skills.map((skill, skillIdx) => (
                         <div key={skillIdx} className="space-y-2">
                           <div className="flex items-center justify-between text-xs font-mono">
-                            <span className="font-bold text-zinc-350">{skill.name}</span>
-                            <span className="text-zinc-400 uppercase text-[9px] tracking-wider">
+                            <span className="font-bold text-zinc-200 text-sm">{skill.name}</span>
+                            <span className="text-zinc-300 uppercase text-xs tracking-wider">
                               {getProficiencyLabel(skill.level)}
                             </span>
                           </div>
 
                           {/* Monochromatic digital notch indicator */}
-                          <div className="flex items-center gap-1 h-1">
+                          <div className="flex items-center gap-1 h-1.5">
                             {[1, 2, 3, 4, 5].map((bulletValue) => (
                               <div
                                 key={bulletValue}
                                 className={`h-full flex-1 transition-all duration-500 ${
                                   bulletValue <= skill.level
-                                    ? 'bg-zinc-400'
+                                    ? 'bg-zinc-300'
                                     : 'bg-zinc-800'
                                 }`}
                               />
@@ -331,12 +331,12 @@ export default function Resume() {
 
             {/* Accolades Highlights Board */}
             <div className="bg-zinc-900/50 border border-zinc-850 p-6 text-left space-y-4 rounded-none">
-              <h3 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-black flex items-center gap-2">
-                <Award className="w-4 h-4 text-zinc-400" />
+              <h3 className="text-xs font-mono text-zinc-300 uppercase tracking-widest font-black flex items-center gap-2">
+                <Award className="w-4 h-4 text-zinc-300" />
                 Key Milestones
               </h3>
               
-              <div className="space-y-3 text-xs text-zinc-450 font-light font-sans">
+              <div className="space-y-3 text-sm text-zinc-300 font-light font-sans">
                 <div className="flex items-start gap-2.5">
                   <span className="text-zinc-100 mt-0.5">•</span>
                   <p>Completed verified Google Cloud & IBM Transformer specializations.</p>

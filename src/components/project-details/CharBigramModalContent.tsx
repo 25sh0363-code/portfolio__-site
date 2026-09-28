@@ -29,7 +29,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
             className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer ${
               activeSubTab === tab.id
                 ? 'bg-zinc-100 text-zinc-950 font-black'
-                : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
+                : 'text-zinc-300 hover:text-white hover:bg-zinc-900'
             }`}
           >
             {tab.label}
@@ -43,30 +43,30 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
           {/* Key KPI Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">Model Parameters</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Model Parameters</span>
               <span className="text-xl font-black text-cyan-400">~30.04M</span>
-              <span className="text-[10px] text-zinc-400 block">Weight Tying (Embedding == Head)</span>
+              <span className="text-[10px] text-zinc-300 block">Weight Tying (Embedding == Head)</span>
             </div>
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">Context Window</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Context Window</span>
               <span className="text-xl font-black text-white">256 ctx</span>
-              <span className="text-[10px] text-zinc-400 block">block_size=256 subwords</span>
+              <span className="text-[10px] text-zinc-300 block">block_size=256 subwords</span>
             </div>
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">Loss Reduction</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Loss Reduction</span>
               <span className="text-xl font-black text-emerald-400">2.51 → 1.48</span>
               <span className="text-[10px] text-emerald-400 block">Cross-Entropy Loss</span>
             </div>
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">Tokenizer & Vocab</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Tokenizer & Vocab</span>
               <span className="text-xl font-black text-purple-400">50,257</span>
-              <span className="text-[10px] text-zinc-400 block">tiktoken GPT-2 BPE</span>
+              <span className="text-[10px] text-zinc-300 block">tiktoken GPT-2 BPE</span>
             </div>
           </div>
 
           {/* Evolution Narrative */}
           <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-bold block">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">
               Architectural Evolutionary Study
             </span>
             <p className="text-sm text-zinc-200 leading-relaxed font-light">
@@ -76,13 +76,13 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
 
           {/* Dataset Character Vocabulary Specs */}
           <div className="p-4 bg-zinc-900/40 border border-zinc-850 space-y-2 font-mono text-xs">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
+            <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Tokenizer & Subword Vocabulary
             </span>
             <div className="p-2.5 bg-black/50 border border-zinc-800 text-emerald-400 break-all leading-relaxed tracking-wider font-mono">
               {data.dataset.charactersList}
             </div>
-            <div className="flex justify-between text-[10px] text-zinc-500">
+            <div className="flex justify-between text-[10px] text-zinc-300">
               <span>Total Dataset Characters: {data.dataset.totalCharacters.toLocaleString()}</span>
               <span>Subword Tokens: 50,257 (tiktoken GPT-2)</span>
             </div>
@@ -94,7 +94,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
       {activeSubTab === 'matrix' && (
         <div className="space-y-6">
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Baseline Bigram vs. 6-Layer Causal Transformer Architecture
             </h4>
             <div className="overflow-x-auto border border-zinc-800">
@@ -102,7 +102,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
                 <thead className="bg-zinc-900 text-zinc-300 border-b border-zinc-800">
                   <tr>
                     <th className="p-2.5">System Metric</th>
-                    <th className="p-2.5 text-zinc-400">Baseline (bigram.py)</th>
+                    <th className="p-2.5 text-zinc-300">Baseline (bigram.py)</th>
                     <th className="p-2.5 text-emerald-400">Improved (bigram_improved.py)</th>
                     <th className="p-2.5">Architectural Delta</th>
                   </tr>
@@ -111,7 +111,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
                   {data.comparativeMatrix.map((row, idx) => (
                     <tr key={idx} className={idx % 2 === 0 ? 'bg-zinc-950' : 'bg-zinc-900/30'}>
                       <td className="p-2.5 font-bold text-white">{row.metric}</td>
-                      <td className="p-2.5 text-zinc-400">{row.bigramBaseline}</td>
+                      <td className="p-2.5 text-zinc-300">{row.bigramBaseline}</td>
                       <td className="p-2.5 text-emerald-300 font-bold">{row.transformerImproved}</td>
                       <td className="p-2.5 text-cyan-400">{row.delta}</td>
                     </tr>
@@ -131,18 +131,18 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
             <div className="p-4 bg-zinc-900/40 border border-zinc-800 space-y-3 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between border-b border-zinc-800 pb-2 mb-3">
-                  <span className="text-xs font-mono font-bold text-zinc-400 uppercase">
+                  <span className="text-xs font-mono font-bold text-zinc-300 uppercase">
                     bigram.py (Baseline)
                   </span>
-                  <span className="text-[10px] font-mono text-zinc-500">
+                  <span className="text-[10px] font-mono text-zinc-300">
                     Loss: 2.512 · Context: 1 char
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 font-mono leading-relaxed bg-black/40 p-3 border border-zinc-850 break-words">
+                <p className="text-xs text-zinc-300 font-mono leading-relaxed bg-black/40 p-3 border border-zinc-850 break-words">
                   "{data.baselineModel.sampleOutput}"
                 </p>
               </div>
-              <div className="pt-3 border-t border-zinc-850 text-[10px] font-mono text-zinc-500">
+              <div className="pt-3 border-t border-zinc-850 text-[10px] font-mono text-zinc-300">
                 <span>Evaluation: {data.baselineModel.generationPeculiarity}</span>
               </div>
             </div>
@@ -188,11 +188,11 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
                   <span className="text-xs font-mono font-bold text-white">
                     Temperature = {tempEntry.temp}
                   </span>
-                  <span className={`text-[10px] font-mono ${tempEntry.temp === 0.7 ? 'text-emerald-400 font-bold' : 'text-zinc-500'}`}>
+                  <span className={`text-[10px] font-mono ${tempEntry.temp === 0.7 ? 'text-emerald-400 font-bold' : 'text-zinc-300'}`}>
                     {tempEntry.temp === 0.7 ? 'Optimal' : ''}
                   </span>
                 </div>
-                <span className="text-[10px] font-mono text-zinc-400 block">
+                <span className="text-[10px] font-mono text-zinc-300 block">
                   {tempEntry.setting}
                 </span>
               </button>
@@ -205,7 +205,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
               <span className="text-xs font-bold text-white uppercase">
                 Generated Text at Temperature {data.samplingTemperatures[selectedTempIdx].temp}
               </span>
-              <span className="text-[10px] text-zinc-500">
+              <span className="text-[10px] text-zinc-300">
                 P(x_i) ~ exp(z_i / {data.samplingTemperatures[selectedTempIdx].temp})
               </span>
             </div>
@@ -215,7 +215,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
             </div>
 
             <div className="p-3 bg-zinc-900/80 border border-zinc-850 text-xs font-mono space-y-1">
-              <span className="text-[9px] text-zinc-500 uppercase block">Linguistic Analysis:</span>
+              <span className="text-[9px] text-zinc-300 uppercase block">Linguistic Analysis:</span>
               <p className="text-zinc-300 font-sans text-xs leading-relaxed">
                 {data.samplingTemperatures[selectedTempIdx].linguisticAnalysis}
               </p>
@@ -228,7 +228,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
       {activeSubTab === 'training' && (
         <div className="space-y-6">
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Transformer Training Loss Trajectory (5,000 Iterations on NVIDIA Tesla T4)
             </h4>
             <div className="overflow-x-auto border border-zinc-800">
@@ -247,7 +247,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
                       <td className="p-2.5 text-white">Step {entry.step.toLocaleString()}</td>
                       <td className="p-2.5 text-emerald-400">{entry.trainLoss.toFixed(2)}</td>
                       <td className="p-2.5 text-cyan-400">{entry.valLoss.toFixed(2)}</td>
-                      <td className="p-2.5 text-zinc-400 font-sans text-xs">
+                      <td className="p-2.5 text-zinc-300 font-sans text-xs">
                         {entry.step === 0 && 'Random character distribution'}
                         {entry.step === 500 && 'Word spaces and basic syllables formed'}
                         {entry.step === 1000 && 'Common English words (and, the, lord) emerge'}
@@ -269,7 +269,7 @@ export default function CharBigramModalContent({ data }: CharBigramModalContentP
       {activeSubTab === 'reproduction' && (
         <div className="space-y-6">
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Requirements & Reproduction Commands
             </h4>
             <div className="p-3 bg-zinc-900 border border-zinc-800">

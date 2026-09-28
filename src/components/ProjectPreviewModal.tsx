@@ -82,7 +82,7 @@ export default function ProjectPreviewModal({
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-white bg-zinc-900 border border-zinc-800 hover:border-zinc-600 transition cursor-pointer shrink-0"
+            className="p-2 text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 hover:border-zinc-600 transition cursor-pointer shrink-0"
             id="btn-close-project-preview"
             aria-label="Close Preview"
           >
@@ -103,7 +103,7 @@ export default function ProjectPreviewModal({
               className={`pb-2.5 px-2 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer border-b-2 ${
                 activeTab === tab.id
                   ? 'border-zinc-100 text-zinc-50'
-                  : 'border-transparent text-zinc-400 hover:text-zinc-200'
+                  : 'border-transparent text-zinc-300 hover:text-zinc-200'
               }`}
             >
               {tab.label}
@@ -122,24 +122,24 @@ export default function ProjectPreviewModal({
               {project.isResearchPaper && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Training Speedup</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Training Speedup</span>
                     <span className="text-lg font-black text-emerald-400">1.63×</span>
-                    <span className="text-[9px] text-zinc-400 block">+62.5% tok/s</span>
+                    <span className="text-[9px] text-zinc-300 block">+62.5% tok/s</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Inference Speed</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Inference Speed</span>
                     <span className="text-lg font-black text-cyan-400">1.48×</span>
-                    <span className="text-[9px] text-zinc-400 block">190.6 tok/s</span>
+                    <span className="text-[9px] text-zinc-300 block">190.6 tok/s</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">GPU VRAM</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">GPU VRAM</span>
                     <span className="text-lg font-black text-purple-400">-69.8%</span>
-                    <span className="text-[9px] text-zinc-400 block">164.8 MB</span>
+                    <span className="text-[9px] text-zinc-300 block">164.8 MB</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Dataset Scale</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Dataset Scale</span>
                     <span className="text-lg font-black text-amber-400">819.2M</span>
-                    <span className="text-[9px] text-zinc-400 block">Tokens</span>
+                    <span className="text-[9px] text-zinc-300 block">Tokens</span>
                   </div>
                 </div>
               )}
@@ -147,24 +147,24 @@ export default function ProjectPreviewModal({
               {project.translationDetails && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Encoder/Decoder</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Encoder/Decoder</span>
                     <span className="text-lg font-black text-emerald-400">6 + 6</span>
-                    <span className="text-[9px] text-zinc-400 block">Layers</span>
+                    <span className="text-[9px] text-zinc-300 block">Layers</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Attention Heads</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Attention Heads</span>
                     <span className="text-lg font-black text-cyan-400">8 Heads</span>
-                    <span className="text-[9px] text-zinc-400 block">d_model=256</span>
+                    <span className="text-[9px] text-zinc-300 block">d_model=256</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Corpus Size</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Corpus Size</span>
                     <span className="text-lg font-black text-purple-400">1,404</span>
-                    <span className="text-[9px] text-zinc-400 block">Pairs</span>
+                    <span className="text-[9px] text-zinc-300 block">Pairs</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Loss Drop</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Loss Drop</span>
                     <span className="text-lg font-black text-amber-400">7.4 → 3.0</span>
-                    <span className="text-[9px] text-zinc-400 block">30 Epochs (M4)</span>
+                    <span className="text-[9px] text-zinc-300 block">30 Epochs (M4)</span>
                   </div>
                 </div>
               )}
@@ -172,24 +172,24 @@ export default function ProjectPreviewModal({
               {project.charBigramDetails && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Model Architecture</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Model Architecture</span>
                     <span className="text-lg font-black text-cyan-400">6 Layers</span>
-                    <span className="text-[9px] text-zinc-400 block">6 Heads</span>
+                    <span className="text-[9px] text-zinc-300 block">6 Heads</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Tokenizer</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Tokenizer</span>
                     <span className="text-lg font-black text-emerald-400">GPT-2 BPE</span>
-                    <span className="text-[9px] text-zinc-400 block">50,257 Vocab</span>
+                    <span className="text-[9px] text-zinc-300 block">50,257 Vocab</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Weight Tying</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Weight Tying</span>
                     <span className="text-lg font-black text-purple-400">Tied</span>
-                    <span className="text-[9px] text-zinc-400 block">Embed = Head</span>
+                    <span className="text-[9px] text-zinc-300 block">Embed = Head</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Training Time</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Training Time</span>
                     <span className="text-lg font-black text-amber-400">36 Min</span>
-                    <span className="text-[9px] text-zinc-400 block">Tesla T4 GPU</span>
+                    <span className="text-[9px] text-zinc-300 block">Tesla T4 GPU</span>
                   </div>
                 </div>
               )}
@@ -198,24 +198,24 @@ export default function ProjectPreviewModal({
                 <>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                     <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                      <span className="text-[9px] text-zinc-500 uppercase block">Client Stack</span>
+                      <span className="text-[9px] text-zinc-300 uppercase block">Client Stack</span>
                       <span className="text-lg font-black text-blue-400">Flutter</span>
-                      <span className="text-[9px] text-zinc-400 block">iOS & Android</span>
+                      <span className="text-[9px] text-zinc-300 block">iOS & Android</span>
                     </div>
                     <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                      <span className="text-[9px] text-zinc-500 uppercase block">Backend API</span>
+                      <span className="text-[9px] text-zinc-300 uppercase block">Backend API</span>
                       <span className="text-lg font-black text-emerald-400">FastAPI</span>
-                      <span className="text-[9px] text-zinc-400 block">Async Python</span>
+                      <span className="text-[9px] text-zinc-300 block">Async Python</span>
                     </div>
                     <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                      <span className="text-[9px] text-zinc-500 uppercase block">RAG Engine</span>
+                      <span className="text-[9px] text-zinc-300 uppercase block">RAG Engine</span>
                       <span className="text-lg font-black text-purple-400">FAISS</span>
-                      <span className="text-[9px] text-zinc-400 block">Vector Index</span>
+                      <span className="text-[9px] text-zinc-300 block">Vector Index</span>
                     </div>
                     <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                      <span className="text-[9px] text-zinc-500 uppercase block">AI Model</span>
+                      <span className="text-[9px] text-zinc-300 uppercase block">AI Model</span>
                       <span className="text-lg font-black text-amber-400">GPT-4o</span>
-                      <span className="text-[9px] text-zinc-400 block">LangChain</span>
+                      <span className="text-[9px] text-zinc-300 block">LangChain</span>
                     </div>
                   </div>
 
@@ -229,7 +229,7 @@ export default function ProjectPreviewModal({
                         href={project.sinovateDetails.youtubeUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[10px] font-mono text-zinc-400 hover:text-white flex items-center gap-1"
+                        className="text-[10px] font-mono text-zinc-300 hover:text-white flex items-center gap-1"
                       >
                         <span>Open on YouTube</span>
                         <ExternalLink className="w-3 h-3" />
@@ -251,24 +251,24 @@ export default function ProjectPreviewModal({
               {project.diseaseTrackerDetails && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Data Coverage</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Data Coverage</span>
                     <span className="text-lg font-black text-rose-400">25 Years</span>
-                    <span className="text-[9px] text-zinc-400 block">2000 – 2025</span>
+                    <span className="text-[9px] text-zinc-300 block">2000 – 2025</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Scope</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Scope</span>
                     <span className="text-lg font-black text-cyan-400">10 × 6</span>
-                    <span className="text-[9px] text-zinc-400 block">Countries × Diseases</span>
+                    <span className="text-[9px] text-zinc-300 block">Countries × Diseases</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">ML Accuracy</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">ML Accuracy</span>
                     <span className="text-lg font-black text-emerald-400">R² ≥ 0.70+</span>
-                    <span className="text-[9px] text-zinc-400 block">Polynomial Reg</span>
+                    <span className="text-[9px] text-zinc-300 block">Polynomial Reg</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Total Dataset</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Total Dataset</span>
                     <span className="text-lg font-black text-purple-400">156k+</span>
-                    <span className="text-[9px] text-zinc-400 block">60 CSV Files</span>
+                    <span className="text-[9px] text-zinc-300 block">60 CSV Files</span>
                   </div>
                 </div>
               )}
@@ -276,24 +276,24 @@ export default function ProjectPreviewModal({
               {project.somunDetails && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Conference</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Conference</span>
                     <span className="text-lg font-black text-amber-400">SOMUN '26</span>
-                    <span className="text-[9px] text-zinc-400 block">Oct 30 – Nov 1</span>
+                    <span className="text-[9px] text-zinc-300 block">Oct 30 – Nov 1</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Chambers</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Chambers</span>
                     <span className="text-lg font-black text-blue-400">12 Councils</span>
-                    <span className="text-[9px] text-zinc-400 block">DISEC to MCU</span>
+                    <span className="text-[9px] text-zinc-300 block">DISEC to MCU</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Payment Flow</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Payment Flow</span>
                     <span className="text-lg font-black text-emerald-400">Dynamic UPI</span>
-                    <span className="text-[9px] text-zinc-400 block">Zero-Fee Gateway</span>
+                    <span className="text-[9px] text-zinc-300 block">Zero-Fee Gateway</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Leadership</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Leadership</span>
                     <span className="text-lg font-black text-purple-400">Tech Head</span>
-                    <span className="text-[9px] text-zinc-400 block">Official Portal</span>
+                    <span className="text-[9px] text-zinc-300 block">Official Portal</span>
                   </div>
                 </div>
               )}
@@ -301,31 +301,31 @@ export default function ProjectPreviewModal({
               {project.jevSnakeDetails && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono">
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Model Brain</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Model Brain</span>
                     <span className="text-lg font-black text-emerald-400">jev-latest</span>
-                    <span className="text-[9px] text-zinc-400 block">OpenRouter System One</span>
+                    <span className="text-[9px] text-zinc-300 block">OpenRouter System One</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Decision Queue</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Decision Queue</span>
                     <span className="text-lg font-black text-cyan-400">Async Buffer</span>
-                    <span className="text-[9px] text-zinc-400 block">Zero-Freeze Clock</span>
+                    <span className="text-[9px] text-zinc-300 block">Zero-Freeze Clock</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Game Physics</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Game Physics</span>
                     <span className="text-lg font-black text-white">25×25 (160ms)</span>
-                    <span className="text-[9px] text-zinc-400 block">Relative Vocabulary</span>
+                    <span className="text-[9px] text-zinc-300 block">Relative Vocabulary</span>
                   </div>
                   <div className="p-3 bg-zinc-900/80 border border-zinc-800">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Observable Demo</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Observable Demo</span>
                     <span className="text-lg font-black text-red-400">YouTube</span>
-                    <span className="text-[9px] text-zinc-400 block">YNtjOycLxgU</span>
+                    <span className="text-[9px] text-zinc-300 block">YNtjOycLxgU</span>
                   </div>
                 </div>
               )}
 
               {/* Long Description */}
               <div className="space-y-2">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-bold block">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">
                   Project Summary & Motivation
                 </span>
                 <p className="text-zinc-300 font-sans text-sm leading-relaxed font-light">
@@ -340,7 +340,7 @@ export default function ProjectPreviewModal({
           {activeTab === 'architecture' && (
             <div className="space-y-5">
               <div className="space-y-2">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-bold block">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">
                   Declared Tech Stack
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -358,7 +358,7 @@ export default function ProjectPreviewModal({
               {/* Research Paper Architecture details */}
               {project.isResearchPaper && project.paperData && (
                 <div className="p-4 bg-zinc-900/50 border border-zinc-850 space-y-3 font-mono text-xs">
-                  <span className="text-zinc-400 uppercase tracking-widest text-[10px] block font-bold">
+                  <span className="text-zinc-300 uppercase tracking-widest text-[10px] block font-bold">
                     Hardware & Benchmark Parameters
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-zinc-300 font-sans text-xs">
@@ -373,7 +373,7 @@ export default function ProjectPreviewModal({
               {/* Seq2Seq details */}
               {project.translationDetails && (
                 <div className="p-4 bg-zinc-900/50 border border-zinc-850 space-y-3 font-mono text-xs">
-                  <span className="text-zinc-400 uppercase tracking-widest text-[10px] block font-bold">
+                  <span className="text-zinc-300 uppercase tracking-widest text-[10px] block font-bold">
                     From-Scratch Layer Details
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-zinc-300 font-sans text-xs">
@@ -388,7 +388,7 @@ export default function ProjectPreviewModal({
               {/* SINOVATE architecture details */}
               {project.sinovateDetails && (
                 <div className="p-4 bg-zinc-900/50 border border-zinc-850 space-y-3 font-mono text-xs">
-                  <span className="text-zinc-400 uppercase tracking-widest text-[10px] block font-bold">
+                  <span className="text-zinc-300 uppercase tracking-widest text-[10px] block font-bold">
                     System Architecture Specification
                   </span>
                   <div className="space-y-1.5 text-zinc-300 font-sans text-xs">
@@ -405,7 +405,7 @@ export default function ProjectPreviewModal({
           {/* TAB 3: FEATURES */}
           {activeTab === 'features' && (
             <div className="space-y-4">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-bold block">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">
                 Key Features & Empirical Outcomes
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -431,7 +431,7 @@ export default function ProjectPreviewModal({
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition"
+                className="inline-flex items-center gap-2 text-xs font-mono text-zinc-300 hover:text-white transition"
               >
                 <Github className="w-4 h-4" />
                 <span>View Source Code on GitHub</span>

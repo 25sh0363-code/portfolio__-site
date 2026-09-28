@@ -30,7 +30,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
         <div>
           <button
             onClick={onBack}
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white transition-colors cursor-pointer mb-3"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-3"
             id="btn-back-to-portfolio"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -55,7 +55,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white uppercase tracking-tight font-display">
             SINOVATE — School Assistant
           </h1>
-          <p className="text-zinc-400 text-sm mt-1 max-w-2xl font-light leading-relaxed">
+          <p className="text-zinc-300 text-sm mt-1 max-w-2xl font-light leading-relaxed">
             {SINOVATE_DATA.tagline} An all-in-one cross-platform AI study companion with curriculum-grounded retrieval, exam planning, structured smart notes, and worksheet studio.
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer flex items-center gap-2 ${
                 isActive
                   ? 'bg-zinc-100 text-zinc-950 font-black shadow'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-900 border border-transparent'
+                  : 'text-zinc-300 hover:text-white hover:bg-zinc-900 border border-transparent'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -129,10 +129,10 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
                   className={`p-3 text-left border transition-all cursor-pointer flex flex-col justify-between ${
                     isSelected
                       ? 'bg-zinc-900 border-blue-500/80 ring-1 ring-blue-500/50 text-white'
-                      : 'bg-zinc-950 border-zinc-850 hover:border-zinc-700 text-zinc-400'
+                      : 'bg-zinc-950 border-zinc-850 hover:border-zinc-700 text-zinc-300'
                   }`}
                 >
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 block mb-1">
                     {screen.category}
                   </span>
                   <span className="text-xs font-bold font-sans line-clamp-1 block text-zinc-200">
@@ -223,7 +223,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
                 </div>
 
                 <div className="p-4 bg-zinc-950 border border-zinc-850 space-y-2 font-mono text-xs">
-                  <span className="text-zinc-500 uppercase tracking-widest block text-[10px]">
+                  <span className="text-zinc-300 uppercase tracking-widest block text-[10px]">
                     State Management & Data Flow
                   </span>
                   <p className="text-zinc-300 font-sans leading-relaxed text-xs">
@@ -234,7 +234,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
 
               {/* Complete Features Grid */}
               <div className="space-y-3">
-                <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold">
+                <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold">
                   All 8 Core Application Modules
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -244,7 +244,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
                         <span className="text-xs font-bold text-white font-sans">{feat.title}</span>
                         <span className="text-[9px] font-mono text-blue-400 uppercase">{feat.category}</span>
                       </div>
-                      <p className="text-[11px] text-zinc-400 leading-relaxed font-sans font-light">
+                      <p className="text-[11px] text-zinc-300 leading-relaxed font-sans font-light">
                         {feat.description}
                       </p>
                     </div>
@@ -267,7 +267,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
                   SINOVATE App UI Screenshots (6 Views)
                 </h3>
               </div>
-              <span className="text-xs font-mono text-zinc-400">
+              <span className="text-xs font-mono text-zinc-300">
                 Click any screenshot to zoom full screen
               </span>
             </div>
@@ -345,15 +345,15 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs pt-2">
               <div className="p-3 bg-zinc-950 border border-zinc-850">
-                <span className="text-zinc-500 uppercase block text-[10px]">Client Framework</span>
+                <span className="text-zinc-300 uppercase block text-[10px]">Client Framework</span>
                 <span className="text-white font-bold">Flutter (Dart) Mobile</span>
               </div>
               <div className="p-3 bg-zinc-950 border border-zinc-850">
-                <span className="text-zinc-500 uppercase block text-[10px]">AI Pipeline</span>
+                <span className="text-zinc-300 uppercase block text-[10px]">AI Pipeline</span>
                 <span className="text-cyan-400 font-bold">LangChain + FAISS + GPT-4o</span>
               </div>
               <div className="p-3 bg-zinc-950 border border-zinc-850">
-                <span className="text-zinc-500 uppercase block text-[10px]">Local Persistence</span>
+                <span className="text-zinc-300 uppercase block text-[10px]">Local Persistence</span>
                 <span className="text-emerald-400 font-bold">SharedPreferences Offline Cache</span>
               </div>
             </div>
@@ -372,7 +372,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               <h3 className="text-xl font-black text-white uppercase font-display">
                 RAG Science Retrieval Pipeline & Offline Architecture
               </h3>
-              <p className="text-zinc-400 text-xs font-light mt-1 max-w-2xl leading-relaxed">
+              <p className="text-zinc-300 text-xs font-light mt-1 max-w-2xl leading-relaxed">
                 How SINOVATE connects high school textbooks, notes, and exam rubrics to OpenAI GPT-4o using semantic vector embeddings and FAISS index search.
               </p>
             </div>
@@ -387,7 +387,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-white">{step.name}</h4>
-                      <p className="text-xs text-zinc-400 font-light mt-0.5">{step.description}</p>
+                      <p className="text-xs text-zinc-300 font-light mt-0.5">{step.description}</p>
                     </div>
                   </div>
                   <span className="px-2.5 py-1 bg-zinc-900 border border-zinc-800 text-[10px] font-mono text-cyan-400 shrink-0 uppercase">
@@ -402,7 +402,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               <div className="p-4 bg-zinc-950 border border-zinc-850 space-y-1">
                 <span className="text-[10px] font-mono text-blue-400 uppercase font-bold">Client Layer</span>
                 <h5 className="text-xs font-bold text-white">Flutter Cross-Platform</h5>
-                <p className="text-[11px] text-zinc-400 font-light leading-relaxed">
+                <p className="text-[11px] text-zinc-300 font-light leading-relaxed">
                   Responsive Material 3 UI with persistent local caching via SharedPreferences and background timer workers.
                 </p>
               </div>
@@ -410,7 +410,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               <div className="p-4 bg-zinc-950 border border-zinc-850 space-y-1">
                 <span className="text-[10px] font-mono text-emerald-400 uppercase font-bold">API Backend</span>
                 <h5 className="text-xs font-bold text-white">FastAPI Asynchronous</h5>
-                <p className="text-[11px] text-zinc-400 font-light leading-relaxed">
+                <p className="text-[11px] text-zinc-300 font-light leading-relaxed">
                   Non-blocking Python async route handlers streaming responses and handling prompt sanitization.
                 </p>
               </div>
@@ -418,7 +418,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               <div className="p-4 bg-zinc-950 border border-zinc-850 space-y-1">
                 <span className="text-[10px] font-mono text-purple-400 uppercase font-bold">Cloud Sync</span>
                 <h5 className="text-xs font-bold text-white">Google Apps Script</h5>
-                <p className="text-[11px] text-zinc-400 font-light leading-relaxed">
+                <p className="text-[11px] text-zinc-300 font-light leading-relaxed">
                   Webhook endpoints updating global student leaderboard rankings by subject in real-time.
                 </p>
               </div>
@@ -438,7 +438,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               <h3 className="text-xl font-black text-white uppercase font-display">
                 Reproduction & Running SINOVATE Locally
               </h3>
-              <p className="text-zinc-400 text-xs font-light mt-1 max-w-2xl">
+              <p className="text-zinc-300 text-xs font-light mt-1 max-w-2xl">
                 Commands to boot the FastAPI AI backend and run the Flutter mobile application on an Android/iOS emulator or physical device.
               </p>
             </div>
@@ -451,7 +451,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               <div className="p-4 bg-zinc-950 border border-zinc-800 font-mono text-xs text-zinc-300 space-y-1">
                 {SINOVATE_DATA.reproduction.backend.map((cmd, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <span className="text-zinc-600 select-none">$</span>
+                    <span className="text-zinc-300 select-none">$</span>
                     <span className="text-emerald-300">{cmd}</span>
                   </div>
                 ))}
@@ -466,7 +466,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
               <div className="p-4 bg-zinc-950 border border-zinc-800 font-mono text-xs text-zinc-300 space-y-1">
                 {SINOVATE_DATA.reproduction.flutter.map((cmd, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <span className="text-zinc-600 select-none">$</span>
+                    <span className="text-zinc-300 select-none">$</span>
                     <span className="text-blue-300">{cmd}</span>
                   </div>
                 ))}
@@ -485,7 +485,7 @@ export default function SinovateInteractivePage({ onBack }: SinovateInteractiveP
                       <span className="font-bold text-white">{env.key}</span>
                       <span className="text-[9px] text-amber-400 uppercase">{env.required ? 'Required' : 'Optional'}</span>
                     </div>
-                    <p className="text-[11px] text-zinc-400 font-sans">{env.desc}</p>
+                    <p className="text-[11px] text-zinc-300 font-sans">{env.desc}</p>
                   </div>
                 ))}
               </div>

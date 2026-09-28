@@ -115,7 +115,7 @@ That bids my married and chastisement now.`,
             <ArrowLeft className="w-3.5 h-3.5" /> Back to All Projects
           </button>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest hidden sm:inline-block">
+            <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest hidden sm:inline-block">
               Projects / Character-Level Language Models
             </span>
           </div>
@@ -130,7 +130,7 @@ That bids my married and chastisement now.`,
               <Cpu className="w-3 h-3 text-zinc-900" />
               Decoder-Only Language Model Study
             </span>
-            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-400 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-300 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
               GPT-2 BPE (50,257 Vocab)
             </span>
             <span className="px-2.5 py-0.5 bg-zinc-900 text-cyan-400 text-[10px] font-mono border border-cyan-900/60 uppercase tracking-wider">
@@ -145,31 +145,31 @@ That bids my married and chastisement now.`,
             Basic & Improved Decoder-Only Language Models
           </h1>
 
-          <p className="text-zinc-400 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
+          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
             Empirical investigation tracing the generational leap from an untrained Bigram statistical lookup table baseline (<code>bigram.py</code>) to a fully trained 6-layer causal self-attention decoder Transformer with subword BPE tokenization and weight tying (<code>bigram_improved.py</code>).
           </p>
 
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono pt-4 border-t border-zinc-900">
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Model Parameters</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Model Parameters</span>
               <span className="text-cyan-400 font-bold text-base">~30.04M</span>
-              <span className="text-[10px] text-zinc-400 block">With Weight Tying</span>
+              <span className="text-[10px] text-zinc-300 block">With Weight Tying</span>
             </div>
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Training Wall-Clock</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Training Wall-Clock</span>
               <span className="text-emerald-400 font-bold text-base">36 Minutes</span>
-              <span className="text-[10px] text-zinc-400 block">NVIDIA Tesla T4 GPU</span>
+              <span className="text-[10px] text-zinc-300 block">NVIDIA Tesla T4 GPU</span>
             </div>
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Block & Batch Size</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Block & Batch Size</span>
               <span className="text-white font-bold text-base">256 ctx · 64 batch</span>
-              <span className="text-[10px] text-zinc-400 block">5,000 Iterations</span>
+              <span className="text-[10px] text-zinc-300 block">5,000 Iterations</span>
             </div>
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Tokenizer & Vocab</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Tokenizer & Vocab</span>
               <span className="text-purple-400 font-bold text-base">50,257 Tokens</span>
-              <span className="text-[10px] text-zinc-400 block">tiktoken GPT-2</span>
+              <span className="text-[10px] text-zinc-300 block">tiktoken GPT-2</span>
             </div>
           </div>
 
@@ -213,7 +213,7 @@ That bids my married and chastisement now.`,
                 className={`py-3 px-4 font-mono text-xs uppercase tracking-wider font-bold transition flex items-center gap-2 border-b-2 whitespace-nowrap cursor-pointer ${
                   isActive
                     ? 'border-zinc-100 text-white bg-zinc-900/60'
-                    : 'border-transparent text-zinc-400 hover:text-white hover:border-zinc-700'
+                    : 'border-transparent text-zinc-300 hover:text-white hover:border-zinc-700'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -231,7 +231,7 @@ That bids my married and chastisement now.`,
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold block">
                   Empirical Model Artifacts Inspector
                 </span>
-                <span className="text-zinc-500 text-xs font-light">
+                <span className="text-zinc-300 text-xs font-light">
                   Direct inspection of trained model outputs (5,000 steps on Tesla T4) vs the untrained baseline lookup table.
                 </span>
               </div>
@@ -248,7 +248,7 @@ That bids my married and chastisement now.`,
                     className={`px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider transition cursor-pointer border ${
                       selectedModel === m.id
                         ? 'bg-zinc-100 text-zinc-950 font-bold border-zinc-100'
-                        : 'bg-zinc-950 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                        : 'bg-zinc-950 text-zinc-300 border-zinc-800 hover:border-zinc-700'
                     }`}
                   >
                     {m.label}
@@ -263,45 +263,45 @@ That bids my married and chastisement now.`,
               {/* Left Column: Metadata & Token Logit Distribution */}
               <div className="lg:col-span-1 space-y-4">
                 <div className="p-4 bg-zinc-950 border border-zinc-800 space-y-3">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold block">
+                  <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold block">
                     Model Checkpoint Profile:
                   </span>
 
                   {/* Model Specs Capsule */}
                   <div className="p-3 bg-zinc-900/60 border border-zinc-850 text-xs font-mono space-y-2">
                     <div className="flex justify-between text-[10px]">
-                      <span className="text-zinc-500">Training Status:</span>
-                      <span className={`font-bold ${selectedModel === 'transformer' ? 'text-emerald-400' : 'text-zinc-400'}`}>
+                      <span className="text-zinc-300">Training Status:</span>
+                      <span className={`font-bold ${selectedModel === 'transformer' ? 'text-emerald-400' : 'text-zinc-300'}`}>
                         {empiricalSamples[selectedModel].trainingStatus}
                       </span>
                     </div>
                     <div className="flex justify-between text-[10px]">
-                      <span className="text-zinc-500">Parameters:</span>
+                      <span className="text-zinc-300">Parameters:</span>
                       <span className="text-white font-bold">
                         {selectedModel === 'baseline' ? '4,225 weights' : '~30.04M (Tied Weights)'}
                       </span>
                     </div>
                     <div className="flex justify-between text-[10px]">
-                      <span className="text-zinc-500">Context Window:</span>
+                      <span className="text-zinc-300">Context Window:</span>
                       <span className="text-cyan-400 font-bold">
                         {selectedModel === 'baseline' ? '1 char' : '256 tokens (block_size)'}
                       </span>
                     </div>
                     <div className="flex justify-between text-[10px]">
-                      <span className="text-zinc-500">Cross-Entropy Loss:</span>
+                      <span className="text-zinc-300">Cross-Entropy Loss:</span>
                       <span className="text-emerald-400 font-bold">
                         {empiricalSamples[selectedModel].loss}
                       </span>
                     </div>
                     <div className="flex justify-between text-[10px]">
-                      <span className="text-zinc-500">Tokenizer:</span>
+                      <span className="text-zinc-300">Tokenizer:</span>
                       <span className="text-purple-400 font-bold">
                         {selectedModel === 'baseline' ? '65 ASCII Chars' : 'tiktoken GPT-2 (50,257)'}
                       </span>
                     </div>
                   </div>
 
-                  <div className="p-3 bg-zinc-900/40 border border-zinc-850 text-[11px] text-zinc-400 font-sans leading-relaxed">
+                  <div className="p-3 bg-zinc-900/40 border border-zinc-850 text-[11px] text-zinc-300 font-sans leading-relaxed">
                     <span className="font-mono text-[10px] uppercase font-bold text-zinc-300 block mb-1">Architecture Note:</span>
                     {selectedModel === 'transformer' 
                       ? "Only the improved 6-layer model was trained for 5,000 steps on an NVIDIA Tesla T4 GPU. Weight tying binds the embedding matrix directly to the language model output projection head."
@@ -312,7 +312,7 @@ That bids my married and chastisement now.`,
 
                 {/* Candidate Probability Distribution Bar Chart */}
                 <div className="p-4 bg-zinc-950 border border-zinc-800 space-y-3">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold block">
+                  <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold block">
                     {"Next Token Logit Distribution (P(x_{t+1} | x_{≤ t})):"}
                   </span>
                   <div className="space-y-2 font-mono text-xs">
@@ -330,7 +330,7 @@ That bids my married and chastisement now.`,
                             style={{ width: `${item.prob * 100}%` }}
                           />
                         </div>
-                        <span className="text-[9px] text-zinc-500 font-sans block">{item.note}</span>
+                        <span className="text-[9px] text-zinc-300 font-sans block">{item.note}</span>
                       </div>
                     ))}
                   </div>
@@ -341,7 +341,7 @@ That bids my married and chastisement now.`,
               <div className="lg:col-span-2 space-y-4">
                 <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-3">
                   <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
-                    <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold">
+                    <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold">
                       Empirical Output Sample (from Checkpoint):
                     </span>
                     <span className="text-[10px] font-mono text-emerald-400 uppercase">
@@ -354,13 +354,13 @@ That bids my married and chastisement now.`,
                   </div>
 
                   <div className="p-3 bg-zinc-900/60 border border-zinc-850 text-xs font-mono space-y-1">
-                    <span className="text-[9px] text-zinc-500 uppercase block">Linguistic Evaluation:</span>
+                    <span className="text-[9px] text-zinc-300 uppercase block">Linguistic Evaluation:</span>
                     <p className="text-zinc-300 font-sans text-xs leading-relaxed">
                       {empiricalSamples[selectedModel].analysis}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500 pt-2 border-t border-zinc-900">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-zinc-300 pt-2 border-t border-zinc-900">
                     <span>Dataset: Tiny Shakespeare (input.txt) · 90% train / 10% val</span>
                     <span>Sampling: Multinomial Categorical with Softmax</span>
                   </div>
@@ -371,7 +371,7 @@ That bids my married and chastisement now.`,
                   <span className="text-cyan-400 font-bold uppercase tracking-wider block">
                     Observed Model Behaviors & Emergence:
                   </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] text-zinc-400 font-sans">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] text-zinc-300 font-sans">
                     <div className="p-2.5 bg-zinc-950 border border-zinc-850">
                       <span className="text-white font-mono font-bold block mb-1">1. bigram.py (Char Lookup Baseline)</span>
                       Direct transition lookup table without attention. Captures simple consonant-vowel transitions (e.g. &apos;th&apos;, &apos;he&apos;) but fails to form syllables or real words due to 1-character memory context.
@@ -395,7 +395,7 @@ That bids my married and chastisement now.`,
               
               {/* Comparative Architecture Table */}
               <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <Layers className="w-4 h-4 text-cyan-400" />
                   Model Architecture Matrix
                 </span>
@@ -403,7 +403,7 @@ That bids my married and chastisement now.`,
                 <div className="space-y-3 font-mono text-xs">
                   <div className="p-3 bg-zinc-900 border border-zinc-800">
                     <span className="text-white font-bold block mb-1">bigram.py (Char-Level Baseline)</span>
-                    <ul className="text-zinc-400 text-xs space-y-1">
+                    <ul className="text-zinc-300 text-xs space-y-1">
                       <li>• Tokenization: 1 character per token (65 ASCII chars)</li>
                       <li>• Context Length: 1 character (block_size=1)</li>
                       <li>• Parameters: 65 × 65 = 4,225 weights</li>
@@ -413,7 +413,7 @@ That bids my married and chastisement now.`,
 
                   <div className="p-3 bg-zinc-900 border border-zinc-800">
                     <span className="text-emerald-400 font-bold block mb-1">bigram_improved.py (6-Layer Transformer)</span>
-                    <ul className="text-zinc-400 text-xs space-y-1">
+                    <ul className="text-zinc-300 text-xs space-y-1">
                       <li>• Tokenization: tiktoken GPT-2 BPE (50,257 vocab size)</li>
                       <li>• Context Length: 256 tokens (block_size=256)</li>
                       <li>• Layers & Heads: 6 blocks × 6 heads (head_size=64, d_model=384)</li>
@@ -428,21 +428,21 @@ That bids my married and chastisement now.`,
 
               {/* Transformer Formulations */}
               <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <Cpu className="w-4 h-4 text-emerald-400" />
                   Key Mathematical Components
                 </span>
 
                 <div className="space-y-3 font-mono text-xs">
                   <div className="p-3 bg-zinc-900 border border-zinc-850">
-                    <span className="text-[10px] text-zinc-500 uppercase block mb-1">Weight Tying Principle:</span>
+                    <span className="text-[10px] text-zinc-300 uppercase block mb-1">Weight Tying Principle:</span>
                     <div className="p-2 bg-zinc-950 text-cyan-300 rounded font-mono text-[11px] overflow-x-auto">
                       self.token_embedding_table.weight = self.lm_head.weight
                     </div>
                   </div>
 
                   <div className="p-3 bg-zinc-900 border border-zinc-850">
-                    <span className="text-[10px] text-zinc-500 uppercase block mb-1">Causal Masked Self-Attention:</span>
+                    <span className="text-[10px] text-zinc-300 uppercase block mb-1">Causal Masked Self-Attention:</span>
                     <div className="p-2 bg-zinc-950 text-purple-300 rounded font-mono text-[11px] overflow-x-auto">
                       wei = (q @ k.T) * (d_k ** -0.5)
                       wei = wei.masked_fill(tril == 0, -inf)
@@ -451,7 +451,7 @@ That bids my married and chastisement now.`,
                   </div>
 
                   <div className="p-3 bg-zinc-900 border border-zinc-850">
-                    <span className="text-[10px] text-zinc-500 uppercase block mb-1">Pre-LayerNorm Residual Block:</span>
+                    <span className="text-[10px] text-zinc-300 uppercase block mb-1">Pre-LayerNorm Residual Block:</span>
                     <div className="p-2 bg-zinc-950 text-emerald-300 rounded font-mono text-[11px] overflow-x-auto">
                       x = x + self.sa(self.ln1(x))
                       x = x + self.ffwd(self.ln2(x))
@@ -459,7 +459,7 @@ That bids my married and chastisement now.`,
                   </div>
 
                   <div className="p-3 bg-zinc-900 border border-zinc-850">
-                    <span className="text-[10px] text-zinc-500 uppercase block mb-1">Autoregressive Generation Sampling:</span>
+                    <span className="text-[10px] text-zinc-300 uppercase block mb-1">Autoregressive Generation Sampling:</span>
                     <div className="p-2 bg-zinc-950 text-amber-300 rounded font-mono text-[11px] overflow-x-auto">
                       idx_next = torch.multinomial(F.softmax(logits[:, -1, :], dim=-1), num_samples=1)
                     </div>
@@ -479,24 +479,24 @@ That bids my married and chastisement now.`,
                 <h3 className="text-lg font-bold text-white uppercase font-mono">
                   Cross-Entropy Loss Progression (5,000 Steps)
                 </h3>
-                <span className="text-xs text-zinc-500 font-mono">
+                <span className="text-xs text-zinc-300 font-mono">
                   Trained on NVIDIA Tesla T4 GPU for 36 minutes (batch size = 64, learning rate = 5e-4).
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
                 <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-2">
-                  <span className="text-zinc-500 uppercase text-[10px] block">1. bigram.py Baseline</span>
+                  <span className="text-zinc-300 uppercase text-[10px] block">1. bigram.py Baseline</span>
                   <span className="text-2xl font-black text-white">2.51 NLL</span>
-                  <p className="text-[11px] text-zinc-400 font-sans">
+                  <p className="text-[11px] text-zinc-300 font-sans">
                     Plateaus immediately after initial steps. Limited by lack of multi-token context memory.
                   </p>
                 </div>
 
                 <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-2">
-                  <span className="text-zinc-500 uppercase text-[10px] block">2. bigram_improved.py (6-Layer Transformer)</span>
+                  <span className="text-zinc-300 uppercase text-[10px] block">2. bigram_improved.py (6-Layer Transformer)</span>
                   <span className="text-2xl font-black text-emerald-400">1.48 NLL</span>
-                  <p className="text-[11px] text-zinc-400 font-sans">
+                  <p className="text-[11px] text-zinc-300 font-sans">
                     Steep loss drop across 5,000 steps on Tesla T4 GPU. Learns subword vocabulary and theatrical dialogue structures.
                   </p>
                 </div>
@@ -519,7 +519,7 @@ That bids my married and chastisement now.`,
                         <td className="p-2.5 text-white">Step {entry.step.toLocaleString()}</td>
                         <td className="p-2.5 text-emerald-400">{entry.trainLoss.toFixed(2)}</td>
                         <td className="p-2.5 text-cyan-400">{entry.valLoss.toFixed(2)}</td>
-                        <td className="p-2.5 text-zinc-400 font-sans text-xs">
+                        <td className="p-2.5 text-zinc-300 font-sans text-xs">
                           {entry.step === 0 && 'Initial random token distribution'}
                           {entry.step === 1000 && 'Common English words and whitespace emerge'}
                           {entry.step === 2000 && 'Speaker tags and line capitalization begin to form'}
@@ -544,7 +544,7 @@ That bids my married and chastisement now.`,
                 <h3 className="text-lg font-bold text-white uppercase font-mono">
                   Qualitative Output Comparison
                 </h3>
-                <span className="text-xs text-zinc-500 font-mono">
+                <span className="text-xs text-zinc-300 font-mono">
                   Demonstration of phoneme transitions vs full theatrical dialogue generation.
                 </span>
               </div>
@@ -554,12 +554,12 @@ That bids my married and chastisement now.`,
                 <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-3">
                   <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
                     <span className="text-white font-bold uppercase">1. bigram.py (Char Lookup Baseline)</span>
-                    <span className="text-[10px] text-zinc-500">Loss: ~2.51</span>
+                    <span className="text-[10px] text-zinc-300">Loss: ~2.51</span>
                   </div>
-                  <p className="text-zinc-400 leading-relaxed font-mono text-[11px] whitespace-pre-wrap bg-black/40 p-3 border border-zinc-850">
+                  <p className="text-zinc-300 leading-relaxed font-mono text-[11px] whitespace-pre-wrap bg-black/40 p-3 border border-zinc-850">
                     &quot;tht heve se an t o whe s, t t lll otheve whelllo s o t d, an an st wththe he s, wanoo pprith the thot!&quot;
                   </p>
-                  <div className="pt-2 border-t border-zinc-850 text-[10px] text-zinc-500 font-sans">
+                  <div className="pt-2 border-t border-zinc-850 text-[10px] text-zinc-300 font-sans">
                     Single character transition probability. Captures local letter pairings but zero semantic or word cohesion.
                   </div>
                 </div>
@@ -589,7 +589,7 @@ I'll for you. Please you, sweet your greates;
 Which, go me I say, my mind, thou shapest think'st
 That bids my married and chastisement now.`}
                   </div>
-                  <div className="pt-2 border-t border-zinc-850 text-[10px] text-zinc-500 font-sans">
+                  <div className="pt-2 border-t border-zinc-850 text-[10px] text-zinc-300 font-sans">
                     Actual empirical output from repository README. Demonstrates dramatic meter, archaic phrasing, and speaker structure.
                   </div>
                 </div>
@@ -603,7 +603,7 @@ That bids my married and chastisement now.`}
           <div className="space-y-6">
             <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
               <div className="flex items-center justify-between flex-wrap gap-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-emerald-400" />
                   Reproduction & Execution Commands
                 </span>
@@ -618,7 +618,7 @@ That bids my married and chastisement now.`}
 
               <div className="p-4 bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-200 overflow-x-auto space-y-2">
                 {data.reproduction.commands.map((step, idx) => (
-                  <div key={idx} className={step.startsWith('#') ? 'text-zinc-500 pt-1' : 'text-emerald-400'}>
+                  <div key={idx} className={step.startsWith('#') ? 'text-zinc-300 pt-1' : 'text-emerald-400'}>
                     {step}
                   </div>
                 ))}
@@ -626,7 +626,7 @@ That bids my married and chastisement now.`}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-mono text-xs">
                 <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-                  <span className="text-[10px] text-zinc-500 uppercase block mb-1">Hardware & Device Support</span>
+                  <span className="text-[10px] text-zinc-300 uppercase block mb-1">Hardware & Device Support</span>
                   <ul className="space-y-1 text-zinc-300">
                     <li>• CUDA GPU (e.g. NVIDIA Tesla T4 ~36 min)</li>
                     <li>• Apple Silicon MPS (Metal Performance Shaders)</li>
@@ -635,7 +635,7 @@ That bids my married and chastisement now.`}
                 </div>
 
                 <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-                  <span className="text-[10px] text-zinc-500 uppercase block mb-1">Architectural Learning Reference</span>
+                  <span className="text-[10px] text-zinc-300 uppercase block mb-1">Architectural Learning Reference</span>
                   <ul className="space-y-1 text-zinc-300">
                     <li>• Implemented to learn decoder-only mechanics</li>
                     <li>• Reference: Andrej Karpathy's video walkthrough</li>

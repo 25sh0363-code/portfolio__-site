@@ -80,7 +80,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
             <ArrowLeft className="w-3.5 h-3.5" /> Back to All Projects
           </button>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest hidden sm:inline-block">
+            <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest hidden sm:inline-block">
               Projects / {project.title}
             </span>
           </div>
@@ -95,7 +95,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
               <Sparkles className="w-3 h-3 text-zinc-900" />
               {project.category}
             </span>
-            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-400 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-300 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
               Om Suraj Kashikar
             </span>
             <span className="px-2.5 py-0.5 bg-zinc-900 text-cyan-400 text-[10px] font-mono border border-cyan-900/60 uppercase tracking-wider">
@@ -107,7 +107,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
             {project.title}
           </h1>
 
-          <p className="text-zinc-400 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
+          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
             {project.longDescription || project.description}
           </p>
 
@@ -161,11 +161,11 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                   <Leaf className="w-4 h-4" />
                   Interactive Transit Carbon Footprint Simulator
                 </span>
-                <span className="text-zinc-500 text-xs font-mono">
+                <span className="text-zinc-300 text-xs font-mono">
                   Calculate emissions, fuel displacement, and ecological transit savings dynamically.
                 </span>
               </div>
-              <span className="text-xs font-mono text-zinc-400 bg-zinc-900 px-3 py-1 border border-zinc-800">
+              <span className="text-xs font-mono text-zinc-300 bg-zinc-900 px-3 py-1 border border-zinc-800">
                 {"Formula: E = d × EF_mode × α_terrain"}
               </span>
             </div>
@@ -177,7 +177,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                 <div className="p-4 bg-zinc-900/60 border border-zinc-850 space-y-3">
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px]">
-                      <span className="text-zinc-400 uppercase">Transit Corridor Distance:</span>
+                      <span className="text-zinc-300 uppercase">Transit Corridor Distance:</span>
                       <span className="text-cyan-400 font-bold">{distanceKm} km</span>
                     </div>
                     <input
@@ -193,7 +193,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px]">
-                      <span className="text-zinc-400 uppercase">Freight Cargo Payload:</span>
+                      <span className="text-zinc-300 uppercase">Freight Cargo Payload:</span>
                       <span className="text-emerald-400 font-bold">{cargoTons} Tons</span>
                     </div>
                     <input
@@ -208,7 +208,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                   </div>
 
                   <div className="space-y-1 pt-2 border-t border-zinc-800">
-                    <span className="text-zinc-400 uppercase text-[10px] block mb-1">Transit Carrier Mode:</span>
+                    <span className="text-zinc-300 uppercase text-[10px] block mb-1">Transit Carrier Mode:</span>
                     <div className="grid grid-cols-3 gap-1">
                       {[
                         { id: 'diesel', label: 'Diesel Truck' },
@@ -221,7 +221,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                           className={`p-1.5 text-[9px] font-mono border text-center transition ${
                             transitMode === m.id
                               ? 'bg-zinc-100 text-zinc-950 font-bold border-zinc-100'
-                              : 'bg-zinc-950 text-zinc-400 border-zinc-800'
+                              : 'bg-zinc-950 text-zinc-300 border-zinc-800'
                           }`}
                         >
                           {m.label}
@@ -231,7 +231,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                   </div>
 
                   <div className="space-y-1">
-                    <span className="text-zinc-400 uppercase text-[10px] block mb-1">Terrain Gradient Factor:</span>
+                    <span className="text-zinc-300 uppercase text-[10px] block mb-1">Terrain Gradient Factor:</span>
                     <div className="grid grid-cols-3 gap-1">
                       {[
                         { id: 'flat', label: 'Flat (1.0×)' },
@@ -244,7 +244,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                           className={`p-1.5 text-[9px] font-mono border text-center transition ${
                             terrain === t.id
                               ? 'bg-zinc-100 text-zinc-950 font-bold border-zinc-100'
-                              : 'bg-zinc-950 text-zinc-400 border-zinc-800'
+                              : 'bg-zinc-950 text-zinc-300 border-zinc-800'
                           }`}
                         >
                           {t.label}
@@ -259,23 +259,23 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
               <div className="lg:col-span-2 space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono">
                   <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-1">
-                    <span className="text-[10px] text-zinc-500 uppercase block">Total Output CO₂</span>
+                    <span className="text-[10px] text-zinc-300 uppercase block">Total Output CO₂</span>
                     <span className="text-2xl font-black text-white">{totalEmissionsKg.toFixed(1)} kg</span>
-                    <span className="text-[10px] text-zinc-400 block">{(totalEmissionsKg / 1000).toFixed(2)} Metric Tons</span>
+                    <span className="text-[10px] text-zinc-300 block">{(totalEmissionsKg / 1000).toFixed(2)} Metric Tons</span>
                   </div>
 
                   <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-1">
-                    <span className="text-[10px] text-zinc-500 uppercase block">Carbon Saved vs Diesel</span>
+                    <span className="text-[10px] text-zinc-300 uppercase block">Carbon Saved vs Diesel</span>
                     <span className="text-2xl font-black text-emerald-400">{carbonSavingsKg.toFixed(1)} kg</span>
                     <span className="text-[10px] text-emerald-400 block">{savingsPercent.toFixed(1)}% Reduction</span>
                   </div>
 
                   <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-1">
-                    <span className="text-[10px] text-zinc-500 uppercase block">Ecological Corridor Rating</span>
+                    <span className="text-[10px] text-zinc-300 uppercase block">Ecological Corridor Rating</span>
                     <span className="text-2xl font-black text-cyan-400">
                       {transitMode === 'rail' ? 'Grade A+' : transitMode === 'electric' ? 'Grade A' : 'Grade C'}
                     </span>
-                    <span className="text-[10px] text-zinc-400 block">ISO 14064 Compliant</span>
+                    <span className="text-[10px] text-zinc-300 block">ISO 14064 Compliant</span>
                   </div>
                 </div>
 
@@ -283,7 +283,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                   <span className="text-zinc-300 font-bold uppercase block">
                     EcoRoute System Recommendation:
                   </span>
-                  <p className="text-zinc-400 font-sans text-xs leading-relaxed">
+                  <p className="text-zinc-300 font-sans text-xs leading-relaxed">
                     {transitMode === 'diesel' ? (
                       <>Transitioning this {distanceKm} km freight corridor to <strong>Electric Rail</strong> would displace {((baselineDieselKg - (distanceKm * cargoTons * emissionFactors.rail * terrainMultipliers[terrain])) / 1000).toFixed(2)} metric tons of atmospheric CO₂, cutting operational carbon intensity by 79% while honoring freight delivery schedules.</>
                     ) : (
@@ -306,11 +306,11 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                   <Zap className="w-4 h-4" />
                   Interactive 2D Rigid Body Mechanics Sandbox
                 </span>
-                <span className="text-zinc-500 text-xs font-mono">
+                <span className="text-zinc-300 text-xs font-mono">
                   Verlet integration, coefficient of restitution, and kinetic impulse calculations.
                 </span>
               </div>
-              <span className="text-xs font-mono text-zinc-400 bg-zinc-900 px-3 py-1 border border-zinc-800">
+              <span className="text-xs font-mono text-zinc-300 bg-zinc-900 px-3 py-1 border border-zinc-800">
                 Solvers: Spatial Partitioning @ 60 FPS
               </span>
             </div>
@@ -319,7 +319,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
               <div className="p-4 bg-zinc-900/60 border border-zinc-850 space-y-3">
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px]">
-                    <span className="text-zinc-400 uppercase">Body Mass ($m$):</span>
+                    <span className="text-zinc-300 uppercase">Body Mass ($m$):</span>
                     <span className="text-white font-bold">{mass} kg</span>
                   </div>
                   <input
@@ -337,7 +337,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px]">
-                    <span className="text-zinc-400 uppercase">Restitution Coefficient ($e$):</span>
+                    <span className="text-zinc-300 uppercase">Restitution Coefficient ($e$):</span>
                     <span className="text-emerald-400 font-bold">{restitution.toFixed(2)}</span>
                   </div>
                   <input
@@ -353,7 +353,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px]">
-                    <span className="text-zinc-400 uppercase">Gravitational Acceleration ($g$):</span>
+                    <span className="text-zinc-300 uppercase">Gravitational Acceleration ($g$):</span>
                     <span className="text-purple-400 font-bold">{gravity.toFixed(2)} m/s²</span>
                   </div>
                   <input
@@ -377,15 +377,15 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                 </span>
                 <div className="space-y-2 text-xs">
                   <div className="p-2.5 bg-zinc-950 border border-zinc-850 flex justify-between">
-                    <span className="text-zinc-500">Calculated Kinetic Energy ($E_k$):</span>
+                    <span className="text-zinc-300">Calculated Kinetic Energy ($E_k$):</span>
                     <span className="text-cyan-400 font-bold">{kineticEnergy.toFixed(1)} Joules</span>
                   </div>
                   <div className="p-2.5 bg-zinc-950 border border-zinc-850 flex justify-between">
-                    <span className="text-zinc-500">Collision Inelastic Loss:</span>
+                    <span className="text-zinc-300">Collision Inelastic Loss:</span>
                     <span className="text-amber-400 font-bold">{((1 - restitution) * 100).toFixed(0)}% Dissipated</span>
                   </div>
                   <div className="p-2.5 bg-zinc-950 border border-zinc-850 flex justify-between">
-                    <span className="text-zinc-500">Integration Step:</span>
+                    <span className="text-zinc-300">Integration Step:</span>
                     <span className="text-emerald-400 font-bold">dt = 0.0166s (60 FPS Verlet)</span>
                   </div>
                 </div>
@@ -403,7 +403,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
               <div className="space-y-1">
-                <span className="text-zinc-500 text-[10px] uppercase">Markdown Input:</span>
+                <span className="text-zinc-300 text-[10px] uppercase">Markdown Input:</span>
                 <textarea
                   rows={8}
                   value={markdownText}
@@ -412,10 +412,10 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                 />
               </div>
               <div className="space-y-1">
-                <span className="text-zinc-500 text-[10px] uppercase">Rendered Document Stream:</span>
+                <span className="text-zinc-300 text-[10px] uppercase">Rendered Document Stream:</span>
                 <div className="p-3 bg-zinc-900 border border-zinc-800 min-h-[11rem] text-xs text-zinc-300 space-y-2">
                   <div className="text-white font-bold text-sm">DevScribe Compiled View</div>
-                  <p className="text-zinc-400">Offline-first local cache validated with IndexedDB state reconciliation.</p>
+                  <p className="text-zinc-300">Offline-first local cache validated with IndexedDB state reconciliation.</p>
                   <div className="p-2 bg-zinc-950 border border-zinc-850 text-cyan-400 text-[11px]">
                     Synced: {markdownText.length} bytes cached | 0 latency
                   </div>
@@ -435,7 +435,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
               <div className="p-4 bg-zinc-900/60 border border-zinc-850 space-y-3">
                 <div className="space-y-1">
-                  <span className="text-zinc-500 uppercase text-[10px] block">Target Crop:</span>
+                  <span className="text-zinc-300 uppercase text-[10px] block">Target Crop:</span>
                   <div className="flex gap-2">
                     {['wheat', 'tomato', 'rice'].map((c) => (
                       <button
@@ -444,7 +444,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                         className={`px-3 py-1 uppercase text-xs border transition ${
                           selectedCrop === c
                             ? 'bg-zinc-100 text-zinc-950 font-bold border-zinc-100'
-                            : 'bg-zinc-950 text-zinc-400 border-zinc-800'
+                            : 'bg-zinc-950 text-zinc-300 border-zinc-800'
                         }`}
                       >
                         {c}
@@ -454,7 +454,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-zinc-500 uppercase text-[10px] block">Observed Symptom:</span>
+                  <span className="text-zinc-300 uppercase text-[10px] block">Observed Symptom:</span>
                   <select
                     value={selectedSymptom}
                     onChange={(e) => setSelectedSymptom(e.target.value)}
@@ -473,15 +473,15 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
                 </span>
                 <div className="p-2.5 bg-zinc-950 border border-zinc-850 space-y-1 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">Classified Disease:</span>
+                    <span className="text-zinc-300">Classified Disease:</span>
                     <span className="text-white font-bold">Puccinia striiformis (Stripe Rust)</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">Confidence:</span>
+                    <span className="text-zinc-300">Confidence:</span>
                     <span className="text-emerald-400 font-bold">96.4% Probability</span>
                   </div>
                 </div>
-                <p className="text-[11px] text-zinc-400 font-sans">
+                <p className="text-[11px] text-zinc-300 font-sans">
                   Recommended Organic Remedy: Apply potassium bicarbonate spray and increase nitrogen balance in soil.
                 </p>
               </div>
@@ -491,7 +491,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
         {/* Architectural Highlights & Features */}
         <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-          <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+          <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
             <Layers className="w-4 h-4 text-cyan-400" />
             Key Architectural Highlights
           </span>

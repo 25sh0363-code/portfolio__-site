@@ -97,7 +97,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
       <div className="border-b border-zinc-850 pb-6 mb-8">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -122,7 +122,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase font-display flex items-center gap-3">
               <span>A Class Act — Teachers’ Day</span>
             </h1>
-            <p className="text-zinc-400 text-xs mt-2 max-w-3xl leading-relaxed font-sans font-light">
+            <p className="text-zinc-300 text-xs mt-2 max-w-3xl leading-relaxed font-sans font-light">
               An interactive, handcrafted digital classroom experience built for XII-Innovators — featuring interactive chalkboards, subject faculty profiles, digital register sign-ins, and handwritten gratitude notes.
             </p>
           </div>
@@ -161,7 +161,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
               className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer flex items-center gap-2 rounded-none ${
                 isActive
                   ? 'bg-zinc-100 text-zinc-950 font-black'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-900 border border-zinc-900'
+                  : 'text-zinc-300 hover:text-white hover:bg-zinc-900 border border-zinc-900'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -176,14 +176,14 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
         <div className="space-y-8">
           <div className="border-b border-zinc-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
+              <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
                 Official Web App Walkthrough
               </span>
               <h2 className="text-xl font-bold text-white uppercase font-display">
                 6 High-Res Screen Captures from A Class Act
               </h2>
             </div>
-            <span className="text-[10px] font-mono bg-zinc-900 text-zinc-400 px-3 py-1 border border-zinc-800 self-start sm:self-auto">
+            <span className="text-[10px] font-mono bg-zinc-900 text-zinc-300 px-3 py-1 border border-zinc-800 self-start sm:self-auto">
               Click any image to expand in Fullscreen Modal
             </span>
           </div>
@@ -212,17 +212,17 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
 
                   <div className="p-4 space-y-2">
                     <h3 className="text-sm font-bold text-white uppercase font-mono">{shot.title}</h3>
-                    <p className="text-xs text-zinc-400 font-sans leading-relaxed">{shot.caption}</p>
+                    <p className="text-xs text-zinc-300 font-sans leading-relaxed">{shot.caption}</p>
                   </div>
                 </div>
 
                 <div className="p-4 pt-0">
                   <div className="border-t border-zinc-900 pt-3 space-y-1">
-                    <span className="text-[10px] font-mono uppercase text-zinc-500 font-bold block">Key Elements:</span>
+                    <span className="text-[10px] font-mono uppercase text-zinc-300 font-bold block">Key Elements:</span>
                     <ul className="space-y-1">
                       {shot.highlights.map((h, i) => (
                         <li key={i} className="text-[11px] text-zinc-300 font-sans flex items-start gap-1.5">
-                          <span className="text-zinc-600 font-mono">•</span>
+                          <span className="text-zinc-300 font-mono">•</span>
                           <span>{h}</span>
                         </li>
                       ))}
@@ -239,38 +239,38 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
       {activeTab === 'overview' && (
         <div className="space-y-6">
           <div className="border-b border-zinc-800 pb-3">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
+            <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Handcrafted Dedicated Experience
             </span>
             <h2 className="text-xl font-bold text-white uppercase font-display">
               13 Teachers. 10 Subjects. 1 Class. ∞ Patience.
             </h2>
-            <p className="text-xs text-zinc-400 font-sans mt-1 leading-relaxed">
+            <p className="text-xs text-zinc-300 font-sans mt-1 leading-relaxed">
               Instead of sending a generic text or static image greeting, <strong>A Class Act</strong> transforms the shared memories, personalities, and gratitude of an entire graduating class into an interactive web experience inspired by chalkboards, notebooks, school registers, and subject tributes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans text-xs">
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block">Target Audience</span>
+              <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">Target Audience</span>
               <span className="text-base font-bold text-white block">XII-Innovators Faculty</span>
-              <p className="text-zinc-400 text-[11px] leading-relaxed font-light">
+              <p className="text-zinc-300 text-[11px] leading-relaxed font-light">
                 Built specifically for the teachers who taught more than what was on the official timetable.
               </p>
             </div>
 
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block">Design Motif</span>
+              <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">Design Motif</span>
               <span className="text-base font-bold text-white block">Digital Classroom & Notebook</span>
-              <p className="text-zinc-400 text-[11px] leading-relaxed font-light">
+              <p className="text-zinc-300 text-[11px] leading-relaxed font-light">
                 Paper textures, wooden chalkboards, handwritten typography, and taped-up cards.
               </p>
             </div>
 
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block">Build Philosophy</span>
+              <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">Build Philosophy</span>
               <span className="text-base font-bold text-white block">Pure Web Platform</span>
-              <p className="text-zinc-400 text-[11px] leading-relaxed font-light">
+              <p className="text-zinc-300 text-[11px] leading-relaxed font-light">
                 Zero build step, zero frameworks, 100% standard web technologies (HTML5, CSS3, Vanilla JS, Canvas API, SVG).
               </p>
             </div>
@@ -282,7 +282,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
       {activeTab === 'features' && (
         <div className="space-y-6">
           <div className="border-b border-zinc-800 pb-3">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
+            <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Interactive Design System
             </span>
             <h2 className="text-xl font-bold text-white uppercase font-display">
@@ -294,30 +294,30 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
             
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
               <span className="font-mono text-xs font-bold text-white uppercase flex items-center gap-2">
-                <PenTool className="w-4 h-4 text-zinc-400" />
+                <PenTool className="w-4 h-4 text-zinc-300" />
                 1. Interactive Chalkboard Hero
               </span>
-              <p className="text-zinc-400 leading-relaxed font-light">
+              <p className="text-zinc-300 leading-relaxed font-light">
                 HTML5 Canvas chalkboard hero allowing visitors to select chalk colors, write or draw directly on the board, and erase their drawings.
               </p>
             </div>
 
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
               <span className="font-mono text-xs font-bold text-white uppercase flex items-center gap-2">
-                <Award className="w-4 h-4 text-zinc-400" />
+                <Award className="w-4 h-4 text-zinc-300" />
                 2. Subject Faculty Cards
               </span>
-              <p className="text-zinc-400 leading-relaxed font-light">
+              <p className="text-zinc-300 leading-relaxed font-light">
                 Dedicated faculty cards mapping each teacher across 10 subjects with subject-specific parameters and custom student tribute messages.
               </p>
             </div>
 
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
               <span className="font-mono text-xs font-bold text-white uppercase flex items-center gap-2">
-                <CheckSquare className="w-4 h-4 text-zinc-400" />
+                <CheckSquare className="w-4 h-4 text-zinc-300" />
                 3. Interactive Attendance Register
               </span>
-              <p className="text-zinc-400 leading-relaxed font-light">
+              <p className="text-zinc-300 leading-relaxed font-light">
                 A digital attendance ledger where students can check off teacher names and mark them present for the day.
               </p>
             </div>
@@ -327,7 +327,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
                 <Heart className="w-4 h-4 text-rose-400" />
                 4. Signed Thank-You Card & Gratitude Engine
               </span>
-              <p className="text-zinc-400 leading-relaxed font-light">
+              <p className="text-zinc-300 leading-relaxed font-light">
                 Digital tribute card allowing students to sign their names, seal their appreciation, and trigger celebratory animations.
               </p>
             </div>
@@ -340,41 +340,41 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
       {activeTab === 'architecture' && (
         <div className="space-y-6">
           <div className="border-b border-zinc-800 pb-3">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
+            <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Pure Native Web Implementation
             </span>
             <h2 className="text-xl font-bold text-white uppercase font-display">
               Zero-Framework Engineering
             </h2>
-            <p className="text-xs text-zinc-400 font-sans mt-1 leading-relaxed">
+            <p className="text-xs text-zinc-300 font-sans mt-1 leading-relaxed">
               No React, no Vite, no node_modules dependencies — pure standard web platform execution.
             </p>
           </div>
 
           <div className="bg-zinc-950 border border-zinc-800 p-6 space-y-4">
-            <span className="text-[10px] text-zinc-400 uppercase font-bold block">
+            <span className="text-[10px] text-zinc-300 uppercase font-bold block">
               Declared Technical Stack
             </span>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="p-3 bg-zinc-900/60 border border-zinc-850">
                 <span className="text-white font-bold block">HTML5 Semantic Structure</span>
-                <span className="text-[11px] text-zinc-400 font-sans">Custom SVG chalk masks and accessible card containers.</span>
+                <span className="text-[11px] text-zinc-300 font-sans">Custom SVG chalk masks and accessible card containers.</span>
               </div>
 
               <div className="p-3 bg-zinc-900/60 border border-zinc-850">
                 <span className="text-white font-bold block">CSS3 Layouts & Typography</span>
-                <span className="text-[11px] text-zinc-400 font-sans">Custom paper textures, Fraunces, Caveat, & Space Mono font pairings.</span>
+                <span className="text-[11px] text-zinc-300 font-sans">Custom paper textures, Fraunces, Caveat, & Space Mono font pairings.</span>
               </div>
 
               <div className="p-3 bg-zinc-900/60 border border-zinc-850">
                 <span className="text-white font-bold block">Vanilla JavaScript & Canvas API</span>
-                <span className="text-[11px] text-zinc-400 font-sans">Real-time 2D canvas drawing algorithms for chalkboard interaction.</span>
+                <span className="text-[11px] text-zinc-300 font-sans">Real-time 2D canvas drawing algorithms for chalkboard interaction.</span>
               </div>
 
               <div className="p-3 bg-zinc-900/60 border border-zinc-850">
                 <span className="text-white font-bold block">Intersection Observer API</span>
-                <span className="text-[11px] text-zinc-400 font-sans">Scroll-triggered chalk animations and reveal storytelling.</span>
+                <span className="text-[11px] text-zinc-300 font-sans">Scroll-triggered chalk animations and reveal storytelling.</span>
               </div>
             </div>
           </div>
@@ -394,7 +394,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
             <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => setZoomedImage(null)}
-                className="absolute -top-10 right-0 text-zinc-400 hover:text-white p-2 transition-colors cursor-pointer flex items-center gap-1 font-mono text-xs uppercase"
+                className="absolute -top-10 right-0 text-zinc-300 hover:text-white p-2 transition-colors cursor-pointer flex items-center gap-1 font-mono text-xs uppercase"
               >
                 <X className="w-5 h-5" /> Close [ESC]
               </button>

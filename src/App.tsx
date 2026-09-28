@@ -38,7 +38,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-50 font-sans selection:bg-zinc-100/10 selection:text-white">
+    <div className="min-h-screen bg-zinc-950 text-zinc-50 font-sans selection:bg-zinc-100/10 selection:text-white text-base">
       
       {/* Visual background atmospheric elements aligned with the bold minimalist style */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
@@ -59,7 +59,7 @@ export default function App() {
               className="flex flex-col hover:opacity-85 transition cursor-pointer text-left"
               id="nav-logo"
             >
-              <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-1 font-mono font-medium">Student Portfolio</span>
+              <span className="text-xs uppercase tracking-[0.3em] text-zinc-300 mb-1 font-mono font-medium">Student Portfolio</span>
               <span className="text-2xl font-extrabold tracking-tighter italic font-serif text-white">OSK.</span>
             </motion.button>
 
@@ -77,10 +77,10 @@ export default function App() {
                       }
                       setActiveTab(item.id);
                     }}
-                    className={`relative py-1.5 text-[11px] uppercase tracking-widest font-bold transition-all cursor-pointer ${
+                    className={`relative py-1.5 text-xs sm:text-sm uppercase tracking-widest font-bold transition-all cursor-pointer ${
                       isActive 
                         ? 'text-zinc-50 border-b border-zinc-50' 
-                        : 'text-zinc-400 hover:text-zinc-50 border-b border-transparent hover:border-zinc-800'
+                        : 'text-zinc-300 hover:text-white border-b border-transparent hover:border-zinc-700'
                     }`}
                   >
                     {item.label}
@@ -94,7 +94,7 @@ export default function App() {
               <button
                 id="btn-mobile-trigger"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-zinc-400 hover:text-white rounded-lg transition"
+                className="p-2 text-zinc-300 hover:text-white rounded-lg transition"
                 aria-label="Toggle Navigation Menu"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -127,10 +127,10 @@ export default function App() {
                         setActiveTab(item.id);
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-xs font-bold uppercase tracking-widest transition-all cursor-pointer ${
+                      className={`w-full flex items-center justify-between px-4 py-3 text-sm font-bold uppercase tracking-widest transition-all cursor-pointer ${
                         activeTab === item.id 
-                          ? 'bg-zinc-900 text-white border border-zinc-805' 
-                          : 'text-zinc-400 hover:bg-zinc-900/50 hover:text-white'
+                          ? 'bg-zinc-900 text-white border border-zinc-800' 
+                          : 'text-zinc-300 hover:bg-zinc-900/50 hover:text-white'
                       }`}
                     >
                       <span>{item.label}</span>
@@ -183,7 +183,7 @@ export default function App() {
       {/* Footer Branding line (Safe-space index 30) */}
       <footer className="border-t border-zinc-900 bg-zinc-950 py-8 mt-16 relative z-10 no-print">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-center">
-          <div className="text-center font-mono text-xs text-zinc-500 tracking-wider">
+          <div className="text-center font-mono text-sm text-zinc-300 tracking-wider">
             © Om suraj kashikar
           </div>
         </div>

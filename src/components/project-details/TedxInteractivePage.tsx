@@ -74,7 +74,7 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
       <div className="border-b border-zinc-800 pb-6 mb-8">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -84,13 +84,13 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
         {/* Minimalist Monochromatic Badges */}
         <div className="flex flex-wrap items-center gap-2 mb-3">
           <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-200 border border-zinc-800 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-            <Terminal className="w-3 h-3 text-zinc-400" /> Lead Systems Architect & Tech Head
+            <Terminal className="w-3 h-3 text-zinc-300" /> Lead Systems Architect & Tech Head
           </span>
           <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-300 border border-zinc-800 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-            <Database className="w-3 h-3 text-zinc-400" /> Database: Google Sheets
+            <Database className="w-3 h-3 text-zinc-300" /> Database: Google Sheets
           </span>
           <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-300 border border-zinc-800 text-[10px] uppercase tracking-wider flex items-center gap-1">
-            <Server className="w-3 h-3 text-zinc-400" /> Backend: Google Apps Script Webhooks
+            <Server className="w-3 h-3 text-zinc-300" /> Backend: Google Apps Script Webhooks
           </span>
         </div>
 
@@ -99,7 +99,7 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase font-display flex items-center gap-3">
               <span>TEDxSilverOaks Digital Platform</span>
             </h1>
-            <p className="text-zinc-400 text-xs mt-2 max-w-3xl leading-relaxed font-sans font-light">
+            <p className="text-zinc-300 text-xs mt-2 max-w-3xl leading-relaxed font-sans font-light">
               Official web platform and gate check-in system for TEDxSilverOaks. Built as two separate applications (visitor portal and staff scanner app) connected through Google Apps Script and Google Sheets for delegate registration, transactional QR email dispatch, and gate pass verification.
             </p>
           </div>
@@ -150,7 +150,7 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
               className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer flex items-center gap-2 rounded-none ${
                 isActive
                   ? 'bg-zinc-100 text-zinc-950 font-black'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-900 border border-zinc-900'
+                  : 'text-zinc-300 hover:text-white hover:bg-zinc-900 border border-zinc-900'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -165,13 +165,13 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
         <div className="space-y-10">
           
           <div className="border-b border-zinc-800 pb-3">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
+            <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Official Site Architecture
             </span>
             <h2 className="text-xl font-bold text-white uppercase font-display">
               Page Breakdown & Platform Features
             </h2>
-            <p className="text-xs text-zinc-400 font-sans mt-1 leading-relaxed">
+            <p className="text-xs text-zinc-300 font-sans mt-1 leading-relaxed">
               Complete layout detailing both public promotional content and the closed staff check-in scanner.
             </p>
           </div>
@@ -180,10 +180,10 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
               <span className="text-xs font-bold text-white font-mono uppercase flex items-center gap-2">
-                <Camera className="w-4 h-4 text-zinc-400" />
+                <Camera className="w-4 h-4 text-zinc-300" />
                 Production Portal Web Screenshots (Click to Expand)
               </span>
-              <span className="text-[10px] text-zinc-500 font-mono">3 Core Systems</span>
+              <span className="text-[10px] text-zinc-300 font-mono">3 Core Systems</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -204,7 +204,7 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
                     </div>
                   </div>
                   <div className="p-3 space-y-1">
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block">{shot.urlPath}</span>
+                    <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">{shot.urlPath}</span>
                     <h3 className="text-xs font-bold text-white uppercase font-mono line-clamp-1">{shot.title}</h3>
                   </div>
                 </div>
@@ -219,14 +219,14 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
               <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-zinc-400" />
+                  <Globe className="w-4 h-4 text-zinc-300" />
                   1. Public Home / Hero Landing (`/`)
                 </span>
-                <span className="text-[9px] bg-zinc-900 text-zinc-400 px-2 py-0.5 border border-zinc-850">
+                <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Public Landing
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+              <p className="text-xs text-zinc-300 font-sans leading-relaxed">
                 Clean monochromatic landing page introducing the <strong className="text-zinc-200">"Unveiling Maya: The Illusions of Reality"</strong> theme for 20th Dec 2025. Acts as the primary portal where visitors learn about the event, view the speaker lineup, and register for seats.
               </p>
             </div>
@@ -235,14 +235,14 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
               <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-zinc-400" />
+                  <BookOpen className="w-4 h-4 text-zinc-300" />
                   2. About the Theme Section (`/#about`)
                 </span>
-                <span className="text-[9px] bg-zinc-900 text-zinc-400 px-2 py-0.5 border border-zinc-850">
+                <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Conference Theme
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+              <p className="text-xs text-zinc-300 font-sans leading-relaxed">
                 Explores the philosophical core of Maya across three distinct tracks: <strong className="text-zinc-200">Identity & Self</strong>, <strong className="text-zinc-200">Time & Efficiency</strong>, and <strong className="text-zinc-200">Connection & Distance</strong>, accompanied by official event graphics.
               </p>
             </div>
@@ -251,14 +251,14 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
               <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
-                  <Users className="w-4 h-4 text-zinc-400" />
+                  <Users className="w-4 h-4 text-zinc-300" />
                   3. Team Directory & Tech Head (`/#team`)
                 </span>
-                <span className="text-[9px] bg-zinc-900 text-zinc-400 px-2 py-0.5 border border-zinc-850">
+                <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Student Leadership
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+              <p className="text-xs text-zinc-300 font-sans leading-relaxed">
                 Highlights the organizing student committee, specifically featuring <strong className="text-zinc-200">Om Suraj Kashikar</strong> as Technical Head with his technical bio, skillsets in full-stack web and ML development, and leadership credits.
               </p>
             </div>
@@ -267,14 +267,14 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
               <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
-                  <Camera className="w-4 h-4 text-zinc-400" />
+                  <Camera className="w-4 h-4 text-zinc-300" />
                   4. Staff Check-In & Scanner Console (`/staff`)
                 </span>
-                <span className="text-[9px] bg-zinc-900 text-zinc-400 px-2 py-0.5 border border-zinc-850">
+                <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Staff Only Portal
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+              <p className="text-xs text-zinc-300 font-sans leading-relaxed">
                 A dedicated, mobile-friendly check-in console built in a separate repository. Used by venue volunteers to scan delegate QR codes with device cameras, verify attendance against Google Sheets, and prevent duplicate entries.
               </p>
             </div>
@@ -283,8 +283,8 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
 
           {/* How The Two Apps Connect (Clean Explanation) */}
           <div className="bg-zinc-900/40 border border-zinc-800 p-5 space-y-3">
-            <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider block border-b border-zinc-800 pb-2 flex items-center gap-2">
-              <Layers className="w-3.5 h-3.5 text-zinc-400" />
+            <span className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider block border-b border-zinc-800 pb-2 flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5 text-zinc-300" />
               How the Two Separate Applications Connect via Google Apps Script & Sheets
             </span>
             <div className="space-y-3 text-xs font-sans text-zinc-300 leading-relaxed">
@@ -294,15 +294,15 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1 font-mono text-[11px]">
                 <div className="p-3 bg-zinc-950 border border-zinc-850 space-y-1">
                   <div className="font-bold text-white">1. Registration Form</div>
-                  <div className="text-zinc-400 font-sans text-[11px]">User submits registration details on the visitor portal. An HTTP POST request sends the data to the Google Apps Script webhook.</div>
+                  <div className="text-zinc-300 font-sans text-[11px]">User submits registration details on the visitor portal. An HTTP POST request sends the data to the Google Apps Script webhook.</div>
                 </div>
                 <div className="p-3 bg-zinc-950 border border-zinc-850 space-y-1">
                   <div className="font-bold text-white">2. Sheets & Email Pass</div>
-                  <div className="text-zinc-400 font-sans text-[11px]">Apps Script adds a row in Google Sheets and triggers Gmail MailApp to automatically email the user an HTML pass with their unique QR code.</div>
+                  <div className="text-zinc-300 font-sans text-[11px]">Apps Script adds a row in Google Sheets and triggers Gmail MailApp to automatically email the user an HTML pass with their unique QR code.</div>
                 </div>
                 <div className="p-3 bg-zinc-950 border border-zinc-850 space-y-1">
                   <div className="font-bold text-white">3. Gate Camera Scan</div>
-                  <div className="text-zinc-400 font-sans text-[11px]">Volunteers scan passes on the staff app. An HTTP GET request verifies the ticket and updates the check-in status directly in Google Sheets in sub-300ms.</div>
+                  <div className="text-zinc-300 font-sans text-[11px]">Volunteers scan passes on the staff app. An HTTP GET request verifies the ticket and updates the check-in status directly in Google Sheets in sub-300ms.</div>
                 </div>
               </div>
             </div>
@@ -320,13 +320,13 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
               <div className="space-y-6">
                 
                 <div className="border-b border-zinc-800 pb-3">
-                  <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
+                  <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
                     Actual Screenshot from {currentShot.urlPath}
                   </span>
                   <h2 className="text-xl font-bold text-white uppercase font-display">
                     {currentShot.title}
                   </h2>
-                  <p className="text-xs text-zinc-400 font-sans mt-1">
+                  <p className="text-xs text-zinc-300 font-sans mt-1">
                     {currentShot.description}
                   </p>
                 </div>
@@ -354,14 +354,14 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
 
                 {/* Grounded Key Observations & Features List */}
                 <div className="bg-zinc-900/40 border border-zinc-850 p-5 space-y-3">
-                  <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider block border-b border-zinc-800 pb-2">
+                  <span className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider block border-b border-zinc-800 pb-2">
                     Verified Material Observations & Features
                   </span>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {currentShot.highlights.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-xs text-zinc-300 font-sans">
-                        <Check className="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-zinc-300 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -369,8 +369,8 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
                 </div>
 
                 {/* Engineering Overview Note */}
-                <div className="p-4 bg-zinc-950 border border-zinc-850 text-xs text-zinc-400 font-sans leading-relaxed">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block mb-1">Architecture Note:</span>
+                <div className="p-4 bg-zinc-950 border border-zinc-850 text-xs text-zinc-300 font-sans leading-relaxed">
+                  <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block mb-1">Architecture Note:</span>
                   {currentShot.details}
                 </div>
 
@@ -396,7 +396,7 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
                 </span>
                 <button
                   onClick={() => setZoomedImage(null)}
-                  className="p-1 text-zinc-400 hover:text-white cursor-pointer"
+                  className="p-1 text-zinc-300 hover:text-white cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>

@@ -117,7 +117,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
             <ArrowLeft className="w-3.5 h-3.5" /> Back to All Projects
           </button>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest hidden sm:inline-block">
+            <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest hidden sm:inline-block">
               Projects / Encoder-Decoder Transformer
             </span>
           </div>
@@ -132,10 +132,10 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               <Languages className="w-3 h-3 text-zinc-900" />
               From-Scratch PyTorch MT
             </span>
-            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-400 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-300 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
               English → Portuguese
             </span>
-            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-400 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-300 text-[10px] font-mono border border-zinc-800 uppercase tracking-wider">
               Soikat/opus_books (1,404 pairs)
             </span>
             <span className="px-2.5 py-0.5 bg-zinc-900 text-emerald-400 text-[10px] font-mono border border-emerald-900/60 uppercase tracking-wider">
@@ -150,31 +150,31 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
             Encoder-Decoder Transformer for Machine Translation
           </h1>
 
-          <p className="text-zinc-400 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
+          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
             A from-scratch implementation of the Transformer architecture (&ldquo;Attention Is All You Need&rdquo;) in PyTorch without high-level <code className="text-cyan-300 font-mono text-sm bg-zinc-900 px-1 py-0.5">nn.Transformer</code> layers. Trained on the <code className="text-zinc-200 font-mono text-sm bg-zinc-900 px-1 py-0.5">Soikat/opus_books</code> English–Portuguese dataset on a MacBook Air M4 CPU.
           </p>
 
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono pt-4 border-t border-zinc-900">
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Model Architecture</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Model Architecture</span>
               <span className="text-white font-bold text-base">6 Enc + 6 Dec Layers</span>
-              <span className="text-[10px] text-zinc-400 block">d_model=256, h=8, d_ff=2048</span>
+              <span className="text-[10px] text-zinc-300 block">d_model=256, h=8, d_ff=2048</span>
             </div>
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Dataset Size</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Dataset Size</span>
               <span className="text-cyan-400 font-bold text-base">1,404 Sentence Pairs</span>
-              <span className="text-[10px] text-zinc-400 block">1,264 Train / 140 Val</span>
+              <span className="text-[10px] text-zinc-300 block">1,264 Train / 140 Val</span>
             </div>
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Training Convergence</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Training Convergence</span>
               <span className="text-emerald-400 font-bold text-base">7.42 → 3.003 Loss</span>
-              <span className="text-[10px] text-zinc-400 block">30 Epochs on M4 CPU</span>
+              <span className="text-[10px] text-zinc-300 block">30 Epochs on M4 CPU</span>
             </div>
             <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-              <span className="text-[10px] text-zinc-500 uppercase block">Empirical BLEU Metric</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Empirical BLEU Metric</span>
               <span className="text-amber-400 font-bold text-base">BLEU: 0.0000</span>
-              <span className="text-[10px] text-zinc-400 block">Strict n-gram threshold</span>
+              <span className="text-[10px] text-zinc-300 block">Strict n-gram threshold</span>
             </div>
           </div>
 
@@ -219,7 +219,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                 className={`py-3 px-4 font-mono text-xs uppercase tracking-wider font-bold transition flex items-center gap-2 border-b-2 whitespace-nowrap cursor-pointer ${
                   isActive
                     ? 'border-zinc-100 text-white bg-zinc-900/60'
-                    : 'border-transparent text-zinc-400 hover:text-white hover:border-zinc-700'
+                    : 'border-transparent text-zinc-300 hover:text-white hover:border-zinc-700'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -237,7 +237,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold block">
                   Cross-Attention (Layer 0, Head 0) & Decoder Exploration
                 </span>
-                <span className="text-zinc-500 text-xs font-light">
+                <span className="text-zinc-300 text-xs font-light">
                   Generated via <code className="text-zinc-300 font-mono">inference.py → visualize_attention()</code>. Showing which English source tokens the decoder attended to when generating Portuguese tokens.
                 </span>
               </div>
@@ -254,7 +254,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                     className={`px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider transition cursor-pointer border ${
                       selectedSampleIndex === idx
                         ? 'bg-zinc-100 text-zinc-950 font-bold border-zinc-100'
-                        : 'bg-zinc-950 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                        : 'bg-zinc-950 text-zinc-300 border-zinc-800 hover:border-zinc-700'
                     }`}
                   >
                     Sentence {idx + 1}
@@ -269,14 +269,14 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               {/* Left Column: Test Sentence Details & Greedy vs Beam Search */}
               <div className="lg:col-span-1 space-y-4 font-mono text-xs">
                 <div className="p-4 bg-zinc-950 border border-zinc-800 space-y-3">
-                  <span className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold block">
+                  <span className="text-[10px] text-zinc-300 uppercase tracking-wider font-bold block">
                     Source English Sentence:
                   </span>
                   <div className="p-2.5 bg-zinc-900 border border-zinc-850 text-white font-sans text-sm font-semibold">
                     &ldquo;{currentSample.sourceEn}&rdquo;
                   </div>
 
-                  <span className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold block pt-2">
+                  <span className="text-[10px] text-zinc-300 uppercase tracking-wider font-bold block pt-2">
                     Target Reference (PT):
                   </span>
                   <div className="p-2.5 bg-zinc-900 border border-zinc-850 text-zinc-300 font-sans text-sm">
@@ -287,7 +287,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                 {/* Decoding Information */}
                 <div className="p-4 bg-zinc-950 border border-zinc-800 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-bold">
+                    <span className="text-[10px] text-zinc-300 uppercase tracking-wider font-bold">
                       Decoding Strategy:
                     </span>
                     <span className="px-2 py-0.5 text-[9px] uppercase font-bold bg-zinc-900 text-emerald-400 border border-zinc-800">
@@ -304,13 +304,13 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                     </div>
                   </div>
 
-                  <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+                  <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">
                     Deterministic greedy decoding selects <code className="text-zinc-300 font-mono text-[10px]">argmax P(w_t | w_&lt;t, x)</code> at every autoregressive step until encountering <code className="text-zinc-300 font-mono text-[10px]">[EOS]</code> or reaching max length. As documented in the repo, greedy decoding was solely used in <code className="text-zinc-300 font-mono text-[10px]">inference.py</code>.
                   </p>
                 </div>
 
                 {/* Qualitative Context Note */}
-                <div className="p-3 bg-zinc-900/50 border border-zinc-800 text-[11px] text-zinc-400 font-sans">
+                <div className="p-3 bg-zinc-900/50 border border-zinc-800 text-[11px] text-zinc-300 font-sans">
                   <span className="text-zinc-200 font-mono font-bold text-[10px] uppercase block mb-1">Qualitative Analysis:</span>
                   {currentSample.note}
                 </div>
@@ -324,7 +324,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                       <span className="text-xs font-mono uppercase tracking-widest text-zinc-200 font-bold block">
                         Cross-Attention Matrix (Layer 0, Head 0)
                       </span>
-                      <span className="text-[10px] font-mono text-zinc-500">
+                      <span className="text-[10px] font-mono text-zinc-300">
                         Rows: Target Tokens (Y-axis) | Columns: Source Tokens (X-axis)
                       </span>
                     </div>
@@ -334,7 +334,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                         Attn({hoveredCell.tgtToken} → {hoveredCell.srcToken}): {hoveredCell.weight.toFixed(3)}
                       </span>
                     ) : (
-                      <span className="text-[10px] font-mono text-zinc-500">
+                      <span className="text-[10px] font-mono text-zinc-300">
                         Hover cells to inspect attention weight
                       </span>
                     )}
@@ -414,17 +414,17 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                   </div>
 
                   {/* Colorbar Spectrum Guide */}
-                  <div className="pt-3 border-t border-zinc-900 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+                  <div className="pt-3 border-t border-zinc-900 flex items-center justify-between text-[10px] font-mono text-zinc-300">
                     <span>Brighter yellow = stronger attention weight (up to 0.42)</span>
                     <div className="flex items-center gap-1">
-                      <span className="text-zinc-500">0.05</span>
+                      <span className="text-zinc-300">0.05</span>
                       <div className="w-24 h-2.5 rounded-none bg-gradient-to-r from-[#240b3b] via-[#239379] to-[#e5df22] border border-zinc-800" />
                       <span className="text-zinc-200 font-bold">0.42+</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-3 bg-zinc-900/60 border border-zinc-800 text-xs font-mono text-zinc-400 flex items-start gap-2">
+                <div className="p-3 bg-zinc-900/60 border border-zinc-800 text-xs font-mono text-zinc-300 flex items-start gap-2">
                   <Sparkles className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-white font-bold block mb-0.5">Key Observation from the Attention Heatmap:</span>
@@ -446,7 +446,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                   <h3 className="text-lg font-bold text-white uppercase font-mono">
                     Training Loss per Epoch (Epochs 9–29)
                   </h3>
-                  <span className="text-xs text-zinc-500 font-mono">
+                  <span className="text-xs text-zinc-300 font-mono">
                     Direct empirical log extracted from the MacBook Air M4 CPU training run.
                   </span>
                 </div>
@@ -520,19 +520,19 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
                   <div className="p-3 bg-zinc-900/60 border border-zinc-850 space-y-1">
                     <span className="text-amber-400 font-bold block">Early Epochs (0–5):</span>
-                    <p className="text-zinc-400 font-sans text-xs leading-relaxed">
+                    <p className="text-zinc-300 font-sans text-xs leading-relaxed">
                       Output degenerates into single-token repetition loops (e.g. repeating &ldquo;es&rdquo; or a single word endlessly) — a classic signature of an undertrained transformer architecture.
                     </p>
                   </div>
                   <div className="p-3 bg-zinc-900/60 border border-zinc-850 space-y-1">
                     <span className="text-cyan-400 font-bold block">Mid Epochs (10–20):</span>
-                    <p className="text-zinc-400 font-sans text-xs leading-relaxed">
+                    <p className="text-zinc-300 font-sans text-xs leading-relaxed">
                       Correct multi-word vocabulary begins to appear (e.g. the model correctly learns <code className="text-zinc-200">&ldquo;Tartaruga Falsa&rdquo;</code> for <code className="text-zinc-200">&ldquo;Mock Turtle&rdquo;</code> — a specific term acquired purely from this small dataset).
                     </p>
                   </div>
                   <div className="p-3 bg-zinc-900/60 border border-zinc-850 space-y-1">
                     <span className="text-emerald-400 font-bold block">Late Epochs (25–30):</span>
-                    <p className="text-zinc-400 font-sans text-xs leading-relaxed">
+                    <p className="text-zinc-300 font-sans text-xs leading-relaxed">
                       Reliably produces grammatically valid, fluently-formatted Portuguese (punctuation, quotation marks, dialogue tags like &ldquo;disse X&rdquo;), though semantic mapping is loose on long sentences.
                     </p>
                   </div>
@@ -555,7 +555,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               <p className="text-zinc-300 font-sans text-sm leading-relaxed">
                 BLEU (Bilingual Evaluation Understudy) measures exact n-gram overlap between the predicted translation and the reference text (BLEU-4 by default). Because it demands strict 4-word consecutive matches, on a compact dataset of ~1,260 training sentence pairs, BLEU remained at 0.0000 throughout all 30 epochs even as cross-entropy loss dropped from ~7.4 to 3.003 and Portuguese structural fluency emerged.
               </p>
-              <div className="p-3 bg-zinc-900/80 border border-zinc-800 text-xs font-mono text-zinc-400">
+              <div className="p-3 bg-zinc-900/80 border border-zinc-800 text-xs font-mono text-zinc-300">
                 <span className="text-white font-bold block mb-0.5">README Takeaway:</span>
                 &ldquo;The model learned to generate fluent Portuguese sentence structure, but did not learn reliable cross-lingual meaning mapping. This reflects data-scale limitation, not a defect in architecture or training code.&rdquo;
               </div>
@@ -572,11 +572,11 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                   <div key={sample.id} className="p-4 bg-zinc-900/60 border border-zinc-850 space-y-2">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div>
-                        <span className="text-[10px] text-zinc-500 uppercase block mb-1">Source (EN):</span>
+                        <span className="text-[10px] text-zinc-300 uppercase block mb-1">Source (EN):</span>
                         <span className="text-white font-sans text-sm font-semibold">{sample.sourceEn}</span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-zinc-500 uppercase block mb-1">Target Reference (PT):</span>
+                        <span className="text-[10px] text-zinc-300 uppercase block mb-1">Target Reference (PT):</span>
                         <span className="text-zinc-300 font-sans text-sm">{sample.targetPtRef}</span>
                       </div>
                       <div>
@@ -584,7 +584,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                         <span className="text-emerald-400 font-sans text-sm font-semibold">{sample.predictedPt}</span>
                       </div>
                     </div>
-                    <div className="pt-2 border-t border-zinc-800/80 text-zinc-400 font-sans text-xs">
+                    <div className="pt-2 border-t border-zinc-800/80 text-zinc-300 font-sans text-xs">
                       <span className="font-mono text-zinc-300 font-bold uppercase text-[10px]">Linguistic Note: </span>
                       {sample.analysis}
                     </div>
@@ -603,12 +603,12 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               
               {/* Architecture Blueprint Card */}
               <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <Layers className="w-4 h-4 text-cyan-400" />
                   From-Scratch Architecture Layout
                 </span>
 
-                <p className="text-zinc-400 font-sans text-xs leading-relaxed">
+                <p className="text-zinc-300 font-sans text-xs leading-relaxed">
                   Implemented completely from scratch in PyTorch without using <code className="text-cyan-300 font-mono">nn.Transformer</code>:
                 </p>
 
@@ -636,7 +636,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
 
               {/* Exact Hyperparameter Configuration Table */}
               <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <Cpu className="w-4 h-4 text-emerald-400" />
                   Exact Hyperparameter Configuration
                 </span>
@@ -645,47 +645,47 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                   <table className="w-full text-left font-mono text-xs border-collapse">
                     <tbody>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Source / Target Language</td>
+                        <td className="py-2 text-zinc-300 uppercase">Source / Target Language</td>
                         <td className="py-2 text-white font-bold">English (en) → Portuguese (pt)</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Dataset</td>
+                        <td className="py-2 text-zinc-300 uppercase">Dataset</td>
                         <td className="py-2 text-white font-bold">Soikat/opus_books (1,404 rows)</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Model Dimension (d_model)</td>
+                        <td className="py-2 text-zinc-300 uppercase">Model Dimension (d_model)</td>
                         <td className="py-2 text-white font-bold">256</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Encoder / Decoder Layers (N)</td>
+                        <td className="py-2 text-zinc-300 uppercase">Encoder / Decoder Layers (N)</td>
                         <td className="py-2 text-white font-bold">6 Layers each</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Attention Heads (h)</td>
+                        <td className="py-2 text-zinc-300 uppercase">Attention Heads (h)</td>
                         <td className="py-2 text-white font-bold">8 Heads (d_k = 32)</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Feed-Forward Dim (d_ff)</td>
+                        <td className="py-2 text-zinc-300 uppercase">Feed-Forward Dim (d_ff)</td>
                         <td className="py-2 text-white font-bold">2048</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Sequence Length</td>
+                        <td className="py-2 text-zinc-300 uppercase">Sequence Length</td>
                         <td className="py-2 text-white font-bold">220 tokens</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Batch Size & Epochs</td>
+                        <td className="py-2 text-zinc-300 uppercase">Batch Size & Epochs</td>
                         <td className="py-2 text-white font-bold">Batch Size 16 | 30 Epochs</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Learning Rate & Optimizer</td>
+                        <td className="py-2 text-zinc-300 uppercase">Learning Rate & Optimizer</td>
                         <td className="py-2 text-white font-bold">1e-4 with Adam (eps=1e-9)</td>
                       </tr>
                       <tr className="border-b border-zinc-900">
-                        <td className="py-2 text-zinc-500 uppercase">Label Smoothing</td>
+                        <td className="py-2 text-zinc-300 uppercase">Label Smoothing</td>
                         <td className="py-2 text-white font-bold">0.1</td>
                       </tr>
                       <tr>
-                        <td className="py-2 text-zinc-500 uppercase">Training Hardware</td>
+                        <td className="py-2 text-zinc-300 uppercase">Training Hardware</td>
                         <td className="py-2 text-cyan-400 font-bold">MacBook Air M4 (CPU)</td>
                       </tr>
                     </tbody>
@@ -704,7 +704,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               
               {/* Project Structure Card */}
               <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <FileCode className="w-4 h-4 text-cyan-400" />
                   Repository File Structure
                 </span>
@@ -713,7 +713,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                   {data.projectStructure.map((item, idx) => (
                     <div key={idx} className="p-2.5 bg-zinc-900/60 border border-zinc-850">
                       <span className="text-emerald-400 font-bold block mb-0.5">{item.file}</span>
-                      <span className="text-zinc-400 font-sans text-xs">{item.description}</span>
+                      <span className="text-zinc-300 font-sans text-xs">{item.description}</span>
                     </div>
                   ))}
                 </div>
@@ -745,7 +745,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
           <div className="space-y-6">
             <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
               <div className="flex items-center justify-between flex-wrap gap-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold flex items-center gap-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-emerald-400" />
                   Execution & Evaluation Commands
                 </span>
@@ -760,29 +760,29 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
 
               {/* Terminal Code Snippet */}
               <div className="p-4 bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-200 overflow-x-auto space-y-2">
-                <div className="text-zinc-500"># 1. Clone the repository</div>
+                <div className="text-zinc-300"># 1. Clone the repository</div>
                 <div className="text-white">git clone https://github.com/25sh0363-code/Encoder-decoder_Translation_model_English-to-Portuguese</div>
                 <div className="text-white">cd Encoder-decoder_Translation_model_English-to-Portuguese</div>
-                <div className="text-zinc-500 pt-2"># 2. Install dependencies</div>
+                <div className="text-zinc-300 pt-2"># 2. Install dependencies</div>
                 <div className="text-emerald-400">pip install torch tokenizers datasets tqdm tensorboard torchmetrics matplotlib</div>
-                <div className="text-zinc-500 pt-2"># 3. Train the model (saves checkpoints to weights/ per epoch)</div>
+                <div className="text-zinc-300 pt-2"># 3. Train the model (saves checkpoints to weights/ per epoch)</div>
                 <div className="text-emerald-400">python train.py</div>
-                <div className="text-zinc-500 pt-2"># 4. Translate 3 test sentences (prints greedy vs beam search + saves attention_map.png)</div>
+                <div className="text-zinc-300 pt-2"># 4. Translate 3 test sentences (prints greedy vs beam search + saves attention_map.png)</div>
                 <div className="text-emerald-400">python inference.py</div>
-                <div className="text-zinc-500 pt-2"># 5. Launch TensorBoard to view loss, BLEU, CER, and WER</div>
+                <div className="text-zinc-300 pt-2"># 5. Launch TensorBoard to view loss, BLEU, CER, and WER</div>
                 <div className="text-emerald-400">tensorboard --logdir run/tmodel</div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-mono text-xs">
                 <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-                  <span className="text-[10px] text-zinc-500 uppercase block mb-1">Architecture Reference</span>
+                  <span className="text-[10px] text-zinc-300 uppercase block mb-1">Architecture Reference</span>
                   <p className="text-zinc-300 font-sans text-xs">
                     Vaswani et al., &ldquo;Attention Is All You Need&rdquo; (2017) and Umar Jamil PyTorch Transformer implementation tutorial.
                   </p>
                 </div>
 
                 <div className="p-3 bg-zinc-900/60 border border-zinc-850">
-                  <span className="text-[10px] text-zinc-500 uppercase block mb-1">Hardware</span>
+                  <span className="text-[10px] text-zinc-300 uppercase block mb-1">Hardware</span>
                   <p className="text-zinc-300 font-sans text-xs">
                     MacBook Air M4 (CPU execution). Runs 30 epochs with checkpoints saved per epoch to <code className="text-zinc-200">weights/</code>.
                   </p>

@@ -102,26 +102,26 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
         {/* Section Heading */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6 border-b border-zinc-900 pb-10">
           <div className="space-y-3">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-mono font-bold block">Consolidated Exhibits</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-zinc-300 font-mono font-bold block">Consolidated Exhibits</span>
             <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tighter uppercase font-display select-none">
               Engineering Lab
             </h2>
-            <p className="text-zinc-400 max-w-xl text-sm leading-relaxed font-light">
+            <p className="text-zinc-300 max-w-xl text-base leading-relaxed font-light">
               Interactive deep learning systems, mobile AI applications, and empirical benchmarks built for maximum rigor and performance. Click any project to open its preview and interactive exhibit.
             </p>
           </div>
 
           {/* Dynamic Filter Tabs */}
-          <div className="flex flex-wrap gap-1 border border-zinc-800 bg-zinc-950 p-1 rounded-none w-fit shrink-0">
+          <div className="flex flex-wrap items-center gap-1 border border-zinc-800 bg-zinc-950 p-1 rounded-none w-fit shrink-0 max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat}
                 id={`filter-${cat.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={() => setActiveFilter(cat)}
-                className={`px-3 py-2 text-[10px] uppercase tracking-wider font-bold transition-all cursor-pointer rounded-none font-mono ${
+                className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs uppercase tracking-wider font-bold transition-all cursor-pointer rounded-none font-mono whitespace-nowrap ${
                   activeFilter === cat
                     ? 'bg-zinc-100 text-zinc-950 font-black'
-                    : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
+                    : 'text-zinc-300 hover:text-white hover:bg-zinc-900'
                 }`}
               >
                 {cat}
@@ -165,38 +165,38 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                     {/* Top Badges */}
                     <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
                       {project.isResearchPaper ? (
-                        <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-[9px] font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                        <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-xs font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                           <BookOpen className="w-3 h-3" />
                           Original Research Paper
                         </div>
                       ) : project.translationDetails ? (
-                        <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-[9px] font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                        <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-xs font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                           <Activity className="w-3 h-3" />
                           Deep Seq2Seq Model
                         </div>
                       ) : project.charBigramDetails ? (
-                        <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-[9px] font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                        <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-xs font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                           <Cpu className="w-3 h-3" />
                           Generative LM Study
                         </div>
                       ) : project.sinovateDetails ? (
-                        <div className="bg-blue-500/20 text-blue-300 border border-blue-500/40 px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                        <div className="bg-blue-500/20 text-blue-300 border border-blue-500/40 px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                           <Smartphone className="w-3 h-3" />
                           Flutter + FastAPI App
                         </div>
                       ) : project.jevSnakeDetails ? (
-                        <div className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                        <div className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                           <Cpu className="w-3 h-3" />
                           OpenRouter System One
                         </div>
                       ) : (
-                        <div className="bg-zinc-900/80 text-zinc-300 px-2.5 py-1 text-[9px] font-mono uppercase tracking-wider flex items-center gap-1.5 border border-zinc-800">
+                        <div className="bg-zinc-900/80 text-zinc-300 px-2.5 py-1 text-xs font-mono uppercase tracking-wider flex items-center gap-1.5 border border-zinc-800">
                           <Sparkles className="w-3 h-3 text-cyan-400" />
                           Interactive App
                         </div>
                       )}
 
-                      <div className="bg-zinc-950 border border-zinc-800 px-2 py-1 text-[9px] font-mono text-zinc-400 uppercase tracking-widest">
+                      <div className="bg-zinc-950 border border-zinc-800 px-2 py-1 text-xs font-mono text-zinc-300 uppercase tracking-widest">
                         {project.category}
                       </div>
                     </div>
@@ -204,10 +204,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                     {/* Bottom Stat Tags */}
                     {project.isResearchPaper && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-xs font-mono font-bold">
                           1.63× Speedup
                         </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-xs font-mono font-bold">
                           69.8% VRAM Saved
                         </span>
                       </div>
@@ -215,10 +215,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                     {project.translationDetails && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-xs font-mono font-bold">
                           30 Epochs (M4)
                         </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-xs font-mono font-bold">
                           7.42 → 3.00 Loss
                         </span>
                       </div>
@@ -226,10 +226,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                     {project.charBigramDetails && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-xs font-mono font-bold">
                           GPT-2 BPE Vocab
                         </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-xs font-mono font-bold">
                           36 Min (T4 GPU)
                         </span>
                       </div>
@@ -237,10 +237,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                     {project.sinovateDetails && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-blue-400 border border-blue-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-blue-400 border border-blue-900/60 text-xs font-mono font-bold">
                           FAISS RAG Tutor
                         </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-xs font-mono font-bold">
                           Worksheet Studio
                         </span>
                       </div>
@@ -248,10 +248,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                     {project.diseaseTrackerDetails && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-rose-400 border border-rose-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-rose-400 border border-rose-900/60 text-xs font-mono font-bold">
                           10 Countries (25 Yrs)
                         </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-cyan-400 border border-cyan-900/60 text-xs font-mono font-bold">
                           Polynomial ML
                         </span>
                       </div>
@@ -259,10 +259,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                     {project.somunDetails && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-amber-400 border border-amber-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-amber-400 border border-amber-900/60 text-xs font-mono font-bold">
                           12 Chambers
                         </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-xs font-mono font-bold">
                           Tech Head
                         </span>
                       </div>
@@ -270,10 +270,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                     {project.jevSnakeDetails && (
                       <div className="absolute bottom-3 left-4 right-4 z-20 flex gap-2">
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-emerald-400 border border-emerald-900/60 text-xs font-mono font-bold">
                           25×25 Grid (160ms)
                         </span>
-                        <span className="px-2 py-0.5 bg-zinc-950/90 text-red-400 border border-red-900/60 text-[9px] font-mono font-bold">
+                        <span className="px-2 py-0.5 bg-zinc-950/90 text-red-400 border border-red-900/60 text-xs font-mono font-bold">
                           YouTube Video
                         </span>
                       </div>
@@ -282,10 +282,10 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                   {/* Body textuals */}
                   <div className="p-6 space-y-3">
-                    <h3 className="text-xl font-extrabold text-zinc-50 font-display group-hover:text-white transition-colors uppercase leading-none">
+                    <h3 className="text-2xl font-extrabold text-zinc-50 font-display group-hover:text-white transition-colors uppercase leading-none">
                       {project.title}
                     </h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed line-clamp-3 font-light font-sans">
+                    <p className="text-zinc-300 text-base leading-relaxed line-clamp-3 font-normal font-sans">
                       {project.description}
                     </p>
                   </div>
@@ -294,17 +294,17 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                 {/* Footer specs */}
                 <div className="px-6 pb-6 pt-2 space-y-4">
                   {/* Tech stack top row */}
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-1.5">
                     {project.techStack.slice(0, 3).map((tech, idx) => (
                       <span 
                         key={idx} 
-                        className="px-2 py-0.5 bg-zinc-900 text-zinc-400 rounded-none font-mono text-[9px] border border-zinc-800 uppercase tracking-wider"
+                        className="px-2.5 py-1 bg-zinc-900 text-zinc-300 rounded-none font-mono text-xs border border-zinc-800 uppercase tracking-wider"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 3 && (
-                      <span className="px-2 py-0.5 bg-zinc-900 text-zinc-500 rounded-none font-mono text-[9px] border border-zinc-800 uppercase">
+                      <span className="px-2.5 py-1 bg-zinc-900 text-zinc-300 rounded-none font-mono text-xs border border-zinc-800 uppercase">
                         +{project.techStack.length - 3} More
                       </span>
                     )}
@@ -312,7 +312,7 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
                   {/* Action Link Row */}
                   <div className="flex items-center justify-between pt-4 border-t border-zinc-900">
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-100 font-mono flex items-center gap-1.5 font-bold group-hover:text-white transition-colors">
+                    <span className="text-xs uppercase tracking-wider text-zinc-200 font-mono flex items-center gap-1.5 font-bold group-hover:text-white transition-colors">
                       Preview Project Details
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 duration-300 transform" />
                     </span>
@@ -323,7 +323,7 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                           href={project.githubLink}
                           target="_blank"
                           rel="noreferrer"
-                          className="p-2 text-zinc-400 hover:text-white bg-zinc-900 border border-zinc-800 rounded-none transition-colors"
+                          className="p-2 text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 rounded-none transition-colors"
                           title="View Source on GitHub"
                         >
                           <Github className="w-3.5 h-3.5" />
@@ -334,7 +334,7 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                           href={project.liveLink}
                           target="_blank"
                           rel="noreferrer"
-                          className="p-2 text-zinc-400 hover:text-zinc-50 bg-zinc-900 border border-zinc-800 rounded-none transition-colors"
+                          className="p-2 text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 rounded-none transition-colors"
                           title="Open External Demonstration / Video"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />

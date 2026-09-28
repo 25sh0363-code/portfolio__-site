@@ -30,7 +30,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
             className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer ${
               activeSubTab === tab.id
                 ? 'bg-zinc-100 text-zinc-950 font-black'
-                : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
+                : 'text-zinc-300 hover:text-white hover:bg-zinc-900'
             }`}
           >
             {tab.label}
@@ -44,30 +44,30 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
           {/* Key KPI Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">Training Speedup</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Training Speedup</span>
               <span className="text-xl font-black text-emerald-400">1.63×</span>
-              <span className="text-[10px] text-zinc-400 block">+62.5% tok/s</span>
+              <span className="text-[10px] text-zinc-300 block">+62.5% tok/s</span>
             </div>
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">Inference Speedup</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">Inference Speedup</span>
               <span className="text-xl font-black text-cyan-400">1.48×</span>
-              <span className="text-[10px] text-zinc-400 block">190.6 vs 129 tok/s</span>
+              <span className="text-[10px] text-zinc-300 block">190.6 vs 129 tok/s</span>
             </div>
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">GPU VRAM</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">GPU VRAM</span>
               <span className="text-xl font-black text-purple-400">-69.8%</span>
-              <span className="text-[10px] text-zinc-400 block">164.8 vs 545 MB</span>
+              <span className="text-[10px] text-zinc-300 block">164.8 vs 545 MB</span>
             </div>
             <div className="p-3 bg-zinc-900 border border-zinc-800">
-              <span className="text-[10px] text-zinc-500 uppercase block">System RAM</span>
+              <span className="text-[10px] text-zinc-300 uppercase block">System RAM</span>
               <span className="text-xl font-black text-emerald-400">-18.0%</span>
-              <span className="text-[10px] text-zinc-400 block">864.7 vs 1,055 MB</span>
+              <span className="text-[10px] text-zinc-300 block">864.7 vs 1,055 MB</span>
             </div>
           </div>
 
           {/* Central Research Question Box */}
           <div className="p-4 bg-zinc-900/50 border border-zinc-800 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-bold block">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">
               Central Research Question
             </span>
             <p className="text-sm italic font-serif text-zinc-200 leading-relaxed border-l-2 border-zinc-600 pl-3">
@@ -77,7 +77,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
 
           {/* Abstract */}
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Research Abstract
             </h4>
             <p className="text-sm text-zinc-300 leading-relaxed font-light">
@@ -87,32 +87,32 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
 
           {/* Architecture Parameters Matrix */}
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Model Architecture & Shared Pipeline
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono">
               <div className="p-2 bg-zinc-900/60 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Model Type</span>
+                <span className="text-zinc-300 block text-[9px]">Model Type</span>
                 <span className="text-white font-bold">{paperData.architecture.modelType}</span>
               </div>
               <div className="p-2 bg-zinc-900/60 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Context Length</span>
+                <span className="text-zinc-300 block text-[9px]">Context Length</span>
                 <span className="text-white font-bold">{paperData.architecture.contextLength} tokens</span>
               </div>
               <div className="p-2 bg-zinc-900/60 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Vocabulary</span>
+                <span className="text-zinc-300 block text-[9px]">Vocabulary</span>
                 <span className="text-white font-bold">{paperData.architecture.vocabSize.toLocaleString()} (GPT-2 tiktoken)</span>
               </div>
               <div className="p-2 bg-zinc-900/60 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Blocks & Heads</span>
+                <span className="text-zinc-300 block text-[9px]">Blocks & Heads</span>
                 <span className="text-white font-bold">{paperData.architecture.transformerBlocks} Blocks / {paperData.architecture.attentionHeads} Heads</span>
               </div>
               <div className="p-2 bg-zinc-900/60 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Embedding / MLP Width</span>
+                <span className="text-zinc-300 block text-[9px]">Embedding / MLP Width</span>
                 <span className="text-white font-bold">{paperData.architecture.embeddingDim} / {paperData.architecture.mlpHiddenWidth}</span>
               </div>
               <div className="p-2 bg-zinc-900/60 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Weight Tying</span>
+                <span className="text-zinc-300 block text-[9px]">Weight Tying</span>
                 <span className="text-white font-bold">Tied lm_head with token_emb</span>
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
         <div className="space-y-6">
           {/* Table: Training Throughput */}
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Table 6: Training Throughput Comparison (100,000 steps, 819.2M tokens)
             </h4>
             <div className="overflow-x-auto border border-zinc-800">
@@ -143,13 +143,13 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
                     <td className="p-2.5 font-bold text-white">C++ (LibTorch 2.5)</td>
                     <td className="p-2.5 text-emerald-400 font-bold">95,000 – 100,000 tok/s</td>
                     <td className="p-2.5 text-emerald-400 font-bold">1.63× (+62.5%)</td>
-                    <td className="p-2.5 text-zinc-400">FP32</td>
+                    <td className="p-2.5 text-zinc-300">FP32</td>
                   </tr>
                   <tr className="bg-zinc-900/30">
-                    <td className="p-2.5 font-bold text-zinc-400">Python (PyTorch)</td>
+                    <td className="p-2.5 font-bold text-zinc-300">Python (PyTorch)</td>
                     <td className="p-2.5 text-zinc-300">59,000 – 62,000 tok/s</td>
-                    <td className="p-2.5 text-zinc-500">1.0× (Baseline)</td>
-                    <td className="p-2.5 text-zinc-400">AMP + GradScaler</td>
+                    <td className="p-2.5 text-zinc-300">1.0× (Baseline)</td>
+                    <td className="p-2.5 text-zinc-300">AMP + GradScaler</td>
                   </tr>
                 </tbody>
               </table>
@@ -158,7 +158,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
 
           {/* Table: Inference Throughput Across Runs */}
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Table 9 & 10: Autoregressive Inference Throughput Across Runs
             </h4>
             <div className="overflow-x-auto border border-zinc-800">
@@ -187,14 +187,14 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
                     <td className="p-2.5 font-bold text-cyan-400">1.48× (Median)</td>
                   </tr>
                   <tr className="bg-zinc-900/30">
-                    <td className="p-2.5 font-bold text-zinc-400">Total Time</td>
+                    <td className="p-2.5 font-bold text-zinc-300">Total Time</td>
                     <td className="p-2.5">0.666 s</td>
                     <td className="p-2.5">0.666 s</td>
                     <td className="p-2.5">0.659 s</td>
                     <td className="p-2.5">0.610 s</td>
                     <td className="p-2.5">0.620 s</td>
                     <td className="p-2.5">0.610 s</td>
-                    <td className="p-2.5 text-zinc-500">Output length dependent</td>
+                    <td className="p-2.5 text-zinc-300">Output length dependent</td>
                   </tr>
                 </tbody>
               </table>
@@ -203,7 +203,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
 
           {/* Table: Memory Footprint */}
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Table 11 & 12: Inference Memory Reduction (Median)
             </h4>
             <div className="overflow-x-auto border border-zinc-800">
@@ -239,16 +239,16 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
 
           {/* Validation Loss Convergence */}
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Validation Loss Convergence (Every 10k Steps)
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs font-mono">
               {paperData.benchmarks.validationLoss.map((entry) => (
                 <div key={entry.step} className="p-2 bg-zinc-900/40 border border-zinc-850">
-                  <span className="text-[9px] text-zinc-500 block">Step {entry.step.toLocaleString()}</span>
+                  <span className="text-[9px] text-zinc-300 block">Step {entry.step.toLocaleString()}</span>
                   <div className="flex justify-between items-center text-xs mt-1">
-                    <span className="text-zinc-400">Py: <strong className="text-white">{entry.python.toFixed(4)}</strong></span>
-                    <span className="text-zinc-400">C++: <strong className="text-emerald-400">{entry.cpp.toFixed(4)}</strong></span>
+                    <span className="text-zinc-300">Py: <strong className="text-white">{entry.python.toFixed(4)}</strong></span>
+                    <span className="text-zinc-300">C++: <strong className="text-emerald-400">{entry.cpp.toFixed(4)}</strong></span>
                   </div>
                 </div>
               ))}
@@ -261,7 +261,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
       {activeSubTab === 'samples' && (
         <div className="space-y-6">
           <div className="p-3 bg-zinc-900/60 border border-zinc-800">
-            <span className="text-[9px] font-mono text-zinc-500 uppercase block mb-1">Benchmark Prompt</span>
+            <span className="text-[9px] font-mono text-zinc-300 uppercase block mb-1">Benchmark Prompt</span>
             <span className="text-sm font-serif italic text-white font-bold">
               "{paperData.qualitative.prompt}"
             </span>
@@ -275,7 +275,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
                   <span className="text-xs font-mono font-bold text-emerald-400 uppercase">
                     C++ / LibTorch Output
                   </span>
-                  <span className="text-[10px] font-mono text-zinc-400">
+                  <span className="text-[10px] font-mono text-zinc-300">
                     190.6 tok/s · 164.8 MB VRAM
                   </span>
                 </div>
@@ -283,7 +283,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
                   "{paperData.qualitative.cpp.output}"
                 </p>
               </div>
-              <div className="pt-3 border-t border-zinc-850/80 flex justify-between text-[10px] font-mono text-zinc-500">
+              <div className="pt-3 border-t border-zinc-850/80 flex justify-between text-[10px] font-mono text-zinc-300">
                 <span>Tokens: {paperData.qualitative.cpp.tokens}</span>
                 <span>Time: {paperData.qualitative.cpp.time}s</span>
                 <span>RAM: {paperData.qualitative.cpp.ram} MB</span>
@@ -297,7 +297,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
                   <span className="text-xs font-mono font-bold text-zinc-300 uppercase">
                     Python / PyTorch Output
                   </span>
-                  <span className="text-[10px] font-mono text-zinc-400">
+                  <span className="text-[10px] font-mono text-zinc-300">
                     129.1 tok/s · 545.7 MB VRAM
                   </span>
                 </div>
@@ -305,7 +305,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
                   "{paperData.qualitative.python.output}"
                 </p>
               </div>
-              <div className="pt-3 border-t border-zinc-850/80 flex justify-between text-[10px] font-mono text-zinc-500">
+              <div className="pt-3 border-t border-zinc-850/80 flex justify-between text-[10px] font-mono text-zinc-300">
                 <span>Tokens: {paperData.qualitative.python.tokens}</span>
                 <span>Time: {paperData.qualitative.python.time}s</span>
                 <span>RAM: {paperData.qualitative.python.ram} MB</span>
@@ -323,7 +323,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
               <span className="text-xs font-mono font-bold text-white block">
                 Official 17-Page Research Paper PDF
               </span>
-              <span className="text-[10px] text-zinc-400 block font-mono">
+              <span className="text-[10px] text-zinc-300 block font-mono">
                 Om Suraj Kashikar · Grade 12, Silver Oaks International School
               </span>
             </div>
@@ -359,7 +359,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
             />
           </div>
 
-          <p className="text-[10px] font-mono text-zinc-500 text-center">
+          <p className="text-[10px] font-mono text-zinc-300 text-center">
             Contains all 17 pages, 18 tables, vector loss curves, architecture block diagrams, and hardware specifications.
           </p>
         </div>
@@ -370,32 +370,32 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
         <div className="space-y-6">
           {/* Hardware Specs */}
           <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Experimental Hardware & Runtime Stack
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono">
               <div className="p-2 bg-zinc-900 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">GPU</span>
+                <span className="text-zinc-300 block text-[9px]">GPU</span>
                 <span className="text-white font-bold">{paperData.hardware.gpu}</span>
               </div>
               <div className="p-2 bg-zinc-900 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">CUDA / Driver</span>
+                <span className="text-zinc-300 block text-[9px]">CUDA / Driver</span>
                 <span className="text-white font-bold">{paperData.hardware.cuda} / {paperData.hardware.driver}</span>
               </div>
               <div className="p-2 bg-zinc-900 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Python / PyTorch</span>
+                <span className="text-zinc-300 block text-[9px]">Python / PyTorch</span>
                 <span className="text-white font-bold">{paperData.hardware.pythonVersion} / {paperData.hardware.pyTorchVersion}</span>
               </div>
               <div className="p-2 bg-zinc-900 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">LibTorch / Compiler</span>
+                <span className="text-zinc-300 block text-[9px]">LibTorch / Compiler</span>
                 <span className="text-white font-bold">LibTorch {paperData.hardware.libTorchVersion} (GCC 11.4)</span>
               </div>
               <div className="p-2 bg-zinc-900 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Build System</span>
+                <span className="text-zinc-300 block text-[9px]">Build System</span>
                 <span className="text-white font-bold">CMake 3.18</span>
               </div>
               <div className="p-2 bg-zinc-900 border border-zinc-850">
-                <span className="text-zinc-500 block text-[9px]">Cloud Compute</span>
+                <span className="text-zinc-300 block text-[9px]">Cloud Compute</span>
                 <span className="text-white font-bold">{paperData.hardware.cloudProvider}</span>
               </div>
             </div>
@@ -403,7 +403,7 @@ export default function NativeCppModalContent({ paperData }: NativeCppModalConte
 
           {/* Reproduction Commands */}
           <div className="space-y-3">
-            <h4 className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+            <h4 className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
               Appendix C: Reproduction Commands
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

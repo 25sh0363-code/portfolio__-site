@@ -8,6 +8,13 @@
   --font-display: "Syne", "Inter", sans-serif;
 }
 
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #d4d4d8;
+  background-color: #09090b;
+}
+
 /* Custom Web Scrollbar Layout matching Zinc Theme */
 ::-webkit-scrollbar {
   width: 6px;

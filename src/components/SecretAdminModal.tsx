@@ -156,7 +156,7 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
 
             <button
               onClick={onClose}
-              className="p-1 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              className="p-1 text-zinc-300 hover:text-white transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -166,25 +166,25 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
             /* Passcode Verification Screen */
             <div className="p-8 space-y-6">
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 uppercase tracking-widest font-bold">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-300 uppercase tracking-widest font-bold">
                   <Lock className="w-3.5 h-3.5 text-zinc-100" />
                   RESTRICTED ADMIN ACCESS
                 </div>
                 <h3 className="text-xl font-bold text-white uppercase tracking-tight font-display">
                   Enter Developer Console Key
                 </h3>
-                <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+                <p className="text-xs text-zinc-300 font-sans leading-relaxed">
                   Provide your secret passcode to decrypt and access the portfolio dispatch log inbox.
                 </p>
               </div>
 
               <form onSubmit={handleAuthSubmit} className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold block">
+                  <label className="text-[10px] text-zinc-300 uppercase tracking-wider font-bold block">
                     Console Key Passcode
                   </label>
                   <div className="relative">
-                    <Key className="w-4 h-4 text-zinc-500 absolute left-3.5 top-3.5" />
+                    <Key className="w-4 h-4 text-zinc-300 absolute left-3.5 top-3.5" />
                     <input
                       type="password"
                       autoFocus
@@ -204,7 +204,7 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
                 )}
 
                 <div className="flex items-center justify-between pt-2">
-                  <span className="text-[10px] text-zinc-600 uppercase">
+                  <span className="text-[10px] text-zinc-300 uppercase">
                     Hint: "omi123"
                   </span>
 
@@ -231,7 +231,7 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
                     <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                       Portfolio Dispatch Inbox ({messages.length})
                     </h4>
-                    <p className="text-[10px] text-zinc-500">
+                    <p className="text-[10px] text-zinc-300">
                       Connected Endpoint: script.google.com/macros/s/AKfycbz...
                     </p>
                   </div>
@@ -249,7 +249,7 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
 
                   <button
                     onClick={() => setIsAuthenticated(false)}
-                    className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white text-xs font-bold uppercase transition-colors border border-zinc-800 cursor-pointer"
+                    className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs font-bold uppercase transition-colors border border-zinc-800 cursor-pointer"
                   >
                     Lock Console
                   </button>
@@ -258,7 +258,7 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
 
               {/* Search input */}
               <div className="relative">
-                <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-3" />
+                <Search className="w-4 h-4 text-zinc-300 absolute left-3.5 top-3" />
                 <input
                   type="text"
                   value={searchQuery}
@@ -273,10 +273,10 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
                 {filteredMessages.length === 0 ? (
                   <div className="p-12 text-center bg-zinc-900/30 border border-zinc-850 space-y-2">
                     <Mail className="w-8 h-8 text-zinc-700 mx-auto" />
-                    <p className="text-xs text-zinc-400 uppercase tracking-widest font-bold">
+                    <p className="text-xs text-zinc-300 uppercase tracking-widest font-bold">
                       {messages.length === 0 ? 'No Dispatches Logged Yet' : 'No Messages Match Filter'}
                     </p>
-                    <p className="text-[11px] text-zinc-600 font-sans max-w-sm mx-auto">
+                    <p className="text-[11px] text-zinc-300 font-sans max-w-sm mx-auto">
                       Form submissions through the Contact Station will be recorded here and posted directly to your Google Sheet.
                     </p>
                   </div>
@@ -291,11 +291,11 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
                           <span className="text-xs font-bold text-white uppercase block">
                             {msg.name}
                           </span>
-                          <span className="text-[11px] text-zinc-400 flex items-center gap-2">
+                          <span className="text-[11px] text-zinc-300 flex items-center gap-2">
                             {msg.email}
                             <button
                               onClick={() => handleCopyEmail(msg.email)}
-                              className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                              className="text-zinc-300 hover:text-white transition-colors cursor-pointer"
                               title="Copy Email"
                             >
                               {copiedEmail === msg.email ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
@@ -304,13 +304,13 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <span className="text-[10px] text-zinc-500 bg-zinc-900 px-2 py-1 border border-zinc-850">
+                          <span className="text-[10px] text-zinc-300 bg-zinc-900 px-2 py-1 border border-zinc-850">
                             {new Date(msg.timestamp).toLocaleString()}
                           </span>
 
                           <button
                             onClick={() => handleDeleteMessage(idx)}
-                            className="p-1 text-zinc-600 hover:text-red-400 transition-colors cursor-pointer"
+                            className="p-1 text-zinc-300 hover:text-red-400 transition-colors cursor-pointer"
                             title="Delete entry"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -319,7 +319,7 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
                       </div>
 
                       <div className="space-y-1">
-                        <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider block">
+                        <span className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider block">
                           Subject: {msg.subject}
                         </span>
                         <p className="text-xs text-zinc-300 font-sans leading-relaxed whitespace-pre-wrap bg-zinc-900/40 p-3 border border-zinc-900">
@@ -335,7 +335,7 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
                 <div className="pt-2 flex justify-end">
                   <button
                     onClick={handleClearAll}
-                    className="text-[10px] text-zinc-500 hover:text-red-400 uppercase tracking-widest transition-colors cursor-pointer"
+                    className="text-[10px] text-zinc-300 hover:text-red-400 uppercase tracking-widest transition-colors cursor-pointer"
                   >
                     Clear All Cache Logs
                   </button>
@@ -346,9 +346,9 @@ export default function SecretAdminModal({ isOpen, onClose }: SecretAdminModalPr
           )}
 
           {/* Footer Bar */}
-          <div className="p-4 bg-zinc-900/80 border-t border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px] text-zinc-500 font-mono">
+          <div className="p-4 bg-zinc-900/80 border-t border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px] text-zinc-300 font-mono">
             <span>OM_SURAJ_KASHIKAR :: ADMIN_CONSOLE</span>
-            <span className="text-zinc-400">Why Apps Script over Supabase? Because Supabase databases sleep after 7 days of inactivity! 😴</span>
+            <span className="text-zinc-300">Why Apps Script over Supabase? Because Supabase databases sleep after 7 days of inactivity! 😴</span>
           </div>
 
         </motion.div>

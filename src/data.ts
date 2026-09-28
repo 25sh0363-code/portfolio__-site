@@ -1406,7 +1406,7 @@ export const PROJECTS: Project[] = [
       "12 Committee Chambers: Full dossiers, agendas, matrix allocations, and downloadable background guides",
       "Interactive Resources: Rules of Procedure (ROP), Position Paper writing guidelines, and Delegate Handbooks"
     ],
-    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1200&auto=format&fit=crop",
+    image: "somun/somun-shot-1.png",
     somunDetails: SOMUN_DATA
   },
   {
@@ -1427,7 +1427,7 @@ export const PROJECTS: Project[] = [
       "Results Leaderboard with subject rankings (Physics, Chemistry, Math) and cloud sync",
       "YouTube video demo and 6 interactive mobile screen walkthroughs"
     ],
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+    image: "sinovate/sinovate-shot-1.jpg",
     sinovateDetails: SINOVATE_DATA
   },
   {
@@ -1507,7 +1507,7 @@ export const PROJECTS: Project[] = [
       "Dedicated mobile-first gate control app scanning and verifying tickets in less than 300ms",
       "Automatic HTML confirmation pass sender executing via transactional Gmail API triggers"
     ],
-    image: "tedx/Screenshot 2026-09-23 at 1.44.10 AM.png",
+    image: "tedx/tedx-shot-1.png",
     tedxDetails: TEDX_DATA
   },
   {
@@ -1527,7 +1527,7 @@ export const PROJECTS: Project[] = [
       "Multi-factor Disease Risk Calculator analyzing age, geography, symptoms, and vaccination status",
       "Live Medical News Aggregator via feedparser Google News RSS and gTTS audio narration"
     ],
-    image: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?q=80&w=1200&auto=format&fit=crop",
+    image: "images/disease_tracker_preview.jpg",
     diseaseTrackerDetails: GLOBAL_DISEASE_TRACKER_DATA
   },
   {
@@ -1616,7 +1616,48 @@ export const RESUME: ResumeItem[] = [
     highlights: [
       "Engineered and deployed the official production web application & registration platform for SOMUN '26 (October 30 – November 1, 2026 at Bowrampet Campus)",
       "Architected 12 committee dossiers (DISEC, UNHRC, AIPPM, MCU, IP, etc.) and an interactive 4-step registration portal for delegates and school delegations",
-      "Built dynamic UPI payment gateway reconciliation with automated reference code generation, receipt verification, and scannable QR delegate check-in passes"
+      "Built dynamic UPI payment gateway reconciliation with automated reference code generation, receipt verification, and scannable QR delegate check-in passes",
+      "Created real-time secretariat financial dashboard tracking 528+ registrations and ₹14.78L+ invoices with automatic verification queues"
+    ],
+    category: "experience"
+  },
+  {
+    id: "exp-sinovate",
+    role: "Creator & Lead Mobile Engineer — SINOVATE School Assistant",
+    organization: "Independent EdTech Project",
+    location: "Hyderabad, India",
+    period: "2025 - 2026",
+    highlights: [
+      "Designed and built an all-in-one Flutter mobile app with FastAPI backend providing RAG-grounded syllabus tutoring for CBSE students",
+      "Implemented FAISS vector embeddings store for rapid context retrieval from senior secondary science textbooks (Physics, Chemistry, Math)",
+      "Engineered Automated Worksheet Studio generating customized practice tests with configurable mark allocations, MCQs, and long-form rubrics",
+      "Built offline-first local state management via SharedPreferences and asynchronous cloud synchronization via Google Apps Script"
+    ],
+    category: "experience"
+  },
+  {
+    id: "exp-ml-projects",
+    role: "Deep Learning Engineer — From-Scratch Transformer Implementations",
+    organization: "Open-Source Neural Network Research",
+    location: "Hyderabad, India",
+    period: "2025 - 2026",
+    highlights: [
+      "Built a complete Sequence-to-Sequence Transformer in pure PyTorch (no high-level nn.Transformer) for English-to-Portuguese translation on Opus Books, training loss down from 7.42 to 3.003",
+      "Implemented custom multi-head self-attention and cross-attention blocks, sinusoidal positional encodings, beam search decoding, and cross-attention heatmap visualizations",
+      "Constructed a 6-layer causal decoder language model with tiktoken GPT-2 BPE tokenization (50,257 vocab) and weight tying, training on NVIDIA Tesla T4 in 36 minutes"
+    ],
+    category: "experience"
+  },
+  {
+    id: "exp-disease-tracker",
+    role: "Lead Developer — Global Disease Tracker Pro",
+    organization: "Healthcare Analytics Platform",
+    location: "Hyderabad, India",
+    period: "2025 - 2026",
+    highlights: [
+      "Engineered an epidemiological intelligence platform analyzing 25 years of health data (2000–2025) across 10 countries and 6 major conditions (156k+ data points across 60 CSVs)",
+      "Implemented Polynomial Regression forecasting models in scikit-learn projecting 30–180 day case curves with 70%+ R² scores and 7-day rolling smoothing",
+      "Integrated Google Gemini 2.0 AI Health Assistant with voice search and Text-to-Speech (gTTS) audio narration for accessible medical queries"
     ],
     category: "experience"
   },

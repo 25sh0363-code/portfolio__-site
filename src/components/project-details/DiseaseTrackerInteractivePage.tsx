@@ -65,7 +65,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
       <div className="border-b border-zinc-850 pb-6 mb-8">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -95,7 +95,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
                 v3.0
               </span>
             </h1>
-            <p className="text-zinc-400 text-sm mt-2 max-w-2xl font-light leading-relaxed">
+            <p className="text-zinc-300 text-sm mt-2 max-w-2xl font-light leading-relaxed">
               An intelligent, interactive public health platform that turns 25 years of complex epidemiological data into clear forecasts, interactive charts, and voice-assisted AI insights.
             </p>
           </div>
@@ -116,27 +116,27 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
       {/* 4 Big Numbers Overview */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10 font-mono">
         <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
-          <span className="text-[10px] text-zinc-500 uppercase tracking-widest block">Time Horizon</span>
+          <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">Time Horizon</span>
           <span className="text-2xl font-black text-rose-400">25 Years</span>
-          <span className="text-[10px] text-zinc-400 block font-sans">2000 to 2025 Historicals</span>
+          <span className="text-[10px] text-zinc-300 block font-sans">2000 to 2025 Historicals</span>
         </div>
 
         <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
-          <span className="text-[10px] text-zinc-500 uppercase tracking-widest block">Global Footprint</span>
+          <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">Global Footprint</span>
           <span className="text-2xl font-black text-cyan-400">10 Nations</span>
-          <span className="text-[10px] text-zinc-400 block font-sans">Across 6 Major Diseases</span>
+          <span className="text-[10px] text-zinc-300 block font-sans">Across 6 Major Diseases</span>
         </div>
 
         <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
-          <span className="text-[10px] text-zinc-500 uppercase tracking-widest block">Dataset Size</span>
+          <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">Dataset Size</span>
           <span className="text-2xl font-black text-purple-400">156k+</span>
-          <span className="text-[10px] text-zinc-400 block font-sans">60 Clean CSV Datasets</span>
+          <span className="text-[10px] text-zinc-300 block font-sans">60 Clean CSV Datasets</span>
         </div>
 
         <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
-          <span className="text-[10px] text-zinc-500 uppercase tracking-widest block">ML Forecasts</span>
+          <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">ML Forecasts</span>
           <span className="text-2xl font-black text-emerald-400">70%+ R²</span>
-          <span className="text-[10px] text-zinc-400 block font-sans">30 to 180-Day Predictions</span>
+          <span className="text-[10px] text-zinc-300 block font-sans">30 to 180-Day Predictions</span>
         </div>
       </div>
 
@@ -151,7 +151,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
               What Makes Global Disease Tracker Pro Special?
             </h2>
           </div>
-          <span className="text-xs font-mono text-zinc-400">Click a feature below to explore</span>
+          <span className="text-xs font-mono text-zinc-300">Click a feature below to explore</span>
         </div>
 
         {/* Feature Pills */}
@@ -166,12 +166,12 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
                 className={`p-3 text-left border transition-all cursor-pointer flex flex-col justify-between ${
                   isSelected
                     ? 'bg-zinc-900 border-rose-500/80 ring-1 ring-rose-500/40 text-white'
-                    : 'bg-zinc-950 border-zinc-850 hover:border-zinc-700 text-zinc-400'
+                    : 'bg-zinc-950 border-zinc-850 hover:border-zinc-700 text-zinc-300'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <Icon className={`w-4 h-4 ${isSelected ? 'text-rose-400' : 'text-zinc-500'}`} />
-                  <span className="text-[9px] font-mono text-zinc-500">0{idx + 1}</span>
+                  <Icon className={`w-4 h-4 ${isSelected ? 'text-rose-400' : 'text-zinc-300'}`} />
+                  <span className="text-[9px] font-mono text-zinc-300">0{idx + 1}</span>
                 </div>
                 <span className="text-xs font-bold font-sans line-clamp-2">
                   {item.badge}
@@ -201,7 +201,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
                     </h3>
                   </div>
                 </div>
-                <span className="text-xs font-mono text-zinc-400 italic">
+                <span className="text-xs font-mono text-zinc-300 italic">
                   "{current.tagline}"
                 </span>
               </div>
@@ -214,7 +214,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
                 <span className="text-amber-400 text-base">💡</span>
                 <div>
                   <strong className="text-white font-mono uppercase text-[10px] block mb-0.5">Behind The Scenes:</strong>
-                  <p className="text-zinc-400 font-light leading-relaxed">{current.funFact}</p>
+                  <p className="text-zinc-300 font-light leading-relaxed">{current.funFact}</p>
                 </div>
               </div>
             </div>
@@ -233,7 +233,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
               Diseases & Global Coverage
             </h3>
           </div>
-          <span className="text-xs font-mono text-zinc-400">60 Unique CSV Datasets</span>
+          <span className="text-xs font-mono text-zinc-300">60 Unique CSV Datasets</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -248,7 +248,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
                 </span>
               ))}
             </div>
-            <p className="text-[11px] text-zinc-400 font-light pt-1 leading-relaxed">
+            <p className="text-[11px] text-zinc-300 font-light pt-1 leading-relaxed">
               Spans viral pandemics (COVID-19), infectious respiratory diseases (Tuberculosis), chronic metabolic conditions (Diabetes), immunology (HIV/AIDS), oncology (Colon Cancer), and neurodegenerative disorders (Alzheimer's).
             </p>
           </div>
@@ -264,7 +264,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
                 </span>
               ))}
             </div>
-            <p className="text-[11px] text-zinc-400 font-light pt-1 leading-relaxed">
+            <p className="text-[11px] text-zinc-300 font-light pt-1 leading-relaxed">
               Covers diverse geographic regions across North America, Europe, Asia, and Oceania with varied healthcare systems and diagnostic reporting densities.
             </p>
           </div>
@@ -297,20 +297,20 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
         {/* 3 Step Run Guide */}
         <div className="space-y-3 font-mono text-xs">
           <div className="p-3.5 bg-zinc-950 border border-zinc-850 space-y-1">
-            <span className="text-zinc-500 uppercase text-[10px] block">1. Clone & Set Up Virtual Environment:</span>
+            <span className="text-zinc-300 uppercase text-[10px] block">1. Clone & Set Up Virtual Environment:</span>
             <div className="text-emerald-400">git clone https://github.com/25sh0363-code/project-board.git</div>
             <div className="text-emerald-400">cd project-board && python -m venv .venv && source .venv/bin/activate</div>
           </div>
 
           <div className="p-3.5 bg-zinc-950 border border-zinc-850 space-y-1">
-            <span className="text-zinc-500 uppercase text-[10px] block">2. Install Dependencies:</span>
+            <span className="text-zinc-300 uppercase text-[10px] block">2. Install Dependencies:</span>
             <div className="text-emerald-400">pip install -r requirements.txt</div>
           </div>
 
           <div className="p-3.5 bg-zinc-950 border border-zinc-850 space-y-1">
-            <span className="text-zinc-500 uppercase text-[10px] block">3. Launch Streamlit:</span>
+            <span className="text-zinc-300 uppercase text-[10px] block">3. Launch Streamlit:</span>
             <div className="text-emerald-400">streamlit run app.py</div>
-            <span className="text-zinc-500 text-[10px] block font-sans pt-1">Opens locally at http://localhost:8501</span>
+            <span className="text-zinc-300 text-[10px] block font-sans pt-1">Opens locally at http://localhost:8501</span>
           </div>
         </div>
       </div>
