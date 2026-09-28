@@ -17,46 +17,39 @@ export const HERO_BIO = {
 
 export const PERSONAL_INTERESTS_AND_VISION = [
   {
-    id: "football-barca",
-    title: "Football & FC Barcelona",
-    badge: "Life & Sports",
-    icon: "Activity",
-    description: "Huge football enthusiast—I love both playing on the pitch and watching games. Passionate FC Barcelona supporter (Visca el Barça! 🔵🔴) fascinated by tactical positioning, flow, and team synergy."
-  },
-  {
-    id: "karpathy-first-principles",
-    title: "Following Andrej Karpathy & First Principles",
-    badge: "Inspiration & Learning",
+    id: "neural-nets-from-scratch",
+    title: "Neural Networks from Scratch",
+    badge: "First Principles",
     icon: "Code",
-    description: "I have been following Andrej Karpathy for quite a while, eagerly watching his lectures and interviews. I love building from scratch (like micrograd and nanoGPT) to develop deep fundamental intuition."
+    description: "Building models from the ground up (inspired by Andrej Karpathy's lectures) to develop intuition for backpropagation, attention heads, and training dynamics."
   },
   {
     id: "embedded-ai",
-    title: "Embedded Systems with AI & Hardware Efficiency",
-    badge: "Hardware & Edge",
+    title: "Embedded Systems & Edge AI",
+    badge: "Hardware",
     icon: "Cpu",
-    description: "Fascinated by embedded systems with AI and its future: squeezing high efficiency out of small, compact hardware for real commercial use so intelligence is accessible, private, and portable."
+    description: "Exploring model quantization and inference efficiency on compact hardware, aiming to run useful intelligence on resource-constrained devices."
   },
   {
-    id: "experimentation-data",
-    title: "Model Tinkering & Finding Data Patterns",
-    badge: "Curiosity & Experiments",
+    id: "benchmarks-systems",
+    title: "Systems Benchmarking",
+    badge: "Systems",
     icon: "Layers",
-    description: "I love messing around with different models, stress-testing how they perform under my own benchmark tests, collecting interesting data, and writing algorithms to discover hidden patterns."
+    description: "Evaluating training throughput and inference latency across environments—such as measuring native C++ LibTorch against PyTorch on dedicated GPUs."
   },
   {
-    id: "agi-companion-vision",
-    title: "Building an AI Companion & The Road to AGI",
-    badge: "Dream & Horizon",
-    icon: "Sparkles",
-    description: "I love the idea of having an AI companion. All my projects and experiments are stepping stones toward building my own AI, contributing to better architectures, and witnessing the evolution of AGI."
-  },
-  {
-    id: "student-builder",
-    title: "Student at Silver Oaks & Building in Public",
-    badge: "Background",
+    id: "applied-tools",
+    title: "Full-Stack Tools & Infrastructure",
+    badge: "Development",
     icon: "Compass",
-    description: "Balancing Grade 12 academics (PCM-CS) in Hyderabad with technical clubs, Model UN organizing, hackathons, and relentless late-night prototyping."
+    description: "Designing real tools for schools and conferences, including event check-in systems with fast QR scanning and web engines for Model UN."
+  },
+  {
+    id: "football",
+    title: "Football & Tactics",
+    badge: "Interests",
+    icon: "Activity",
+    description: "Playing on the pitch, following matches, and analyzing FC Barcelona's positional play and tactical structures."
   }
 ];
 
