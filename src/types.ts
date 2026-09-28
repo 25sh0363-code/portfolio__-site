@@ -435,6 +435,87 @@ export interface JevSnakeDetails {
   }[];
 }
 
+export interface PersonalInterestItem {
+  id: string;
+  title: string;
+  badge: string;
+  icon: string;
+  description: string;
+  popup: {
+    headline: string;
+    subheadline?: string;
+    paragraphs: string[];
+    keyTakeaways?: string[];
+    linkedProjects?: {
+      title: string;
+      projectId: string;
+      summary: string;
+      tag: string;
+      githubUrl?: string;
+      liveUrl?: string;
+    }[];
+    mediaSlot?: {
+      title: string;
+      status: string;
+      description: string;
+      videoUrl?: string;
+      videoEmbedUrl?: string;
+      thumbnailUrl?: string;
+    };
+  };
+}
+
+export interface IvyTutorDetails {
+  hardware: {
+    microcontroller: string;
+    firmware: string;
+    backend: string;
+    display: string;
+  };
+  features: string[];
+  vision: string;
+  videoUrl?: string;
+  videoEmbedUrl?: string;
+  videoPlaceholderNotice?: string;
+}
+
+export interface CareerLabScreenshot {
+  id: string;
+  title: string;
+  caption: string;
+  imagePath: string;
+}
+
+export interface CareerLabDetails {
+  liveUrl: string;
+  githubRepo: string;
+  tagline: string;
+  overview: string;
+  institutionalScope: string;
+  authSecurity: {
+    restrictionDomain: string;
+    description: string;
+  };
+  backendStack: {
+    engine: string;
+    edgeFunctions: string;
+    database: string;
+    auth: string;
+  };
+  keyFeatures: {
+    title: string;
+    description: string;
+    category: 'Student Hub' | 'CareerLab Initiative' | 'Staff & Counsellors' | 'Security & Infrastructure';
+    iconName: string;
+  }[];
+  screenshots: CareerLabScreenshot[];
+  workflowSteps: {
+    step: number;
+    title: string;
+    description: string;
+  }[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -455,6 +536,8 @@ export interface Project {
   somunDetails?: SomunDetails;
   tedxDetails?: TedxDetails;
   jevSnakeDetails?: JevSnakeDetails;
+  careerLabDetails?: CareerLabDetails;
+  ivyTutorDetails?: IvyTutorDetails;
 }
 
 export interface Certificate {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   X, ExternalLink, Github, ArrowRight, Sparkles, BookOpen, Activity, 
-  Cpu, Layers, CheckCircle2, Terminal, Play, HardDrive, Zap, Smartphone, QrCode
+  Cpu, Layers, CheckCircle2, Terminal, Play, HardDrive, Zap, Smartphone, QrCode, Building2
 } from 'lucide-react';
 import { Project } from '../types';
 
@@ -45,6 +45,16 @@ export default function ProjectPreviewModal({
               {project.isResearchPaper && (
                 <span className="px-2 py-0.5 bg-zinc-100 text-zinc-950 text-[9px] font-mono font-black uppercase tracking-wider flex items-center gap-1">
                   <BookOpen className="w-3 h-3" /> Original Research
+                </span>
+              )}
+              {project.careerLabDetails && (
+                <span className="px-2 py-0.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1">
+                  <Building2 className="w-3 h-3" /> Multi-Campus Platform
+                </span>
+              )}
+              {project.ivyTutorDetails && (
+                <span className="px-2 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-500/40 text-[9px] font-mono font-bold uppercase tracking-wider flex items-center gap-1">
+                  <Cpu className="w-3 h-3" /> ESP32-S3 Hardware Tutor
                 </span>
               )}
               {project.translationDetails && (

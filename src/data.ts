@@ -1,4 +1,4 @@
-import { Project, ResumeItem, Recommendation, SkillCategory, ResearchPaperData, Seq2SeqTranslationDetails, CharLevelBigramDetails, SinovateDetails, DiseaseTrackerDetails, SomunDetails, TedxDetails, JevSnakeDetails, Certificate } from './types';
+import { Project, ResumeItem, Recommendation, SkillCategory, ResearchPaperData, Seq2SeqTranslationDetails, CharLevelBigramDetails, SinovateDetails, DiseaseTrackerDetails, SomunDetails, TedxDetails, JevSnakeDetails, Certificate, CareerLabDetails, PersonalInterestItem, IvyTutorDetails } from './types';
 
 export const HERO_BIO = {
   name: "Om Suraj Kashikar",
@@ -7,7 +7,7 @@ export const HERO_BIO = {
   school: "Silver Oaks International School (Mighty Oaks Campus), Hyderabad",
   tagline: "Exploring AI advancements, embedded hardware efficiency, first-principles tinkering, and building an intelligent companion.",
   detailedBio: "Hey, I'm Om Suraj Kashikar! I'm a Grade 12 student at Silver Oaks (Mighty Oaks Campus) in Hyderabad who loves exploring everything in AI. Whether I'm playing or watching football (proud FC Barcelona supporter 🔵🔴), tuning into Andrej Karpathy's lectures and interviews, or experimenting with neural networks, I'm always driven by curiosity. I love messing around with different models, testing how they perform under my own custom tests, collecting data, and using algorithms to uncover hidden patterns. I'm fascinated by embedded systems and making AI compact and efficient on small hardware for everyday commercial use so it's accessible to everyone. Every project I tackle brings me one step closer to building my own AI companion, contributing toward better architectures, and witnessing the evolution of AGI.",
-  avatarPath: "images/om_profile_avatar_1781125089292.png",
+  avatarPath: "images/om_avatar_profile.jpeg",
   socials: {
     github: "https://github.com/25sh0363-code",
     instagram: "https://www.instagram.com/omi_thenoob/",
@@ -15,48 +15,209 @@ export const HERO_BIO = {
   }
 };
 
-export const PERSONAL_INTERESTS_AND_VISION = [
+export const PERSONAL_INTERESTS_AND_VISION: PersonalInterestItem[] = [
   {
     id: "football-barca",
     title: "Football & FC Barcelona",
     badge: "Life & Sports",
     icon: "Activity",
-    description: "Huge football enthusiast—I love both playing on the pitch and watching games. Passionate FC Barcelona supporter (Visca el Barça! 🔵🔴) fascinated by tactical positioning, flow, and team synergy."
+    description: "Deep love for football sparked by my dad, idolizing Leo Messi, and passionately supporting FC Barcelona 🔵🔴.",
+    popup: {
+      headline: "The Beautiful Game: Passion Inherited, Messi's Genius & Barca's Philosophy",
+      subheadline: "How football shapes my mindset, strategic thinking, and resilience",
+      paragraphs: [
+        "Football has been an integral part of my life for as long as I can remember. My love for the game wasn't just accidental—it was deeply sparked and nurtured by the passion passed down to me by my dad, paired with my own natural, instinctive love for being on the pitch and analyzing matches.",
+        "I deeply idolize Lionel Messi—not just for his unmatched technical brilliance and vision, but for his humility, composure under immense pressure, and magical spatial awareness. The way he sees spaces before they open up and dictates tempo is sheer art.",
+        "As a proud and passionate FC Barcelona supporter (Visca el Barça! 🔵🔴), I am fascinated by tactical positioning, flow, triangular passing sequences, and team synergy. Football has taught me vital life lessons: staying calm when trailing, communicating with clarity, and executing with relentless perseverance until the final whistle."
+      ],
+      keyTakeaways: [
+        "Passion inherited from my dad and nurtured through competitive play",
+        "Idolizing Lionel Messi for vision, creative flow, and humble mastery",
+        "Die-hard FC Barcelona supporter inspired by positional play (Juego de Posición)",
+        "Translating athletic discipline and teamwork into software engineering & life"
+      ]
+    }
   },
   {
     id: "karpathy-first-principles",
     title: "Following Andrej Karpathy & First Principles",
     badge: "Inspiration & Learning",
     icon: "Code",
-    description: "I have been following Andrej Karpathy for quite a while, eagerly watching his lectures and interviews. I love building from scratch (like micrograd and nanoGPT) to develop deep fundamental intuition."
+    description: "Building neural networks from zero inspired by Andrej Karpathy's lectures and first-principles pedagogy.",
+    popup: {
+      headline: "Deconstructing Deep Learning from Scratch with Andrej Karpathy",
+      subheadline: "From mathematical foundations to building custom bigram language models",
+      paragraphs: [
+        "I have been following Andrej Karpathy for quite a while, eagerly watching his lectures, deep-dive YouTube series ('Neural Networks: Zero to Hero'), and interviews. His unique philosophy—building every single component from scratch without relying on black-box abstractions—fundamentally transformed how I approach machine learning.",
+        "My project on the Basic and Improved Bigram Model directly sprang from one of Karpathy's foundational lectures on language modeling. I began by constructing raw bigram frequency counting matrices with PyTorch tensor operations, and then advanced to training an actual single-layer neural network with gradient descent, cross-entropy loss, and temperature-based text generation.",
+        "Following this first-principles journey gave me deep, intuitive clarity on backpropagation, tensor broadcasting, negative log-likelihood, and how autoregressive generation scales all the way up to state-of-the-art Transformers."
+      ],
+      keyTakeaways: [
+        "Devoted student of Andrej Karpathy's lectures, nanoGPT, and micrograd teachings",
+        "Built character-level bigram neural models directly implementing concepts from his lectures",
+        "Belief in first-principles: write the tensor math before using high-level frameworks"
+      ],
+      linkedProjects: [
+        {
+          title: "Basic & Improved Decoder-Only Language Models",
+          projectId: "char-level-bigram-model",
+          summary: "PyTorch implementation contrasting 27x27 statistical bigram count matrices with a 6-layer causal Transformer trained via cross-entropy loss.",
+          tag: "Directly Inspired by Karpathy",
+          githubUrl: "https://github.com/25sh0363-code/Basic_char_level_bigram_model"
+        },
+        {
+          title: "Encoder-Decoder Transformer (English to Portuguese MT)",
+          projectId: "seq2seq-translation-transformer",
+          summary: "From-scratch PyTorch implementation of Vaswani et al. Transformer (no nn.Transformer) trained on Soikat/opus_books English–Portuguese parallel corpus with cross-attention visualization.",
+          tag: "Seq2Seq Architecture",
+          githubUrl: "https://github.com/25sh0363-code/Encoder-decoder_Translation_model_English-to-Portuguese"
+        }
+      ]
+    }
   },
   {
     id: "embedded-ai",
     title: "Embedded Systems with AI & Hardware Efficiency",
     badge: "Hardware & Edge",
     icon: "Cpu",
-    description: "Fascinated by embedded systems with AI and its future: squeezing high efficiency out of small, compact hardware for real commercial use so intelligence is accessible, private, and portable."
+    description: "Squeezing extreme efficiency out of small microcontrollers and edge silicon for everyday commercial use.",
+    popup: {
+      headline: "High-Efficiency Intelligence on Resource-Constrained Hardware",
+      subheadline: "Merging microcontrollers, C++ systems programming, and edge machine learning",
+      paragraphs: [
+        "I am fascinated by embedded systems with AI and where edge intelligence is headed. While massive cloud clusters are impressive, the real future of ubiquitous technology lies in squeezing high efficiency out of small, compact hardware for everyday commercial and home use—making intelligence instant, private, offline, and affordable for everyone.",
+        "In SINOVATE, I engineered an AI-powered school assistant and tutoring companion featuring RAG-grounded syllabus guidance, automated worksheet generation, and offline-first persistence.",
+        "In my Transformer systems research paper, I took this obsession with hardware efficiency to the compiled systems layer—benchmarking native C++/LibTorch against Python/PyTorch on an RTX 4090 to prove 1.63× training speedups and a 69.8% reduction in GPU VRAM footprint during autoregressive inference."
+      ],
+      keyTakeaways: [
+        "Pushing AI execution down to microcontrollers, ESP32 boards, and local devices",
+        "Focus on commercial viability, reduced power consumption, and offline privacy",
+        "Systems-level optimization spanning C++ LibTorch compilation and edge firmware"
+      ],
+      linkedProjects: [
+        {
+          title: "SINOVATE — School Assistant (AI Tutor App)",
+          projectId: "sinovate-school-assistant",
+          summary: "All-in-one AI study companion and academic tutor with RAG syllabus retrieval, worksheet studio, and offline caching.",
+          tag: "AI Tutor App",
+          githubUrl: "https://github.com/25sh0363-code/CHATBOT_SCHOOL_ASSISTANT_flutter_version",
+          liveUrl: "https://youtu.be/9Ao7hLEgDD8"
+        },
+        {
+          title: "Native C++ vs. Python Transformer Research Paper",
+          projectId: "native-cpp-transformer",
+          summary: "Empirical systems benchmark proving 1.63x training throughput and 69.8% VRAM reduction in native C++.",
+          tag: "Systems & Performance",
+          githubUrl: "https://github.com/25sh0363-code/Native_C-_vs_Python_decoder_only_model"
+        }
+      ]
+    }
   },
   {
     id: "experimentation-data",
     title: "Model Tinkering & Finding Data Patterns",
     badge: "Curiosity & Experiments",
     icon: "Layers",
-    description: "I love messing around with different models, stress-testing how they perform under my own benchmark tests, collecting interesting data, and writing algorithms to discover hidden patterns."
+    description: "Designing custom stress tests, collecting raw metrics, and discovering hidden patterns with algorithms.",
+    popup: {
+      headline: "Hands-On Model Tinkering & Extracting Hidden Data Patterns",
+      subheadline: "Curiosity-driven experimentation with spatial modeling, RL, and custom pipelines",
+      paragraphs: [
+        "I love messing around with different models, stress-testing how they behave under my own custom test suites, collecting real-world data, and writing algorithms to uncover hidden patterns that aren't visible on the surface.",
+        "In the Global Disease Tracker Pro, I designed an interactive healthcare analytics platform tracking 25 years of global health trends across 156,000+ data points with ML polynomial forecasting and Google Gemini AI.",
+        "In JEV Plays Snake, I experimented with Deep Reinforcement Learning (DQN) and genetic algorithms, watching autonomous agents discover emergent pathfinding strategies, food-seeking policies, and self-preservation tactics strictly through reward feedback."
+      ],
+      keyTakeaways: [
+        "Building custom data generation and validation pipelines from scratch",
+        "Exploring non-linear mathematical dynamics and epidemiological modeling",
+        "Experimenting with neuro-evolution and Deep Q-Networks in game environments"
+      ],
+      linkedProjects: [
+        {
+          title: "Global Disease Tracker Pro (Streamlit & ML)",
+          projectId: "global-disease-tracker-pro",
+          summary: "Comprehensive epidemiological analytics platform tracking 6 major diseases across 10 countries with ML polynomial forecasting.",
+          tag: "Mathematical Modeling & ML",
+          githubUrl: "https://github.com/25sh0363-code/project-board"
+        },
+        {
+          title: "JEV Plays Snake (Reinforcement Learning)",
+          projectId: "jev-plays-snake",
+          summary: "Autonomous agent trained using Deep Q-Learning to master spatial navigation and decision-making.",
+          tag: "Reinforcement Learning",
+          githubUrl: "https://github.com/25sh0363-code",
+          liveUrl: "https://youtu.be/YNtjOycLxgU"
+        }
+      ]
+    }
   },
   {
     id: "agi-companion-vision",
-    title: "Building an AI Companion & The Road to AGI",
-    badge: "Dream & Horizon",
+    title: "Building IVY & The Road to Embedded AGI",
+    badge: "AI Companion & Future",
     icon: "Sparkles",
-    description: "I love the idea of having an AI companion. All my projects and experiments are stepping stones toward building my own AI, contributing to better architectures, and witnessing the evolution of AGI."
+    description: "Engineering IVY (an ESP32-S3 AI desk tutor) and exploring ambient AI gadgets and everyday AGI.",
+    popup: {
+      headline: "Project IVY: Engineering an ESP32-S3 AI Desk Tutor & The Horizon of AGI",
+      subheadline: "Physical AI companions, edge conversational hardware, and interactive visual tutoring",
+      paragraphs: [
+        "I have always been deeply inspired by the idea of having an intelligent, physical AI companion on my desk. Rather than keeping AI trapped behind a browser tab, I am building IVY—a dedicated AI desk tutor engineered around the ESP32-S3 N16R8 microcontroller.",
+        "IVY utilizes the custom Xiaozhi voice firmware for ultra-fast, low-latency conversational queries, seamlessly paired with a Supabase cloud backend to fetch, generate, and display step-by-step mathematical solutions and interactive diagrams directly onto the physical screen.",
+        "I am endlessly curious about the future—a world where everyday physical gadgets are infused with compact, efficient intelligence, and where our projects serve as stepping stones toward witnessing and shaping the reality of Artificial General Intelligence (AGI)."
+      ],
+      keyTakeaways: [
+        "Custom hardware tutor built on ESP32-S3 N16R8 microcontroller",
+        "Powered by Xiaozhi voice firmware for natural, fast audio conversations",
+        "Integrated with Supabase backend to stream dynamic diagrams and visual lessons to screen",
+        "Passionate vision for consumer edge gadgets, personal companions, and the emergence of AGI"
+      ],
+      mediaSlot: {
+        title: "IVY Hardware Demonstration Video",
+        status: "Live YouTube Showcase",
+        description: "Watch IVY operating live on the ESP32-S3 microcontroller with Xiaozhi firmware and on-screen responses.",
+        videoUrl: "https://www.youtube.com/shorts/Qoeog1TC1S4",
+        videoEmbedUrl: "https://www.youtube.com/embed/Qoeog1TC1S4",
+        thumbnailUrl: "images/ivy_ai_tutor_desk_1790601058369.jpg"
+      },
+      linkedProjects: [
+        {
+          title: "IVY — ESP32-S3 Edge AI Desk Tutor",
+          projectId: "ivy-ai-tutor",
+          summary: "Physical AI desk companion powered by ESP32-S3 N16R8, Xiaozhi firmware, and Supabase diagram engine.",
+          tag: "Flagship Hardware Tutor",
+          githubUrl: "https://github.com/25sh0363-code"
+        },
+        {
+          title: "SINOVATE — School Assistant (AI Tutor App)",
+          projectId: "sinovate-school-assistant",
+          summary: "All-in-one AI study companion and academic tutor with RAG syllabus retrieval, worksheet studio, and offline caching.",
+          tag: "AI Tutor App",
+          githubUrl: "https://github.com/25sh0363-code/CHATBOT_SCHOOL_ASSISTANT_flutter_version",
+          liveUrl: "https://youtu.be/9Ao7hLEgDD8"
+        }
+      ]
+    }
   },
   {
     id: "student-builder",
-    title: "Student at Silver Oaks & Building in Public",
-    badge: "Background",
+    title: "Academic Resilience & Overcoming Surgery",
+    badge: "Resilience & Journey",
     icon: "Compass",
-    description: "Balancing Grade 12 academics (PCM-CS) in Hyderabad with technical clubs, Model UN organizing, hackathons, and relentless late-night prototyping."
+    description: "Overcoming health challenges, balancing rigorous Grade 12 PCM-CS academics, and recovering strong for CBSE boards.",
+    popup: {
+      headline: "Perseverance Through Adversity: Overcoming Surgery & Academic Momentum",
+      subheadline: "Balancing Grade 12 PCM-CS, technical innovation, and recovering strong for CBSE boards",
+      paragraphs: [
+        "The journey through high school hasn't been without its hurdles. During Grade 11 and early Grade 12, I underwent a major nose surgery that presented significant physical and breathing difficulties, disrupting regular school attendance and impacting my academic consistency during that period.",
+        "Rather than letting that setback define me, I stayed resilient. Through sheer dedication, I continued pushing forward—balancing the rigorous Grade 12 CBSE (PCM-CS) curriculum while simultaneously authoring deep-learning research papers, engineering multi-campus software (Pathways CareerLab, SOMUN), and building hardware prototypes.",
+        "Today, I have recovered strong, regained full momentum, and am completely focused and energized to deliver a well-improved performance in Grade 12 Term 2 and excel in my upcoming CBSE Board examinations."
+      ],
+      keyTakeaways: [
+        "Navigated and overcame a challenging nose surgery during Grade 11 & early Grade 12",
+        "Maintained relentless focus across demanding PCM-CS academics and software engineering",
+        "Recovering strong with full momentum heading into Grade 12 Term 2 and CBSE Boards"
+      ]
+    }
   }
 ];
 
@@ -1367,7 +1528,136 @@ export const JEV_SNAKE_DATA: JevSnakeDetails = {
   ]
 };
 
+export const CAREER_LAB_DATA: CareerLabDetails = {
+  liveUrl: "https://pathways.silveroaks.co.in",
+  githubRepo: "https://github.com/25sh0363-code/SILVEROAKSCAREERCOUNCIL",
+  tagline: "Official Multi-Campus Career Discovery Platform, CareerLab Expert Interview Repository & Staff Counsellor Management Portal",
+  overview: "CareerLab (Pathways) is the official centralized digital career guidance ecosystem created for students across all campuses of Silver Oaks International School. Developed with TypeScript (TSX) and powered by a Supabase backend utilizing serverless Edge Functions and PostgreSQL, the platform provides career-related courses, curated educational blogs, and career resources. It hosts the flagship CareerLab initiative—a structured program where students interview or spend time with industry experts and record video sessions to publish for the school network. Managed via a dedicated Staff Portal for school career counsellors and faculty, with access strictly restricted to @xxx.silveroaks.co.in organizational email credentials. Hosted live at pathways.silveroaks.co.in.",
+  institutionalScope: "All Silver Oaks International School campuses",
+  authSecurity: {
+    restrictionDomain: "@xxx.silveroaks.co.in",
+    description: "Strict institutional email restriction enforcing domain-level validation. Only authorized Silver Oaks student and faculty credentials can access courses, submit CareerLab interview media, and access counsellor workflows."
+  },
+  backendStack: {
+    engine: "TypeScript & React (TSX) + Vite",
+    edgeFunctions: "Supabase Edge Functions (Serverless Deno/TypeScript runtime)",
+    database: "Supabase Managed PostgreSQL with Row-Level Security (RLS)",
+    auth: "Supabase Auth with institutional domain verification (@xxx.silveroaks.co.in)"
+  },
+  keyFeatures: [
+    {
+      title: "CareerLab Expert Interview Initiative",
+      description: "Dedicated multimedia repository where students interview or spend time with industry professionals and record video insights to publish for the entire school network.",
+      category: "CareerLab Initiative",
+      iconName: "Video"
+    },
+    {
+      title: "Multi-Campus Career Courseware & Resources",
+      description: "Comprehensive library of curated career readiness roadmaps, higher education guides, entrance exam resources, and skill development courses.",
+      category: "Student Hub",
+      iconName: "BookOpen"
+    },
+    {
+      title: "Staff & Career Counsellor Portal",
+      description: "Restricted administrative backend for school career counsellors and faculty to review student interview submissions, publish guidance blogs, and manage career tracks.",
+      category: "Staff & Counsellors",
+      iconName: "Users"
+    },
+    {
+      title: "Domain-Restricted Institutional Security",
+      description: "Secure OAuth/Email authentication locked strictly to Silver Oaks organizational email domain (@xxx.silveroaks.co.in) ensuring student privacy and safe school-wide sharing.",
+      category: "Security & Infrastructure",
+      iconName: "ShieldCheck"
+    },
+    {
+      title: "Supabase Edge Functions & Cloud Persistence",
+      description: "High-performance serverless edge compute for real-time authentication gating, metadata extraction, user profiles, and storage of career content.",
+      category: "Security & Infrastructure",
+      iconName: "Database"
+    },
+    {
+      title: "Curated Career Blogs & Knowledge Base",
+      description: "Dynamic editorial publication feed featuring career articles, university admission insights, student experiences, and counsellor recommendations.",
+      category: "Student Hub",
+      iconName: "FileText"
+    }
+  ],
+  screenshots: [
+    {
+      id: "screen-1",
+      title: "CareerLab Portal & Pathways Hub",
+      caption: "Main student dashboard featuring career tracks, courseware catalogue, and featured CareerLab masterclasses.",
+      imagePath: "career/careerlab_preview_1.png"
+    },
+    {
+      id: "screen-2",
+      title: "CareerLab Expert Interviews & Media Repository",
+      caption: "Interactive archive of student-led expert interviews and professional career discovery recordings.",
+      imagePath: "career/careerlab_preview_2.png"
+    },
+    {
+      id: "screen-3",
+      title: "Courses & Curated Skill Roadmaps",
+      caption: "Structured learning pathways covering emerging disciplines, higher education preparation, and industry fundamentals.",
+      imagePath: "career/careerlab_preview_3.png"
+    },
+    {
+      id: "screen-4",
+      title: "Career Guidance Blogs & Editorial Articles",
+      caption: "Knowledge base featuring student reflections, expert perspectives, and career advice.",
+      imagePath: "career/careerlab_preview_4.png"
+    },
+    {
+      id: "screen-5",
+      title: "Institutional Domain Authentication Screen",
+      caption: "Authentication interface enforcing strict validation for @xxx.silveroaks.co.in institutional email addresses.",
+      imagePath: "career/careerlab_preview_5.png"
+    },
+    {
+      id: "screen-6",
+      title: "Staff & Career Counsellor Admin Portal",
+      caption: "Dedicated portal for career counsellors to review student submissions, manage publications, and organize guidance modules.",
+      imagePath: "career/careerlab_preview_6.png"
+    },
+    {
+      id: "screen-7",
+      title: "Student Profile & Career Milestone Tracker",
+      caption: "Student portal section for tracking completed courses, saved roadmaps, and submitted CareerLab interviews.",
+      imagePath: "career/careerlab_preview_7.png"
+    },
+    {
+      id: "screen-8",
+      title: "Multi-Campus Resource Library & Search",
+      caption: "Searchable directory of career materials, university guides, and counsellor contact directories.",
+      imagePath: "career/careerlab_preview_8.png"
+    }
+  ],
+  workflowSteps: [
+    {
+      step: 1,
+      title: "Domain Verification & Login",
+      description: "Students and faculty authenticate using their official Silver Oaks organizational email (@xxx.silveroaks.co.in) via Supabase Auth."
+    },
+    {
+      step: 2,
+      title: "Course Discovery & Roadmap Exploration",
+      description: "Students explore tailored career streams, access vetted learning materials, and read student & counsellor articles."
+    },
+    {
+      step: 3,
+      title: "CareerLab Expert Interview Recording & Upload",
+      description: "Students connect with industry leaders, record interview discussions, and submit their video masterclass to the platform."
+    },
+    {
+      step: 4,
+      title: "Counsellor Review & Network-Wide Publication",
+      description: "Career counsellors review submissions via the Staff Portal, approve high-impact videos, and broadcast them across all campuses."
+    }
+  ]
+};
+
 export const PROJECTS: Project[] = [
+  // 1. Native C++ vs. Python
   {
     id: "native-cpp-transformer",
     title: "Native C++ vs. Python Decoder-Only Transformer (Research Paper)",
@@ -1389,6 +1679,8 @@ export const PROJECTS: Project[] = [
     isResearchPaper: true,
     paperData: RESEARCH_PAPER_DATA
   },
+
+  // 2. SOMUN '26
   {
     id: "somun-2026",
     title: "SOMUN '26 — Official Web Engine (somunhyd.in)",
@@ -1406,9 +1698,11 @@ export const PROJECTS: Project[] = [
       "12 Committee Chambers: Full dossiers, agendas, matrix allocations, and downloadable background guides",
       "Interactive Resources: Rules of Procedure (ROP), Position Paper writing guidelines, and Delegate Handbooks"
     ],
-    image: "somun/somun-shot-1.png",
+    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1200&auto=format&fit=crop",
     somunDetails: SOMUN_DATA
   },
+
+  // 3. SINOVATE
   {
     id: "sinovate-school-assistant",
     title: "SINOVATE — School Assistant (Flutter & FastAPI)",
@@ -1427,9 +1721,11 @@ export const PROJECTS: Project[] = [
       "Results Leaderboard with subject rankings (Physics, Chemistry, Math) and cloud sync",
       "YouTube video demo and 6 interactive mobile screen walkthroughs"
     ],
-    image: "sinovate/sinovate-shot-1.jpg",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
     sinovateDetails: SINOVATE_DATA
   },
+
+  // 4. Encoder-Decoder Transformer
   {
     id: "seq2seq-translation-transformer",
     title: "Encoder-Decoder Transformer (English to Portuguese MT)",
@@ -1450,6 +1746,8 @@ export const PROJECTS: Project[] = [
     image: "images/seq2seq_translation_1790072936904.jpg",
     translationDetails: SEQ2SEQ_TRANSLATION_DATA
   },
+
+  // 5. Basic and Improved Bigram Model
   {
     id: "char-level-bigram-model",
     title: "Basic & Improved Decoder-Only Language Models",
@@ -1470,6 +1768,8 @@ export const PROJECTS: Project[] = [
     image: "images/char_bigram_transformer_1790072916169.jpg",
     charBigramDetails: CHAR_BIGRAM_DATA
   },
+
+  // 6. JEV Plays Snake
   {
     id: "jev-plays-snake",
     title: "JEV Plays Snake! — Observable AI Decision Loop",
@@ -1490,6 +1790,8 @@ export const PROJECTS: Project[] = [
     image: "images/jev_plays_snake.jpg",
     jevSnakeDetails: JEV_SNAKE_DATA
   },
+
+  // 7. TEDxSilverOaks
   {
     id: "tedx-checkin-system",
     title: "TEDxSilverOaks Onboarding & Live Check-In Ecosystem",
@@ -1507,29 +1809,72 @@ export const PROJECTS: Project[] = [
       "Dedicated mobile-first gate control app scanning and verifying tickets in less than 300ms",
       "Automatic HTML confirmation pass sender executing via transactional Gmail API triggers"
     ],
-    image: "tedx/tedx-shot-1.png",
+    image: "tedx/Screenshot 2026-09-23 at 1.44.10 AM.png",
     tedxDetails: TEDX_DATA
   },
+
+  // 8. IVY
   {
-    id: "global-disease-tracker-pro",
-    title: "Global Disease Tracker Pro (Streamlit & ML)",
-    description: "Comprehensive epidemiological tracking and analytical web app for 6 major diseases across 10 countries (2000–2025) with ML polynomial forecasting and Gemini AI.",
-    longDescription: "Global Disease Tracker Pro is an interactive healthcare analytics platform and epidemiological monitoring suite built with Streamlit, Plotly, Pandas, and scikit-learn. Tracking 25 years of global health trends (2000–2025 across 60 curated country-disease CSV datasets and 156,000+ data points), it features real-time case tracking, dual-country comparative trend analysis, ML-powered Polynomial Regression disease forecasting (30–180 days out with R² accuracy metrics), a context-aware AI Health Assistant powered by Google Gemini 2.0 and NLP pattern matching, a 5-factor clinical risk calculator, live Google News RSS feeds, voice queries, and Text-to-Speech (gTTS) audio narration.",
-    techStack: ["Streamlit", "Plotly", "Python (Pandas/NumPy)", "scikit-learn (Polynomial Regression)", "Google Gemini 2.0", "gTTS", "SpeechRecognition", "Feedparser"],
+    id: "ivy-ai-tutor",
+    title: "IVY — ESP32-S3 Edge AI Desk Tutor & Interactive Companion",
+    description: "An AI desk tutor and intelligent physical companion built on the ESP32-S3 N16R8 microcontroller utilizing Xiaozhi firmware and a Supabase backend to render live diagrams and explanations on screen.",
+    longDescription: "IVY is a custom hardware AI desk companion designed to transform self-study into an interactive, ambient tutoring experience. Built around the dual-core ESP32-S3 (N16R8) microcontroller running customized Xiaozhi voice firmware, IVY handles low-latency conversational audio for natural question-and-answer interactions. It connects seamlessly to a Supabase cloud backend to stream, generate, and display step-by-step visual problem solutions, concept schematics, and mathematical diagrams directly on its integrated display. IVY represents a first-principles exploration into dedicated edge AI gadgets, physical tutoring hardware, and the future of consumer AGI companions.",
+    techStack: ["ESP32-S3 (N16R8)", "Xiaozhi Firmware", "Supabase", "Edge AI", "Embedded C/C++", "IoT Hardware", "Display Rendering"],
     category: "AI & Data Science",
-    githubLink: "https://github.com/25sh0363-code/project-board",
-    liveLink: "https://github.com/25sh0363-code/project-board",
+    githubLink: "https://github.com/25sh0363-code",
+    liveLink: "https://www.youtube.com/shorts/Qoeog1TC1S4",
     features: [
-      "25-Year Historical Analytics (2000–2025) across 10 countries and 6 major diseases (156k+ data points)",
-      "ML Forecasting Engine: Polynomial Regression models projecting 30–180 day future case trajectories with R² accuracy score",
-      "Context-Aware AI Health Assistant powered by Google Gemini 2.0 and 9-category NLP pattern matching",
-      "Interactive Plotly visualizer with country-to-country comparative overlays and 7-day rolling averages",
-      "Multi-factor Disease Risk Calculator analyzing age, geography, symptoms, and vaccination status",
-      "Live Medical News Aggregator via feedparser Google News RSS and gTTS audio narration"
+      "ESP32-S3 N16R8 Edge Silicon: High-performance dual-core Xtensa LX7 processor with 16MB Flash & 8MB PSRAM",
+      "Xiaozhi Voice Firmware: Ultra-fast, low-latency conversational audio pipeline for real-time tutoring",
+      "Supabase Cloud Orchestration: Backend database and edge sync fetching real-time concept visuals and session logs",
+      "On-Screen Diagram Rendering: Dynamically projects formulas, graphs, and step-by-step diagrams onto the screen",
+      "Physical Desk Companion Form Factor: Dedicated ambient hardware tutor replacing screen-bound chat tabs",
+      "Live YouTube Demonstration: Real hardware showcase video accessible on YouTube Shorts"
     ],
-    image: "images/disease_tracker_preview.jpg",
-    diseaseTrackerDetails: GLOBAL_DISEASE_TRACKER_DATA
+    image: "images/ivy_ai_tutor_desk_1790601058369.jpg",
+    ivyTutorDetails: {
+      hardware: {
+        microcontroller: "ESP32-S3 N16R8 (16MB Flash / 8MB PSRAM)",
+        firmware: "Xiaozhi Open Voice/AI Firmware",
+        backend: "Supabase Database & Edge Functions",
+        display: "Integrated SPI/I2C Color Graphic Display"
+      },
+      features: [
+        "Real-time voice conversational tutor powered by Xiaozhi firmware",
+        "Supabase cloud backend for diagram generation, mathematical formatting, and session history",
+        "On-screen visual solution rendering for physics, math, and computer science concepts",
+        "Compact ambient desktop hardware form-factor"
+      ],
+      vision: "Exploration into accessible edge hardware gadgets and the future of ambient AGI companions.",
+      videoUrl: "https://www.youtube.com/shorts/Qoeog1TC1S4",
+      videoEmbedUrl: "https://www.youtube.com/embed/Qoeog1TC1S4"
+    }
   },
+
+  // 9. Career Labs (Pathways)
+  {
+    id: "silveroaks-career-council",
+    title: "Silver Oaks Career Council — Pathways (CareerLab)",
+    description: "Official multi-campus digital career platform and expert interview repository for Silver Oaks, built with TypeScript (TSX), Supabase Edge Functions, PostgreSQL, and domain-restricted auth (@xxx.silveroaks.co.in).",
+    longDescription: "The official career discovery platform and CareerLab repository built for all students across all campuses of Silver Oaks International School. Developed in TypeScript and TSX with a Supabase backend (Edge Functions, PostgreSQL, Auth), the system provides career-related courses, curated blogs, and educational materials. It hosts the flagship CareerLab initiative—where students interview or spend time with industry experts and record video sessions for the school network. Managed via a dedicated Staff Portal for career counsellors and faculty, and strictly protected with @xxx.silveroaks.co.in organizational email verification. Hosted live at pathways.silveroaks.co.in.",
+    techStack: ["TypeScript", "React (TSX)", "Supabase", "Edge Functions", "PostgreSQL", "Tailwind CSS", "Domain-Restricted Auth"],
+    category: "Full-Stack",
+    githubLink: "https://github.com/25sh0363-code/SILVEROAKSCAREERCOUNCIL",
+    liveLink: "https://pathways.silveroaks.co.in",
+    features: [
+      "Multi-Campus Scope: Unified platform for all students across Silver Oaks campuses",
+      "CareerLab Initiative: Student-conducted expert interviews & recorded video sessions",
+      "Curated Courseware & Material: Career roadmaps, entrance prep, and guidance tracks",
+      "Editorial Knowledge Base: Student & faculty career blogs and university advice",
+      "Staff & Counsellor Management Portal: Administrative console for school career counsellors",
+      "Strict Domain Authentication: Security restricted to @xxx.silveroaks.co.in institutional emails",
+      "Supabase Cloud Infrastructure: Serverless Edge Functions, PostgreSQL DB, and secure storage"
+    ],
+    image: "career/careerlab_preview_1.png",
+    careerLabDetails: CAREER_LAB_DATA
+  },
+
+  // 10. Teachers Day Tribute
   {
     id: "teachers-day-class-act",
     title: "A Class Act — Teachers’ Day Tribute Web App",
@@ -1548,6 +1893,28 @@ export const PROJECTS: Project[] = [
       "Pure Web Platform: Zero-framework architecture using HTML5, CSS3, Vanilla JS, Canvas API, and SVG"
     ],
     image: "teachers/teacher-shot-1.png"
+  },
+
+  // 11. Global Disease Tracker Pro
+  {
+    id: "global-disease-tracker-pro",
+    title: "Global Disease Tracker Pro (Streamlit & ML)",
+    description: "Comprehensive epidemiological tracking and analytical web app for 6 major diseases across 10 countries (2000–2025) with ML polynomial forecasting and Gemini AI.",
+    longDescription: "Global Disease Tracker Pro is an interactive healthcare analytics platform and epidemiological monitoring suite built with Streamlit, Plotly, Pandas, and scikit-learn. Tracking 25 years of global health trends (2000–2025 across 60 curated country-disease CSV datasets and 156,000+ data points), it features real-time case tracking, dual-country comparative trend analysis, ML-powered Polynomial Regression disease forecasting (30–180 days out with R² accuracy metrics), a context-aware AI Health Assistant powered by Google Gemini 2.0 and NLP pattern matching, a 5-factor clinical risk calculator, live Google News RSS feeds, voice queries, and Text-to-Speech (gTTS) audio narration.",
+    techStack: ["Streamlit", "Plotly", "Python (Pandas/NumPy)", "scikit-learn (Polynomial Regression)", "Google Gemini 2.0", "gTTS", "SpeechRecognition", "Feedparser"],
+    category: "AI & Data Science",
+    githubLink: "https://github.com/25sh0363-code/project-board",
+    liveLink: "https://github.com/25sh0363-code/project-board",
+    features: [
+      "25-Year Historical Analytics (2000–2025) across 10 countries and 6 major diseases (156k+ data points)",
+      "ML Forecasting Engine: Polynomial Regression models projecting 30–180 day future case trajectories with R² accuracy score",
+      "Context-Aware AI Health Assistant powered by Google Gemini 2.0 and 9-category NLP pattern matching",
+      "Interactive Plotly visualizer with country-to-country comparative overlays and 7-day rolling averages",
+      "Multi-factor Disease Risk Calculator analyzing age, geography, symptoms, and vaccination status",
+      "Live Medical News Aggregator via feedparser Google News RSS and gTTS audio narration"
+    ],
+    image: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?q=80&w=1200&auto=format&fit=crop",
+    diseaseTrackerDetails: GLOBAL_DISEASE_TRACKER_DATA
   }
 ];
 
@@ -1580,6 +1947,20 @@ export const RESUME: ResumeItem[] = [
   },
 
   // Experience
+  {
+    id: "exp-careercouncil",
+    role: "Lead Full-Stack Engineer & Creator",
+    organization: "Silver Oaks Career Council — Pathways (CareerLab)",
+    location: "Hyderabad, India (Multi-Campus)",
+    period: "2025 - 2026",
+    highlights: [
+      "Engineered and deployed the official multi-campus career discovery platform (pathways.silveroaks.co.in) for all students across Silver Oaks International School campuses",
+      "Architected the CareerLab initiative ecosystem where students interview industry experts and record video sessions published directly to the school platform",
+      "Built a secure Staff Portal for school career counsellors and faculty to curate courses, review student interview submissions, and manage educational materials",
+      "Implemented full-stack architecture with TypeScript (TSX), Supabase Edge Functions, and PostgreSQL database, enforcing strict @xxx.silveroaks.co.in domain authentication"
+    ],
+    category: "experience"
+  },
   {
     id: "exp-research",
     role: "Author & Lead Researcher — Deep Learning Systems",
@@ -1616,48 +1997,7 @@ export const RESUME: ResumeItem[] = [
     highlights: [
       "Engineered and deployed the official production web application & registration platform for SOMUN '26 (October 30 – November 1, 2026 at Bowrampet Campus)",
       "Architected 12 committee dossiers (DISEC, UNHRC, AIPPM, MCU, IP, etc.) and an interactive 4-step registration portal for delegates and school delegations",
-      "Built dynamic UPI payment gateway reconciliation with automated reference code generation, receipt verification, and scannable QR delegate check-in passes",
-      "Created real-time secretariat financial dashboard tracking 528+ registrations and ₹14.78L+ invoices with automatic verification queues"
-    ],
-    category: "experience"
-  },
-  {
-    id: "exp-sinovate",
-    role: "Creator & Lead Mobile Engineer — SINOVATE School Assistant",
-    organization: "Independent EdTech Project",
-    location: "Hyderabad, India",
-    period: "2025 - 2026",
-    highlights: [
-      "Designed and built an all-in-one Flutter mobile app with FastAPI backend providing RAG-grounded syllabus tutoring for CBSE students",
-      "Implemented FAISS vector embeddings store for rapid context retrieval from senior secondary science textbooks (Physics, Chemistry, Math)",
-      "Engineered Automated Worksheet Studio generating customized practice tests with configurable mark allocations, MCQs, and long-form rubrics",
-      "Built offline-first local state management via SharedPreferences and asynchronous cloud synchronization via Google Apps Script"
-    ],
-    category: "experience"
-  },
-  {
-    id: "exp-ml-projects",
-    role: "Deep Learning Engineer — From-Scratch Transformer Implementations",
-    organization: "Open-Source Neural Network Research",
-    location: "Hyderabad, India",
-    period: "2025 - 2026",
-    highlights: [
-      "Built a complete Sequence-to-Sequence Transformer in pure PyTorch (no high-level nn.Transformer) for English-to-Portuguese translation on Opus Books, training loss down from 7.42 to 3.003",
-      "Implemented custom multi-head self-attention and cross-attention blocks, sinusoidal positional encodings, beam search decoding, and cross-attention heatmap visualizations",
-      "Constructed a 6-layer causal decoder language model with tiktoken GPT-2 BPE tokenization (50,257 vocab) and weight tying, training on NVIDIA Tesla T4 in 36 minutes"
-    ],
-    category: "experience"
-  },
-  {
-    id: "exp-disease-tracker",
-    role: "Lead Developer — Global Disease Tracker Pro",
-    organization: "Healthcare Analytics Platform",
-    location: "Hyderabad, India",
-    period: "2025 - 2026",
-    highlights: [
-      "Engineered an epidemiological intelligence platform analyzing 25 years of health data (2000–2025) across 10 countries and 6 major conditions (156k+ data points across 60 CSVs)",
-      "Implemented Polynomial Regression forecasting models in scikit-learn projecting 30–180 day case curves with 70%+ R² scores and 7-day rolling smoothing",
-      "Integrated Google Gemini 2.0 AI Health Assistant with voice search and Text-to-Speech (gTTS) audio narration for accessible medical queries"
+      "Built dynamic UPI payment gateway reconciliation with automated reference code generation, receipt verification, and scannable QR delegate check-in passes"
     ],
     category: "experience"
   },

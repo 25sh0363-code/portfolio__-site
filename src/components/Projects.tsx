@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, ExternalLink, Sparkles, BookOpen, Activity, Cpu, ArrowRight, Smartphone } from 'lucide-react';
+import { Github, ExternalLink, Sparkles, BookOpen, Activity, Cpu, ArrowRight, Smartphone, Building2 } from 'lucide-react';
 import { PROJECTS } from '../data';
 import { Project } from '../types';
 import { fixAssetUrl } from '../utils/assets';
@@ -13,6 +13,8 @@ import SomunInteractivePage from './project-details/SomunInteractivePage';
 import TeachersDayInteractivePage from './project-details/TeachersDayInteractivePage';
 import TedxInteractivePage from './project-details/TedxInteractivePage';
 import JevSnakeInteractivePage from './project-details/JevSnakeInteractivePage';
+import CareerLabInteractivePage from './project-details/CareerLabInteractivePage';
+import IvyInteractivePage from './project-details/IvyInteractivePage';
 import GenericProjectInteractivePage from './project-details/GenericProjectInteractivePage';
 import ProjectPreviewModal from './ProjectPreviewModal';
 
@@ -26,12 +28,13 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
   const [previewProject, setPreviewProject] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('All');
 
-  // Handle initial project selection from external navigation (e.g. Hero spotlight)
+  // Handle initial project selection from external navigation (e.g. Hero spotlight or What Drives Me popups)
   useEffect(() => {
     if (initialProjectId) {
       const found = PROJECTS.find(p => p.id === initialProjectId);
       if (found) {
-        setPreviewProject(found);
+        setActiveProjectPage(found);
+        setPreviewProject(null);
       }
     }
   }, [initialProjectId]);
@@ -59,6 +62,12 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
 
   // If a dedicated project page is active, render its full-screen interactive exhibit!
   if (activeProjectPage) {
+    if (activeProjectPage.careerLabDetails || activeProjectPage.id === 'silveroaks-career-council') {
+      return <CareerLabInteractivePage onBack={handleBackToProjects} />;
+    }
+    if (activeProjectPage.ivyTutorDetails || activeProjectPage.id === 'ivy-ai-tutor') {
+      return <IvyInteractivePage onBack={handleBackToProjects} />;
+    }
     if (activeProjectPage.somunDetails || activeProjectPage.id === 'somun-2026') {
       return <SomunInteractivePage onBack={handleBackToProjects} />;
     }
@@ -168,6 +177,16 @@ export default function Projects({ initialProjectId, onClearProjectId }: Project
                         <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-xs font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                           <BookOpen className="w-3 h-3" />
                           Original Research Paper
+                        </div>
+                      ) : project.careerLabDetails ? (
+                        <div className="bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                          <Building2 className="w-3 h-3" />
+                          Multi-Campus Platform
+                        </div>
+                      ) : project.ivyTutorDetails ? (
+                        <div className="bg-purple-500/20 text-purple-300 border border-purple-500/40 px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                          <Cpu className="w-3 h-3" />
+                          ESP32-S3 Hardware Tutor
                         </div>
                       ) : project.translationDetails ? (
                         <div className="bg-zinc-100 text-zinc-950 px-2.5 py-1 text-xs font-mono font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
