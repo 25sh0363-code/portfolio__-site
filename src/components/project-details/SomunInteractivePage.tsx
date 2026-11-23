@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { SOMUN_DATA } from '../../data';
 import { fixAssetUrl } from '../../utils/assets';
+import { BrowserFrame, CornerReticles } from './ExhibitPrimitives';
 
 interface SomunInteractivePageProps {
   onBack: () => void;
@@ -63,19 +64,26 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-8 px-4 sm:px-6 max-w-5xl mx-auto text-left font-mono selection:bg-zinc-800">
       
-      {/* Top Breadcrumb & Header */}
-      <div className="border-b border-zinc-850 pb-6 mb-8">
+      {/* Top Breadcrumb */}
+      <div className="pb-4 mb-6 border-b border-zinc-900">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects Portfolio
         </button>
+      </div>
+
+      {/* Hero Frame */}
+      <div className="lab-hero p-6 sm:p-9 mb-8 relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-amber-400/75 via-zinc-300/40 to-transparent" />
+        <CornerReticles colorClass="border-amber-400/45" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Minimalist Monochromatic Badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="flex flex-wrap items-center gap-2 mb-3 relative z-10">
           <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-200 border border-zinc-800 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
             <Terminal className="w-3 h-3 text-zinc-300" /> Lead Tech Head & Systems Architect
           </span>
@@ -87,7 +95,7 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
           </span>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 relative z-10">
           <div>
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase font-display flex items-center gap-3">
               <span>SOMUN '26 — Official Web Engine</span>
@@ -152,9 +160,17 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
         })}
       </div>
 
+      <AnimatePresence mode="wait">
       {/* TAB 1: WEBSITE STRUCTURE & PAGES */}
       {activeTab === 'pages' && (
-        <div className="space-y-10">
+        <motion.div
+          key="pages"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-10"
+        >
           
           <div className="border-b border-zinc-800 pb-3">
             <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
@@ -180,23 +196,29 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {screenshotList.map((shot) => (
-                <div 
-                  key={shot.id} 
-                  className="bg-zinc-950 border border-zinc-800 group hover:border-zinc-700 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
+                <div
+                  key={shot.id}
+                  className="lab-surface group hover:border-amber-400/50 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
                   onClick={() => setZoomedImage({ src: shot.image, title: shot.title })}
                 >
-                  <div className="relative aspect-video bg-zinc-900 border-b border-zinc-850 overflow-hidden">
-                    <img 
-                      src={shot.image} 
-                      alt={shot.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold uppercase">
-                      <Maximize2 className="w-3.5 h-3.5" /> Expand
+                  <BrowserFrame
+                    url={`https://somunhyd.in${shot.urlPath}`}
+                    accentDotClass="bg-amber-400"
+                    className="border-0 shadow-none"
+                  >
+                    <div className="relative aspect-video bg-zinc-900 overflow-hidden">
+                      <img 
+                        src={shot.image} 
+                        alt={shot.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold uppercase">
+                        <Maximize2 className="w-3.5 h-3.5" /> Expand
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-3 space-y-1">
-                    <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">{shot.urlPath}</span>
+                  </BrowserFrame>
+                  <div className="p-3.5 border-t border-zinc-850 space-y-1">
+                    <span className="text-[10px] font-mono text-amber-300/90 uppercase font-bold block">{shot.urlPath}</span>
                     <h3 className="text-xs font-bold text-white uppercase font-mono line-clamp-1">{shot.title}</h3>
                   </div>
                 </div>
@@ -207,11 +229,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Page 1: Home Page */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <Globe className="w-4 h-4 text-zinc-300" />
-                  1. Home Page (`/`)
+                  1. Home Page (<code className="text-amber-300">/</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Public Landing
@@ -223,11 +245,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
             </div>
 
             {/* Page 2: About Us */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <Users className="w-4 h-4 text-zinc-300" />
-                  2. About Us (`/about`)
+                  2. About Us (<code className="text-amber-300">/about</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Secretariat & Vision
@@ -239,11 +261,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
             </div>
 
             {/* Page 3: Committees */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <Layers className="w-4 h-4 text-zinc-300" />
-                  3. Committees (`/committees`)
+                  3. Committees (<code className="text-amber-300">/committees</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   12 Chambers
@@ -255,11 +277,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
             </div>
 
             {/* Page 4: Itinerary */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-zinc-300" />
-                  4. Itinerary (`/itinerary`)
+                  4. Itinerary (<code className="text-amber-300">/itinerary</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   3-Day Schedule
@@ -271,11 +293,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
             </div>
 
             {/* Page 5: Resources */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-zinc-300" />
-                  5. Resources (`/resources`)
+                  5. Resources (<code className="text-amber-300">/resources</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Handbooks & ROP
@@ -287,11 +309,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
             </div>
 
             {/* Page 6: Registration Portal */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <FileText className="w-4 h-4 text-zinc-300" />
-                  6. Registration Portal (`/register`)
+                  6. Registration Portal (<code className="text-amber-300">/register</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   5-Step Form
@@ -303,11 +325,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
             </div>
 
             {/* Page 7: Secretariat Console */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3 md:col-span-2">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3 md:col-span-2">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-zinc-300" />
-                  7. Staff Console & Gate Check-In (`/staff`)
+                  7. Staff Console & Gate Check-In (<code className="text-amber-300">/staff</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Staff Only Access
@@ -320,19 +342,26 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
 
           </div>
 
-        </div>
+        </motion.div>
       )}
 
       {/* SCREENSHOT EXHIBIT TAB RENDERING */}
       {activeTab !== 'pages' && (
-        <div className="space-y-6">
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-6"
+        >
           {(() => {
             const currentShot = screenshotList.find(s => s.id === activeTab)!;
             return (
               <div className="space-y-6">
                 
                 <div className="border-b border-zinc-800 pb-3">
-                  <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
+                  <span className="text-[10px] uppercase tracking-widest text-amber-300 font-bold block">
                     Actual Screenshot from {currentShot.urlPath}
                   </span>
                   <h2 className="text-xl font-bold text-white uppercase font-display">
@@ -344,7 +373,12 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
                 </div>
 
                 {/* Screenshot Display Card */}
-                <div className="bg-zinc-950 border border-zinc-800 p-2 relative group overflow-hidden">
+                <BrowserFrame
+                  url={`https://somunhyd.in${currentShot.urlPath}`}
+                  label="Production"
+                  accentDotClass="bg-amber-400"
+                  onExpand={() => setZoomedImage({ src: currentShot.image, title: currentShot.title })}
+                >
                   <div className="relative overflow-hidden bg-black aspect-video flex items-center justify-center">
                     <img
                       src={currentShot.image}
@@ -352,20 +386,11 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
                       className="w-full h-full object-contain"
                       referrerPolicy="no-referrer"
                     />
-
-                    {/* Expand Zoom Button */}
-                    <button
-                      onClick={() => setZoomedImage({ src: currentShot.image, title: currentShot.title })}
-                      className="absolute bottom-4 right-4 px-4 py-2 bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 text-white text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer shadow-xl"
-                    >
-                      <Maximize2 className="w-4 h-4" />
-                      Expand High-Res Image
-                    </button>
                   </div>
-                </div>
+                </BrowserFrame>
 
                 {/* Grounded Key Observations & Features List */}
-                <div className="bg-zinc-900/40 border border-zinc-850 p-5 space-y-3">
+                <div className="lab-surface p-5 space-y-3">
                   <span className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider block border-b border-zinc-800 pb-2">
                     Verified Material Observations & Features
                   </span>
@@ -383,8 +408,9 @@ export default function SomunInteractivePage({ onBack }: SomunInteractivePagePro
               </div>
             );
           })()}
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {/* High-Res Image Zoom Modal */}
       <AnimatePresence>

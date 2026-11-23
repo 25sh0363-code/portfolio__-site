@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, ExternalLink, Terminal, Tv, 
-  Layers, ShieldAlert, CheckCircle2, Copy, Check, Radio,
-  Clock, Play, Activity, Cpu, ArrowUpRight, FileCode, BookOpen, AlertCircle
+  Layers, Radio, Clock, Activity, Cpu, BookOpen
 } from 'lucide-react';
 import { JEV_SNAKE_DATA } from '../../data';
+import { CornerReticles, TerminalBlock } from './ExhibitPrimitives';
 
 interface JevSnakeInteractivePageProps {
   onBack: () => void;
@@ -13,34 +13,34 @@ interface JevSnakeInteractivePageProps {
 
 export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractivePageProps) {
   const [activeTab, setActiveTab] = useState<'broadcast' | 'architecture' | 'gamelayer' | 'readme'>('broadcast');
-  const [copiedCmd, setCopiedCmd] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [activeTab]);
 
-  const handleCopyQuickStart = () => {
-    navigator.clipboard.writeText('python3 -m http.server 8000');
-    setCopiedCmd(true);
-    setTimeout(() => setCopiedCmd(false), 2000);
-  };
-
   return (
     <section className="min-h-screen bg-zinc-950 text-zinc-100 py-8 px-4 sm:px-6 max-w-5xl mx-auto text-left font-mono selection:bg-zinc-800">
       
-      {/* Top Breadcrumb & Navigation */}
-      <div className="border-b border-zinc-800 pb-6 mb-8">
+      {/* Top Breadcrumb */}
+      <div className="pb-4 mb-6 border-b border-zinc-900">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects Portfolio
         </button>
+      </div>
+
+      {/* Hero Card */}
+      <div className="lab-hero p-6 sm:p-9 mb-8 relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-400/80 via-red-500/60 to-transparent" />
+        <CornerReticles colorClass="border-emerald-400/50" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Status Strip Badges (From README) */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="flex flex-wrap items-center gap-2 mb-3 relative z-10">
           <span className="px-2.5 py-0.5 bg-red-500/10 text-red-400 border border-red-500/30 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 animate-pulse">
             <Radio className="w-3.5 h-3.5" />
             Video Broadcast On Air
@@ -60,7 +60,7 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
         </div>
 
         {/* Header Title & Direct YouTube Link */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2 max-w-3xl">
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase font-display">
               JEV Plays Snake
@@ -83,8 +83,9 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
       </div>
 
       {/* Hero Video Broadcast Stage */}
-      <div className="border border-zinc-800 bg-zinc-950 p-4 sm:p-6 mb-8 shadow-2xl relative">
-        <div className="flex items-center justify-between pb-3 mb-3 border-b border-zinc-900 text-[10px] uppercase tracking-widest text-zinc-300">
+      <div className="lab-surface p-4 sm:p-6 mb-8 shadow-2xl relative overflow-hidden">
+        <CornerReticles colorClass="border-red-500/40" />
+        <div className="flex items-center justify-between pb-3 mb-3 border-b border-zinc-850 text-[10px] uppercase tracking-widest text-zinc-300">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
             <span className="text-red-400 font-bold">PROJECT VIDEO BROADCAST</span>
@@ -97,7 +98,7 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
         </div>
 
         {/* 16:9 Video Player */}
-        <div className="relative aspect-video w-full bg-black border border-zinc-900 overflow-hidden shadow-2xl">
+        <div className="relative aspect-video w-full bg-black border border-zinc-800 overflow-hidden shadow-[0_0_40px_rgba(16,185,129,0.08)]">
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${JEV_SNAKE_DATA.youtubeVideoId}?rel=0&modestbranding=1`}
             title="JEV Plays Snake - Om Suraj Kashikar"
@@ -108,33 +109,33 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
         </div>
 
         {/* Live Observable Decision Metrics Strip (Directly from README) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-4 border-t border-zinc-900 text-left mt-3">
-          <div className="p-2.5 bg-zinc-900/60 border border-zinc-850">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-4 border-t border-zinc-850 text-left mt-3">
+          <div className="lab-metric p-2.5">
             <span className="text-[9px] text-zinc-300 uppercase block font-bold">Grid Dimensions</span>
             <span className="text-xs font-bold text-white mt-0.5 block">25 × 25 Cells</span>
             <span className="text-[9px] text-zinc-300">Fixed Snake board</span>
           </div>
-          <div className="p-2.5 bg-zinc-900/60 border border-zinc-850">
+          <div className="lab-metric p-2.5">
             <span className="text-[9px] text-zinc-300 uppercase block font-bold">Snake Tick Clock</span>
             <span className="text-xs font-bold text-emerald-400 mt-0.5 block">sTick = 160 ms</span>
             <span className="text-[9px] text-zinc-300">Configurable in UI</span>
           </div>
-          <div className="p-2.5 bg-zinc-900/60 border border-zinc-850">
+          <div className="lab-metric p-2.5">
             <span className="text-[9px] text-zinc-300 uppercase block font-bold">Observed Latency</span>
             <span className="text-xs font-bold text-amber-400 mt-0.5 block">~400 ms</span>
             <span className="text-[9px] text-zinc-300">performance.now() RTT</span>
           </div>
-          <div className="p-2.5 bg-zinc-900/60 border border-zinc-850">
+          <div className="lab-metric p-2.5">
             <span className="text-[9px] text-zinc-300 uppercase block font-bold">Decision Queue</span>
             <span className="text-xs font-bold text-cyan-400 mt-0.5 block">QUEUE_TARGET</span>
             <span className="text-[9px] text-zinc-300">Asynchronous buffer</span>
           </div>
-          <div className="p-2.5 bg-zinc-900/60 border border-zinc-850">
+          <div className="lab-metric p-2.5">
             <span className="text-[9px] text-zinc-300 uppercase block font-bold">Relative Turns</span>
             <span className="text-xs font-bold text-purple-400 mt-0.5 block">5 Vocabulary</span>
             <span className="text-[9px] text-zinc-300">straight, left, right...</span>
           </div>
-          <div className="p-2.5 bg-zinc-900/60 border border-zinc-850">
+          <div className="lab-metric p-2.5">
             <span className="text-[9px] text-zinc-300 uppercase block font-bold">Safety-Net</span>
             <span className="text-xs font-bold text-rose-400 mt-0.5 block">snakePilot()</span>
             <span className="text-[9px] text-zinc-300">Fatal move override</span>
@@ -193,13 +194,21 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
         </button>
       </div>
 
+      <AnimatePresence mode="wait">
       {/* TAB 1: OVERVIEW & QUICK START */}
       {activeTab === 'broadcast' && (
-        <div className="space-y-8 text-left">
+        <motion.div
+          key="broadcast"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-8 text-left"
+        >
           
           {/* Quick Start Card (From README) */}
-          <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-8 space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-zinc-900">
+          <div className="lab-surface p-6 sm:p-8 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-850">
               <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
                 Quick Start Instructions
               </span>
@@ -212,16 +221,11 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
               The project has no build system, package manager, or runtime dependency. You run it using Python's built-in HTTP server:
             </p>
 
-            <div className="p-4 bg-black border border-zinc-800 flex items-center justify-between gap-4 font-mono text-xs">
-              <code className="text-emerald-400">python3 -m http.server 8000</code>
-              <button
-                onClick={handleCopyQuickStart}
-                className="px-3 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-[10px] uppercase font-bold flex items-center gap-1.5 transition cursor-pointer"
-              >
-                {copiedCmd ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                {copiedCmd ? 'Copied' : 'Copy Command'}
-              </button>
-            </div>
+            <TerminalBlock
+              title="Local HTTP Server"
+              commands={['python3 -m http.server 8000']}
+              accentTextClass="text-emerald-400"
+            />
 
             <p className="text-xs text-zinc-300 font-sans font-light leading-relaxed">
               Open <code className="text-zinc-200 bg-zinc-900 px-1.5 py-0.5 border border-zinc-800">http://localhost:8000/arcade.html</code>, select a brain, and press <strong>START ARCADE</strong>. The local autopilot needs no API key. Stop the server with <code className="text-zinc-200 bg-zinc-900 px-1 py-0.5">Ctrl-C</code>.
@@ -301,12 +305,19 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
             </div>
           </div>
 
-        </div>
+        </motion.div>
       )}
 
       {/* TAB 2: ARCHITECTURE & BRAINS */}
       {activeTab === 'architecture' && (
-        <div className="space-y-8 text-left">
+        <motion.div
+          key="architecture"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-8 text-left"
+        >
           
           {/* Architecture Pipeline Box */}
           <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-8 space-y-4">
@@ -384,7 +395,7 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
               {JEV_SNAKE_DATA.deterministicPilot.functionName}
             </h3>
             <p className="text-xs text-zinc-300 font-sans font-light leading-relaxed">
-              `snakePilot()` is the local planning and safety layer. It evaluates candidate moves using:
+              <code className="text-emerald-400 bg-zinc-900 px-1.5 py-0.5 border border-zinc-800 font-mono">snakePilot()</code> is the local planning and safety layer. It evaluates candidate moves using:
             </p>
 
             <ul className="space-y-1.5 pl-4 text-xs font-sans text-zinc-300 list-disc">
@@ -403,12 +414,19 @@ export default function JevSnakeInteractivePage({ onBack }: JevSnakeInteractiveP
             </div>
           </div>
 
-        </div>
+        </motion.div>
       )}
 
       {/* TAB 3: GAME LAYER & AI LATENCY */}
       {activeTab === 'gamelayer' && (
-        <div className="space-y-8 text-left">
+        <motion.div
+          key="gamelayer"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-8 text-left"
+        >
           
           {/* Game Layer Rules */}
           <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-8 space-y-4">
@@ -496,12 +514,19 @@ return { ...result, latency: Math.round(performance.now() - t0) };`}</code>
             </div>
           </div>
 
-        </div>
+        </motion.div>
       )}
 
       {/* TAB 4: VERBATIM README */}
       {activeTab === 'readme' && (
-        <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-8 space-y-6 text-left font-mono">
+        <motion.div
+          key="readme"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="lab-surface p-6 sm:p-8 space-y-6 text-left font-mono"
+        >
           <div className="flex items-center justify-between pb-3 border-b border-zinc-900">
             <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Project Documentation
@@ -564,8 +589,9 @@ return { ...result, latency: Math.round(performance.now() - t0) };`}</code>
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
     </section>
   );

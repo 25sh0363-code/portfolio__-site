@@ -3,26 +3,135 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
   Github, 
-  ExternalLink, 
   Cpu, 
   Layers, 
   Activity, 
-  Sliders, 
-  Sparkles, 
-  CheckCircle2, 
-  Copy, 
-  Check, 
   Terminal, 
-  Play, 
-  RefreshCw,
   BookOpen,
-  BarChart2,
   Code2
 } from 'lucide-react';
 import { CHAR_BIGRAM_DATA } from '../../data';
+import { CornerReticles, TerminalBlock } from './ExhibitPrimitives';
 
 interface CharBigramInteractivePageProps {
   onBack: () => void;
+}
+
+function DualLossChart({ data }: { data: Array<{ step: number; trainLoss: number; valLoss: number }> }) {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const width = 680;
+  const height = 210;
+  const pad = { top: 20, right: 24, bottom: 32, left: 46 };
+  const plotW = width - pad.left - pad.right;
+  const plotH = height - pad.top - pad.bottom;
+
+  const allVals = data.flatMap((d) => [d.trainLoss, d.valLoss]);
+  const minVal = Math.max(0, Math.floor((Math.min(...allVals) - 0.3) * 2) / 2);
+  const maxVal = Math.ceil((Math.max(...allVals) + 0.3) * 2) / 2;
+
+  const xOf = (idx: number) => pad.left + (idx / Math.max(1, data.length - 1)) * plotW;
+  const yOf = (val: number) => pad.top + ((maxVal - val) / (maxVal - minVal || 1)) * plotH;
+
+  const trainPath = data
+    .map((d, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i).toFixed(1)} ${yOf(d.trainLoss).toFixed(1)}`)
+    .join(' ');
+  const valPath = data
+    .map((d, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i).toFixed(1)} ${yOf(d.valLoss).toFixed(1)}`)
+    .join(' ');
+  const areaPath = `${trainPath} L ${xOf(data.length - 1).toFixed(1)} ${(pad.top + plotH).toFixed(1)} L ${xOf(0).toFixed(1)} ${(pad.top + plotH).toFixed(1)} Z`;
+
+  const active = hoveredIdx !== null ? data[hoveredIdx] : data[data.length - 1];
+
+  return (
+    <div className="p-4 sm:p-5 bg-zinc-905 border border-zinc-850 space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
+        <div className="flex items-center gap-4">
+          <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold">
+            <span className="w-3 h-0.5 bg-emerald-400 inline-block" />
+            Train Loss
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-cyan-400 font-bold">
+            <span className="w-3 h-0.5 bg-cyan-400 inline-block" />
+            Val Loss
+          </span>
+        </div>
+        <div className="flex items-center gap-3 px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-[10px]">
+          <span className="text-zinc-400">Step {active.step.toLocaleString()}</span>
+          <span className="text-emerald-400 font-bold">Train: {active.trainLoss.toFixed(2)}</span>
+          <span className="text-cyan-400 font-bold">Val: {active.valLoss.toFixed(2)}</span>
+        </div>
+      </div>
+
+      <div className="w-full overflow-x-auto">
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full min-w-[500px] h-auto select-none">
+          <defs>
+            <linearGradient id="charTrainGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#34d399" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#34d399" stopOpacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          {[0, 1, 2, 3, 4].map((tick) => {
+            const val = maxVal - (tick / 4) * (maxVal - minVal);
+            const y = yOf(val);
+            return (
+              <g key={tick}>
+                <line x1={pad.left} y1={y} x2={width - pad.right} y2={y} stroke="rgba(63,63,70,0.4)" strokeDasharray="3 4" />
+                <text x={pad.left - 8} y={y + 3} textAnchor="end" className="fill-zinc-400 text-[9px] font-mono">
+                  {val.toFixed(1)}
+                </text>
+              </g>
+            );
+          })}
+
+          <path d={areaPath} fill="url(#charTrainGrad)" />
+
+          <motion.path
+            d={valPath}
+            fill="none"
+            stroke="#22d3ee"
+            strokeWidth="2.2"
+            strokeDasharray="5 4"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
+          />
+          <motion.path
+            d={trainPath}
+            fill="none"
+            stroke="#34d399"
+            strokeWidth="2.5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.0, ease: 'easeOut' }}
+          />
+
+          {data.map((d, i) => {
+            const x = xOf(i);
+            const isHovered = hoveredIdx === i;
+            return (
+              <g
+                key={d.step}
+                onMouseEnter={() => setHoveredIdx(i)}
+                onMouseLeave={() => setHoveredIdx(null)}
+                className="cursor-crosshair"
+              >
+                <rect x={x - plotW / (data.length * 2)} y={pad.top} width={plotW / data.length} height={plotH} fill="transparent" />
+                {isHovered && (
+                  <line x1={x} y1={pad.top} x2={x} y2={pad.top + plotH} stroke="rgba(228,228,231,0.35)" strokeDasharray="2 3" />
+                )}
+                <circle cx={x} cy={yOf(d.valLoss)} r={isHovered ? 4.5 : 3} fill="#22d3ee" stroke="#09090b" strokeWidth="1.5" />
+                <circle cx={x} cy={yOf(d.trainLoss)} r={isHovered ? 4.8 : 3.2} fill="#34d399" stroke="#09090b" strokeWidth="1.5" />
+                <text x={x} y={height - 10} textAnchor="middle" className={`text-[9px] font-mono ${isHovered ? 'fill-white font-bold' : 'fill-zinc-400'}`}>
+                  {d.step.toLocaleString()}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </div>
+  );
 }
 
 export default function CharBigramInteractivePage({ onBack }: CharBigramInteractivePageProps) {
@@ -32,7 +141,6 @@ export default function CharBigramInteractivePage({ onBack }: CharBigramInteract
 
   // Empirical Inspection state
   const [selectedModel, setSelectedModel] = useState<'baseline' | 'transformer'>('transformer');
-  const [copiedCode, setCopiedCode] = useState(false);
 
   // Model-specific actual empirical outputs
   const empiricalSamples: Record<'baseline' | 'transformer', {
@@ -95,12 +203,6 @@ That bids my married and chastisement now.`,
     ]
   };
 
-  const handleCopyCode = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedCode(true);
-    setTimeout(() => setCopiedCode(false), 2000);
-  };
-
   return (
     <section className="py-8 sm:py-12 relative text-left" id="char-bigram-project-page">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-8">
@@ -122,10 +224,12 @@ That bids my married and chastisement now.`,
         </div>
 
         {/* Hero Card */}
-        <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-zinc-800/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="lab-hero p-6 sm:p-10 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-400/80 via-cyan-400/50 to-transparent" />
+          <CornerReticles colorClass="border-emerald-400/50" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center gap-2 mb-4">
+          <div className="flex flex-wrap items-center gap-2 mb-4 relative z-10">
             <span className="px-2.5 py-0.5 bg-zinc-100 text-zinc-950 text-[10px] font-mono font-black uppercase tracking-widest flex items-center gap-1.5">
               <Cpu className="w-3 h-3 text-zinc-900" />
               Decoder-Only Language Model Study
@@ -141,32 +245,32 @@ That bids my married and chastisement now.`,
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4 relative z-10">
             Basic & Improved Decoder-Only Language Models
           </h1>
 
-          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
+          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6 relative z-10">
             Empirical investigation tracing the generational leap from an untrained Bigram statistical lookup table baseline (<code>bigram.py</code>) to a fully trained 6-layer causal self-attention decoder Transformer with subword BPE tokenization and weight tying (<code>bigram_improved.py</code>).
           </p>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono pt-4 border-t border-zinc-900">
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono pt-4 border-t border-zinc-800/80 relative z-10">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Model Parameters</span>
               <span className="text-cyan-400 font-bold text-base">~30.04M</span>
               <span className="text-[10px] text-zinc-300 block">With Weight Tying</span>
             </div>
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Training Wall-Clock</span>
               <span className="text-emerald-400 font-bold text-base">36 Minutes</span>
               <span className="text-[10px] text-zinc-300 block">NVIDIA Tesla T4 GPU</span>
             </div>
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Block & Batch Size</span>
               <span className="text-white font-bold text-base">256 ctx · 64 batch</span>
               <span className="text-[10px] text-zinc-300 block">5,000 Iterations</span>
             </div>
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Tokenizer & Vocab</span>
               <span className="text-purple-400 font-bold text-base">50,257 Tokens</span>
               <span className="text-[10px] text-zinc-300 block">tiktoken GPT-2</span>
@@ -174,7 +278,7 @@ That bids my married and chastisement now.`,
           </div>
 
           {/* Actions */}
-          <div className="flex flex-wrap items-center gap-3 pt-6 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-3 pt-6 text-xs font-mono relative z-10">
             <a
               href="https://github.com/25sh0363-code/Basic_char_level_bigram_model"
               target="_blank"
@@ -223,9 +327,17 @@ That bids my married and chastisement now.`,
           })}
         </div>
 
+        <AnimatePresence mode="wait">
         {/* TAB 1: EMPIRICAL OUTPUT & WEIGHT TYING INSPECTOR */}
         {activeTab === 'outputs' && (
-          <div className="space-y-6">
+          <motion.div
+            key="outputs"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
             <div className="p-4 bg-zinc-900/40 border border-zinc-800 flex items-center justify-between flex-wrap gap-3">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold block">
@@ -324,10 +436,13 @@ That bids my married and chastisement now.`,
                           </span>
                           <span className="text-cyan-400 font-bold">{(item.prob * 100).toFixed(0)}%</span>
                         </div>
-                        <div className="w-full bg-zinc-900 h-1.5 border border-zinc-800">
-                          <div
-                            className="bg-cyan-400 h-full transition-all duration-300"
-                            style={{ width: `${item.prob * 100}%` }}
+                        <div className="w-full bg-zinc-900 h-2 border border-zinc-800 overflow-hidden">
+                          <motion.div
+                            key={`${selectedModel}-${item.char}`}
+                            initial={{ width: 0 }}
+                            animate={{ width: `${item.prob * 100}%` }}
+                            transition={{ duration: 0.5, delay: idx * 0.05, ease: 'easeOut' }}
+                            className="bg-gradient-to-r from-cyan-500 to-emerald-400 h-full"
                           />
                         </div>
                         <span className="text-[9px] text-zinc-300 font-sans block">{item.note}</span>
@@ -339,7 +454,7 @@ That bids my married and chastisement now.`,
 
               {/* Right Columns: Empirical Output Display */}
               <div className="lg:col-span-2 space-y-4">
-                <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-3">
+                <div className="lab-surface p-6 space-y-3">
                   <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
                     <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold">
                       Empirical Output Sample (from Checkpoint):
@@ -349,8 +464,23 @@ That bids my married and chastisement now.`,
                     </span>
                   </div>
 
-                  <div className="p-4 bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-100 whitespace-pre-wrap leading-relaxed">
-                    {empiricalSamples[selectedModel].output}
+                  <div className="bg-[#070709] border border-zinc-800 font-mono text-xs text-zinc-100 leading-relaxed overflow-x-auto">
+                    <div className="px-3 py-1.5 bg-zinc-900/90 border-b border-zinc-800 flex items-center justify-between text-[10px] text-zinc-400">
+                      <span>stdout // checkpoint_sample.txt</span>
+                      <span className={selectedModel === 'transformer' ? 'text-emerald-400' : 'text-zinc-400'}>
+                        {empiricalSamples[selectedModel].loss}
+                      </span>
+                    </div>
+                    <div className="p-4 space-y-0.5">
+                      {empiricalSamples[selectedModel].output.split('\n').map((line, lineIdx) => (
+                        <div key={lineIdx} className="flex gap-3">
+                          <span className="text-zinc-600 select-none w-5 text-right shrink-0">{lineIdx + 1}</span>
+                          <span className={selectedModel === 'transformer' && lineIdx === 0 ? 'text-emerald-400 font-bold' : 'text-zinc-100'}>
+                            {line}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="p-3 bg-zinc-900/60 border border-zinc-850 text-xs font-mono space-y-1">
@@ -385,12 +515,19 @@ That bids my married and chastisement now.`,
               </div>
 
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 2: ARCHITECTURAL EVOLUTION */}
         {activeTab === 'architecture' && (
-          <div className="space-y-6">
+          <motion.div
+            key="architecture"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* Comparative Architecture Table */}
@@ -468,13 +605,20 @@ That bids my married and chastisement now.`,
               </div>
 
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 3: LOSS DYNAMICS */}
         {activeTab === 'loss' && (
-          <div className="space-y-6">
-            <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-6">
+          <motion.div
+            key="loss"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="lab-surface p-6 space-y-6">
               <div>
                 <h3 className="text-lg font-bold text-white uppercase font-mono">
                   Cross-Entropy Loss Progression (5,000 Steps)
@@ -485,7 +629,7 @@ That bids my married and chastisement now.`,
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
-                <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-2">
+                <div className="lab-metric p-4 space-y-2">
                   <span className="text-zinc-300 uppercase text-[10px] block">1. bigram.py Baseline</span>
                   <span className="text-2xl font-black text-white">2.51 NLL</span>
                   <p className="text-[11px] text-zinc-300 font-sans">
@@ -493,7 +637,7 @@ That bids my married and chastisement now.`,
                   </p>
                 </div>
 
-                <div className="p-4 bg-zinc-900 border border-zinc-800 space-y-2">
+                <div className="lab-metric p-4 space-y-2">
                   <span className="text-zinc-300 uppercase text-[10px] block">2. bigram_improved.py (6-Layer Transformer)</span>
                   <span className="text-2xl font-black text-emerald-400">1.48 NLL</span>
                   <p className="text-[11px] text-zinc-300 font-sans">
@@ -501,6 +645,9 @@ That bids my married and chastisement now.`,
                   </p>
                 </div>
               </div>
+
+              {/* Dual-Line SVG Training & Validation Loss Curve */}
+              <DualLossChart data={data.trainingLossCurve} />
 
               {/* Loss Trajectory Table */}
               <div className="overflow-x-auto border border-zinc-800">
@@ -533,13 +680,20 @@ That bids my married and chastisement now.`,
                 </table>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 4: SIDE-BY-SIDE COMPARISON */}
         {activeTab === 'comparison' && (
-          <div className="space-y-6">
-            <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-6">
+          <motion.div
+            key="comparison"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="lab-surface p-6 space-y-6">
               <div>
                 <h3 className="text-lg font-bold text-white uppercase font-mono">
                   Qualitative Output Comparison
@@ -595,37 +749,28 @@ That bids my married and chastisement now.`}
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 5: REPRODUCTION GUIDE */}
         {activeTab === 'reproduction' && (
-          <div className="space-y-6">
-            <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-emerald-400" />
-                  Reproduction & Execution Commands
-                </span>
-                <button
-                  onClick={() => handleCopyCode(data.reproduction.commands.join('\n'))}
-                  className="px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-mono uppercase tracking-wider border border-zinc-800 flex items-center gap-1.5 transition cursor-pointer"
-                >
-                  {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                  {copiedCode ? 'Copied' : 'Copy Commands'}
-                </button>
-              </div>
-
-              <div className="p-4 bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-200 overflow-x-auto space-y-2">
-                {data.reproduction.commands.map((step, idx) => (
-                  <div key={idx} className={step.startsWith('#') ? 'text-zinc-300 pt-1' : 'text-emerald-400'}>
-                    {step}
-                  </div>
-                ))}
-              </div>
+          <motion.div
+            key="reproduction"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="lab-surface p-6 space-y-4">
+              <TerminalBlock
+                title="Reproduction & Execution Commands"
+                commands={data.reproduction.commands}
+                accentTextClass="text-emerald-400"
+              />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-mono text-xs">
-                <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+                <div className="lab-metric p-3">
                   <span className="text-[10px] text-zinc-300 uppercase block mb-1">Hardware & Device Support</span>
                   <ul className="space-y-1 text-zinc-300">
                     <li>• CUDA GPU (e.g. NVIDIA Tesla T4 ~36 min)</li>
@@ -634,7 +779,7 @@ That bids my married and chastisement now.`}
                   </ul>
                 </div>
 
-                <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+                <div className="lab-metric p-3">
                   <span className="text-[10px] text-zinc-300 uppercase block mb-1">Architectural Learning Reference</span>
                   <ul className="space-y-1 text-zinc-300">
                     <li>• Implemented to learn decoder-only mechanics</li>
@@ -644,8 +789,9 @@ That bids my married and chastisement now.`}
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
 
       </div>
     </section>

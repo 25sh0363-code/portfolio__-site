@@ -19,6 +19,7 @@ import {
   Stethoscope,
   Terminal
 } from 'lucide-react';
+import { CornerReticles } from './ExhibitPrimitives';
 
 interface GenericProjectInteractivePageProps {
   project: Project;
@@ -87,10 +88,12 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
         </div>
 
         {/* Hero Card */}
-        <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-zinc-800/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="lab-hero p-6 sm:p-10 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-cyan-400/75 via-emerald-400/45 to-transparent" />
+          <CornerReticles colorClass="border-cyan-400/45" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center gap-2 mb-4">
+          <div className="flex flex-wrap items-center gap-2 mb-4 relative z-10">
             <span className="px-2.5 py-0.5 bg-zinc-100 text-zinc-950 text-[10px] font-mono font-black uppercase tracking-widest flex items-center gap-1.5">
               <Sparkles className="w-3 h-3 text-zinc-900" />
               {project.category}
@@ -103,16 +106,16 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4 relative z-10">
             {project.title}
           </h1>
 
-          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
+          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6 relative z-10">
             {project.longDescription || project.description}
           </p>
 
           {/* Tech Stack Badges */}
-          <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-900">
+          <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/80 relative z-10">
             {project.techStack.map((tech, idx) => (
               <span
                 key={idx}
@@ -124,7 +127,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
           </div>
 
           {/* Action Links */}
-          <div className="flex flex-wrap items-center gap-3 pt-6 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-3 pt-6 text-xs font-mono relative z-10">
             {project.githubLink && (
               <a
                 href={project.githubLink}
@@ -154,7 +157,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
         
         {/* ECOROUTE SIMULATOR */}
         {project.id === 'ecoroute' && (
-          <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-6">
+          <div className="lab-surface p-6 space-y-6">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold flex items-center gap-2">
@@ -299,7 +302,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
         {/* PHYSYSIM SIMULATOR */}
         {project.id === 'physisim' && (
-          <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-6">
+          <div className="lab-surface p-6 space-y-6">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold flex items-center gap-2">
@@ -396,7 +399,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
         {/* DEVSCRIBE SIMULATOR */}
         {project.id === 'devscribe' && (
-          <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
+          <div className="lab-surface p-6 space-y-4">
             <span className="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold flex items-center gap-2">
               <FileCode2 className="w-4 h-4" />
               Offline-First Markdown & Code Engine
@@ -427,7 +430,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
         {/* AGRIDETECT SIMULATOR */}
         {project.id === 'agridetect' && (
-          <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
+          <div className="lab-surface p-6 space-y-4">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold flex items-center gap-2">
               <Stethoscope className="w-4 h-4" />
               Neural Crop Foliage Diagnostic Simulator
@@ -490,7 +493,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
         )}
 
         {/* Architectural Highlights & Features */}
-        <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
+        <div className="lab-surface p-6 space-y-4">
           <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
             <Layers className="w-4 h-4 text-cyan-400" />
             Key Architectural Highlights
@@ -498,7 +501,7 @@ export default function GenericProjectInteractivePage({ project, onBack }: Gener
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
             {project.features.map((feature, idx) => (
-              <div key={idx} className="p-3 bg-zinc-900/50 border border-zinc-850 flex items-start gap-2">
+              <div key={idx} className="lab-metric p-3 flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span className="text-zinc-300 font-sans">{feature}</span>
               </div>

@@ -1,19 +1,28 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
-  ArrowLeft, Github, ExternalLink, Activity, Sparkles, TrendingUp, 
-  Bot, ShieldAlert, Newspaper, Mic, Volume2, Globe2, Terminal, 
-  CheckCircle2, Flame, Layers, Database, Code2, HeartPulse, Zap,
-  BookOpen, ChevronRight, Cpu
+  ArrowLeft, Github, Activity, TrendingUp, 
+  Bot, ShieldAlert, Newspaper, Database
 } from 'lucide-react';
 import { GLOBAL_DISEASE_TRACKER_DATA } from '../../data';
+import { CornerReticles, TerminalBlock } from './ExhibitPrimitives';
 
 interface DiseaseTrackerInteractivePageProps {
   onBack: () => void;
 }
 
+function formatCompact(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}k`;
+  return String(n);
+}
+
 export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTrackerInteractivePageProps) {
   const [selectedHighlight, setSelectedHighlight] = useState<number>(0);
+  const [selectedDatasetIdx, setSelectedDatasetIdx] = useState<number>(0);
+  const [hoveredYearIdx, setHoveredYearIdx] = useState<number | null>(null);
+
+  const activeDataset = GLOBAL_DISEASE_TRACKER_DATA.sampleData[selectedDatasetIdx];
 
   const funHighlights = [
     {
@@ -62,17 +71,24 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-8 px-4 sm:px-6 max-w-5xl mx-auto text-left font-sans selection:bg-rose-500/20">
       
       {/* Top Breadcrumb & Navigation */}
-      <div className="border-b border-zinc-850 pb-6 mb-8">
+      <div className="pb-4 mb-6 border-b border-zinc-900">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects Portfolio
         </button>
+      </div>
 
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+      {/* Hero Frame */}
+      <div className="lab-hero p-6 sm:p-9 mb-8 relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-rose-500/80 via-cyan-400/50 to-transparent" />
+        <CornerReticles colorClass="border-rose-400/50" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="flex flex-wrap items-center gap-2 mb-3 relative z-10">
           <span className="px-2.5 py-0.5 bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-mono font-bold uppercase tracking-wider">
             Streamlit App
           </span>
@@ -87,9 +103,9 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
           </span>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase font-display flex items-center gap-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase font-display flex items-center gap-3 flex-wrap">
               <span>Global Disease Tracker Pro</span>
               <span className="text-xs px-2.5 py-1 bg-rose-600/20 border border-rose-500/30 text-rose-300 font-mono font-bold rounded-full">
                 v3.0
@@ -104,7 +120,7 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
             href={GLOBAL_DISEASE_TRACKER_DATA.githubRepo}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 hover:bg-zinc-850 text-white font-mono text-xs uppercase tracking-wider font-bold border border-zinc-750 transition-colors shrink-0"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 hover:bg-zinc-850 text-white font-mono text-xs uppercase tracking-wider font-bold border border-zinc-750 transition-colors shrink-0 w-fit"
             id="btn-disease-tracker-github"
           >
             <Github className="w-4 h-4" />
@@ -115,30 +131,239 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
 
       {/* 4 Big Numbers Overview */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10 font-mono">
-        <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
+        <div className="lab-metric p-4 space-y-1 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-rose-500/70 to-transparent" />
           <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">Time Horizon</span>
           <span className="text-2xl font-black text-rose-400">25 Years</span>
           <span className="text-[10px] text-zinc-300 block font-sans">2000 to 2025 Historicals</span>
         </div>
 
-        <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
+        <div className="lab-metric p-4 space-y-1 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-cyan-400/70 to-transparent" />
           <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">Global Footprint</span>
           <span className="text-2xl font-black text-cyan-400">10 Nations</span>
           <span className="text-[10px] text-zinc-300 block font-sans">Across 6 Major Diseases</span>
         </div>
 
-        <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
+        <div className="lab-metric p-4 space-y-1 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-purple-400/70 to-transparent" />
           <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">Dataset Size</span>
           <span className="text-2xl font-black text-purple-400">156k+</span>
           <span className="text-[10px] text-zinc-300 block font-sans">60 Clean CSV Datasets</span>
         </div>
 
-        <div className="p-4 bg-zinc-900/60 border border-zinc-800 space-y-1">
+        <div className="lab-metric p-4 space-y-1 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-400/70 to-transparent" />
           <span className="text-[10px] text-zinc-300 uppercase tracking-widest block">ML Forecasts</span>
           <span className="text-2xl font-black text-emerald-400">70%+ R²</span>
           <span className="text-[10px] text-zinc-300 block font-sans">30 to 180-Day Predictions</span>
         </div>
       </div>
+
+      {/* Interactive Epidemiological Curve & Polynomial Forecast Visualizer */}
+      {activeDataset && (() => {
+        const points = activeDataset.yearlyTrend;
+        const lastPt = points[points.length - 1];
+        const hasPredicted = typeof lastPt?.predicted === 'number';
+        const allVals = points.flatMap((p) => (p.predicted ? [p.cases, p.predicted] : [p.cases]));
+        const maxVal = Math.max(...allVals, 1) * 1.12;
+        const width = 680;
+        const height = 220;
+        const pad = { top: 22, right: 36, bottom: 32, left: 54 };
+        const plotW = width - pad.left - pad.right;
+        const plotH = height - pad.top - pad.bottom;
+        const totalSlots = hasPredicted ? points.length : Math.max(1, points.length - 1);
+        const xOf = (idx: number) => pad.left + (idx / Math.max(1, totalSlots)) * plotW;
+        const yOf = (v: number) => pad.top + ((maxVal - v) / maxVal) * plotH;
+
+        const actualPath = points
+          .map((p, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i).toFixed(1)} ${yOf(p.cases).toFixed(1)}`)
+          .join(' ');
+        const actualArea = `${actualPath} L ${xOf(points.length - 1).toFixed(1)} ${(pad.top + plotH).toFixed(1)} L ${xOf(0).toFixed(1)} ${(pad.top + plotH).toFixed(1)} Z`;
+
+        const activePt = hoveredYearIdx !== null ? points[hoveredYearIdx] : lastPt;
+
+        return (
+          <div className="lab-surface p-6 mb-12 space-y-5 relative overflow-hidden">
+            <CornerReticles colorClass="border-rose-400/35" />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-850 pb-4">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-rose-400 font-bold flex items-center gap-1.5">
+                  <Activity className="w-3.5 h-3.5" />
+                  Interactive Epidemiological Curve & ML Forecast Preview
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-white font-display uppercase mt-0.5">
+                  {activeDataset.disease} — {activeDataset.country}
+                </h2>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5">
+                {GLOBAL_DISEASE_TRACKER_DATA.sampleData.map((ds, idx) => (
+                  <button
+                    key={ds.disease}
+                    onClick={() => {
+                      setSelectedDatasetIdx(idx);
+                      setHoveredYearIdx(null);
+                    }}
+                    className={`px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider border transition cursor-pointer ${
+                      selectedDatasetIdx === idx
+                        ? 'bg-rose-500/20 text-rose-200 border-rose-400/70 font-bold'
+                        : 'bg-zinc-950 text-zinc-300 border-zinc-800 hover:border-zinc-700'
+                    }`}
+                  >
+                    {ds.disease}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Dataset Summary Telemetry Strip */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+              <div className="p-3 bg-zinc-950 border border-zinc-850">
+                <span className="text-[9px] text-zinc-400 uppercase block">Total Cases</span>
+                <span className="text-white font-bold text-sm">{activeDataset.totalCases}</span>
+              </div>
+              <div className="p-3 bg-zinc-950 border border-zinc-850">
+                <span className="text-[9px] text-zinc-400 uppercase block">Annual Average</span>
+                <span className="text-cyan-400 font-bold text-sm">{activeDataset.annualAvg}</span>
+              </div>
+              <div className="p-3 bg-zinc-950 border border-zinc-850">
+                <span className="text-[9px] text-zinc-400 uppercase block">Peak Year</span>
+                <span className="text-rose-400 font-bold text-sm">{activeDataset.peakYear}</span>
+              </div>
+              <div className="p-3 bg-zinc-950 border border-zinc-850">
+                <span className="text-[9px] text-zinc-400 uppercase block">Observed Trend</span>
+                <span className="text-emerald-400 font-bold text-sm">{activeDataset.trend}</span>
+              </div>
+            </div>
+
+            {/* SVG Chart Canvas */}
+            <div className="p-4 bg-[#070709] border border-zinc-850 space-y-2">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono">
+                <div className="flex items-center gap-4">
+                  <span className="inline-flex items-center gap-1.5 text-rose-400 font-bold">
+                    <span className="w-3 h-0.5 bg-rose-400 inline-block" /> Historical Cases
+                  </span>
+                  {hasPredicted && (
+                    <span className="inline-flex items-center gap-1.5 text-cyan-400 font-bold">
+                      <span className="w-3 h-0.5 border-t border-dashed border-cyan-400 inline-block" /> Polynomial Forecast
+                    </span>
+                  )}
+                </div>
+                {activePt && (
+                  <div className="px-2.5 py-1 bg-zinc-900 border border-zinc-800 text-zinc-200 flex items-center gap-3">
+                    <span>Year {activePt.year}</span>
+                    <span className="text-rose-400 font-bold">Cases: {activePt.cases.toLocaleString()}</span>
+                    <span className="text-zinc-400">Deaths: {activePt.deaths.toLocaleString()}</span>
+                  </div>
+                )}
+              </div>
+
+              <div className="w-full overflow-x-auto">
+                <svg viewBox={`0 0 ${width} ${height}`} className="w-full min-w-[500px] h-auto select-none">
+                  <defs>
+                    <linearGradient id="diseaseCurveFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#fb7185" stopOpacity="0.28" />
+                      <stop offset="100%" stopColor="#fb7185" stopOpacity="0.0" />
+                    </linearGradient>
+                  </defs>
+
+                  {[0, 1, 2, 3, 4].map((tick) => {
+                    const val = maxVal * (1 - tick / 4);
+                    const y = yOf(val);
+                    return (
+                      <g key={tick}>
+                        <line x1={pad.left} y1={y} x2={width - pad.right} y2={y} stroke="rgba(63,63,70,0.4)" strokeDasharray="3 4" />
+                        <text x={pad.left - 8} y={y + 3} textAnchor="end" className="fill-zinc-400 text-[9px] font-mono">
+                          {formatCompact(val)}
+                        </text>
+                      </g>
+                    );
+                  })}
+
+                  <path d={actualArea} fill="url(#diseaseCurveFill)" />
+
+                  <motion.path
+                    key={`curve-${selectedDatasetIdx}`}
+                    d={actualPath}
+                    fill="none"
+                    stroke="#fb7185"
+                    strokeWidth="2.5"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.75, ease: 'easeOut' }}
+                  />
+
+                  {hasPredicted && lastPt.predicted !== undefined && (
+                    <g>
+                      <line
+                        x1={xOf(points.length - 1)}
+                        y1={yOf(lastPt.cases)}
+                        x2={xOf(points.length)}
+                        y2={yOf(lastPt.predicted)}
+                        stroke="#22d3ee"
+                        strokeWidth="2.2"
+                        strokeDasharray="5 4"
+                      />
+                      <circle
+                        cx={xOf(points.length)}
+                        cy={yOf(lastPt.predicted)}
+                        r="4.5"
+                        fill="#22d3ee"
+                        stroke="#09090b"
+                        strokeWidth="1.5"
+                      />
+                      <text
+                        x={xOf(points.length)}
+                        y={height - 10}
+                        textAnchor="middle"
+                        className="fill-cyan-400 text-[9px] font-mono font-bold"
+                      >
+                        {lastPt.year + 1}*
+                      </text>
+                    </g>
+                  )}
+
+                  {points.map((p, i) => {
+                    const x = xOf(i);
+                    const y = yOf(p.cases);
+                    const isHovered = hoveredYearIdx === i;
+                    return (
+                      <g
+                        key={p.year}
+                        onMouseEnter={() => setHoveredYearIdx(i)}
+                        onMouseLeave={() => setHoveredYearIdx(null)}
+                        className="cursor-crosshair"
+                      >
+                        <rect x={x - 28} y={pad.top} width="56" height={plotH} fill="transparent" />
+                        {isHovered && (
+                          <line x1={x} y1={pad.top} x2={x} y2={pad.top + plotH} stroke="rgba(228,228,231,0.35)" strokeDasharray="2 3" />
+                        )}
+                        <circle
+                          cx={x}
+                          cy={y}
+                          r={isHovered ? 5.2 : 3.4}
+                          fill="#fb7185"
+                          stroke="#09090b"
+                          strokeWidth="1.5"
+                        />
+                        <text
+                          x={x}
+                          y={height - 10}
+                          textAnchor="middle"
+                          className={`text-[9px] font-mono ${isHovered ? 'fill-white font-bold' : 'fill-zinc-400'}`}
+                        >
+                          {p.year}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* The Story & Highlights Selector */}
       <div className="space-y-6 mb-12">
@@ -182,11 +407,19 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
         </div>
 
         {/* Selected Highlight Expanded Card */}
+        <AnimatePresence mode="wait">
         {(() => {
           const current = funHighlights[selectedHighlight];
           const Icon = current.icon;
           return (
-            <div className="p-6 bg-zinc-900/60 border border-zinc-800 space-y-4 text-left">
+            <motion.div
+              key={selectedHighlight}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.2 }}
+              className="lab-surface p-6 space-y-4 text-left"
+            >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-800 pb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center font-bold">
@@ -217,9 +450,10 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
                   <p className="text-zinc-300 font-light leading-relaxed">{current.funFact}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })()}
+        </AnimatePresence>
       </div>
 
       {/* Scope Matrix: 6 Diseases × 10 Countries */}
@@ -295,22 +529,31 @@ export default function DiseaseTrackerInteractivePage({ onBack }: DiseaseTracker
         </div>
 
         {/* 3 Step Run Guide */}
-        <div className="space-y-3 font-mono text-xs">
-          <div className="p-3.5 bg-zinc-950 border border-zinc-850 space-y-1">
-            <span className="text-zinc-300 uppercase text-[10px] block">1. Clone & Set Up Virtual Environment:</span>
-            <div className="text-emerald-400">git clone https://github.com/25sh0363-code/project-board.git</div>
-            <div className="text-emerald-400">cd project-board && python -m venv .venv && source .venv/bin/activate</div>
-          </div>
+        <div className="space-y-4">
+          <TerminalBlock
+            title="1. Clone & Set Up Virtual Environment"
+            commands={[
+              'git clone https://github.com/25sh0363-code/project-board.git',
+              'cd project-board && python -m venv .venv && source .venv/bin/activate'
+            ]}
+            accentTextClass="text-emerald-400"
+          />
 
-          <div className="p-3.5 bg-zinc-950 border border-zinc-850 space-y-1">
-            <span className="text-zinc-300 uppercase text-[10px] block">2. Install Dependencies:</span>
-            <div className="text-emerald-400">pip install -r requirements.txt</div>
-          </div>
+          <TerminalBlock
+            title="2. Install Dependencies"
+            commands={['pip install -r requirements.txt']}
+            accentTextClass="text-emerald-400"
+          />
 
-          <div className="p-3.5 bg-zinc-950 border border-zinc-850 space-y-1">
-            <span className="text-zinc-300 uppercase text-[10px] block">3. Launch Streamlit:</span>
-            <div className="text-emerald-400">streamlit run app.py</div>
-            <span className="text-zinc-300 text-[10px] block font-sans pt-1">Opens locally at http://localhost:8501</span>
+          <div className="space-y-1.5">
+            <TerminalBlock
+              title="3. Launch Streamlit"
+              commands={['streamlit run app.py']}
+              accentTextClass="text-emerald-400"
+            />
+            <span className="text-zinc-400 text-[11px] block font-mono pl-1">
+              Opens locally at http://localhost:8501
+            </span>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
   Terminal, Award, PenTool, CheckSquare, Camera, Maximize2, X
 } from 'lucide-react';
 import { fixAssetUrl } from '../../utils/assets';
+import { BrowserFrame, CornerReticles } from './ExhibitPrimitives';
 
 interface TeachersDayInteractivePageProps {
   onBack: () => void;
@@ -93,19 +94,26 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-8 px-4 sm:px-6 max-w-5xl mx-auto text-left font-mono selection:bg-zinc-800">
       
-      {/* Top Breadcrumb & Header */}
-      <div className="border-b border-zinc-850 pb-6 mb-8">
+      {/* Top Breadcrumb */}
+      <div className="pb-4 mb-6 border-b border-zinc-900">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects Portfolio
         </button>
+      </div>
+
+      {/* Hero Frame */}
+      <div className="lab-hero p-6 sm:p-9 mb-8 relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-rose-400/80 via-amber-400/50 to-transparent" />
+        <CornerReticles colorClass="border-rose-400/50" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Minimalist Monochromatic Badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="flex flex-wrap items-center gap-2 mb-3 relative z-10">
           <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-200 border border-zinc-800 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
             <Heart className="w-3 h-3 text-rose-400" /> Dedicated to XII-Innovators Faculty
           </span>
@@ -117,7 +125,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
           </span>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 relative z-10">
           <div>
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase font-display flex items-center gap-3">
               <span>A Class Act — Teachers’ Day</span>
@@ -171,9 +179,17 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
         })}
       </div>
 
+      <AnimatePresence mode="wait">
       {/* TAB: SCREENSHOTS GALLERY */}
       {activeTab === 'screenshots' && (
-        <div className="space-y-8">
+        <motion.div
+          key="screenshots"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-8"
+        >
           <div className="border-b border-zinc-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
@@ -189,40 +205,47 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {teacherScreenshots.map((shot) => (
+            {teacherScreenshots.map((shot, idx) => (
               <div 
                 key={shot.id} 
-                className="bg-zinc-950 border border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col justify-between"
+                className="lab-surface overflow-hidden group hover:border-rose-400/50 transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div 
-                    className="relative cursor-pointer overflow-hidden bg-zinc-900 aspect-video border-b border-zinc-850"
-                    onClick={() => setZoomedImage({ src: shot.image, title: shot.title })}
+                  <BrowserFrame
+                    url={`a-class-act / view-0${idx + 1}`}
+                    accentDotClass="bg-rose-400"
+                    onExpand={() => setZoomedImage({ src: shot.image, title: shot.title })}
+                    className="border-0 shadow-none"
                   >
-                    <img 
-                      src={shot.image} 
-                      alt={shot.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold uppercase tracking-wider">
-                      <Maximize2 className="w-4 h-4" />
-                      Expand Image
+                    <div 
+                      className="relative cursor-pointer overflow-hidden bg-zinc-900 aspect-video"
+                      onClick={() => setZoomedImage({ src: shot.image, title: shot.title })}
+                    >
+                      <img 
+                        src={shot.image} 
+                        alt={shot.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold uppercase tracking-wider">
+                        <Maximize2 className="w-4 h-4" />
+                        Expand Image
+                      </div>
                     </div>
-                  </div>
+                  </BrowserFrame>
 
-                  <div className="p-4 space-y-2">
+                  <div className="p-4 border-t border-zinc-850 space-y-2">
                     <h3 className="text-sm font-bold text-white uppercase font-mono">{shot.title}</h3>
                     <p className="text-xs text-zinc-300 font-sans leading-relaxed">{shot.caption}</p>
                   </div>
                 </div>
 
                 <div className="p-4 pt-0">
-                  <div className="border-t border-zinc-900 pt-3 space-y-1">
+                  <div className="border-t border-zinc-850 pt-3 space-y-1">
                     <span className="text-[10px] font-mono uppercase text-zinc-300 font-bold block">Key Elements:</span>
                     <ul className="space-y-1">
                       {shot.highlights.map((h, i) => (
                         <li key={i} className="text-[11px] text-zinc-300 font-sans flex items-start gap-1.5">
-                          <span className="text-zinc-300 font-mono">•</span>
+                          <span className="text-rose-400 font-mono">•</span>
                           <span>{h}</span>
                         </li>
                       ))}
@@ -232,12 +255,19 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* TAB 1: OVERVIEW */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <motion.div
+          key="overview"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-6"
+        >
           <div className="border-b border-zinc-800 pb-3">
             <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Handcrafted Dedicated Experience
@@ -251,36 +281,43 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans text-xs">
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
-              <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">Target Audience</span>
+            <div className="lab-metric p-5 space-y-2">
+              <span className="text-[10px] font-mono text-rose-400 uppercase font-bold block">Target Audience</span>
               <span className="text-base font-bold text-white block">XII-Innovators Faculty</span>
               <p className="text-zinc-300 text-[11px] leading-relaxed font-light">
                 Built specifically for the teachers who taught more than what was on the official timetable.
               </p>
             </div>
 
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
-              <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">Design Motif</span>
+            <div className="lab-metric p-5 space-y-2">
+              <span className="text-[10px] font-mono text-amber-400 uppercase font-bold block">Design Motif</span>
               <span className="text-base font-bold text-white block">Digital Classroom & Notebook</span>
               <p className="text-zinc-300 text-[11px] leading-relaxed font-light">
                 Paper textures, wooden chalkboards, handwritten typography, and taped-up cards.
               </p>
             </div>
 
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
-              <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">Build Philosophy</span>
+            <div className="lab-metric p-5 space-y-2">
+              <span className="text-[10px] font-mono text-emerald-400 uppercase font-bold block">Build Philosophy</span>
               <span className="text-base font-bold text-white block">Pure Web Platform</span>
               <p className="text-zinc-300 text-[11px] leading-relaxed font-light">
                 Zero build step, zero frameworks, 100% standard web technologies (HTML5, CSS3, Vanilla JS, Canvas API, SVG).
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* TAB 2: CLASSROOM FEATURES */}
       {activeTab === 'features' && (
-        <div className="space-y-6">
+        <motion.div
+          key="features"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-6"
+        >
           <div className="border-b border-zinc-800 pb-3">
             <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Interactive Design System
@@ -292,7 +329,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
             
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
+            <div className="lab-metric p-5 space-y-2">
               <span className="font-mono text-xs font-bold text-white uppercase flex items-center gap-2">
                 <PenTool className="w-4 h-4 text-zinc-300" />
                 1. Interactive Chalkboard Hero
@@ -302,7 +339,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
               </p>
             </div>
 
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
+            <div className="lab-metric p-5 space-y-2">
               <span className="font-mono text-xs font-bold text-white uppercase flex items-center gap-2">
                 <Award className="w-4 h-4 text-zinc-300" />
                 2. Subject Faculty Cards
@@ -312,7 +349,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
               </p>
             </div>
 
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
+            <div className="lab-metric p-5 space-y-2">
               <span className="font-mono text-xs font-bold text-white uppercase flex items-center gap-2">
                 <CheckSquare className="w-4 h-4 text-zinc-300" />
                 3. Interactive Attendance Register
@@ -322,7 +359,7 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
               </p>
             </div>
 
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-2">
+            <div className="lab-metric p-5 space-y-2">
               <span className="font-mono text-xs font-bold text-white uppercase flex items-center gap-2">
                 <Heart className="w-4 h-4 text-rose-400" />
                 4. Signed Thank-You Card & Gratitude Engine
@@ -333,12 +370,19 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
             </div>
 
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* TAB 4: ARCHITECTURE & TECH STACK */}
       {activeTab === 'architecture' && (
-        <div className="space-y-6">
+        <motion.div
+          key="architecture"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-6"
+        >
           <div className="border-b border-zinc-800 pb-3">
             <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
               Pure Native Web Implementation
@@ -351,35 +395,36 @@ export default function TeachersDayInteractivePage({ onBack }: TeachersDayIntera
             </p>
           </div>
 
-          <div className="bg-zinc-950 border border-zinc-800 p-6 space-y-4">
+          <div className="lab-surface p-6 space-y-4">
             <span className="text-[10px] text-zinc-300 uppercase font-bold block">
               Declared Technical Stack
             </span>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+              <div className="lab-metric p-3">
                 <span className="text-white font-bold block">HTML5 Semantic Structure</span>
                 <span className="text-[11px] text-zinc-300 font-sans">Custom SVG chalk masks and accessible card containers.</span>
               </div>
 
-              <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+              <div className="lab-metric p-3">
                 <span className="text-white font-bold block">CSS3 Layouts & Typography</span>
                 <span className="text-[11px] text-zinc-300 font-sans">Custom paper textures, Fraunces, Caveat, & Space Mono font pairings.</span>
               </div>
 
-              <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+              <div className="lab-metric p-3">
                 <span className="text-white font-bold block">Vanilla JavaScript & Canvas API</span>
                 <span className="text-[11px] text-zinc-300 font-sans">Real-time 2D canvas drawing algorithms for chalkboard interaction.</span>
               </div>
 
-              <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+              <div className="lab-metric p-3">
                 <span className="text-white font-bold block">Intersection Observer API</span>
                 <span className="text-[11px] text-zinc-300 font-sans">Scroll-triggered chalk animations and reveal storytelling.</span>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {/* FULLSCREEN IMAGE MODAL */}
       <AnimatePresence>

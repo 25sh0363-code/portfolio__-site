@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
   Github, 
@@ -7,19 +8,128 @@ import {
   Layers, 
   Activity, 
   Sparkles, 
-  Copy, 
-  Check, 
   Terminal, 
   Play, 
   AlertTriangle,
   FileCode,
-  CheckCircle2,
-  BookOpen
+  BookOpen,
+  ArrowRight
 } from 'lucide-react';
 import { SEQ2SEQ_TRANSLATION_DATA } from '../../data';
+import { CornerReticles, TerminalBlock } from './ExhibitPrimitives';
 
 interface Seq2SeqInteractivePageProps {
   onBack: () => void;
+}
+
+function Seq2SeqLossChart({ data }: { data: Array<{ epoch: number; loss: number }> }) {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const width = 680;
+  const height = 210;
+  const pad = { top: 22, right: 24, bottom: 32, left: 46 };
+  const plotW = width - pad.left - pad.right;
+  const plotH = height - pad.top - pad.bottom;
+
+  const losses = data.map((d) => d.loss);
+  const minVal = Math.floor((Math.min(...losses) - 0.15) * 10) / 10;
+  const maxVal = Math.ceil((Math.max(...losses) + 0.15) * 10) / 10;
+
+  const xOf = (idx: number) => pad.left + (idx / Math.max(1, data.length - 1)) * plotW;
+  const yOf = (val: number) => pad.top + ((maxVal - val) / (maxVal - minVal || 1)) * plotH;
+
+  const linePath = data
+    .map((d, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i).toFixed(1)} ${yOf(d.loss).toFixed(1)}`)
+    .join(' ');
+  const areaPath = `${linePath} L ${xOf(data.length - 1).toFixed(1)} ${(pad.top + plotH).toFixed(1)} L ${xOf(0).toFixed(1)} ${(pad.top + plotH).toFixed(1)} Z`;
+
+  const active = hoveredIdx !== null ? data[hoveredIdx] : data[data.length - 1];
+
+  return (
+    <div className="p-4 sm:p-5 bg-zinc-905 border border-zinc-850 space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
+        <span className="text-zinc-300 uppercase tracking-wider font-bold text-[10px]">
+          Empirical Loss Trajectory Curve (Epochs 9–29)
+        </span>
+        <div className="flex items-center gap-3 px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-[10px]">
+          <span className="text-zinc-400">Epoch {active.epoch}</span>
+          <span className={active.epoch === 28 ? 'text-purple-400 font-bold' : active.epoch === 29 ? 'text-emerald-400 font-bold' : 'text-cyan-400 font-bold'}>
+            Loss: {active.loss.toFixed(3)}
+          </span>
+        </div>
+      </div>
+
+      <div className="w-full overflow-x-auto">
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full min-w-[520px] h-auto select-none">
+          <defs>
+            <linearGradient id="seq2seqLossGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          {[0, 1, 2, 3, 4].map((tick) => {
+            const val = maxVal - (tick / 4) * (maxVal - minVal);
+            const y = yOf(val);
+            return (
+              <g key={tick}>
+                <line x1={pad.left} y1={y} x2={width - pad.right} y2={y} stroke="rgba(63,63,70,0.4)" strokeDasharray="3 4" />
+                <text x={pad.left - 8} y={y + 3} textAnchor="end" className="fill-zinc-400 text-[9px] font-mono">
+                  {val.toFixed(2)}
+                </text>
+              </g>
+            );
+          })}
+
+          <path d={areaPath} fill="url(#seq2seqLossGrad)" />
+
+          <motion.path
+            d={linePath}
+            fill="none"
+            stroke="#22d3ee"
+            strokeWidth="2.5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
+          />
+
+          {data.map((d, i) => {
+            const x = xOf(i);
+            const y = yOf(d.loss);
+            const isHovered = hoveredIdx === i;
+            const isTrough = d.epoch === 28;
+            const isFinal = d.epoch === 29;
+            const dotColor = isTrough ? '#c084fc' : isFinal ? '#34d399' : '#22d3ee';
+            return (
+              <g
+                key={d.epoch}
+                onMouseEnter={() => setHoveredIdx(i)}
+                onMouseLeave={() => setHoveredIdx(null)}
+                className="cursor-crosshair"
+              >
+                <rect x={x - plotW / (data.length * 2)} y={pad.top} width={plotW / data.length} height={plotH} fill="transparent" />
+                {isHovered && (
+                  <line x1={x} y1={pad.top} x2={x} y2={pad.top + plotH} stroke="rgba(228,228,231,0.35)" strokeDasharray="2 3" />
+                )}
+                <circle
+                  cx={x}
+                  cy={y}
+                  r={isHovered || isTrough || isFinal ? 4.5 : 2.6}
+                  fill={dotColor}
+                  stroke="#09090b"
+                  strokeWidth="1.5"
+                />
+                {(i % 2 === 0 || isFinal) && (
+                  <text x={x} y={height - 10} textAnchor="middle" className={`text-[9px] font-mono ${isHovered ? 'fill-white font-bold' : 'fill-zinc-400'}`}>
+                    E{d.epoch}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </div>
+  );
 }
 
 export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePageProps) {
@@ -91,17 +201,9 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
   ];
 
   const [selectedSampleIndex, setSelectedSampleIndex] = useState(0);
-  const [hoveredCell, setHoveredCell] = useState<{ srcToken: string; tgtToken: string; weight: number } | null>(null);
-  const [copiedCode, setCopiedCode] = useState(false);
+  const [hoveredCell, setHoveredCell] = useState<{ srcToken: string; tgtToken: string; weight: number; rowIdx: number; colIdx: number } | null>(null);
 
   const currentSample = sampleSentences[selectedSampleIndex];
-
-  const handleCopyCode = () => {
-    const code = data.reproduction.commands.join('\n');
-    navigator.clipboard.writeText(code);
-    setCopiedCode(true);
-    setTimeout(() => setCopiedCode(false), 2000);
-  };
 
   return (
     <section className="py-8 sm:py-12 relative text-left" id="seq2seq-project-page">
@@ -124,10 +226,12 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
         </div>
 
         {/* Hero Card */}
-        <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-zinc-800/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="lab-hero p-6 sm:p-10 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-cyan-400/80 via-emerald-400/50 to-transparent" />
+          <CornerReticles colorClass="border-cyan-400/50" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center gap-2 mb-4">
+          <div className="flex flex-wrap items-center gap-2 mb-4 relative z-10">
             <span className="px-2.5 py-0.5 bg-zinc-100 text-zinc-950 text-[10px] font-mono font-black uppercase tracking-widest flex items-center gap-1.5">
               <Languages className="w-3 h-3 text-zinc-900" />
               From-Scratch PyTorch MT
@@ -146,32 +250,32 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4 relative z-10">
             Encoder-Decoder Transformer for Machine Translation
           </h1>
 
-          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
+          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6 relative z-10">
             A from-scratch implementation of the Transformer architecture (&ldquo;Attention Is All You Need&rdquo;) in PyTorch without high-level <code className="text-cyan-300 font-mono text-sm bg-zinc-900 px-1 py-0.5">nn.Transformer</code> layers. Trained on the <code className="text-zinc-200 font-mono text-sm bg-zinc-900 px-1 py-0.5">Soikat/opus_books</code> English–Portuguese dataset on a MacBook Air M4 CPU.
           </p>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono pt-4 border-t border-zinc-900">
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono pt-4 border-t border-zinc-800/80 relative z-10">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Model Architecture</span>
               <span className="text-white font-bold text-base">6 Enc + 6 Dec Layers</span>
               <span className="text-[10px] text-zinc-300 block">d_model=256, h=8, d_ff=2048</span>
             </div>
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Dataset Size</span>
               <span className="text-cyan-400 font-bold text-base">1,404 Sentence Pairs</span>
               <span className="text-[10px] text-zinc-300 block">1,264 Train / 140 Val</span>
             </div>
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Training Convergence</span>
               <span className="text-emerald-400 font-bold text-base">7.42 → 3.003 Loss</span>
               <span className="text-[10px] text-zinc-300 block">30 Epochs on M4 CPU</span>
             </div>
-            <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+            <div className="lab-metric p-3">
               <span className="text-[10px] text-zinc-300 uppercase block">Empirical BLEU Metric</span>
               <span className="text-amber-400 font-bold text-base">BLEU: 0.0000</span>
               <span className="text-[10px] text-zinc-300 block">Strict n-gram threshold</span>
@@ -179,7 +283,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
           </div>
 
           {/* Actions */}
-          <div className="flex flex-wrap items-center gap-3 pt-6 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-3 pt-6 text-xs font-mono relative z-10">
             <a
               href="https://github.com/25sh0363-code/Encoder-decoder_Translation_model_English-to-Portuguese"
               target="_blank"
@@ -229,9 +333,17 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
           })}
         </div>
 
+        <AnimatePresence mode="wait">
         {/* TAB 1: CROSS-ATTENTION HEATMAP & DECODING */}
         {activeTab === 'playground' && (
-          <div className="space-y-6">
+          <motion.div
+            key="playground"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
             <div className="p-4 bg-zinc-900/40 border border-zinc-800 flex items-center justify-between flex-wrap gap-3">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold block">
@@ -345,70 +457,84 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                     <div className="inline-block min-w-full">
                       {/* Column Headers (Source Tokens) */}
                       <div className="flex items-center pl-28">
-                        {currentSample.tokensEn.map((tok, cIdx) => (
-                          <div
-                            key={cIdx}
-                            className="w-14 text-center text-[10px] font-mono text-zinc-300 truncate px-1 transform -rotate-45 origin-bottom-left h-14 flex items-end justify-center font-bold"
-                            title={tok}
-                          >
-                            {tok}
-                          </div>
-                        ))}
+                        {currentSample.tokensEn.map((tok, cIdx) => {
+                          const isColActive = hoveredCell?.colIdx === cIdx;
+                          return (
+                            <div
+                              key={cIdx}
+                              className={`w-14 text-center text-[10px] font-mono truncate px-1 transform -rotate-45 origin-bottom-left h-14 flex items-end justify-center font-bold transition-colors ${
+                                isColActive ? 'text-cyan-300 scale-110' : 'text-zinc-300'
+                              }`}
+                              title={tok}
+                            >
+                              {tok}
+                            </div>
+                          );
+                        })}
                       </div>
 
                       {/* Rows (Target Tokens) */}
                       <div className="space-y-1 mt-2">
-                        {currentSample.tokensPt.map((tgtTok, rIdx) => (
-                          <div key={rIdx} className="flex items-center gap-1">
-                            <span className="w-28 text-right pr-3 text-[10px] font-mono text-zinc-300 truncate font-bold">
-                              {tgtTok}
-                            </span>
-                            <div className="flex items-center gap-1">
-                              {currentSample.tokensEn.map((srcTok, cIdx) => {
-                                const weight = currentSample.matrix[rIdx]?.[cIdx] ?? 0.05;
-                                
-                                // Color interpolation mirroring the viridis heatmap from the user screenshot:
-                                // Low (0.00-0.10) = deep purple / indigo (#2b0845, #3b1c6e)
-                                // Mid (0.10-0.25) = teal / cyan (#1e5d7b, #198083)
-                                // High (0.25-0.42) = green to bright yellow (#40b561, #e3e029)
-                                let bgColor = '#240b3b';
-                                let textColor = '#a1a1aa';
-                                if (weight > 0.35) {
-                                  bgColor = '#e5df22'; // bright yellow
-                                  textColor = '#09090b';
-                                } else if (weight > 0.28) {
-                                  bgColor = '#4fb84e'; // bright lime-green
-                                  textColor = '#09090b';
-                                } else if (weight > 0.20) {
-                                  bgColor = '#239379'; // teal green
-                                  textColor = '#ffffff';
-                                } else if (weight > 0.14) {
-                                  bgColor = '#1e6284'; // ocean blue
-                                  textColor = '#ffffff';
-                                } else if (weight > 0.08) {
-                                  bgColor = '#382e75'; // indigo
-                                  textColor = '#d4d4d8';
-                                }
+                        {currentSample.tokensPt.map((tgtTok, rIdx) => {
+                          const isRowActive = hoveredCell?.rowIdx === rIdx;
+                          return (
+                            <div key={rIdx} className="flex items-center gap-1">
+                              <span className={`w-28 text-right pr-3 text-[10px] font-mono truncate font-bold transition-colors ${
+                                isRowActive ? 'text-emerald-300' : 'text-zinc-300'
+                              }`}>
+                                {tgtTok}
+                              </span>
+                              <div className="flex items-center gap-1">
+                                {currentSample.tokensEn.map((srcTok, cIdx) => {
+                                  const weight = currentSample.matrix[rIdx]?.[cIdx] ?? 0.05;
+                                  const isCellActive = hoveredCell?.rowIdx === rIdx && hoveredCell?.colIdx === cIdx;
+                                  const isCrosshair = hoveredCell !== null && (hoveredCell.rowIdx === rIdx || hoveredCell.colIdx === cIdx);
+                                  
+                                  let bgColor = '#240b3b';
+                                  let textColor = '#a1a1aa';
+                                  if (weight > 0.35) {
+                                    bgColor = '#e5df22';
+                                    textColor = '#09090b';
+                                  } else if (weight > 0.28) {
+                                    bgColor = '#4fb84e';
+                                    textColor = '#09090b';
+                                  } else if (weight > 0.20) {
+                                    bgColor = '#239379';
+                                    textColor = '#ffffff';
+                                  } else if (weight > 0.14) {
+                                    bgColor = '#1e6284';
+                                    textColor = '#ffffff';
+                                  } else if (weight > 0.08) {
+                                    bgColor = '#382e75';
+                                    textColor = '#d4d4d8';
+                                  }
 
-                                return (
-                                  <div
-                                    key={cIdx}
-                                    onMouseEnter={() => setHoveredCell({ srcToken: srcTok, tgtToken: tgtTok, weight })}
-                                    onMouseLeave={() => setHoveredCell(null)}
-                                    className="w-13 h-9 flex items-center justify-center text-[10px] font-mono font-bold border border-zinc-900 cursor-crosshair transition-transform hover:scale-105"
-                                    style={{
-                                      backgroundColor: bgColor,
-                                      color: textColor
-                                    }}
-                                    title={`Cross-Attention [${tgtTok} -> ${srcTok}]: ${weight.toFixed(3)}`}
-                                  >
-                                    {weight.toFixed(2)}
-                                  </div>
-                                );
-                              })}
+                                  return (
+                                    <div
+                                      key={cIdx}
+                                      onMouseEnter={() => setHoveredCell({ srcToken: srcTok, tgtToken: tgtTok, weight, rowIdx: rIdx, colIdx: cIdx })}
+                                      onMouseLeave={() => setHoveredCell(null)}
+                                      className={`w-13 h-9 flex items-center justify-center text-[10px] font-mono font-bold border cursor-crosshair transition-all duration-150 ${
+                                        isCellActive
+                                          ? 'scale-110 z-10 border-white ring-1 ring-white/80 shadow-[0_0_14px_rgba(255,255,255,0.35)]'
+                                          : hoveredCell !== null && !isCrosshair
+                                          ? 'opacity-45 border-zinc-900'
+                                          : 'border-zinc-900'
+                                      }`}
+                                      style={{
+                                        backgroundColor: bgColor,
+                                        color: textColor
+                                      }}
+                                      title={`Cross-Attention [${tgtTok} -> ${srcTok}]: ${weight.toFixed(3)}`}
+                                    >
+                                      {weight.toFixed(2)}
+                                    </div>
+                                  );
+                                })}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -434,13 +560,20 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               </div>
 
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 2: TRAINING LOSS PER EPOCH (EPOCHS 9-29) */}
         {activeTab === 'training' && (
-          <div className="space-y-6">
-            <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-6">
+          <motion.div
+            key="training"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="lab-surface p-6 space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div>
                   <h3 className="text-lg font-bold text-white uppercase font-mono">
@@ -462,6 +595,9 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                   </span>
                 </div>
               </div>
+
+              {/* Smooth Interactive SVG Loss Curve */}
+              <Seq2SeqLossChart data={data.validationEpochsLoss} />
 
               {/* Epoch-by-Epoch Metric Chart (Epochs 9 to 29) */}
               <div className="space-y-2 font-mono text-xs">
@@ -539,12 +675,19 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 3: VALIDATION RESULTS & QUALITATIVE FINDINGS */}
         {activeTab === 'validation' && (
-          <div className="space-y-6">
+          <motion.div
+            key="validation"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
             
             {/* BLEU Score Reality & Technical Explanation */}
             <div className="p-6 bg-zinc-950 border border-amber-900/40 space-y-3">
@@ -593,16 +736,23 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               </div>
             </div>
 
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 4: ARCHITECTURE & PARAMETERS */}
         {activeTab === 'architecture' && (
-          <div className="space-y-6">
+          <motion.div
+            key="architecture"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
               {/* Architecture Blueprint Card */}
-              <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
+              <div className="lab-surface p-6 space-y-4">
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <Layers className="w-4 h-4 text-cyan-400" />
                   From-Scratch Architecture Layout
@@ -612,16 +762,47 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                   Implemented completely from scratch in PyTorch without using <code className="text-cyan-300 font-mono">nn.Transformer</code>:
                 </p>
 
-                <div className="p-4 bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-300 whitespace-pre leading-relaxed overflow-x-auto">
-{`Encoder (x6 layers)          Decoder (x6 layers)
-┌─────────────────┐          ┌─────────────────┐
-│ Self-Attention   │          │ Self-Attention   │
-│ (masked/causal)  │          │ (masked/causal)  │
-├─────────────────┤          ├─────────────────┤
-│ Feed Forward     │          │ Cross-Attention  │
-└─────────────────┘          ├─────────────────┤
-                              │ Feed Forward     │
-                              └─────────────────┘`}
+                {/* Visual Layered Encoder-Decoder Schematic */}
+                <div className="p-4 bg-zinc-950 border border-zinc-800 lab-grid-subtle">
+                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-3 items-center font-mono text-[11px]">
+                    {/* Encoder Stack */}
+                    <div className="border border-cyan-500/40 bg-zinc-905 p-3 space-y-2">
+                      <div className="text-[10px] uppercase tracking-wider text-cyan-400 font-bold border-b border-zinc-800 pb-1.5">
+                        Encoder (×6 layers)
+                      </div>
+                      <div className="p-2 bg-zinc-900 border border-zinc-800 text-zinc-200 text-center">
+                        Self-Attention
+                        <span className="block text-[9px] text-zinc-400">(masked / padding)</span>
+                      </div>
+                      <div className="p-2 bg-zinc-900 border border-zinc-800 text-zinc-200 text-center">
+                        Feed Forward
+                        <span className="block text-[9px] text-zinc-400">d_ff = 2048</span>
+                      </div>
+                    </div>
+
+                    {/* Bridge Arrow */}
+                    <div className="flex sm:flex-col items-center justify-center gap-1 text-cyan-400">
+                      <span className="text-[9px] uppercase text-zinc-400">K, V</span>
+                      <ArrowRight className="w-4 h-4 rotate-90 sm:rotate-0" />
+                    </div>
+
+                    {/* Decoder Stack */}
+                    <div className="border border-emerald-500/40 bg-zinc-905 p-3 space-y-2">
+                      <div className="text-[10px] uppercase tracking-wider text-emerald-400 font-bold border-b border-zinc-800 pb-1.5">
+                        Decoder (×6 layers)
+                      </div>
+                      <div className="p-2 bg-zinc-900 border border-zinc-800 text-zinc-200 text-center">
+                        Self-Attention
+                        <span className="block text-[9px] text-zinc-400">(masked / causal)</span>
+                      </div>
+                      <div className="p-2 bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-center font-bold">
+                        Cross-Attention
+                      </div>
+                      <div className="p-2 bg-zinc-900 border border-zinc-800 text-zinc-200 text-center">
+                        Feed Forward
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <ul className="space-y-1.5 font-mono text-xs text-zinc-300">
@@ -694,16 +875,23 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               </div>
 
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 5: PROJECT STRUCTURE & LIMITATIONS */}
         {activeTab === 'structure' && (
-          <div className="space-y-6">
+          <motion.div
+            key="structure"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
               {/* Project Structure Card */}
-              <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
+              <div className="lab-surface p-6 space-y-4">
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
                   <FileCode className="w-4 h-4 text-cyan-400" />
                   Repository File Structure
@@ -720,7 +908,7 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               </div>
 
               {/* Honest Engineering Limitations from README */}
-              <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
+              <div className="lab-surface p-6 space-y-4">
                 <span className="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
                   Architectural & Empirical Limitations
@@ -737,51 +925,47 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
               </div>
 
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 6: EXECUTION COMMANDS */}
         {activeTab === 'reproduction' && (
-          <div className="space-y-6">
-            <div className="p-6 bg-zinc-950 border border-zinc-800 space-y-4">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-emerald-400" />
-                  Execution & Evaluation Commands
-                </span>
-                <button
-                  onClick={handleCopyCode}
-                  className="px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-mono uppercase tracking-wider border border-zinc-800 flex items-center gap-1.5 transition cursor-pointer"
-                >
-                  {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                  {copiedCode ? 'Copied' : 'Copy Commands'}
-                </button>
-              </div>
-
-              {/* Terminal Code Snippet */}
-              <div className="p-4 bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-200 overflow-x-auto space-y-2">
-                <div className="text-zinc-300"># 1. Clone the repository</div>
-                <div className="text-white">git clone https://github.com/25sh0363-code/Encoder-decoder_Translation_model_English-to-Portuguese</div>
-                <div className="text-white">cd Encoder-decoder_Translation_model_English-to-Portuguese</div>
-                <div className="text-zinc-300 pt-2"># 2. Install dependencies</div>
-                <div className="text-emerald-400">pip install torch tokenizers datasets tqdm tensorboard torchmetrics matplotlib</div>
-                <div className="text-zinc-300 pt-2"># 3. Train the model (saves checkpoints to weights/ per epoch)</div>
-                <div className="text-emerald-400">python train.py</div>
-                <div className="text-zinc-300 pt-2"># 4. Translate 3 test sentences (prints greedy vs beam search + saves attention_map.png)</div>
-                <div className="text-emerald-400">python inference.py</div>
-                <div className="text-zinc-300 pt-2"># 5. Launch TensorBoard to view loss, BLEU, CER, and WER</div>
-                <div className="text-emerald-400">tensorboard --logdir run/tmodel</div>
-              </div>
+          <motion.div
+            key="reproduction"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="lab-surface p-6 space-y-4">
+              <TerminalBlock
+                title="Execution & Evaluation Commands"
+                commands={[
+                  '# 1. Clone the repository',
+                  'git clone https://github.com/25sh0363-code/Encoder-decoder_Translation_model_English-to-Portuguese',
+                  'cd Encoder-decoder_Translation_model_English-to-Portuguese',
+                  '# 2. Install dependencies',
+                  'pip install torch tokenizers datasets tqdm tensorboard torchmetrics matplotlib',
+                  '# 3. Train the model (saves checkpoints to weights/ per epoch)',
+                  'python train.py',
+                  '# 4. Translate 3 test sentences (prints greedy vs beam search + saves attention_map.png)',
+                  'python inference.py',
+                  '# 5. Launch TensorBoard to view loss, BLEU, CER, and WER',
+                  'tensorboard --logdir run/tmodel'
+                ]}
+                accentTextClass="text-emerald-400"
+              />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-mono text-xs">
-                <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+                <div className="lab-metric p-3">
                   <span className="text-[10px] text-zinc-300 uppercase block mb-1">Architecture Reference</span>
                   <p className="text-zinc-300 font-sans text-xs">
                     Vaswani et al., &ldquo;Attention Is All You Need&rdquo; (2017) and Umar Jamil PyTorch Transformer implementation tutorial.
                   </p>
                 </div>
 
-                <div className="p-3 bg-zinc-900/60 border border-zinc-850">
+                <div className="lab-metric p-3">
                   <span className="text-[10px] text-zinc-300 uppercase block mb-1">Hardware</span>
                   <p className="text-zinc-300 font-sans text-xs">
                     MacBook Air M4 (CPU execution). Runs 30 epochs with checkpoints saved per epoch to <code className="text-zinc-200">weights/</code>.
@@ -789,8 +973,9 @@ export default function Seq2SeqInteractivePage({ onBack }: Seq2SeqInteractivePag
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
 
       </div>
     </section>

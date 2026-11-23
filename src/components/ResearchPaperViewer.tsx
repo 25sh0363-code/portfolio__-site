@@ -25,6 +25,186 @@ import {
 } from 'lucide-react';
 import { RESEARCH_PAPER_DATA } from '../data';
 import { MANUSCRIPT_CONTENT } from '../manuscriptData';
+import { CornerReticles, TerminalBlock } from './project-details/ExhibitPrimitives';
+
+interface ValidationLossPoint {
+  step: number;
+  python: number;
+  cpp: number;
+}
+
+function ValidationLossChart({ data }: { data: ValidationLossPoint[] }) {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const width = 680;
+  const height = 220;
+  const pad = { top: 20, right: 24, bottom: 34, left: 48 };
+  const plotW = width - pad.left - pad.right;
+  const plotH = height - pad.top - pad.bottom;
+
+  const allVals = data.flatMap((d) => [d.python, d.cpp]);
+  const minVal = Math.floor((Math.min(...allVals) - 0.05) * 20) / 20;
+  const maxVal = Math.ceil((Math.max(...allVals) + 0.05) * 20) / 20;
+
+  const xOf = (idx: number) =>
+    pad.left + (data.length > 1 ? (idx / (data.length - 1)) * plotW : 0);
+  const yOf = (val: number) =>
+    pad.top + ((maxVal - val) / (maxVal - minVal || 1)) * plotH;
+
+  const pyPath = data
+    .map((d, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i).toFixed(1)} ${yOf(d.python).toFixed(1)}`)
+    .join(' ');
+  const cppPath = data
+    .map((d, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i).toFixed(1)} ${yOf(d.cpp).toFixed(1)}`)
+    .join(' ');
+  const cppArea = `${cppPath} L ${xOf(data.length - 1).toFixed(1)} ${(pad.top + plotH).toFixed(1)} L ${xOf(0).toFixed(1)} ${(pad.top + plotH).toFixed(1)} Z`;
+
+  const yTicks = 4;
+  const activePoint = hoveredIdx !== null ? data[hoveredIdx] : data[data.length - 1];
+
+  return (
+    <div className="p-4 sm:p-5 bg-zinc-950 border border-zinc-800 space-y-3 relative overflow-hidden">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
+        <div className="flex items-center gap-4">
+          <span className="inline-flex items-center gap-1.5 text-zinc-300">
+            <span className="w-3 h-0.5 bg-zinc-400 inline-block" />
+            Python (PyTorch)
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold">
+            <span className="w-3 h-0.5 bg-emerald-400 inline-block" />
+            C++ (LibTorch)
+          </span>
+        </div>
+        <div className="flex items-center gap-3 px-2.5 py-1 bg-zinc-900 border border-zinc-800 text-[10px]">
+          <span className="text-zinc-400">Step {activePoint.step.toLocaleString()}</span>
+          <span className="text-zinc-200">Py: {activePoint.python.toFixed(4)}</span>
+          <span className="text-emerald-400 font-bold">C++: {activePoint.cpp.toFixed(4)}</span>
+          <span className="text-zinc-400">Δ {Math.abs(activePoint.python - activePoint.cpp).toFixed(4)}</span>
+        </div>
+      </div>
+
+      <div className="w-full overflow-x-auto">
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full min-w-[520px] h-auto select-none">
+          <defs>
+            <linearGradient id="cppLossFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#34d399" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#34d399" stopOpacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          {/* Horizontal gridlines & Y labels */}
+          {Array.from({ length: yTicks + 1 }).map((_, idx) => {
+            const val = maxVal - (idx / yTicks) * (maxVal - minVal);
+            const y = yOf(val);
+            return (
+              <g key={idx}>
+                <line
+                  x1={pad.left}
+                  y1={y}
+                  x2={width - pad.right}
+                  y2={y}
+                  stroke="rgba(63,63,70,0.45)"
+                  strokeDasharray="3 4"
+                />
+                <text
+                  x={pad.left - 8}
+                  y={y + 3}
+                  textAnchor="end"
+                  className="fill-zinc-400 text-[9px] font-mono"
+                >
+                  {val.toFixed(2)}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Shaded C++ convergence area */}
+          <path d={cppArea} fill="url(#cppLossFill)" />
+
+          {/* Python Line */}
+          <motion.path
+            d={pyPath}
+            fill="none"
+            stroke="#a1a1aa"
+            strokeWidth="2"
+            strokeDasharray="5 4"
+            initial={{ pathLength: 0, opacity: 0.4 }}
+            animate={{ pathLength: 1, opacity: 0.9 }}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
+          />
+
+          {/* C++ Line */}
+          <motion.path
+            d={cppPath}
+            fill="none"
+            stroke="#34d399"
+            strokeWidth="2.5"
+            initial={{ pathLength: 0, opacity: 0.4 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 1.0, ease: 'easeOut' }}
+          />
+
+          {/* Interactive vertical crosshair & points */}
+          {data.map((d, i) => {
+            const x = xOf(i);
+            const yPy = yOf(d.python);
+            const yCpp = yOf(d.cpp);
+            const isHovered = hoveredIdx === i;
+            return (
+              <g
+                key={d.step}
+                onMouseEnter={() => setHoveredIdx(i)}
+                onMouseLeave={() => setHoveredIdx(null)}
+                className="cursor-crosshair"
+              >
+                <rect
+                  x={x - plotW / (data.length * 2)}
+                  y={pad.top}
+                  width={plotW / data.length}
+                  height={plotH}
+                  fill="transparent"
+                />
+                {isHovered && (
+                  <line
+                    x1={x}
+                    y1={pad.top}
+                    x2={x}
+                    y2={pad.top + plotH}
+                    stroke="rgba(228,228,231,0.35)"
+                    strokeDasharray="2 3"
+                  />
+                )}
+                <circle
+                  cx={x}
+                  cy={yPy}
+                  r={isHovered ? 4.5 : 2.8}
+                  fill="#d4d4d8"
+                  stroke="#09090b"
+                  strokeWidth="1.5"
+                />
+                <circle
+                  cx={x}
+                  cy={yCpp}
+                  r={isHovered ? 5 : 3.2}
+                  fill="#34d399"
+                  stroke="#09090b"
+                  strokeWidth="1.5"
+                />
+                <text
+                  x={x}
+                  y={height - 10}
+                  textAnchor="middle"
+                  className={`text-[9px] font-mono ${isHovered ? 'fill-white font-bold' : 'fill-zinc-400'}`}
+                >
+                  {d.step >= 1000 ? `${Math.round(d.step / 1000)}k` : d.step}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </div>
+  );
+}
 
 interface ResearchPaperViewerProps {
   onBack?: () => void;
@@ -71,10 +251,12 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
         )}
 
         {/* Paper Header Card */}
-        <div className="border border-zinc-800 bg-zinc-950 p-6 sm:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-zinc-800/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="lab-hero p-6 sm:p-10 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-400/80 via-cyan-400/50 to-transparent" />
+          <CornerReticles colorClass="border-emerald-400/50" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
           
-          <div className="flex flex-wrap items-center gap-2 mb-4">
+          <div className="flex flex-wrap items-center gap-2 mb-4 relative z-10">
             <span className="px-2.5 py-0.5 bg-zinc-100 text-zinc-950 text-[10px] font-mono font-black uppercase tracking-widest flex items-center gap-1.5">
               <Paperclip className="w-3 h-3 text-zinc-900" />
               Attached Original Research Paper
@@ -87,16 +269,16 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display uppercase tracking-tight leading-tight mb-4 relative z-10">
             {paper.paperTitle}
           </h1>
 
-          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6">
+          <p className="text-zinc-300 text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-6 relative z-10">
             {paper.subtitle}
           </p>
 
           {/* Author Byline & Action Buttons */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-zinc-900 text-xs text-zinc-300">
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-zinc-800/80 text-xs text-zinc-300 relative z-10">
             <div>
               <span className="text-white font-bold text-sm block">{paper.author}</span>
               <span className="text-zinc-300 font-mono text-[11px]">{paper.institution}</span>
@@ -139,7 +321,8 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
 
         {/* 4 Core Empirical Headline Metrics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="p-6 bg-zinc-905 border border-zinc-850 space-y-2">
+          <div className="lab-metric p-6 space-y-2 relative overflow-hidden">
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-amber-400/70 to-transparent" />
             <div className="flex items-center justify-between text-zinc-300">
               <span className="text-[10px] font-mono uppercase tracking-widest font-bold">Training Throughput</span>
               <Zap className="w-4 h-4 text-amber-400" />
@@ -152,7 +335,8 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
             </p>
           </div>
 
-          <div className="p-6 bg-zinc-905 border border-zinc-850 space-y-2">
+          <div className="lab-metric p-6 space-y-2 relative overflow-hidden">
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-cyan-400/70 to-transparent" />
             <div className="flex items-center justify-between text-zinc-300">
               <span className="text-[10px] font-mono uppercase tracking-widest font-bold">Inference Speed</span>
               <Activity className="w-4 h-4 text-cyan-400" />
@@ -165,7 +349,8 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
             </p>
           </div>
 
-          <div className="p-6 bg-zinc-905 border border-zinc-850 space-y-2">
+          <div className="lab-metric p-6 space-y-2 relative overflow-hidden">
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-purple-400/70 to-transparent" />
             <div className="flex items-center justify-between text-zinc-300">
               <span className="text-[10px] font-mono uppercase tracking-widest font-bold">GPU VRAM Footprint</span>
               <HardDrive className="w-4 h-4 text-purple-400" />
@@ -178,7 +363,8 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
             </p>
           </div>
 
-          <div className="p-6 bg-zinc-905 border border-zinc-850 space-y-2">
+          <div className="lab-metric p-6 space-y-2 relative overflow-hidden">
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-400/70 to-transparent" />
             <div className="flex items-center justify-between text-zinc-300">
               <span className="text-[10px] font-mono uppercase tracking-widest font-bold">System RAM Usage</span>
               <Server className="w-4 h-4 text-emerald-400" />
@@ -503,8 +689,14 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                       <span className="text-zinc-300">Python (PyTorch + AMP)</span>
                       <span className="text-zinc-200">~59k–62k toks/s (mid: 60.0k)</span>
                     </div>
-                    <div className="w-full bg-zinc-900 h-2">
-                      <div className="bg-zinc-500 h-2 w-[61%]" />
+                    <div className="w-full bg-zinc-900 h-2.5 overflow-hidden border border-zinc-800">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: '61%' }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, ease: 'easeOut' }}
+                        className="bg-zinc-500 h-full"
+                      />
                     </div>
                   </div>
                   <div className="space-y-1 pt-2">
@@ -512,8 +704,14 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                       <span className="text-emerald-400 font-bold">C++ (LibTorch FP32)</span>
                       <span className="text-emerald-400 font-bold">~95k–100k toks/s (mid: 97.5k)</span>
                     </div>
-                    <div className="w-full bg-zinc-900 h-2">
-                      <div className="bg-emerald-400 h-2 w-[100%]" />
+                    <div className="w-full bg-zinc-900 h-2.5 overflow-hidden border border-zinc-800">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: '100%' }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: 'easeOut' }}
+                        className="bg-gradient-to-r from-emerald-500 to-emerald-300 h-full shadow-[0_0_12px_rgba(52,211,153,0.45)]"
+                      />
                     </div>
                   </div>
                 </div>
@@ -526,6 +724,9 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                   </p>
                 </div>
               </div>
+
+              {/* Interactive Convergence Curve Plot */}
+              <ValidationLossChart data={paper.benchmarks.validationLoss} />
 
               {/* Validation Loss Progression Table */}
               <div className="space-y-2 pt-2">
@@ -818,11 +1019,19 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
               ))}
             </div>
 
+            <AnimatePresence mode="wait">
             {/* Sub-Tab 1: Empirical Benchmarks */}
             {activeInteractiveSection === 'benchmarks' && (
-              <div className="space-y-8">
+              <motion.div
+                key="benchmarks"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="space-y-8"
+              >
                 {/* Training Throughput Deep-Dive */}
-                <div className="p-6 sm:p-8 bg-zinc-905 border border-zinc-850 space-y-6">
+                <div className="lab-surface p-6 sm:p-8 space-y-6">
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-850 pb-4">
                     <div className="space-y-1">
                       <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">Benchmark 1</span>
@@ -841,8 +1050,13 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                         <span className="text-zinc-300">Python (PyTorch + CUDA AMP)</span>
                         <span className="text-zinc-200 font-bold">~59,000 – 62,000 toks/s (midpoint: 60,000)</span>
                       </div>
-                      <div className="w-full bg-zinc-900 h-3 border border-zinc-800">
-                        <div className="bg-zinc-500 h-full w-[61%]" />
+                      <div className="w-full bg-zinc-900 h-3.5 border border-zinc-800 overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: '61%' }}
+                          transition={{ duration: 0.7, ease: 'easeOut' }}
+                          className="bg-zinc-500 h-full"
+                        />
                       </div>
                     </div>
 
@@ -851,8 +1065,13 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                         <span className="text-emerald-400 font-bold">C++ (LibTorch FP32)</span>
                         <span className="text-emerald-400 font-bold">~95,000 – 100,000 toks/s (midpoint: 97,500)</span>
                       </div>
-                      <div className="w-full bg-zinc-900 h-3 border border-zinc-800">
-                        <div className="bg-emerald-400 h-full w-[100%]" />
+                      <div className="w-full bg-zinc-900 h-3.5 border border-zinc-800 overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: '100%' }}
+                          transition={{ duration: 0.9, ease: 'easeOut' }}
+                          className="bg-gradient-to-r from-emerald-500 to-emerald-300 h-full shadow-[0_0_14px_rgba(52,211,153,0.45)]"
+                        />
                       </div>
                     </div>
                   </div>
@@ -863,13 +1082,15 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                 </div>
 
                 {/* Validation Loss Convergence */}
-                <div className="p-6 sm:p-8 bg-zinc-905 border border-zinc-850 space-y-6">
+                <div className="lab-surface p-6 sm:p-8 space-y-6">
                   <div className="space-y-1 border-b border-zinc-850 pb-4">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">Benchmark 2</span>
                     <h3 className="text-xl font-bold text-white font-display uppercase tracking-tight">
                       Validation Loss Convergence Trajectory
                     </h3>
                   </div>
+
+                  <ValidationLossChart data={paper.benchmarks.validationLoss} />
 
                   <div className="overflow-x-auto border border-zinc-800">
                     <table className="w-full text-left text-xs font-mono">
@@ -895,14 +1116,14 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
-                    <div className="p-4 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-4 space-y-1">
                       <span className="text-[10px] text-zinc-300 uppercase block">Python Best Loss</span>
-                      <span className="text-white font-bold">{paper.benchmarks.bestValLoss.python.loss}</span>
+                      <span className="text-white font-bold text-lg">{paper.benchmarks.bestValLoss.python.loss}</span>
                       <span className="text-[10px] text-zinc-300 block">{paper.benchmarks.bestValLoss.python.step}</span>
                     </div>
-                    <div className="p-4 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-4 space-y-1">
                       <span className="text-[10px] text-emerald-500 uppercase block">C++ Best Loss</span>
-                      <span className="text-emerald-400 font-bold">{paper.benchmarks.bestValLoss.cpp.loss}</span>
+                      <span className="text-emerald-400 font-bold text-lg">{paper.benchmarks.bestValLoss.cpp.loss}</span>
                       <span className="text-[10px] text-zinc-300 block">{paper.benchmarks.bestValLoss.cpp.step}</span>
                     </div>
                   </div>
@@ -911,7 +1132,7 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                 {/* Autoregressive Inference & Memory Allocation */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Inference Speed */}
-                  <div className="p-6 bg-zinc-905 border border-zinc-850 space-y-4">
+                  <div className="lab-surface p-6 space-y-4">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">
                       Inference Throughput
                     </span>
@@ -920,13 +1141,33 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                     </h4>
 
                     <div className="space-y-3 text-xs font-mono">
-                      <div className="p-3 bg-zinc-950 border border-zinc-800 flex justify-between items-center">
-                        <span className="text-zinc-300">Python Median</span>
-                        <span className="text-white font-bold">{paper.benchmarks.inference.pythonMedian} tok/s</span>
+                      <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-zinc-300">Python Median</span>
+                          <span className="text-white font-bold">{paper.benchmarks.inference.pythonMedian} tok/s</span>
+                        </div>
+                        <div className="w-full h-2 bg-zinc-900 border border-zinc-800 overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: '67.7%' }}
+                            transition={{ duration: 0.7 }}
+                            className="h-full bg-zinc-500"
+                          />
+                        </div>
                       </div>
-                      <div className="p-3 bg-zinc-950 border border-zinc-800 flex justify-between items-center">
-                        <span className="text-emerald-400 font-bold">C++ Median</span>
-                        <span className="text-emerald-400 font-bold">{paper.benchmarks.inference.cppMedian} tok/s</span>
+                      <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-emerald-400 font-bold">C++ Median</span>
+                          <span className="text-emerald-400 font-bold">{paper.benchmarks.inference.cppMedian} tok/s</span>
+                        </div>
+                        <div className="w-full h-2 bg-zinc-900 border border-zinc-800 overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: '100%' }}
+                            transition={{ duration: 0.85 }}
+                            className="h-full bg-gradient-to-r from-emerald-500 to-cyan-400"
+                          />
+                        </div>
                       </div>
                       <div className="p-3 bg-emerald-950/40 border border-emerald-800/60 text-emerald-400 font-bold text-center">
                         +{paper.benchmarks.inference.percentage} ({paper.benchmarks.inference.speedup}) Faster
@@ -935,7 +1176,7 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                   </div>
 
                   {/* Memory Footprints */}
-                  <div className="p-6 bg-zinc-905 border border-zinc-850 space-y-4">
+                  <div className="lab-surface p-6 space-y-4">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">
                       Memory Efficiency
                     </span>
@@ -944,7 +1185,7 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                     </h4>
 
                     <div className="space-y-3 text-xs font-mono">
-                      <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                      <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-2">
                         <div className="flex justify-between">
                           <span className="text-zinc-300">GPU VRAM</span>
                           <span className="text-purple-400 font-bold">{paper.benchmarks.memory.gpu.reduction}</span>
@@ -952,9 +1193,22 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                         <div className="text-[10px] text-zinc-300">
                           Python: {paper.benchmarks.memory.gpu.python} MB → C++: {paper.benchmarks.memory.gpu.cpp} MB
                         </div>
+                        <div className="space-y-1 pt-0.5">
+                          <div className="w-full h-1.5 bg-zinc-900 overflow-hidden">
+                            <div className="h-full bg-zinc-500 w-full" />
+                          </div>
+                          <div className="w-full h-1.5 bg-zinc-900 overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: '30.2%' }}
+                              transition={{ duration: 0.8 }}
+                              className="h-full bg-purple-400"
+                            />
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                      <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-2">
                         <div className="flex justify-between">
                           <span className="text-zinc-300">Host RAM</span>
                           <span className="text-emerald-400 font-bold">{paper.benchmarks.memory.ram.reduction}</span>
@@ -962,17 +1216,37 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                         <div className="text-[10px] text-zinc-300">
                           Python: {paper.benchmarks.memory.ram.python} MB → C++: {paper.benchmarks.memory.ram.cpp} MB
                         </div>
+                        <div className="space-y-1 pt-0.5">
+                          <div className="w-full h-1.5 bg-zinc-900 overflow-hidden">
+                            <div className="h-full bg-zinc-500 w-full" />
+                          </div>
+                          <div className="w-full h-1.5 bg-zinc-900 overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: '82%' }}
+                              transition={{ duration: 0.8 }}
+                              className="h-full bg-cyan-400"
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Sub-Tab 2: Architecture Details */}
             {activeInteractiveSection === 'architecture' && (
-              <div className="space-y-8">
-                <div className="p-6 sm:p-8 bg-zinc-905 border border-zinc-850 space-y-6">
+              <motion.div
+                key="architecture"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="space-y-8"
+              >
+                <div className="lab-surface p-6 sm:p-8 space-y-6">
                   <div className="space-y-1 border-b border-zinc-850 pb-4">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">Model Specs</span>
                     <h3 className="text-xl font-bold text-white font-display uppercase tracking-tight">
@@ -981,46 +1255,53 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-xs font-mono">
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">Context Length</span>
                       <span className="text-white font-bold">{paper.architecture.contextLength} tokens</span>
                     </div>
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">Embedding Dim</span>
                       <span className="text-white font-bold">{paper.architecture.embeddingDim}</span>
                     </div>
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">Attention Heads</span>
                       <span className="text-white font-bold">{paper.architecture.attentionHeads}</span>
                     </div>
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">Head Dim</span>
                       <span className="text-white font-bold">{paper.architecture.headDim}</span>
                     </div>
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">Blocks</span>
                       <span className="text-white font-bold">{paper.architecture.transformerBlocks}</span>
                     </div>
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">MLP Hidden Dim</span>
                       <span className="text-white font-bold">{paper.architecture.mlpHiddenWidth} (4×)</span>
                     </div>
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">Activation</span>
                       <span className="text-white font-bold">{paper.architecture.activation}</span>
                     </div>
-                    <div className="p-3 bg-zinc-950 border border-zinc-800 space-y-1">
+                    <div className="lab-metric p-3 space-y-1">
                       <span className="text-[10px] text-zinc-300 block uppercase">Weight Tying</span>
                       <span className="text-emerald-400 font-bold">{paper.architecture.weightTying}</span>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Sub-Tab 3: Qualitative Generation Samples */}
             {activeInteractiveSection === 'generation' && (
-              <div className="p-6 sm:p-8 bg-zinc-905 border border-zinc-850 space-y-6">
+              <motion.div
+                key="generation"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="lab-surface p-6 sm:p-8 space-y-6"
+              >
                 <div className="space-y-1 border-b border-zinc-850 pb-4">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">Text Samples</span>
                   <h3 className="text-xl font-bold text-white font-display uppercase tracking-tight">
@@ -1074,12 +1355,19 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Sub-Tab 4: Build & Reproduction */}
             {activeInteractiveSection === 'reproduce' && (
-              <div className="p-6 sm:p-8 bg-zinc-905 border border-zinc-850 space-y-6">
+              <motion.div
+                key="reproduce"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="lab-surface p-6 sm:p-8 space-y-6"
+              >
                 <div className="space-y-1 border-b border-zinc-850 pb-4">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold block">Terminal</span>
                   <h3 className="text-xl font-bold text-white font-display uppercase tracking-tight">
@@ -1088,28 +1376,23 @@ export default function ResearchPaperViewer({ onBack }: ResearchPaperViewerProps
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-                    <div className="flex items-center gap-2 text-xs font-mono uppercase text-zinc-300 font-bold">
-                      <Terminal className="w-4 h-4 text-zinc-300" />
-                      Python / PyTorch Pipeline
-                    </div>
-                    <pre className="p-4 bg-zinc-900 border border-zinc-850 text-xs font-mono text-zinc-300 overflow-x-auto leading-relaxed">
-{paper.reproduction.python.join('\n')}
-                    </pre>
-                  </div>
+                  <TerminalBlock
+                    title="Python / PyTorch Pipeline"
+                    commands={paper.reproduction.python}
+                    accentTextClass="text-zinc-200"
+                    showPrompt={false}
+                  />
 
-                  <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-                    <div className="flex items-center gap-2 text-xs font-mono uppercase text-emerald-400 font-bold">
-                      <Terminal className="w-4 h-4 text-emerald-400" />
-                      C++ / LibTorch Build & Execution
-                    </div>
-                    <pre className="p-4 bg-zinc-900 border border-zinc-850 text-xs font-mono text-zinc-300 overflow-x-auto leading-relaxed">
-{paper.reproduction.cpp.join('\n')}
-                    </pre>
-                  </div>
+                  <TerminalBlock
+                    title="C++ / LibTorch Build & Execution"
+                    commands={paper.reproduction.cpp}
+                    accentTextClass="text-emerald-400"
+                    showPrompt={false}
+                  />
                 </div>
-              </div>
+              </motion.div>
             )}
+            </AnimatePresence>
           </motion.div>
         )}
 

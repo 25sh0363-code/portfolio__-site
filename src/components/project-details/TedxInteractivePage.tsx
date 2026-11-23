@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { TEDX_DATA } from '../../data';
 import { fixAssetUrl } from '../../utils/assets';
+import { BrowserFrame, CornerReticles } from './ExhibitPrimitives';
 
 interface TedxInteractivePageProps {
   onBack: () => void;
@@ -70,19 +71,26 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-8 px-4 sm:px-6 max-w-5xl mx-auto text-left font-mono selection:bg-zinc-800">
       
-      {/* Top Breadcrumb & Header */}
-      <div className="border-b border-zinc-800 pb-6 mb-8">
+      {/* Top Breadcrumb */}
+      <div className="pb-4 mb-6 border-b border-zinc-900">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs uppercase tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer"
           id="btn-back-to-portfolio"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects Portfolio
         </button>
+      </div>
+
+      {/* Hero Frame */}
+      <div className="lab-hero p-6 sm:p-9 mb-8 relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-red-500/80 via-zinc-400/40 to-transparent" />
+        <CornerReticles colorClass="border-red-500/50" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Minimalist Monochromatic Badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="flex flex-wrap items-center gap-2 mb-3 relative z-10">
           <span className="px-2.5 py-0.5 bg-zinc-900 text-zinc-200 border border-zinc-800 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
             <Terminal className="w-3 h-3 text-zinc-300" /> Lead Systems Architect & Tech Head
           </span>
@@ -94,7 +102,7 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
           </span>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 relative z-10">
           <div>
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase font-display flex items-center gap-3">
               <span>TEDxSilverOaks Digital Platform</span>
@@ -160,9 +168,17 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
         })}
       </div>
 
+      <AnimatePresence mode="wait">
       {/* TAB 1: WEBSITE STRUCTURE & PAGES */}
       {activeTab === 'pages' && (
-        <div className="space-y-10">
+        <motion.div
+          key="pages"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-10"
+        >
           
           <div className="border-b border-zinc-800 pb-3">
             <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
@@ -190,21 +206,27 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
               {screenshotList.map((shot) => (
                 <div 
                   key={shot.id} 
-                  className="bg-zinc-950 border border-zinc-800 group hover:border-zinc-700 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
+                  className="lab-surface group hover:border-red-500/50 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
                   onClick={() => setZoomedImage({ src: shot.image, title: shot.title })}
                 >
-                  <div className="relative aspect-video bg-zinc-900 border-b border-zinc-850 overflow-hidden">
-                    <img 
-                      src={shot.image} 
-                      alt={shot.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold uppercase">
-                      <Maximize2 className="w-3.5 h-3.5" /> Expand
+                  <BrowserFrame
+                    url={`https://tedxsilveroaks.in${shot.urlPath}`}
+                    accentDotClass="bg-red-500"
+                    className="border-0 shadow-none"
+                  >
+                    <div className="relative aspect-video bg-zinc-900 overflow-hidden">
+                      <img 
+                        src={shot.image} 
+                        alt={shot.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold uppercase">
+                        <Maximize2 className="w-3.5 h-3.5" /> Expand
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-3 space-y-1">
-                    <span className="text-[10px] font-mono text-zinc-300 uppercase font-bold block">{shot.urlPath}</span>
+                  </BrowserFrame>
+                  <div className="p-3.5 border-t border-zinc-850 space-y-1">
+                    <span className="text-[10px] font-mono text-red-400 uppercase font-bold block">{shot.urlPath}</span>
                     <h3 className="text-xs font-bold text-white uppercase font-mono line-clamp-1">{shot.title}</h3>
                   </div>
                 </div>
@@ -216,11 +238,11 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Page 1: Hero Landing */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <Globe className="w-4 h-4 text-zinc-300" />
-                  1. Public Home / Hero Landing (`/`)
+                  1. Public Home / Hero Landing (<code className="text-red-400">/</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Public Landing
@@ -232,11 +254,11 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             </div>
 
             {/* Page 2: About the Theme */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-zinc-300" />
-                  2. About the Theme Section (`/#about`)
+                  2. About the Theme Section (<code className="text-red-400">/#about</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Conference Theme
@@ -248,11 +270,11 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             </div>
 
             {/* Page 3: Team Directory */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <Users className="w-4 h-4 text-zinc-300" />
-                  3. Team Directory & Tech Head (`/#team`)
+                  3. Team Directory & Tech Head (<code className="text-red-400">/#team</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Student Leadership
@@ -264,11 +286,11 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             </div>
 
             {/* Page 4: Staff Check-In Scanner */}
-            <div className="p-5 bg-zinc-950 border border-zinc-800 space-y-3">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+            <div className="lab-metric p-5 space-y-3">
+              <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
                 <span className="text-xs font-bold text-white uppercase font-mono flex items-center gap-2">
                   <Camera className="w-4 h-4 text-zinc-300" />
-                  4. Staff Check-In & Scanner Console (`/staff`)
+                  4. Staff Check-In & Scanner Console (<code className="text-red-400">/staff</code>)
                 </span>
                 <span className="text-[9px] bg-zinc-900 text-zinc-300 px-2 py-0.5 border border-zinc-850">
                   Staff Only Portal
@@ -282,9 +304,9 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
           </div>
 
           {/* How The Two Apps Connect (Clean Explanation) */}
-          <div className="bg-zinc-900/40 border border-zinc-800 p-5 space-y-3">
+          <div className="lab-surface p-5 space-y-3">
             <span className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider block border-b border-zinc-800 pb-2 flex items-center gap-2">
-              <Layers className="w-3.5 h-3.5 text-zinc-300" />
+              <Layers className="w-3.5 h-3.5 text-red-400" />
               How the Two Separate Applications Connect via Google Apps Script & Sheets
             </span>
             <div className="space-y-3 text-xs font-sans text-zinc-300 leading-relaxed">
@@ -292,15 +314,18 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
                 The <strong>Visitor Portal</strong> and the <strong>Staff Scanner Console</strong> are two distinct frontends deployed independently to keep public visitors and staff workflows completely separate:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1 font-mono text-[11px]">
-                <div className="p-3 bg-zinc-950 border border-zinc-850 space-y-1">
+                <div className="lab-metric p-4 space-y-1.5 relative overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-red-500/70 to-transparent" />
                   <div className="font-bold text-white">1. Registration Form</div>
                   <div className="text-zinc-300 font-sans text-[11px]">User submits registration details on the visitor portal. An HTTP POST request sends the data to the Google Apps Script webhook.</div>
                 </div>
-                <div className="p-3 bg-zinc-950 border border-zinc-850 space-y-1">
+                <div className="lab-metric p-4 space-y-1.5 relative overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-amber-400/70 to-transparent" />
                   <div className="font-bold text-white">2. Sheets & Email Pass</div>
                   <div className="text-zinc-300 font-sans text-[11px]">Apps Script adds a row in Google Sheets and triggers Gmail MailApp to automatically email the user an HTML pass with their unique QR code.</div>
                 </div>
-                <div className="p-3 bg-zinc-950 border border-zinc-850 space-y-1">
+                <div className="lab-metric p-4 space-y-1.5 relative overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-400/70 to-transparent" />
                   <div className="font-bold text-white">3. Gate Camera Scan</div>
                   <div className="text-zinc-300 font-sans text-[11px]">Volunteers scan passes on the staff app. An HTTP GET request verifies the ticket and updates the check-in status directly in Google Sheets in sub-300ms.</div>
                 </div>
@@ -308,19 +333,26 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
             </div>
           </div>
 
-        </div>
+        </motion.div>
       )}
 
       {/* SCREENSHOT EXHIBIT TAB RENDERING */}
       {activeTab !== 'pages' && (
-        <div className="space-y-6">
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-6"
+        >
           {(() => {
             const currentShot = screenshotList.find(s => s.id === activeTab)!;
             return (
               <div className="space-y-6">
                 
                 <div className="border-b border-zinc-800 pb-3">
-                  <span className="text-[10px] uppercase tracking-widest text-zinc-300 font-bold block">
+                  <span className="text-[10px] uppercase tracking-widest text-red-400 font-bold block">
                     Actual Screenshot from {currentShot.urlPath}
                   </span>
                   <h2 className="text-xl font-bold text-white uppercase font-display">
@@ -332,7 +364,12 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
                 </div>
 
                 {/* Screenshot Display Card */}
-                <div className="bg-zinc-950 border border-zinc-800 p-2 relative group overflow-hidden">
+                <BrowserFrame
+                  url={`https://tedxsilveroaks.in${currentShot.urlPath}`}
+                  label="Production"
+                  accentDotClass="bg-red-500"
+                  onExpand={() => setZoomedImage({ src: currentShot.image, title: currentShot.title })}
+                >
                   <div className="relative overflow-hidden bg-black aspect-video flex items-center justify-center">
                     <img
                       src={currentShot.image}
@@ -340,20 +377,11 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
                       className="w-full h-full object-contain"
                       referrerPolicy="no-referrer"
                     />
-
-                    {/* Expand Zoom Button */}
-                    <button
-                      onClick={() => setZoomedImage({ src: currentShot.image, title: currentShot.title })}
-                      className="absolute bottom-4 right-4 px-4 py-2 bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 text-white text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer shadow-xl"
-                    >
-                      <Maximize2 className="w-4 h-4" />
-                      Expand High-Res Image
-                    </button>
                   </div>
-                </div>
+                </BrowserFrame>
 
                 {/* Grounded Key Observations & Features List */}
-                <div className="bg-zinc-900/40 border border-zinc-850 p-5 space-y-3">
+                <div className="lab-surface p-5 space-y-3">
                   <span className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider block border-b border-zinc-800 pb-2">
                     Verified Material Observations & Features
                   </span>
@@ -361,7 +389,7 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {currentShot.highlights.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-xs text-zinc-300 font-sans">
-                        <Check className="w-4 h-4 text-zinc-300 shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -377,8 +405,9 @@ export default function TedxInteractivePage({ onBack }: TedxInteractivePageProps
               </div>
             );
           })()}
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {/* High-Res Image Zoom Modal */}
       <AnimatePresence>

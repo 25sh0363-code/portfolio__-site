@@ -110,7 +110,7 @@ export default function Hero({ setActiveTab, onOpenProject, onSecretEntrance }: 
             <div 
               onClick={() => {
                 if (onOpenProject) {
-                  onOpenProject('research-cpp-transformer');
+                  onOpenProject('native-cpp-transformer');
                 } else {
                   setActiveTab('projects');
                 }
@@ -174,7 +174,7 @@ export default function Hero({ setActiveTab, onOpenProject, onSecretEntrance }: 
                 id="btn-research-paper"
                 onClick={() => {
                   if (onOpenProject) {
-                    onOpenProject('research-cpp-transformer');
+                    onOpenProject('native-cpp-transformer');
                   } else {
                     setActiveTab('projects');
                   }

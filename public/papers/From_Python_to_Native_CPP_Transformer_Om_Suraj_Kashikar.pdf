@@ -1,5 +1,5 @@
 %PDF-1.3
-%ºß¬à
+%ï¿½ß¬ï¿½
 3 0 obj
 <</Type /Page
 /Parent 1 0 R
@@ -118,7 +118,7 @@ BT
 (language-model development is often performed through high-level Python frameworks such as PyTorch, while C++ can) Tj
 0 Tw
 0. -11.5 Td
-(provide a lower-level interface through LibTorch, PyTorch’s C++ API.) Tj
+(provide a lower-level interface through LibTorch, PyTorchï¿½s C++ API.) Tj
 ET
 BT
 /F9 10 Tf
@@ -738,7 +738,7 @@ BT
 0.078 g
 0.5653333333333346 Tw
 54. 201.8899999999999864 Td
-(Python is widely used for machine-learning research because it provides concise syntax and mature libraries. PyTorch’s) Tj
+(Python is widely used for machine-learning research because it provides concise syntax and mature libraries. PyTorchï¿½s) Tj
 0.2816666666666663 Tw
 0. -11.5 Td
 (Python API provides automatic differentiation, CUDA execution, mixed precision, optimizers, checkpointing, and tensor) Tj
@@ -769,7 +769,7 @@ BT
 0.078 g
 -0.0299999999999971 Tw
 54. 771.8899999999999864 Td
-(LibTorch is PyTorch’s C++ API. It provides similar tensor, autograd, CUDA, neural-network, and optimizer functionality) Tj
+(LibTorch is PyTorchï¿½s C++ API. It provides similar tensor, autograd, CUDA, neural-network, and optimizer functionality) Tj
 0.2628571428571514 Tw
 0. -11.5 Td
 (through C++. Therefore, this project compares Python/PyTorch with C++/LibTorch rather than comparing Python with a) Tj
@@ -4582,10 +4582,10 @@ BT
 (The measurements show that the C++/LibTorch implementation achieved higher observed training throughput than the) Tj
 -0.0220000000000084 Tw
 0. -11.5 Td
-(Python/PyTorch implementation. C++ sustained approximately 95,000–100,000 training tokens/s, while Python sustained) Tj
+(Python/PyTorch implementation. C++ sustained approximately 95,000ï¿½100,000 training tokens/s, while Python sustained) Tj
 0.3890909090909221 Tw
 0. -11.5 Td
-(approximately 59,000–62,000 tokens/s. The C++ implementation also achieved higher recorded autoregressive inference) Tj
+(approximately 59,000ï¿½62,000 tokens/s. The C++ implementation also achieved higher recorded autoregressive inference) Tj
 0 Tw
 0. -11.5 Td
 (throughput, with a median of 190.6 tok/s compared with 129 tok/s for Python.) Tj
@@ -4642,28 +4642,28 @@ BT
 10.9249999999999989 TL
 0.078 g
 59. 511.8899999999999864 Td
-(• This is a Python/PyTorch versus C++/LibTorch comparison, not a framework-free C++ CUDA comparison.) Tj
+(ï¿½ This is a Python/PyTorch versus C++/LibTorch comparison, not a framework-free C++ CUDA comparison.) Tj
 ET
 BT
 /F9 9.5 Tf
 10.9249999999999989 TL
 0.078 g
 59. 494.8899999999999864 Td
-(• Python training used AMP/autocast and GradScaler; C++ training used FP32.) Tj
+(ï¿½ Python training used AMP/autocast and GradScaler; C++ training used FP32.) Tj
 ET
 BT
 /F9 9.5 Tf
 10.9249999999999989 TL
 0.078 g
 59. 477.8899999999999864 Td
-(• The models were trained independently, so their weights and outputs are not identical.) Tj
+(ï¿½ The models were trained independently, so their weights and outputs are not identical.) Tj
 ET
 BT
 /F9 9.5 Tf
 10.9249999999999989 TL
 0.078 g
 59. 460.8899999999999864 Td
-(• Both systems use a 256-token context and a 256-token maximum generation cap, but EOT stopping can produce different) Tj
+(ï¿½ Both systems use a 256-token context and a 256-token maximum generation cap, but EOT stopping can produce different) Tj
 T* (actual output lengths.) Tj
 ET
 BT
@@ -4671,35 +4671,35 @@ BT
 10.9249999999999989 TL
 0.078 g
 59. 430.8899999999999864 Td
-(• The inference benchmark contains three runs per implementation.) Tj
+(ï¿½ The inference benchmark contains three runs per implementation.) Tj
 ET
 BT
 /F9 9.5 Tf
 10.9249999999999989 TL
 0.078 g
 59. 413.8899999999999864 Td
-(• Raw total inference time is not a strict equal-work latency measure when output lengths differ.) Tj
+(ï¿½ Raw total inference time is not a strict equal-work latency measure when output lengths differ.) Tj
 ET
 BT
 /F9 9.5 Tf
 10.9249999999999989 TL
 0.078 g
 59. 396.8899999999999864 Td
-(• The memory-measurement method and exact measurement point should be documented in the final paper.) Tj
+(ï¿½ The memory-measurement method and exact measurement point should be documented in the final paper.) Tj
 ET
 BT
 /F9 9.5 Tf
 10.9249999999999989 TL
 0.078 g
 59. 379.8899999999999864 Td
-(• Python and C++ checkpoints use implementation-specific formats.) Tj
+(ï¿½ Python and C++ checkpoints use implementation-specific formats.) Tj
 ET
 BT
 /F9 9.5 Tf
 10.9249999999999989 TL
 0.078 g
 59. 362.8899999999999864 Td
-(• Training-phase memory and inference-phase memory must be reported separately.) Tj
+(ï¿½ Training-phase memory and inference-phase memory must be reported separately.) Tj
 ET
 BT
 /F10 13 Tf
@@ -4745,10 +4745,10 @@ BT
 0.078 g
 4.9316666666666622 Tw
 54. 771.8899999999999864 Td
-(On an NVIDIA RTX 4090, C++ sustained approximately 95,000–100,000 training tokens/s compared with) Tj
+(On an NVIDIA RTX 4090, C++ sustained approximately 95,000ï¿½100,000 training tokens/s compared with) Tj
 1.3628571428571459 Tw
 0. -11.5 Td
-(approximately 59,000–62,000 tokens/s for Python. C++ also achieved a higher median inference throughput of 190.6) Tj
+(approximately 59,000ï¿½62,000 tokens/s for Python. C++ also achieved a higher median inference throughput of 190.6) Tj
 0.3694117647058841 Tw
 0. -11.5 Td
 (tok/s compared with 129 tok/s for Python. The C++ implementation recorded lower system RAM and GPU memory use) Tj
@@ -4848,7 +4848,7 @@ BT
 (This work draws on foundational material and educational resources, including the original Transformer architecture [2],) Tj
 1.9900000000000051 Tw
 0. -10.9249999999999989 Td
-(Andrej Karpathy’s lectures on GPT-2 recreation and decoder-only transformers [3, 4], StatQuest’s explanations of neural) Tj
+(Andrej Karpathyï¿½s lectures on GPT-2 recreation and decoder-only transformers [3, 4], StatQuestï¿½s explanations of neural) Tj
 0.9390000000000062 Tw
 0. -10.9249999999999989 Td
 (network fundamentals [5], and cloud GPU infrastructure provided by Race Engineering [6]. The complete implementation is) Tj
@@ -5740,14 +5740,14 @@ BT
 9.7749999999999986 TL
 0.157 g
 260. 627.8899999999999864 Td
-(95,000–100,000) Tj
+(95,000ï¿½100,000) Tj
 ET
 BT
 /F9 8.5 Tf
 9.7749999999999986 TL
 0.157 g
 403. 627.8899999999999864 Td
-(59,000–62,000) Tj
+(59,000ï¿½62,000) Tj
 ET
 0.99 0.99 0.99 rg
 54. 622.8899999999999864 487.2799999999999727 -16. re
